@@ -90,7 +90,10 @@ h2{font-family:Anton,Impact,sans-serif;font-weight:400;text-transform:uppercase;
 
 .palco{position:relative;aspect-ratio:1/1.08;min-height:420px}
 .palco .circ{left:2%;top:8%;width:78%;aspect-ratio:1;background:var(--bege)}
-.palco .lucia{left:-4%;bottom:0;width:62%;z-index:2}
+.palco .tela{position:absolute;left:0;top:30%;width:66%;z-index:2}
+.palco .tela img{display:block;width:100%;height:auto}
+.hero .pra{margin-top:18px;font:400 clamp(22px,2.6vw,30px)/1.1 'Bebas Neue',sans-serif;letter-spacing:.05em}
+.hero .pra b{font-weight:400;background:var(--amarelo);padding:2px 8px 0;display:inline-block;transform:rotate(-1deg)}
 .palco .cel{position:absolute;right:2%;top:2%;width:47%;z-index:3;transform:rotate(3deg)}
 .palco .t1{position:absolute;left:4%;top:4%;z-index:4;transform:rotate(-5deg)}
 .palco .t2{position:absolute;left:30%;top:58%;z-index:4;transform:rotate(3deg)}
@@ -117,6 +120,7 @@ h2{font-family:Anton,Impact,sans-serif;font-weight:400;text-transform:uppercase;
 /* episódio */
 .ep .grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:56px;align-items:center}
 .ep .tres{margin-top:14px;font-family:Anton,Impact,sans-serif;font-size:clamp(150px,22vw,260px);line-height:.8;position:relative;display:inline-block}
+.ep .secao{position:relative;z-index:2}
 .ep .tres .circ{width:80%;aspect-ratio:1;background:var(--bege);left:28%;top:6%;z-index:-1}
 .ep .lugares{display:flex;flex-wrap:wrap;gap:10px;margin:18px 0 26px}
 .ep .player{position:relative;max-width:360px;margin-left:auto}
@@ -278,7 +282,7 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-betw
   <div class="wrap">
     <a class="logo" href="#topo" aria-label="Empresa JV, voltar ao início"><span>JV</span>Empresa JV</a>
     <nav aria-label="Seções">
-      <a href="#historia">A história</a>
+      <a href="#historia">Na prática</a>
       <a href="#nichos">Para quem</a>
       <a href="#como-funciona">Como funciona</a>
       <a href="#precos">Preços</a>
@@ -299,6 +303,7 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-betw
         <span class="tag v">NO CADERNO</span><span class="tag a">NO WHATSAPP</span><span class="tag p">NA CABEÇA</span>
       </div>
       <h1>O seu negócio num <em>lugar só.</em></h1>
+      <p class="pra">Para <b id="nicho">pequenos negócios</b></p>
       <p class="lead">Pedidos, clientes, agenda e dinheiro organizados no Notion, no computador e no celular. <strong>A Empresa JV monta o sistema para o seu negócio. Você só usa.</strong></p>
       <div class="ctas">
         <a class="btn pri" href="https://ig.me/m/jv_organiza">Quero o meu sistema</a>
@@ -310,7 +315,7 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-betw
 
     <div class="palco" aria-hidden="true">
       <div class="circ cola"></div>
-      <img class="rec lucia cola" style="--r:-2deg" src="media/rec-lucia.webp" alt="" width="700" height="900">
+      <div class="janela tela cola" style="--r:-2deg"><div class="barra"><i></i><i></i><i></i><small>Orçamentos</small></div><img src="media/tela-orc.webp" alt="" width="698" height="477"></div>
       <div class="cel cola" style="--r:3deg">
         <div class="celular">
           <video class="auto" muted loop playsinline preload="none" poster="media/hero-sistema-poster.jpg"><source src="media/hero-sistema.mp4" type="video/mp4"></video>
@@ -318,7 +323,7 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-betw
       </div>
       <span class="tag p t1 cola" style="--r:-5deg">ANTES: 3 LUGARES</span>
       <span class="tag y t2 cola" style="--r:3deg">AGORA: 1</span>
-      <span class="tag v t3 cola" style="--r:-3deg">QUEM ANOTOU?</span>
+      <span class="tag v t3 cola" style="--r:-3deg">PEDIDOS NO DIA CERTO</span>
       <span class="tag g t4 cola" style="--r:-2deg">CLIENTE + PEDIDO + AGENDA</span>
     </div>
   </div>
@@ -329,21 +334,21 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-betw
   <span>Pague uma vez</span><span>Sem mensalidade</span><span>Funciona no celular</span><span>Plano grátis do Notion</span><span>Videoaula para cada parte</span><span>Primeira semana acompanhada</span>
 </div></div>
 
-<!-- 2. A HISTÓRIA (episódio 1) -->
+<!-- 2. EXEMPLO NA PRÁTICA (no lugar de depoimento) -->
 <section class="sec ep" id="historia">
   <div class="wrap grid">
     <div>
-      <span class="secao"><i></i>GALERIA ESPERANÇA · QUEM ANOTOU?</span>
+      <span class="secao"><i></i>EXEMPLO NA PRÁTICA</span>
       <div class="tres anton cola" aria-hidden="true"><span class="circ"></span>3</div>
       <h2>Três pedidos. Três lugares.</h2>
       <div class="lugares"><span class="tag v">CADERNO</span><span class="tag a">WHATSAPP</span><span class="tag p">CABEÇA</span></div>
-      <p class="lead">A Dona Lúcia anotou um bolo de casamento no caderno. Outro pedido ficou no WhatsApp. O terceiro, só na memória. Na véspera, descobriu dois bolos grandes para o mesmo dia e um forno só.</p>
-      <blockquote>“O problema nunca foi falta de trabalho. Foi falta de um lugar só para anotar e acompanhar os pedidos.”<small>Assista a história inteira, com o sistema resolvendo no final.</small></blockquote>
+      <p class="lead">Um caso comum: um pedido anotado no caderno, outro esquecido no WhatsApp e o terceiro só na memória. Na véspera, aparecem duas entregas grandes para o mesmo dia. No vídeo, o exemplo é uma confeitaria; numa gráfica ou num salão de tranças, o perrengue é o mesmo.</p>
+      <blockquote>Com o sistema, todo pedido entra num lugar só, com cliente, data e quanto já foi pago. Antes de aceitar, você já vê se a data está livre.<small>Assista e veja o sistema em uso no final.</small></blockquote>
     </div>
     <div class="player cola" style="--r:1deg">
       <span class="fita" aria-hidden="true"></span>
       <div class="celular">
-        <video controls playsinline preload="none" poster="media/ep01-poster.jpg" aria-label="Vídeo: Quem anotou? A história da Dona Lúcia e o sistema da Empresa JV"><source src="media/ep01.mp4" type="video/mp4"></video>
+        <video controls playsinline preload="none" poster="media/ep01-poster.jpg" aria-label="Vídeo: exemplo de pedidos em três lugares e o sistema da Empresa JV resolvendo"><source src="media/ep01.mp4" type="video/mp4"></video>
       </div>
     </div>
   </div>
@@ -610,6 +615,14 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-betw
 </footer>
 
 <script>
+/* Linha do topo: troca o tipo de negócio a cada 1,8 s (parada se a pessoa pediu menos movimento). */
+(function(){
+  var el = document.getElementById('nicho');
+  if (!el || (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches)) return;
+  var lista = ['confeitarias','trancistas','gráficas','salões','ateliês','o seu negócio'], i = 0;
+  el.textContent = lista[0];
+  setInterval(function(){ i = (i + 1) % lista.length; el.textContent = lista[i]; }, 1800);
+})();
 /* Só duas coisas: os vídeos em repetição tocam quando aparecem na tela (e pausam fora dela, para poupar dados),
    e os adesivos "colam" ao entrar na tela. Sem bibliotecas. */
 (function(){
