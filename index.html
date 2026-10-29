@@ -4,8 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Empresa JV · Sistema de gestão no Notion para pequenos negócios</title>
-<meta name="description" content="Pedidos, clientes, agenda e dinheiro num sistema só, no Notion. A Empresa JV monta para o seu negócio. Você só usa. Sem mensalidade.">
-<meta property="og:title" content="Empresa JV · O seu negócio num sistema só">
+<meta name="description" content="Pedido no caderno, no WhatsApp e na cabeça? A Empresa JV monta um sistema no Notion para o seu negócio: pedidos, clientes, agenda e dinheiro num lugar só. Sem mensalidade.">
+<meta property="og:title" content="Empresa JV · O seu negócio num lugar só">
 <meta property="og:description" content="Sistema de gestão no Notion montado para o seu negócio. Sem mensalidade, funciona no plano grátis do Notion.">
 <meta property="og:image" content="https://jvorganiza.github.io/img/og.jpg">
 <meta property="og:type" content="website">
@@ -13,338 +13,639 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='32' fill='%230E3B2A'/%3E%3Ctext x='32' y='41' font-family='Arial' font-weight='900' font-size='26' text-anchor='middle' fill='%23FFC82E'%3EJV%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Inter:wght@400;500;600;700&family=Caveat:wght@700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Bebas+Neue&family=Inter:wght@400;500;600;700&family=Caveat:wght@700&display=swap" rel="stylesheet">
 <style>
-/* Identidade aprovada (18/10/2026): verde profundo, verde ação, amarelo só sobre o verde ou como marca-texto, fundo creme, menta. */
-:root{--deep:#0E3B2A;--action:#14794A;--yellow:#FFC82E;--bg:#FAF8F2;--mint:#CFE3D6;--ink:#0E3B2A;--soft:#4F5F57;--line:#E4DED2;--card:#FFFFFF;--max:1120px}
+/* Colagem editorial (mesma linguagem do episódio "Quem anotou?") sobre a identidade JV:
+   papel creme, tinta quente, vermelho e azul de impressão; verde JV nas faixas e amarelo como marca-texto. */
+:root{
+  --papel:#efe7d6; --papel2:#f6f1e5; --tinta:#16130f; --tinta2:#4a443b;
+  --verm:#d64034; --azul:#2b62c4; --bege:#b08a5a;
+  --verde:#0E3B2A; --verde2:#14794A; --amarelo:#FFC82E; --menta:#CFE3D6;
+  --raio:4px;
+  --ruido:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .09 0 0 0 0 .07 0 0 0 0 .05 0 0 0 .09 0'/%3E%3C/filter%3E%3Crect width='220' height='220' filter='url(%23n)'/%3E%3C/svg%3E");
+}
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{margin:0;background:var(--bg);color:var(--ink);font:400 17px/1.6 Inter,system-ui,-apple-system,"Segoe UI",sans-serif;-webkit-font-smoothing:antialiased}
-img{max-width:100%;height:auto;display:block}
+body{margin:0;background:var(--papel) var(--ruido);color:var(--tinta);font:400 17px/1.6 Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img,video{display:block;max-width:100%;height:auto}
+main{overflow-x:clip}
+section[id]{scroll-margin-top:72px}
 a{color:inherit}
-.wrap{max-width:var(--max);margin:0 auto;padding:0 20px}
-h1,h2,h3{font-family:"Bricolage Grotesque",Inter,sans-serif;font-weight:800;letter-spacing:-.015em;line-height:1.08;margin:0;text-wrap:balance}
-h1{font-size:clamp(40px,7vw,68px)}
-h2{font-size:clamp(30px,4.6vw,46px)}
-h3{font-size:22px;line-height:1.2}
-p{margin:0}
-.mk{background:linear-gradient(transparent 55%,var(--yellow) 55%);padding:0 .08em}
-.kicker{font:700 13px Inter;letter-spacing:.14em;text-transform:uppercase;color:var(--action)}
-section{padding:88px 0}
-.lead{font-size:clamp(18px,2.2vw,21px);color:var(--soft);max-width:36em}
-.btn{display:inline-flex;align-items:center;gap:10px;justify-content:center;font:700 17px Inter;text-decoration:none;border-radius:999px;padding:16px 28px;transition:transform .15s,box-shadow .15s}
-.btn:hover{transform:translateY(-1px)}
-.btn-main{background:var(--action);color:#fff;box-shadow:0 8px 22px rgba(20,121,74,.28)}
-.btn-ghost{color:var(--ink);border:2px solid var(--ink)}
-.btn svg{width:20px;height:20px}
+.wrap{width:min(1160px,100%);margin:0 auto;padding-left:max(18px,env(safe-area-inset-left,0px));padding-right:max(18px,env(safe-area-inset-right,0px))}
+.sec{padding-block:clamp(64px,10vw,120px);position:relative}
+
+/* tipografia de colagem */
+.anton{font-family:Anton,Impact,sans-serif;font-weight:400;letter-spacing:-.005em;line-height:.9;text-transform:uppercase}
+.bebas{font-family:'Bebas Neue',Anton,sans-serif;letter-spacing:.05em}
+h1,h2,h3{margin:0;text-wrap:balance}
+h2{font-family:Anton,Impact,sans-serif;font-weight:400;text-transform:uppercase;font-size:clamp(40px,7vw,78px);line-height:.95}
+.lead{font-size:clamp(17px,2vw,20px);color:var(--tinta2);max-width:60ch}
+.marca-texto{background:linear-gradient(transparent 8%,var(--amarelo) 8%,var(--amarelo) 92%,transparent 92%);padding:0 .12em;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+
+/* peças de colagem */
+.secao{display:inline-flex;align-items:center;gap:12px;background:var(--tinta);color:var(--papel2);font:400 20px/1 'Bebas Neue',sans-serif;letter-spacing:.08em;padding:9px 16px 7px}
+.secao i{width:13px;height:13px;background:var(--amarelo);display:block}
+.tag{display:inline-block;font:400 clamp(17px,2vw,22px)/1 'Bebas Neue',sans-serif;letter-spacing:.06em;color:#fff;padding:9px 14px 6px;box-shadow:4px 4px 0 rgba(22,19,15,.18);white-space:nowrap}
+.tag.v{background:var(--verm)} .tag.a{background:var(--azul)} .tag.p{background:var(--tinta)} .tag.g{background:var(--verde2)}
+.tag.b{background:var(--papel2);color:var(--tinta);border:3px solid var(--tinta);box-shadow:none}
+.tag.y{background:var(--amarelo);color:var(--tinta)}
+.fita{position:absolute;width:110px;height:30px;background:rgba(255,200,46,.75);box-shadow:0 1px 2px rgba(0,0,0,.08)}
+.circ{position:absolute;border-radius:50%}
+.rec{position:absolute;filter:drop-shadow(0 10px 18px rgba(22,19,15,.12))}
+.papelzinho{background:var(--papel2) var(--ruido);box-shadow:0 1px 0 rgba(0,0,0,.04),0 12px 30px -12px rgba(22,19,15,.35);position:relative}
+
+/* botões */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:56px;padding:0 28px;font:700 17px/1 Inter,sans-serif;text-decoration:none;border:3px solid var(--tinta);transition:transform .15s ease,box-shadow .15s ease}
+.btn.pri{background:var(--amarelo);color:var(--tinta);box-shadow:6px 6px 0 var(--tinta)}
+.btn.pri:hover{transform:translate(-2px,-2px);box-shadow:8px 8px 0 var(--tinta)}
+.btn.sec2{background:transparent;color:var(--tinta)}
+.btn.sec2:hover{background:var(--tinta);color:var(--papel2)}
+.btn:focus-visible{outline:3px solid var(--azul);outline-offset:3px}
+.dica{font-size:15px;color:var(--tinta2);margin-top:14px}
+.dica b{background:var(--tinta);color:var(--amarelo);padding:2px 7px;font-weight:700;letter-spacing:.04em}
 
 /* topo */
-header{position:sticky;top:0;z-index:20;background:rgba(250,248,242,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
-header .wrap{display:flex;align-items:center;justify-content:space-between;height:64px}
-.brand{display:flex;align-items:center;gap:10px;text-decoration:none;font:800 19px "Bricolage Grotesque"}
-.logo{width:36px;height:36px;border-radius:50%;background:var(--deep);color:var(--yellow);display:grid;place-items:center;font:800 15px "Bricolage Grotesque"}
-header nav{display:flex;gap:26px;font:600 15px Inter}
-header nav a{text-decoration:none;color:var(--soft)}
-header nav a:hover{color:var(--ink)}
-.btn-sm{padding:10px 18px;font-size:15px}
-@media (max-width:820px){header nav{display:none}}
+.topo{position:sticky;top:0;z-index:20;background:rgba(239,231,214,.92);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-bottom:2px solid var(--tinta)}
+.topo .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;height:64px}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;font:800 18px/1 Inter,sans-serif}
+.logo span{width:38px;height:38px;border-radius:50%;background:var(--verde);color:var(--amarelo);display:grid;place-items:center;font:900 15px/1 Inter,sans-serif}
+.topo nav{display:flex;gap:26px;font-weight:600;font-size:15px}
+.topo nav a{text-decoration:none}
+.topo nav a:hover{text-decoration:underline;text-underline-offset:4px}
+.topo .btn{min-height:42px;padding:0 18px;font-size:15px;box-shadow:4px 4px 0 var(--tinta)}
+@media (max-width:860px){.topo nav{display:none}}
 
-/* hero */
-.hero{padding:64px 0 40px}
-.hero .wrap{display:grid;grid-template-columns:1.05fr 1fr;gap:48px;align-items:center}
-.hero h1{margin:14px 0 20px}
-.hero .ctas{display:flex;flex-wrap:wrap;gap:14px;margin:30px 0 18px}
-.ticks{display:flex;flex-wrap:wrap;gap:8px 20px;font:600 15px Inter;color:var(--soft);list-style:none;padding:0;margin:0}
-.ticks li::before{content:"✓";color:var(--action);font-weight:800;margin-right:7px}
-.shots{position:relative;padding:0 0 40px 0}
-.win{background:#fff;border-radius:16px;box-shadow:0 30px 60px rgba(14,59,42,.18);overflow:hidden;border:1px solid var(--line)}
-.win .bar{height:30px;background:#F1EEE7;display:flex;gap:7px;align-items:center;padding:0 12px}
-.win .bar i{width:10px;height:10px;border-radius:50%;background:#D9D3C7}
-.phone{position:absolute;right:-14px;bottom:0;width:25%;border-radius:24px;border:7px solid #15191c;background:#15191c;box-shadow:0 24px 50px rgba(14,59,42,.3);overflow:hidden}
-.phone img,.phone video{border-radius:18px;display:block;width:100%;height:auto}
-@media (max-width:900px){.hero .wrap{grid-template-columns:1fr}.shots{margin-top:8px}.phone{right:0}}
+/* HERO */
+.hero{padding-block:clamp(36px,6vw,72px) clamp(56px,8vw,96px)}
+.hero .grid{display:grid;grid-template-columns:1.05fr .95fr;gap:40px;align-items:center}
+.hero .riscos{display:flex;flex-wrap:wrap;gap:10px;margin:20px 0 6px}
+.hero .riscos .tag{position:relative}
+.hero .riscos .tag::after{content:"";position:absolute;left:-4px;right:-4px;top:50%;height:4px;background:var(--tinta);transform:rotate(-4deg)}
+.hero h1{font-family:Anton,Impact,sans-serif;font-weight:400;text-transform:uppercase;font-size:clamp(54px,9.5vw,118px);line-height:.88;margin-top:18px}
+.hero h1 em{font-style:normal;display:inline-block;background:var(--verde);color:var(--amarelo);padding:.04em .14em .02em;transform:rotate(-1.5deg)}
+.hero .lead{margin:24px 0 30px}
+.hero .ctas{display:flex;flex-wrap:wrap;gap:16px}
+.selos{display:flex;flex-wrap:wrap;gap:8px 18px;margin-top:26px;font-weight:600;font-size:14.5px}
+.selos span::before{content:"✓ ";color:var(--verde2);font-weight:800}
 
-/* palavra-chave do direct */
-.kw{font-size:15px;color:var(--soft);margin:-4px 0 18px}
-.kw b{background:var(--yellow);color:var(--deep);padding:1px 8px;border-radius:6px;letter-spacing:.04em}
-.final .kw{color:rgba(255,255,255,.8);margin:16px 0 0}
+.palco{position:relative;aspect-ratio:1/1.08;min-height:420px}
+.palco .circ{left:2%;top:8%;width:78%;aspect-ratio:1;background:var(--bege)}
+.palco .lucia{left:-4%;bottom:0;width:62%;z-index:2}
+.palco .cel{position:absolute;right:2%;top:2%;width:47%;z-index:3;transform:rotate(3deg)}
+.palco .t1{position:absolute;left:4%;top:4%;z-index:4;transform:rotate(-5deg)}
+.palco .t2{position:absolute;left:30%;top:58%;z-index:4;transform:rotate(3deg)}
+.palco .t3{position:absolute;left:0;top:76%;z-index:4;transform:rotate(-3deg)}
+.palco .t4{position:absolute;right:0;bottom:2%;z-index:4;transform:rotate(-2deg)}
 
-/* prova */
-.proof{border-block:1px solid var(--line);background:#fff;padding:22px 0}
-.proof .wrap{display:flex;flex-wrap:wrap;gap:10px 22px;align-items:center;justify-content:center;text-align:center}
-.proof p{font-weight:600}
-.proof p span{color:var(--action)}
-.proof a{font:700 15px Inter;color:var(--action);text-decoration:underline;text-underline-offset:3px}
+/* moldura de celular */
+.celular{background:#111;border-radius:34px;padding:10px;box-shadow:0 30px 60px -20px rgba(22,19,15,.55),8px 8px 0 var(--tinta)}
+.celular video,.celular img{border-radius:25px;width:100%;aspect-ratio:9/16;object-fit:cover;background:var(--papel2)}
+.celular.curto video,.celular.curto img{aspect-ratio:640/720}
+/* moldura de navegador */
+.janela{background:#fff;border:3px solid var(--tinta);box-shadow:8px 8px 0 var(--tinta)}
+.janela .barra{display:flex;gap:6px;align-items:center;padding:9px 12px;border-bottom:2px solid var(--tinta);background:var(--papel2)}
+.janela .barra i{width:11px;height:11px;border-radius:50%;background:#d8cfbd;display:block}
+.janela .barra small{margin-left:8px;font:600 12px/1 Inter,sans-serif;color:var(--tinta2);letter-spacing:.02em}
+.janela video{width:100%;aspect-ratio:860/720;object-fit:cover;background:#fff}
 
-/* antes / depois */
-.before{background:var(--deep);color:#fff;padding:72px 0}
-.before h2{text-align:center;margin-bottom:40px}
-.vs{display:grid;grid-template-columns:1fr 1fr;gap:20px}
-.vs>div{border-radius:18px;padding:26px 24px}
-.vs .old{border:1px dashed rgba(255,255,255,.35)}
-.vs .new{background:rgba(255,255,255,.08);border:1px solid var(--yellow)}
-.vs .lbl{display:block;font:700 13px Inter;letter-spacing:.14em;text-transform:uppercase;margin-bottom:14px;color:rgba(255,255,255,.7)}
-.vs .new .lbl{color:var(--yellow)}
-.strike{display:grid;gap:12px;font:700 clamp(20px,2.6vw,26px) "Bricolage Grotesque"}
-.vs .new .strike span::before{content:"✓ ";color:var(--yellow)}
-.strike s{text-decoration-thickness:3px;text-decoration-color:var(--yellow);color:rgba(255,255,255,.72)}
-.before h2{color:#fff}
-.before h2 em{font-style:normal;color:var(--yellow)}
-.before p{color:rgba(255,255,255,.8);margin:28px auto 0;font-size:18px;max-width:40em;text-align:center}
-@media (max-width:820px){.vs{grid-template-columns:1fr}}
+/* faixa que corre */
+.faixa{background:var(--verde);color:var(--papel2);border-block:3px solid var(--tinta);overflow:hidden;white-space:nowrap}
+.faixa .trilho{display:inline-flex;gap:46px;padding:16px 0;animation:corre 32s linear infinite;font:400 26px/1 'Bebas Neue',sans-serif;letter-spacing:.07em}
+.faixa .trilho span::before{content:"✦";color:var(--amarelo);margin-right:46px}
+@keyframes corre{to{transform:translateX(-50%)}}
 
-/* para quem */
-.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:40px}
-.niche{background:var(--card);border:1px solid var(--line);border-radius:18px;overflow:hidden;display:flex;flex-direction:column}
-.niche img{border-bottom:1px solid var(--line);aspect-ratio:700/460;object-fit:cover;object-position:top left}
-.niche div{padding:22px 22px 26px;display:grid;gap:8px}
-.tag{justify-self:start;background:var(--mint);color:var(--deep);font:700 12px Inter;letter-spacing:.1em;text-transform:uppercase;padding:5px 10px;border-radius:999px}
-.niche p{color:var(--soft);font-size:16px}
-.other{margin-top:22px;background:var(--mint);border-radius:18px;padding:22px 26px;display:flex;flex-wrap:wrap;gap:10px 24px;align-items:center;justify-content:space-between}
-.other p{font-weight:600}
-@media (max-width:900px){.grid3{grid-template-columns:1fr}}
+/* episódio */
+.ep .grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:56px;align-items:center}
+.ep .tres{margin-top:14px;font-family:Anton,Impact,sans-serif;font-size:clamp(150px,22vw,260px);line-height:.8;position:relative;display:inline-block}
+.ep .tres .circ{width:80%;aspect-ratio:1;background:var(--bege);left:28%;top:6%;z-index:-1}
+.ep .lugares{display:flex;flex-wrap:wrap;gap:10px;margin:18px 0 26px}
+.ep .player{position:relative;max-width:360px;margin-left:auto}
+.ep .player .fita{top:-14px;left:50%;transform:translateX(-50%) rotate(-3deg)}
+.ep blockquote{margin:26px 0 0;font:700 clamp(21px,2.6vw,27px)/1.3 Inter,sans-serif;max-width:30ch}
+.ep blockquote small{display:block;margin-top:10px;font:500 15px/1.4 Inter,sans-serif;color:var(--tinta2)}
 
-/* o que tem */
-.split{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
-.feat{list-style:none;padding:0;margin:28px 0 0;display:grid;gap:18px}
-.feat li{display:grid;grid-template-columns:44px 1fr;gap:14px;align-items:start}
-.feat .ic{width:44px;height:44px;border-radius:12px;background:var(--mint);display:grid;place-items:center;font-size:20px}
-.feat b{display:block;font-size:17px}
-.feat span{color:var(--soft);font-size:15.5px}
-@media (max-width:900px){.split{grid-template-columns:1fr}}
+/* antes x agora */
+.versus{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-top:44px}
+.lado{padding:34px 30px 30px;min-height:100%}
+.lado h3{font:400 44px/1 Anton,Impact,sans-serif;text-transform:uppercase;margin-bottom:18px}
+.lado ul{list-style:none;margin:0;padding:0;display:grid;gap:12px;font-size:18px}
+.antes{transform:rotate(-1deg)}
+.antes li{text-decoration:line-through;text-decoration-thickness:3px;text-decoration-color:var(--verm);color:var(--tinta2)}
+.antes .caderno{position:absolute;right:-18px;bottom:-30px;width:42%;max-width:220px;transform:rotate(8deg)}
+.agora{background:var(--verde) var(--ruido);color:var(--papel2);transform:rotate(.8deg)}
+.agora h3{color:var(--amarelo)}
+.agora li::before{content:"✓";color:var(--amarelo);font-weight:800;margin-right:10px}
+.telas{position:relative;height:clamp(340px,40vw,470px);margin-top:56px}
+.telas img{position:absolute;border:3px solid var(--tinta);background:#fff;box-shadow:8px 8px 0 rgba(22,19,15,.85)}
+.telas .s1{left:0;top:6%;width:40%;transform:rotate(-3deg)}
+.telas .s2{left:31%;top:0;width:34%;transform:rotate(2deg);z-index:2}
+.telas .s3{right:0;top:14%;width:40%;transform:rotate(-1.5deg)}
+.telas .tag{position:absolute;z-index:3}
+
+/* nichos */
+.nicho{display:grid;grid-template-columns:.8fr 1.2fr;gap:56px;align-items:center;margin-top:90px}
+.nicho:nth-of-type(even){grid-template-columns:1.2fr .8fr}
+.nicho:nth-of-type(even) .colagem{order:2}
+.nicho .colagem{position:relative;aspect-ratio:1/1.1}
+.nicho .colagem .circ{width:86%;aspect-ratio:1;left:7%;top:6%}
+.nicho .colagem .rec{width:84%;left:8%;bottom:0}
+.nicho .colagem .nome{position:absolute;left:0;bottom:6%;z-index:3;background:var(--tinta);color:var(--papel2);padding:14px 20px 12px;transform:rotate(-2deg)}
+.nicho .colagem .nome b{display:block;font:400 34px/1 'Bebas Neue',sans-serif;letter-spacing:.04em}
+.nicho .colagem .nome span{font:600 12px/1 Inter,sans-serif;letter-spacing:.14em;opacity:.75}
+.nicho .num{font:400 clamp(64px,8vw,96px)/.85 Anton,Impact,sans-serif;color:var(--verm)}
+.nicho h3{font:400 clamp(34px,4.6vw,52px)/.98 Anton,Impact,sans-serif;text-transform:uppercase;margin:6px 0 16px}
+.nicho .dor{font-size:18px;color:var(--tinta2);margin:0 0 22px;max-width:46ch}
+.nicho ul{list-style:none;margin:0 0 26px;padding:0;display:grid;gap:10px}
+.nicho li{display:flex;gap:12px;align-items:flex-start;font-size:16.5px}
+.nicho li::before{content:"";flex:0 0 14px;height:14px;margin-top:6px;background:var(--amarelo);border:2px solid var(--tinta)}
+.nicho .janela{transform:rotate(-.8deg)}
+
+/* outros nichos */
+.outros{background:var(--tinta) var(--ruido);color:var(--papel2)}
+.outros h2{color:var(--papel2)}
+.outros .lead{color:#cfc6b4}
+.nuvem{display:flex;flex-wrap:wrap;gap:12px 10px;margin:40px 0 44px}
+.nuvem .tag{font-size:clamp(18px,2.2vw,25px)}
+.nuvem .tag:nth-child(3n+1){transform:rotate(-2deg)} .nuvem .tag:nth-child(3n+2){transform:rotate(1.5deg)} .nuvem .tag:nth-child(5n){transform:rotate(-.5deg)}
+.outros .regra{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-bottom:36px}
+.outros .regra div{border:2px solid #5b5448;padding:20px 20px 18px}
+.outros .regra b{display:block;font:400 30px/1 'Bebas Neue',sans-serif;letter-spacing:.05em;color:var(--amarelo);margin-bottom:6px}
+.outros .btn.pri{box-shadow:6px 6px 0 var(--amarelo);border-color:var(--amarelo)}
+.outros .dica{color:#cfc6b4}
+
+/* celular */
+.mobile .grid{display:grid;grid-template-columns:1fr .7fr;gap:56px;align-items:center}
+.mobile .janela{max-width:400px;margin:0 auto;transform:rotate(-1.5deg)}
+.passos-rapidos{display:grid;gap:14px;margin-top:26px;counter-reset:p}
+.passos-rapidos div{display:flex;gap:16px;align-items:baseline;font-size:17.5px}
+.passos-rapidos div::before{counter-increment:p;content:counter(p);font:400 34px/1 Anton,Impact,sans-serif;color:var(--azul);min-width:26px}
+
+/* o que vem */
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px;margin-top:44px}
+.card{padding:26px 22px 22px}
+.card:nth-child(odd){transform:rotate(-1deg)} .card:nth-child(even){transform:rotate(1deg)}
+.card .fita{top:-12px;left:22px;width:70px;height:24px;transform:rotate(-4deg)}
+.card b{display:block;font:400 30px/1 'Bebas Neue',sans-serif;letter-spacing:.04em;margin-bottom:8px}
+.card p{margin:0;color:var(--tinta2);font-size:15.5px}
 
 /* como funciona */
-.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:40px;counter-reset:s}
-.step{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:26px 22px}
-.step::before{counter-increment:s;content:counter(s);display:grid;place-items:center;width:40px;height:40px;border-radius:50%;background:var(--deep);color:var(--yellow);font:800 19px "Bricolage Grotesque";margin-bottom:16px}
-.step p{color:var(--soft);font-size:15.5px;margin-top:8px}
-@media (max-width:900px){.steps{grid-template-columns:1fr 1fr}}
-@media (max-width:520px){.steps{grid-template-columns:1fr}}
+.passos{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-top:44px;counter-reset:s}
+.passo{border-top:4px solid var(--tinta);padding-top:16px}
+.passo::before{counter-increment:s;content:"0" counter(s);display:block;font:400 64px/1 Anton,Impact,sans-serif;color:var(--verde2);margin-bottom:8px}
+.passo b{display:block;font:400 28px/1 'Bebas Neue',sans-serif;letter-spacing:.05em;margin-bottom:6px}
+.passo p{margin:0;color:var(--tinta2);font-size:15.5px}
+.prova{margin-top:48px;display:flex;flex-wrap:wrap;gap:14px 22px;align-items:center;padding:20px 24px;border:3px dashed var(--tinta)}
+.prova b{font:400 28px/1 'Bebas Neue',sans-serif;letter-spacing:.05em}
 
 /* preços */
-.prices{background:#F3EEE4}
-.plans{display:grid;grid-template-columns:1fr 1.15fr 1fr;gap:20px;margin-top:44px;align-items:stretch}
-.plan{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:30px 26px;display:flex;flex-direction:column;gap:14px;position:relative}
-.plan .price{font:800 40px "Bricolage Grotesque";letter-spacing:-.02em}
-.plan .price small{font:600 16px Inter;color:var(--soft);letter-spacing:0;display:inline-block}
-.plan ul{list-style:none;padding:0;margin:4px 0 8px;display:grid;gap:9px;font-size:15.5px}
-.plan li{padding-left:24px;position:relative}
-.plan li::before{content:"✓";position:absolute;left:0;color:var(--action);font-weight:800}
-.plan .btn{margin-top:auto}
-.plan .note{font-size:14px;color:var(--soft)}
-.plan.star{background:var(--deep);color:#fff;border:none;box-shadow:0 26px 50px rgba(14,59,42,.25);transform:translateY(-10px)}
-.plan.star .note,.plan.star .price small{color:rgba(255,255,255,.75)}
-.plan.star li::before{color:var(--yellow)}
-.plan.star .btn-main{background:var(--yellow);color:var(--deep);box-shadow:none}
-.badge{position:absolute;top:-14px;left:26px;background:var(--yellow);color:var(--deep);font:700 12px Inter;letter-spacing:.1em;text-transform:uppercase;padding:6px 12px;border-radius:999px}
-.founder{background:rgba(255,200,46,.14);border:1px dashed var(--yellow);border-radius:12px;padding:12px 14px;font-size:15px}
-.founder b{color:var(--yellow)}
-.founder .left{display:block;margin-top:4px;font-weight:700;color:#fff}
-.soon{background:var(--mint);color:var(--deep);font:700 12px Inter;letter-spacing:.08em;text-transform:uppercase;padding:4px 9px;border-radius:999px;align-self:flex-start}
-.free{margin-top:26px;text-align:center;color:var(--soft);font-weight:600}
-@media (max-width:900px){.plans{grid-template-columns:1fr}.plan.star{transform:none;order:-1}}
+.precos .grid{display:grid;grid-template-columns:1fr 1.15fr 1fr;gap:22px;margin-top:44px;align-items:stretch}
+.plano{padding:30px 26px 26px;display:flex;flex-direction:column}
+.plano .tag{align-self:flex-start;margin-bottom:16px}
+.plano h3{font:400 30px/1 'Bebas Neue',sans-serif;letter-spacing:.04em}
+.plano .preco{font:400 54px/1 Anton,Impact,sans-serif;margin:14px 0 4px}
+.plano .preco small{font:600 16px/1 Inter,sans-serif}
+.plano .sub{color:var(--tinta2);font-size:15px;margin:0 0 16px}
+.plano ul{list-style:none;padding:0;margin:0 0 24px;display:grid;gap:8px;font-size:15.5px;flex:1}
+.plano li::before{content:"✓ ";font-weight:800;color:var(--verde2)}
+.plano .btn{width:100%}
+.plano.destaque{background:var(--verde) var(--ruido);color:var(--papel2);transform:translateY(-12px);border:3px solid var(--tinta);box-shadow:10px 10px 0 var(--tinta)}
+.plano.destaque .sub,.plano.destaque li{color:#e8e1d2}
+.plano.destaque li::before{color:var(--amarelo)}
+.vagas{background:var(--amarelo);color:var(--tinta);padding:10px 12px;font-weight:700;font-size:14.5px;margin:2px 0 16px}
+.nota-precos{text-align:center;margin-top:30px;color:var(--tinta2);font-size:15px}
 
 /* dúvidas */
-.faq{max-width:780px;margin:36px auto 0;display:grid;gap:12px}
-details{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:4px 22px}
-summary{cursor:pointer;list-style:none;font:700 18px Inter;padding:16px 0;display:flex;justify-content:space-between;gap:16px}
-summary::-webkit-details-marker{display:none}
-summary::after{content:"+";font:700 24px Inter;color:var(--action);line-height:1}
-details[open] summary::after{content:"–"}
-details p{color:var(--soft);padding:0 0 18px}
-
-/* bilhete */
-.note-sec{padding:72px 0 80px}
-.bilhete{max-width:560px;margin:0 auto;background:#FFF9E3;color:#3B3226;border-radius:4px;padding:34px 36px 30px;box-shadow:0 18px 36px rgba(14,59,42,.14);transform:rotate(-1.2deg);position:relative;font:400 17px/1.6 Inter,sans-serif}
-.bilhete::before{content:"";position:absolute;top:-14px;left:50%;width:110px;height:28px;margin-left:-55px;background:rgba(255,200,46,.75);transform:rotate(2deg)}
-.bilhete .hand{font:700 clamp(30px,5vw,40px)/1.15 Caveat,"Segoe Print",cursive;color:var(--deep);margin-bottom:12px}
-.bilhete .sig{margin-top:16px;font:700 24px Caveat,"Segoe Print",cursive;color:var(--action)}
+.faq{max-width:780px;margin-top:36px}
+.faq details{border-bottom:2px solid var(--tinta);padding:18px 0}
+.faq summary{cursor:pointer;list-style:none;font-weight:700;font-size:18px;display:flex;justify-content:space-between;gap:16px}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";font:400 30px/1 Anton,Impact,sans-serif}
+.faq details[open] summary::after{content:"–"}
+.faq p{margin:12px 0 0;color:var(--tinta2);max-width:65ch}
 
 /* final */
-.final{background:var(--deep);color:#fff;text-align:center;padding:96px 0}
-.final h2{color:#fff}
-.final p{color:rgba(255,255,255,.8);margin:16px auto 32px;max-width:32em;font-size:18px}
-.final .btn-main{background:var(--yellow);color:var(--deep);box-shadow:none}
-.final .alt{display:block;margin-top:22px;font-size:15px;color:rgba(255,255,255,.75)}
-.final .alt b{color:var(--yellow)}
-footer{padding:34px 0;font-size:14px;color:var(--soft)}
-footer .wrap{display:flex;flex-wrap:wrap;gap:10px 24px;justify-content:space-between}
-.center{text-align:center}
-.center .lead{margin:16px auto 0}
+.final{background:var(--verde) var(--ruido);color:var(--papel2);text-align:center;border-top:3px solid var(--tinta)}
+.bilhete{display:inline-block;background:var(--papel2);color:var(--tinta);padding:30px 34px 26px;max-width:560px;transform:rotate(-1.5deg);box-shadow:10px 10px 0 rgba(0,0,0,.25);position:relative;text-align:left}
+.bilhete .fita{top:-14px;left:40%;transform:rotate(3deg)}
+.bilhete p{margin:0;font:700 clamp(30px,4.4vw,42px)/1.1 Caveat,cursive}
+.bilhete small{display:block;margin-top:12px;font-size:15px;color:var(--tinta2)}
+.final h2{color:var(--papel2);margin-top:60px}
+.final .lead{color:#dfe9e2;margin:16px auto 30px}
+.final .btn.pri{box-shadow:6px 6px 0 var(--tinta)}
+.final .dica{color:#dfe9e2}
+.final .dica b{background:var(--amarelo);color:var(--tinta)}
+.final .alt{margin-top:26px;font-size:15px;color:#cfe3d6}
+
+footer{background:var(--tinta);color:#b9b1a2;font-size:14px;padding-block:28px}
+footer .wrap{display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-between}
+
+/* entrada dos adesivos (só com movimento permitido) */
+@media (prefers-reduced-motion:no-preference){
+  .cola{opacity:0;transform:translateY(24px) rotate(var(--r,0deg)) scale(1.04);transition:opacity .5s ease,transform .6s cubic-bezier(.2,1.4,.4,1)}
+  .cola.ok{opacity:1;transform:translateY(0) rotate(var(--r,0deg)) scale(1)}
+}
+@media (prefers-reduced-motion:reduce){.faixa .trilho{animation:none}html{scroll-behavior:auto}}
+
+/* celular */
+@media (max-width:900px){
+  .hero .grid,.ep .grid,.mobile .grid,.nicho,.nicho:nth-of-type(even){grid-template-columns:1fr}
+  .nicho:nth-of-type(even) .colagem{order:0}
+  .nicho .colagem{max-width:440px;width:100%;margin:0 auto}
+  .palco{max-width:520px;width:100%;margin:10px auto 0}
+  .ep .player{margin:0 auto}
+  .versus{grid-template-columns:1fr;gap:34px}
+  .antes .caderno{width:34%;bottom:-16px;right:-6px}
+  .telas{height:auto;display:grid;gap:18px}
+  .telas img{position:static;width:100%!important;transform:none!important}
+  .telas .tag{position:static;justify-self:start}
+  .passos{grid-template-columns:1fr 1fr}
+  .precos .grid{grid-template-columns:1fr}
+  .plano.destaque{transform:none;order:-1}
+  .outros .regra{grid-template-columns:1fr}
+}
+@media (max-width:520px){
+  body{font-size:16px}
+  .passos{grid-template-columns:1fr}
+  .btn{width:100%}
+  .hero .ctas{flex-direction:column}
+  .palco{min-height:380px}
+}
 </style>
 </head>
 <body>
 
-<header>
+<header class="topo">
   <div class="wrap">
-    <a class="brand" href="#topo"><span class="logo">JV</span>Empresa JV</a>
-    <nav><a href="#para-quem">Para quem</a><a href="#como-funciona">Como funciona</a><a href="#precos">Preços</a><a href="#duvidas">Dúvidas</a></nav>
-    <a class="btn btn-main btn-sm" href="https://ig.me/m/jv_organiza" target="_blank" rel="noopener">Falar no direct</a>
+    <a class="logo" href="#topo" aria-label="Empresa JV, voltar ao início"><span>JV</span>Empresa JV</a>
+    <nav aria-label="Seções">
+      <a href="#historia">A história</a>
+      <a href="#nichos">Para quem</a>
+      <a href="#como-funciona">Como funciona</a>
+      <a href="#precos">Preços</a>
+      <a href="#duvidas">Dúvidas</a>
+    </nav>
+    <a class="btn pri" href="https://ig.me/m/jv_organiza">Falar no direct</a>
   </div>
 </header>
 
 <main id="topo">
-  <section class="hero">
-    <div class="wrap">
-      <div>
-        <span class="kicker">Sistema de gestão no Notion</span>
-        <h1>O seu negócio num <span class="mk">sistema só.</span></h1>
-        <p class="lead">Pedidos, clientes, agenda e dinheiro organizados num lugar, no computador e no celular. A Empresa JV monta o sistema para o seu negócio. Você só usa.</p>
-        <div class="ctas">
-          <a class="btn btn-main" href="https://ig.me/m/jv_organiza" target="_blank" rel="noopener">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 0 1-12.6 7.3L3 20l1.3-5A8.4 8.4 0 1 1 21 11.5z"/></svg>
-            Quero o meu sistema</a>
-          <a class="btn btn-ghost" href="#precos">Ver preços</a>
-        </div>
-        <p class="kw">Abre o direct e manda <b>SISTEMA</b>. A gente responde.</p>
-        <ul class="ticks"><li>Sem mensalidade</li><li>Plano grátis do Notion</li><li>Videoaula para cada parte</li></ul>
-      </div>
-      <div class="shots">
-        <div class="win"><div class="bar"><i></i><i></i><i></i></div><img src="img/lp-hero.jpg" width="1200" height="754" alt="Página inicial do sistema de uma confeitaria no Notion, com o menu de áreas: Encomendas, Financeiro, Clientes, Atividades e outras"></div>
-        <div class="phone"><video src="img/lp-celular.mp4" poster="img/lp-celular-poster.jpg" width="390" height="798" autoplay muted loop playsinline aria-label="O mesmo sistema aberto no celular, pelo app do Notion"></video></div>
-      </div>
-    </div>
-  </section>
 
-  <div class="proof">
-    <div class="wrap">
-      <p><span>26/10/2026:</span> 3 negócios receberam o sistema, uma trancista, uma gráfica e uma confeitaria.</p>
-      <a href="https://www.instagram.com/jv_organiza/" target="_blank" rel="noopener">Ver os bastidores</a>
+<!-- 1. HERO -->
+<section class="hero">
+  <div class="wrap grid">
+    <div>
+      <span class="secao"><i></i>SISTEMA DE GESTÃO NO NOTION</span>
+      <div class="riscos" aria-label="Onde os pedidos ficam hoje">
+        <span class="tag v">NO CADERNO</span><span class="tag a">NO WHATSAPP</span><span class="tag p">NA CABEÇA</span>
+      </div>
+      <h1>O seu negócio num <em>lugar só.</em></h1>
+      <p class="lead">Pedidos, clientes, agenda e dinheiro organizados no Notion, no computador e no celular. <strong>A Empresa JV monta o sistema para o seu negócio. Você só usa.</strong></p>
+      <div class="ctas">
+        <a class="btn pri" href="https://ig.me/m/jv_organiza">Quero o meu sistema</a>
+        <a class="btn sec2" href="#historia">Ver o sistema em ação</a>
+      </div>
+      <p class="dica">Abre o direct e manda <b>SISTEMA</b>. A gente responde.</p>
+      <div class="selos"><span>Sem mensalidade</span><span>Plano grátis do Notion</span><span>Videoaula para cada parte</span></div>
+    </div>
+
+    <div class="palco" aria-hidden="true">
+      <div class="circ cola"></div>
+      <img class="rec lucia cola" style="--r:-2deg" src="media/rec-lucia.webp" alt="" width="700" height="900">
+      <div class="cel cola" style="--r:3deg">
+        <div class="celular">
+          <video class="auto" muted loop playsinline preload="none" poster="media/hero-sistema-poster.jpg"><source src="media/hero-sistema.mp4" type="video/mp4"></video>
+        </div>
+      </div>
+      <span class="tag p t1 cola" style="--r:-5deg">ANTES: 3 LUGARES</span>
+      <span class="tag y t2 cola" style="--r:3deg">AGORA: 1</span>
+      <span class="tag v t3 cola" style="--r:-3deg">QUEM ANOTOU?</span>
+      <span class="tag g t4 cola" style="--r:-2deg">CLIENTE + PEDIDO + AGENDA</span>
     </div>
   </div>
+</section>
 
-  <section class="before">
-    <div class="wrap">
-      <h2>Tudo num lugar só. <em>Abriu, já sabe o que fazer hoje.</em></h2>
-      <div class="vs">
-        <div class="old"><span class="lbl">Antes</span>
-          <div class="strike"><s>Pedido no WhatsApp.</s><s>Conta no caderno.</s><s>Agenda na cabeça.</s></div></div>
-        <div class="new"><span class="lbl">Com o sistema</span>
-          <div class="strike"><span>Pedido com prazo e status.</span><span>Entrou, saiu e lucro do mês.</span><span>O que fazer hoje na tela.</span></div></div>
-      </div>
-      <p>Quem precisa de retorno, o que entregar na semana e quem ainda falta pagar aparecem logo na primeira tela. Nada fica perdido entre conversa, papel e memória.</p>
+<div class="faixa" aria-hidden="true"><div class="trilho">
+  <span>Pague uma vez</span><span>Sem mensalidade</span><span>Funciona no celular</span><span>Plano grátis do Notion</span><span>Videoaula para cada parte</span><span>Primeira semana acompanhada</span>
+  <span>Pague uma vez</span><span>Sem mensalidade</span><span>Funciona no celular</span><span>Plano grátis do Notion</span><span>Videoaula para cada parte</span><span>Primeira semana acompanhada</span>
+</div></div>
+
+<!-- 2. A HISTÓRIA (episódio 1) -->
+<section class="sec ep" id="historia">
+  <div class="wrap grid">
+    <div>
+      <span class="secao"><i></i>GALERIA ESPERANÇA · QUEM ANOTOU?</span>
+      <div class="tres anton cola" aria-hidden="true"><span class="circ"></span>3</div>
+      <h2>Três pedidos. Três lugares.</h2>
+      <div class="lugares"><span class="tag v">CADERNO</span><span class="tag a">WHATSAPP</span><span class="tag p">CABEÇA</span></div>
+      <p class="lead">A Dona Lúcia anotou um bolo de casamento no caderno. Outro pedido ficou no WhatsApp. O terceiro, só na memória. Na véspera, descobriu dois bolos grandes para o mesmo dia e um forno só.</p>
+      <blockquote>“O problema nunca foi falta de trabalho. Foi falta de um lugar só para anotar e acompanhar os pedidos.”<small>Assista a história inteira, com o sistema resolvendo no final.</small></blockquote>
     </div>
-  </section>
-
-  <section id="para-quem">
-    <div class="wrap">
-      <span class="kicker">Para quem</span>
-      <h2>Montado para o dia a dia do <span class="mk">seu tipo de negócio.</span></h2>
-      <div class="grid3">
-        <article class="niche"><img src="img/lp-trancista.jpg" width="900" height="591" loading="lazy" alt="Lista de clientes para chamar, com a próxima manutenção de tranças e a mensagem pronta de lembrete">
-          <div><span class="tag">Trancistas</span><h3>Nenhuma manutenção esquecida.</h3><p>O sistema calcula a próxima manutenção de cada cliente e já deixa a mensagem de lembrete pronta.</p></div></article>
-        <article class="niche"><img src="img/lp-grafica.jpg" width="900" height="591" loading="lazy" alt="Orçamentos para retornar hoje, com a mensagem de retorno pronta para copiar">
-          <div><span class="tag">Gráficas</span><h3>Nenhum orçamento sem resposta.</h3><p>Orçamentos a responder e a retornar no dia, com a mensagem de retorno pronta para copiar.</p></div></article>
-        <article class="niche"><img src="img/lp-confeitaria.jpg" width="900" height="591" loading="lazy" alt="Entregas da semana de uma confeitaria, com sabor, quantidade e forma de entrega">
-          <div><span class="tag">Confeitarias</span><h3>Nenhum sinal sem cobrar.</h3><p>Entregas da semana e quem ainda falta pagar, com o sinal e o restante de cada encomenda.</p></div></article>
+    <div class="player cola" style="--r:1deg">
+      <span class="fita" aria-hidden="true"></span>
+      <div class="celular">
+        <video controls playsinline preload="none" poster="media/ep01-poster.jpg" aria-label="Vídeo: Quem anotou? A história da Dona Lúcia e o sistema da Empresa JV"><source src="media/ep01.mp4" type="video/mp4"></video>
       </div>
-      <div class="other"><p>O seu negócio não está aqui? Se você atende cliente, passa orçamento e controla pedidos ou agenda, serve.</p><a class="btn btn-ghost btn-sm" href="https://ig.me/m/jv_organiza" target="_blank" rel="noopener">Me conta o que você faz</a></div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section style="padding-top:24px">
-    <div class="wrap split">
-      <div class="win"><div class="bar"><i></i><i></i><i></i></div><img src="img/lp-mensagem.jpg" width="900" height="355" loading="lazy" alt="Mensagem de confirmação de encomenda gerada pelo sistema, com pedido, sabor, entrega, valor, sinal pago e quanto falta pagar"></div>
-      <div>
-        <span class="kicker">O que vem no sistema</span>
-        <h2>Cada parte do negócio no seu lugar.</h2>
-        <ul class="feat">
-          <li><span class="ic">🧾</span><p><b>Pedidos e atendimentos</b><span>Do orçamento à entrega, com status e prazo.</span></p></li>
-          <li><span class="ic">👥</span><p><b>Clientes</b><span>Histórico de cada cliente e quem chamar para voltar.</span></p></li>
-          <li><span class="ic">💰</span><p><b>Financeiro</b><span>O que entrou, o que saiu e o lucro de cada mês.</span></p></li>
-          <li><span class="ic">📅</span><p><b>Rotina e agenda</b><span>Compromissos, atividades e metas da semana.</span></p></li>
-          <li><span class="ic">💬</span><p><b>Mensagens prontas</b><span>Confirmação, retorno e lembrete para copiar e mandar.</span></p></li>
+<!-- 3. ANTES x AGORA -->
+<section class="sec" style="padding-top:0">
+  <div class="wrap">
+    <span class="secao"><i></i>ANTES X COM O SISTEMA</span>
+    <h2 style="margin-top:18px">Abriu, já sabe <span class="marca-texto">o que fazer hoje.</span></h2>
+    <div class="versus">
+      <div class="lado antes papelzinho cola" style="--r:-1deg">
+        <h3>Antes</h3>
+        <ul>
+          <li>Pedido no caderno, no WhatsApp e na cabeça</li>
+          <li>“Ela pagou o sinal? Acho que sim.”</li>
+          <li>Diz “consigo” sem olhar a agenda</li>
+          <li>Conta do mês no fim do mês, se der</li>
+        </ul>
+        <img class="caderno" src="media/rec-caderno.webp" alt="" width="664" height="504" loading="lazy">
+      </div>
+      <div class="lado agora cola" style="--r:.8deg">
+        <h3>Com o sistema</h3>
+        <ul>
+          <li>Cada cliente cadastrada uma vez, com telefone</li>
+          <li>Pedido ligado à cliente, com sinal e restante</li>
+          <li>Agenda mostra os dias livres antes do “consigo”</li>
+          <li>Entrou, saiu e lucro do mês na mesma tela</li>
         </ul>
       </div>
     </div>
-  </section>
-
-  <section id="como-funciona" style="background:#fff;border-block:1px solid var(--line)">
-    <div class="wrap">
-      <span class="kicker">Como funciona</span>
-      <h2>Você não precisa <span class="mk">saber Notion.</span></h2>
-      <div class="steps">
-        <div class="step"><h3>Diagnóstico</h3><p>Um questionário rápido sobre como o seu negócio funciona hoje.</p></div>
-        <div class="step"><h3>Montagem</h3><p>A gente monta o sistema no Notion com as áreas do seu dia a dia.</p></div>
-        <div class="step"><h3>Entrega</h3><p>Tudo pronto, com exemplos e uma videoaula curta para cada parte.</p></div>
-        <div class="step"><h3>Acompanhamento</h3><p>Na primeira semana de uso, a gente acompanha você de perto.</p></div>
-      </div>
+    <div class="telas" aria-label="Telas reais do sistema, com registros de exemplo">
+      <img class="s1 cola" style="--r:-3deg" src="media/tela-cli.webp" alt="Ficha de uma cliente de exemplo no sistema, com telefone e origem" width="700" height="519" loading="lazy">
+      <img class="s2 cola" style="--r:2deg" src="media/tela-enc.webp" alt="Ficha de uma encomenda de exemplo ligada à cliente, com sinal e data de entrega" width="700" height="894" loading="lazy">
+      <img class="s3 cola" style="--r:-1.5deg" src="media/tela-dia.webp" alt="Agenda de entregas de exemplo agrupada por dia" width="700" height="449" loading="lazy">
+      <span class="tag v cola" style="left:2%;top:0;--r:-3deg">CLIENTE CADASTRADA UMA VEZ</span>
+      <span class="tag a cola" style="left:36%;bottom:4%;--r:2deg">PEDIDO LIGADO À CLIENTE</span>
+      <span class="tag p cola" style="right:4%;top:2%;--r:-2deg">DIAS JÁ OCUPADOS</span>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section id="precos" class="prices">
-    <div class="wrap">
-      <div class="center"><span class="kicker">Preços</span><h2>Pague uma vez. <span class="mk">Sem mensalidade.</span></h2>
-        <p class="lead">Escolha o quanto de ajuda você quer: montar sozinho, tirar dúvidas por hora ou receber o sistema pronto.</p></div>
-      <div class="plans">
-        <div class="plan">
-          <span class="soon">Em breve</span>
-          <h3>Kit JV</h3>
-          <div class="price">R$ 129,90</div>
-          <p class="note">Para quem quer montar sozinho.</p>
-          <ul><li>Modelo do sistema para você mesmo montar</li><li>Passo a passo em vídeo</li></ul>
-          <a class="btn btn-ghost" href="https://ig.me/m/jv_organiza" target="_blank" rel="noopener">Quero ser avisado</a>
-        </div>
-        <div class="plan star">
-          <span class="badge">Mais completo</span>
-          <h3>Sistema JV completo</h3>
-          <div class="price">R$ 990 <small>no Pix ou 10x de R$ 109</small></div>
-          <div class="founder"><b>Preço de fundador: R$ 790</b> para os 5 primeiros clientes.<span class="left">Restam 5 de 5 vagas.</span></div><!-- atualizar a cada venda -->
-          <ul><li>Diagnóstico do seu negócio</li><li>Sistema montado e personalizado no Notion</li><li>Videoaula para cada parte</li><li>Primeira semana de acompanhamento</li><li>Sem mensalidade</li></ul>
-          <a class="btn btn-main" href="https://ig.me/m/jv_organiza" target="_blank" rel="noopener">Quero o meu sistema</a>
-        </div>
-        <div class="plan">
-          <h3>Consultoria</h3>
-          <div class="price">R$ 199,90 <small>/hora</small></div>
-          <p class="note">Para quem já usa o Notion e quer ajuda pontual.</p>
-          <ul><li>Uma hora de conversa ao vivo</li><li>Ajustes e dúvidas no seu sistema</li></ul>
-          <a class="btn btn-ghost" href="https://ig.me/m/jv_organiza" target="_blank" rel="noopener">Agendar uma hora</a>
+<!-- 4. NICHOS -->
+<section class="sec" id="nichos" style="background:var(--papel2) var(--ruido);border-block:3px solid var(--tinta)">
+  <div class="wrap">
+    <span class="secao"><i></i>PARA QUEM</span>
+    <h2 style="margin-top:18px">Montado para o dia a dia <span class="marca-texto">do seu tipo de negócio.</span></h2>
+    <p class="lead" style="margin-top:16px">Cada sistema chega com as telas, os exemplos e as videoaulas do seu nicho. Veja um trecho real de cada um.</p>
+
+    <article class="nicho">
+      <div class="colagem cola" aria-hidden="true">
+        <div class="circ" style="background:var(--bege)"></div>
+        <img class="rec" src="media/rec-lucia.webp" alt="" width="700" height="900" loading="lazy">
+        <div class="nome"><b>CONFEITARIAS</b><span>ENCOMENDAS · SINAL · ENTREGAS</span></div>
+      </div>
+      <div>
+        <div class="num">01</div>
+        <h3>Nenhum sinal sem cobrar.</h3>
+        <p class="dor">Encomenda anotada em três lugares vira bolo esquecido. No sistema, cada encomenda tem cliente, sabor, data, sinal e restante.</p>
+        <ul>
+          <li>Entregas da semana logo na primeira tela</li>
+          <li>Quem ainda falta pagar, com o valor do restante</li>
+          <li>Itens do cardápio com preço, para a quantidade sair certa</li>
+        </ul>
+        <div class="janela cola" style="--r:-.8deg">
+          <div class="barra"><i></i><i></i><i></i><small>Registrar uma encomenda completa</small></div>
+          <video class="auto" muted loop playsinline preload="none" poster="media/confeitaria-poster.jpg" aria-label="Trecho: registrando uma encomenda de exemplo no sistema da confeitaria"><source src="media/confeitaria.mp4" type="video/mp4"></video>
         </div>
       </div>
-      <p class="free">Todos funcionam no plano grátis do Notion, no computador e no celular.</p>
-    </div>
-  </section>
+    </article>
 
-  <section id="duvidas">
-    <div class="wrap">
-      <div class="center"><span class="kicker">Dúvidas</span><h2>Perguntas que todo mundo faz.</h2></div>
-      <div class="faq">
-        <details><summary>Preciso pagar o Notion?</summary><p>Não. O sistema funciona no plano grátis do Notion.</p></details>
-        <details><summary>Nunca usei o Notion. Vou conseguir?</summary><p>Sim. O sistema chega pronto, com exemplos, e cada parte tem uma videoaula curta mostrando o que fazer. Na primeira semana, a gente acompanha você.</p></details>
-        <details><summary>Funciona no celular?</summary><p>Sim, pelo app do Notion. O sistema tem atalhos para registrar pedidos, receitas e despesas na hora.</p></details>
-        <details><summary>Tem mensalidade?</summary><p>Não. Você paga uma vez e o sistema é seu.</p></details>
-        <details><summary>O meu negócio não é trancista, gráfica nem confeitaria. Serve?</summary><p>Se você atende cliente, passa orçamento e controla pedidos ou agenda, serve. Manda no direct com o que você trabalha que a gente explica como ficaria.</p></details>
+    <article class="nicho">
+      <div class="colagem cola" aria-hidden="true">
+        <div class="circ" style="background:var(--azul)"></div>
+        <img class="rec" src="media/rec-trancista.webp" alt="" width="700" height="870" loading="lazy">
+        <div class="nome"><b>TRANCISTAS</b><span>ATENDIMENTOS · MANUTENÇÃO · CLIENTES</span></div>
+      </div>
+      <div>
+        <div class="num">02</div>
+        <h3>Nenhuma manutenção esquecida.</h3>
+        <p class="dor">A cliente some e você nem lembra quando ela fez as tranças. O sistema calcula a próxima manutenção de cada uma.</p>
+        <ul>
+          <li>Próxima manutenção calculada pelo tipo de trança</li>
+          <li>Lista de clientes para chamar, com a mensagem pronta</li>
+          <li>Catálogo de tranças com preço, custo e margem</li>
+        </ul>
+        <div class="janela cola" style="--r:.8deg">
+          <div class="barra"><i></i><i></i><i></i><small>Concluir o atendimento e a próxima manutenção</small></div>
+          <video class="auto" muted loop playsinline preload="none" poster="media/trancista-poster.jpg" aria-label="Trecho: concluindo um atendimento de exemplo e vendo a próxima manutenção calculada"><source src="media/trancista.mp4" type="video/mp4"></video>
+        </div>
+      </div>
+    </article>
+
+    <article class="nicho">
+      <div class="colagem cola" aria-hidden="true">
+        <div class="circ" style="background:var(--verm)"></div>
+        <img class="rec" src="media/rec-grafica.webp" alt="" width="741" height="901" loading="lazy">
+        <div class="nome"><b>GRÁFICAS</b><span>ORÇAMENTOS · ARTE · PRODUÇÃO</span></div>
+      </div>
+      <div>
+        <div class="num">03</div>
+        <h3>Nenhum orçamento sem resposta.</h3>
+        <p class="dor">O pedido de orçamento some no meio de quarenta conversas. No sistema, todo orçamento vira registro, com o dia de retornar.</p>
+        <ul>
+          <li>Orçamentos a responder e a retornar hoje</li>
+          <li>Do orçamento aprovado ao pedido, sem digitar de novo</li>
+          <li>Custo terceirizado e margem de cada pedido</li>
+        </ul>
+        <div class="janela cola" style="--r:-.8deg">
+          <div class="barra"><i></i><i></i><i></i><small>Registrar um pedido de orçamento</small></div>
+          <video class="auto" muted loop playsinline preload="none" poster="media/grafica-poster.jpg" aria-label="Trecho: registrando um orçamento de exemplo no sistema da gráfica"><source src="media/grafica.mp4" type="video/mp4"></video>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- 5. OUTROS NICHOS -->
+<section class="sec outros">
+  <div class="wrap">
+    <span class="secao" style="background:var(--amarelo);color:var(--tinta)"><i style="background:var(--tinta)"></i>E TEM MAIS</span>
+    <h2 style="margin-top:18px">O seu negócio não apareceu aí em cima?</h2>
+    <p class="lead" style="margin-top:16px">A base do sistema é a mesma: cliente, pedido ou atendimento, agenda e dinheiro. O que muda são as telas e os exemplos do seu dia a dia. A gente monta para outros nichos também.</p>
+    <div class="nuvem">
+      <span class="tag b">SALÃO DE BELEZA</span><span class="tag v">BARBEARIA</span><span class="tag y">MANICURE</span><span class="tag a">LASH DESIGNER</span>
+      <span class="tag b">ESTÉTICA</span><span class="tag g">COSTURA E AJUSTES</span><span class="tag v">MARMITARIA</span><span class="tag b">SALGADOS E DOCES</span>
+      <span class="tag a">FOTOGRAFIA</span><span class="tag y">PERSONAL TRAINER</span><span class="tag b">ASSISTÊNCIA TÉCNICA</span><span class="tag v">PAPELARIA PERSONALIZADA</span>
+      <span class="tag g">ARTESANATO</span><span class="tag b">LOJA DE ROUPAS</span><span class="tag a">BANHO E TOSA</span><span class="tag y">AULAS PARTICULARES</span><span class="tag v">BUFFET E EVENTOS</span>
+    </div>
+    <div class="regra">
+      <div><b>Atende cliente?</b>Cada cliente cadastrado uma vez, com histórico.</div>
+      <div><b>Passa orçamento ou tem pedido?</b>Do primeiro contato à entrega, com status e prazo.</div>
+      <div><b>Tem agenda ou prazo?</b>O que fazer hoje e na semana, numa tela só.</div>
+    </div>
+    <a class="btn pri" href="https://ig.me/m/jv_organiza">Contar o que eu faço</a>
+    <p class="dica">Manda <b>SISTEMA</b> no direct e diz com o que você trabalha. A gente explica como ficaria.</p>
+  </div>
+</section>
+
+<!-- 6. NO CELULAR -->
+<section class="sec mobile">
+  <div class="wrap grid">
+    <div>
+      <span class="secao"><i></i>NO CELULAR</span>
+      <h2 style="margin-top:18px">Recebeu o pedido? <span class="marca-texto">Registra na hora.</span></h2>
+      <p class="lead" style="margin-top:16px">O sistema abre no app do Notion, com atalhos para o que você faz todo dia.</p>
+      <div class="passos-rapidos">
+        <div>Os quadros do topo mostram o que tem para hoje e o que falta receber.</div>
+        <div>Um toque em Nova e o pedido entra, já ligado à cliente.</div>
+        <div>Receita e despesa ficam presas ao pedido, sem conta no caderno.</div>
       </div>
     </div>
-  </section>
+    <div class="cola" style="--r:-2deg">
+      <div class="janela"><div class="barra"><i></i><i></i><i></i><small>A rotina no celular</small></div><video class="auto" style="aspect-ratio:640/720" muted loop playsinline preload="none" poster="media/celular-poster.jpg" aria-label="Trecho: o sistema aberto no celular"><source src="media/celular.mp4" type="video/mp4"></video></div>
+    </div>
+  </div>
+</section>
 
-  <section class="note-sec">
-    <div class="wrap">
-      <div class="bilhete">
-        <p class="hand">Seu negócio não precisa caber na sua cabeça.</p>
-        <p>Pedido, cliente, agenda e dinheiro ficam no sistema. Você abre, vê o que fazer hoje e volta a cuidar do que importa: atender bem.</p>
-        <p class="sig">Empresa JV</p>
+<!-- 7. O QUE VEM -->
+<section class="sec" style="padding-top:0">
+  <div class="wrap">
+    <span class="secao"><i></i>O QUE VEM NO SISTEMA</span>
+    <h2 style="margin-top:18px">Cada parte do negócio no seu lugar.</h2>
+    <div class="cards">
+      <div class="card papelzinho cola" style="--r:-1deg"><span class="fita"></span><b>Pedidos</b><p>Do orçamento à entrega, com status e prazo.</p></div>
+      <div class="card papelzinho cola" style="--r:1deg"><span class="fita"></span><b>Clientes</b><p>Histórico de cada cliente e quem chamar para voltar.</p></div>
+      <div class="card papelzinho cola" style="--r:-1deg"><span class="fita"></span><b>Agenda</b><p>Dias ocupados e livres antes de dizer “consigo”.</p></div>
+      <div class="card papelzinho cola" style="--r:1deg"><span class="fita"></span><b>Financeiro</b><p>O que entrou, o que saiu e o lucro de cada mês.</p></div>
+      <div class="card papelzinho cola" style="--r:-1deg"><span class="fita"></span><b>Mensagens prontas</b><p>Confirmação, retorno e lembrete para copiar e mandar.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 8. COMO FUNCIONA -->
+<section class="sec" id="como-funciona" style="padding-top:0">
+  <div class="wrap">
+    <span class="secao"><i></i>COMO FUNCIONA</span>
+    <h2 style="margin-top:18px">Você não precisa saber Notion.</h2>
+    <div class="passos">
+      <div class="passo cola"><b>Diagnóstico</b><p>Um questionário rápido sobre como o seu negócio funciona hoje.</p></div>
+      <div class="passo cola"><b>Montagem</b><p>A gente monta o sistema no Notion com as áreas do seu dia a dia.</p></div>
+      <div class="passo cola"><b>Entrega</b><p>Tudo pronto, com exemplos e uma videoaula curta para cada parte.</p></div>
+      <div class="passo cola"><b>Acompanhamento</b><p>Na primeira semana de uso, a gente acompanha você de perto.</p></div>
+    </div>
+    <div class="prova">
+      <b>26/10/2026</b>
+      <span>Três negócios receberam o sistema: uma trancista, uma gráfica e uma confeitaria.</span>
+      <a href="https://www.instagram.com/jv_organiza/">Ver os bastidores no Instagram</a>
+    </div>
+  </div>
+</section>
+
+<!-- 9. PREÇOS -->
+<section class="sec precos" id="precos" style="background:var(--papel2) var(--ruido);border-block:3px solid var(--tinta)">
+  <div class="wrap">
+    <span class="secao"><i></i>PREÇOS</span>
+    <h2 style="margin-top:18px">Pague uma vez. <span class="marca-texto">Sem mensalidade.</span></h2>
+    <p class="lead" style="margin-top:16px">Escolha o quanto de ajuda você quer: montar sozinho, tirar dúvidas por hora ou receber o sistema pronto.</p>
+    <div class="grid">
+      <div class="plano papelzinho">
+        <span class="tag b">EM BREVE</span>
+        <h3>Kit JV</h3>
+        <div class="preco">R$ 129,90</div>
+        <p class="sub">Para quem quer montar sozinho.</p>
+        <ul><li>Modelo do sistema para você montar</li><li>Passo a passo em vídeo</li></ul>
+        <a class="btn sec2" href="https://ig.me/m/jv_organiza">Quero ser avisado</a>
+      </div>
+      <div class="plano destaque">
+        <span class="tag y">MAIS COMPLETO</span>
+        <h3>Sistema JV completo</h3>
+        <div class="preco">R$ 990 <small>no Pix</small></div>
+        <p class="sub">ou 10x de R$ 109</p>
+        <div class="vagas">Preço de fundador: R$ 790 para os 5 primeiros clientes. Restam 5 de 5 vagas.</div>
+        <ul><li>Diagnóstico do seu negócio</li><li>Sistema montado e personalizado no Notion</li><li>Videoaula para cada parte</li><li>Primeira semana de acompanhamento</li><li>Sem mensalidade</li></ul>
+        <a class="btn pri" href="https://ig.me/m/jv_organiza">Quero o meu sistema</a>
+      </div>
+      <div class="plano papelzinho">
+        <span class="tag p">CONSULTORIA</span>
+        <h3>Uma hora com a gente</h3>
+        <div class="preco">R$ 199,90 <small>/hora</small></div>
+        <p class="sub">Para quem já usa o Notion e quer ajuda pontual.</p>
+        <ul><li>Uma hora de conversa ao vivo</li><li>Ajustes e dúvidas no seu sistema</li></ul>
+        <a class="btn sec2" href="https://ig.me/m/jv_organiza">Agendar uma hora</a>
       </div>
     </div>
-  </section>
+    <p class="nota-precos">Todos funcionam no plano grátis do Notion, no computador e no celular.</p>
+  </div>
+</section>
 
-  <section class="final">
-    <div class="wrap">
-      <h2>Vamos montar o seu?</h2>
-      <p>Conta no direct com o que você trabalha. A gente responde e mostra como o sistema fica no seu negócio.</p>
-      <a class="btn btn-main" href="https://ig.me/m/jv_organiza" target="_blank" rel="noopener">Chamar no direct</a>
-      <p class="kw">Manda <b>SISTEMA</b> e conta com o que você trabalha.</p>
-      <span class="alt">Ainda não é a hora? Manda <b>ORÇAMENTO</b> no direct e receba 3 mensagens prontas para responder orçamento em 1 minuto.</span>
+<!-- 10. DÚVIDAS -->
+<section class="sec" id="duvidas">
+  <div class="wrap">
+    <span class="secao"><i></i>DÚVIDAS</span>
+    <h2 style="margin-top:18px">Perguntas que todo mundo faz.</h2>
+    <div class="faq">
+      <details><summary>Preciso pagar o Notion?</summary><p>Não. O sistema funciona no plano grátis do Notion.</p></details>
+      <details><summary>Nunca usei o Notion. Vou conseguir?</summary><p>Sim. O sistema chega pronto, com exemplos, e cada parte tem uma videoaula curta mostrando o que fazer. Na primeira semana, a gente acompanha você.</p></details>
+      <details><summary>Funciona no celular?</summary><p>Sim, pelo app do Notion. O sistema tem atalhos para registrar pedidos, receitas e despesas na hora.</p></details>
+      <details><summary>Tem mensalidade?</summary><p>Não. Você paga uma vez e o sistema é seu.</p></details>
+      <details><summary>O meu negócio não é confeitaria, trancista nem gráfica. Serve?</summary><p>Se você atende cliente, passa orçamento e controla pedidos ou agenda, serve. Manda SISTEMA no direct com o que você trabalha que a gente explica como ficaria.</p></details>
+      <details><summary>E se eu já uso outro app para a agenda?</summary><p>Se a ferramenta funciona bem para você, ela fica. O sistema organiza o resto e não obriga a trocar o que já dá certo.</p></details>
     </div>
-  </section>
+  </div>
+</section>
+
+<!-- 11. FINAL -->
+<section class="sec final">
+  <div class="wrap">
+    <div class="bilhete"><span class="fita"></span><p>Seu negócio não precisa caber na sua cabeça.</p><small>Pedido, cliente, agenda e dinheiro ficam no sistema. Você abre, vê o que fazer hoje e volta a atender bem.</small></div>
+    <h2>Vamos montar o seu?</h2>
+    <p class="lead">Conta no direct com o que você trabalha. A gente responde e mostra como o sistema fica no seu negócio.</p>
+    <a class="btn pri" href="https://ig.me/m/jv_organiza">Chamar no direct</a>
+    <p class="dica">Manda <b>SISTEMA</b> e conta com o que você trabalha.</p>
+    <p class="alt">Ainda não é a hora? Manda ORÇAMENTO no direct e receba 3 mensagens prontas para responder orçamento em 1 minuto.</p>
+  </div>
+</section>
 </main>
 
 <footer>
   <div class="wrap">
-    <span>© 2026 Empresa JV · CNPJ 59.461.672/0001-47 · <a href="https://www.instagram.com/jv_organiza/" target="_blank" rel="noopener">@jv_organiza</a> · contato.jvorganiza@gmail.com</span>
-    <span>Notion é marca da Notion Labs. A Empresa JV não tem vínculo com o Notion.</span>
+    <span>© 2026 Empresa JV · CNPJ 59.461.672/0001-47 · <a href="https://www.instagram.com/jv_organiza/">@jv_organiza</a> · contato.jvorganiza@gmail.com</span>
+    <span>Imagens de pessoas ilustrativas. Telas do sistema com registros de exemplo. Notion é marca da Notion Labs; a Empresa JV não tem vínculo com o Notion.</span>
   </div>
 </footer>
 
+<script>
+/* Só duas coisas: os vídeos em repetição tocam quando aparecem na tela (e pausam fora dela, para poupar dados),
+   e os adesivos "colam" ao entrar na tela. Sem bibliotecas. */
+(function(){
+  var io = 'IntersectionObserver' in window;
+  var vids = document.querySelectorAll('video.auto');
+  if (io) {
+    var ov = new IntersectionObserver(function(es){
+      es.forEach(function(e){
+        var v = e.target;
+        if (e.isIntersecting) { if (v.preload === 'none') { v.preload = 'auto'; } var p = v.play(); if (p && p.catch) p.catch(function(){}); }
+        else { v.pause(); }
+      });
+    }, {threshold: .25});
+    vids.forEach(function(v){ ov.observe(v); });
+  } else {
+    vids.forEach(function(v){ v.preload = 'auto'; v.play(); });
+  }
+  /* adesivos: checagem direta da posição na rolagem (não depende do observador) */
+  var falta = [].slice.call(document.querySelectorAll('.cola'));
+  falta.forEach(function(el, i){ el.style.transitionDelay = (i % 4) * 70 + 'ms'; });
+  function revela(){
+    var h = window.innerHeight || 800;
+    var fim = window.scrollY + h >= document.documentElement.scrollHeight - 4;
+    falta = falta.filter(function(el){
+      var r = el.getBoundingClientRect();
+      if (fim || r.top < h * .92) { el.classList.add('ok'); return false; }
+      return true;
+    });
+    if (!falta.length) { window.removeEventListener('scroll', agenda); window.removeEventListener('resize', agenda); }
+  }
+  var pendente = false;
+  function agenda(){ if (!pendente) { pendente = true; setTimeout(function(){ pendente = false; revela(); }, 60); } }
+  window.addEventListener('scroll', agenda, {passive: true});
+  window.addEventListener('resize', agenda);
+  revela();
+})();
+</script>
 </body>
 </html>
