@@ -232,6 +232,12 @@ h2{font-family:Anton,Impact,sans-serif;font-weight:400;text-transform:uppercase;
 .garantia span{font-weight:600;font-size:15.5px}
 .fixo{display:none}
 @media (max-width:640px){.fixo{display:flex;position:fixed;left:max(12px,env(safe-area-inset-left,0px));right:auto;width:calc(100% - 112px)!important;max-width:calc(100% - 112px);bottom:max(20px,env(safe-area-inset-bottom,0px));z-index:49;min-height:52px;padding:0 12px;font-size:15.5px;box-shadow:4px 4px 0 var(--tinta)}footer{padding-bottom:90px}}
+.recortes{position:relative;max-width:900px;margin:34px auto 0;padding:26px 26px 24px;background:var(--papel2);border:3px solid var(--tinta);box-shadow:6px 6px 0 var(--tinta);transform:rotate(var(--r,0))}
+.recortes .fita{position:absolute;top:-12px;left:40px}
+.recortes h3{font:400 30px/1 'Bebas Neue',sans-serif;letter-spacing:.04em;margin:12px 0 8px}
+.recortes p{margin:0 0 18px;color:var(--tinta2);max-width:68ch}
+.rec-bts{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px}
+.rec-bts .btn{min-height:48px;font-size:15.5px;padding:0 14px}
 .nota-precos{text-align:center;margin-top:30px;color:var(--tinta2);font-size:15px}
 
 /* dúvidas */
@@ -576,7 +582,7 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-betw
         <ul><li>Sistema pronto do seu nicho para colar no seu Notion</li><li>6 aulas para começar e 13 aulas, uma por área do Menu</li><li>5 a 7 aulas de bancada com tarefas do seu dia a dia</li><li>Exemplos do seu tipo de negócio</li><li>Sem mensalidade</li></ul>
         <div class="compras"><a class="btn pri" href="https://pay.kiwify.com.br/ZakfhHG" target="_blank" rel="noopener">Quero o Kit Confeitaria</a><a class="btn pri" href="https://pay.kiwify.com.br/aMyiiBF" target="_blank" rel="noopener">Quero o Kit Gráfica</a><a class="btn pri" href="https://pay.kiwify.com.br/BGtr8af" target="_blank" rel="noopener">Quero o Kit Trancista</a></div>
       </div>
-      <div class="plano papelzinho">
+      <div class="plano papelzinho" id="implantacao">
         <span class="tag p">IMPLANTAÇÃO GUIADA</span>
         <h3>Monta junto com a gente</h3>
         <div class="preco">R$ 197 <small>/1 hora</small></div>
@@ -586,7 +592,13 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-betw
       </div>
     </div>
     <div class="garantia cola" style="--r:-.6deg"><b>Garantia de 7 dias</b><span>Comprou e viu que não é para você? Peça o reembolso em até 7 dias pela Kiwify e o valor volta inteiro.</span></div>
-    <p class="nota-precos">Todos funcionam no plano grátis do Notion, no computador e no celular. No checkout, você pode levar junto os <b>Recortes de conversa</b>: 22 mensagens prontas do seu nicho para colar no WhatsApp, por R$ 27.</p>
+    <p class="nota-precos">Todos funcionam no plano grátis do Notion, no computador e no celular.</p>
+    <div class="recortes cola" id="recortes" style="--r:.5deg"><span class="fita"></span>
+      <span class="tag y">EXTRA · R$ 27</span>
+      <h3>Recortes de conversa</h3>
+      <p>22 mensagens prontas do seu nicho para colar no WhatsApp: responder quem pede preço, mandar orçamento, cobrar o sinal, lembrar a data, pedir avaliação e chamar de volta quem sumiu. Dá para levar junto no checkout do kit ou separado.</p>
+      <div class="rec-bts"><a class="btn sec2" href="https://pay.kiwify.com.br/3BIsGNv" target="_blank" rel="noopener">Confeitaria</a><a class="btn sec2" href="https://pay.kiwify.com.br/yIt8K37" target="_blank" rel="noopener">Gráfica</a><a class="btn sec2" href="https://pay.kiwify.com.br/P36gdea" target="_blank" rel="noopener">Trancista</a><a class="btn sec2" href="https://pay.kiwify.com.br/4pV7pk8" target="_blank" rel="noopener">Serviços (Padrão)</a></div>
+    </div>
   </div>
 </section>
 

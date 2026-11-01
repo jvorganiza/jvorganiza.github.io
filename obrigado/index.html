@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Compra confirmada · Empresa JV</title>
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#0E3B2A">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Bebas+Neue&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* Página de obrigado da Empresa JV: mesma colagem do site (papel creme, tinta, amarelo e verde JV). */
+:root{--papel:#efe7d6;--papel2:#f6f1e5;--tinta:#16130f;--tinta2:#4a443b;--verm:#d64034;--verde:#0E3B2A;--verde2:#14794A;--amarelo:#FFC82E}
+*{box-sizing:border-box}
+body{margin:0;background:var(--papel);color:var(--tinta);font:400 17px/1.6 Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+.wrap{max-width:860px;margin:0 auto;padding-left:max(18px,env(safe-area-inset-left,0px));padding-right:max(18px,env(safe-area-inset-right,0px))}
+header{border-bottom:3px solid var(--tinta);background:var(--papel2)}
+header .wrap{display:flex;align-items:center;gap:12px;padding-block:14px}
+.logo{width:40px;height:40px;border-radius:50%;background:var(--verde);display:grid;place-items:center;color:var(--amarelo);font:400 18px/1 Anton,sans-serif}
+header b{font-weight:700}
+.topo{padding-block:46px 10px}
+.tag{display:inline-block;font:400 19px/1 'Bebas Neue',sans-serif;letter-spacing:.06em;background:var(--tinta);color:var(--amarelo);padding:6px 12px 4px;transform:rotate(-1.5deg)}
+h1{font:400 clamp(40px,8vw,68px)/1 Anton,Impact,sans-serif;text-transform:uppercase;margin:18px 0 12px;text-wrap:balance}
+h1 em{font-style:normal;background:var(--amarelo);padding:0 .12em}
+.lead{font-size:19px;color:var(--tinta2);max-width:60ch;margin:0}
+h2{font:400 34px/1 'Bebas Neue',sans-serif;letter-spacing:.04em;margin:0 0 16px}
+.bloco{margin-top:34px;padding:26px;background:var(--papel2);border:3px solid var(--tinta);box-shadow:6px 6px 0 var(--tinta)}
+.passos{list-style:none;padding:0;margin:0;display:grid;gap:14px;counter-reset:p}
+.passos li{display:grid;grid-template-columns:44px 1fr;gap:14px;align-items:start}
+.passos li::before{counter-increment:p;content:counter(p);width:44px;height:44px;display:grid;place-items:center;background:var(--amarelo);border:3px solid var(--tinta);font:400 24px/1 Anton,sans-serif}
+.passos b{display:block}
+.passos span{color:var(--tinta2);font-size:16px}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:54px;padding:0 24px;font:700 17px/1 Inter,sans-serif;text-decoration:none;border:3px solid var(--tinta);color:var(--tinta);background:var(--amarelo);box-shadow:5px 5px 0 var(--tinta)}
+.btn.claro{background:var(--papel2)}
+.bts{display:flex;flex-wrap:wrap;gap:14px;margin-top:18px}
+.impl{background:var(--verde);color:var(--papel2);border-color:var(--tinta)}
+.impl h2{color:var(--amarelo)}
+.impl p{color:#e8e2d3;margin:0 0 6px;max-width:62ch}
+.impl .preco{font:400 46px/1 Anton,sans-serif;color:var(--papel2);margin:10px 0 4px}
+.impl small{color:#cfc8b6}
+.dias{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px}
+.dia{border:2px solid var(--tinta);background:#fff;padding:14px 16px}
+.dia b{font:400 22px/1 'Bebas Neue',sans-serif;letter-spacing:.05em;display:block;margin-bottom:4px}
+.dia span{font-size:15.5px;color:var(--tinta2)}
+footer{margin-top:50px;border-top:3px solid var(--tinta);padding-block:22px 40px;font-size:14px;color:var(--tinta2)}
+@media (max-width:640px){.btn{width:100%}.bloco{padding:20px}}
+</style>
+</head>
+<body>
+<header><div class="wrap"><span class="logo">JV</span><b>Empresa JV</b></div></header>
+
+<main class="wrap">
+  <section class="topo">
+    <span class="tag">COMPRA CONFIRMADA</span>
+    <h1>Agora é <em>tirar do caderno.</em></h1>
+    <p class="lead" id="lead">Obrigado pela compra! Em poucos minutos chega no seu e-mail o acesso à área de membros. Siga os passos abaixo.</p>
+  </section>
+
+  <!-- Kits e Recortes: como acessar -->
+  <section class="bloco" id="acesso">
+    <h2>Como acessar</h2>
+    <ol class="passos">
+      <li><div><b>Abra o e-mail da Kiwify</b><span>Ele chega no e-mail que você usou na compra. Não achou? Olhe a caixa de spam e a aba Promoções.</span></div></li>
+      <li><div><b>Entre na área de membros</b><span>Use o mesmo e-mail da compra. O acesso também fica no botão abaixo.</span></div></li>
+      <li class="so-kit"><div><b>Assista ao Comece aqui</b><span>As duas primeiras aulas mostram como criar a conta do Notion e colar o sistema no seu Notion, com o PDF do seu link.</span></div></li>
+      <li class="so-rec"><div><b id="rec-tit">Levou os Recortes de conversa?</b><span>Estão no módulo Recortes de conversa: clique em "Abra as suas mensagens" e copie a que precisar.</span></div></li>
+    </ol>
+    <div class="bts"><a class="btn" href="https://members.kiwify.com/login?club=eb87a211-28c4-4751-8a24-92843f6d3fd5" target="_blank" rel="noopener">Entrar na área de membros</a></div>
+  </section>
+
+  <!-- Oferta: implantação guiada (só para quem comprou kit) -->
+  <section class="bloco impl so-kit" id="implantacao">
+    <h2>Quer montar junto com a gente?</h2>
+    <p>Na Implantação guiada, a gente passa uma hora com você, ao vivo pelo Google Meet: colamos o sistema no seu Notion e cadastramos juntos os seus primeiros clientes, serviços e contas. Você sai da chamada usando.</p>
+    <div class="preco">R$ 197</div>
+    <small>Poucas vagas por semana. Escolha o horário; o link de pagamento chega pelo WhatsApp.</small>
+    <div class="bts"><a class="btn" href="https://calendar.google.com/calendar/appointments/schedules/AcZssZ00W-NcNPnnAaIBCA9i8j9JeMPN1rK7qRcD3SBrGRhsOlLnzAuMIvte-QgvGuRjgfc4WVHWfj78" target="_blank" rel="noopener">Quero montar junto</a></div>
+  </section>
+
+  <!-- Roteiro gratuito para quem prefere começar sozinho -->
+  <section class="bloco so-kit" id="roteiro">
+    <h2>Prefere começar sozinho? Seu roteiro de 7 dias</h2>
+    <p class="lead" style="font-size:16.5px;margin-bottom:18px">Meia hora por dia. No fim da semana, o sistema já está com os seus dados.</p>
+    <div class="dias">
+      <div class="dia"><b>Dia 1 · Colar o sistema</b><span>Aulas "Instalar o Notion" e "Trazer o sistema para a sua conta". Marque a estrela.</span></div>
+      <div class="dia"><b>Dia 2 · Notion do seu jeito</b><span>Aulas "Deixar o Notion em português" e "O Notion em 10 minutos".</span></div>
+      <div class="dia"><b>Dia 3 · Conhecer as peças</b><span>Aula "Como o sistema é feito" e a aula da página inicial.</span></div>
+      <div class="dia"><b>Dia 4 · Seus clientes</b><span>Cadastre os 5 clientes mais frequentes, com telefone. Aula da área Clientes.</span></div>
+      <div class="dia"><b>Dia 5 · O primeiro pedido</b><span>Registre um pedido ou atendimento real, do começo ao fim, com a aula da sua área principal.</span></div>
+      <div class="dia"><b>Dia 6 · O dinheiro</b><span>Lance as entradas e saídas da semana. Aula do Financeiro.</span></div>
+      <div class="dia"><b>Dia 7 · Rotina e celular</b><span>Abra no app do celular, revise a semana e assista a "Cuidados e ajuda". Pode apagar os registros de exemplo.</span></div>
+    </div>
+  </section>
+
+  <section class="bloco" id="ajuda">
+    <h2>Ficou com alguma dúvida?</h2>
+    <p style="margin:0;color:var(--tinta2)">Fala com a gente no WhatsApp da Empresa JV: <b>(21) 98494-2432</b>.</p>
+    <div class="bts"><a class="btn claro" href="https://wa.me/5521984942432?text=Oi!%20Acabei%20de%20comprar%20e%20tenho%20uma%20d%C3%BAvida." target="_blank" rel="noopener">Chamar no WhatsApp</a></div>
+  </section>
+</main>
+
+<footer><div class="wrap">© 2026 Empresa JV · CNPJ 59.461.672/0001-47 · <a href="https://jvorganiza.com.br">jvorganiza.com.br</a> · @jv_organiza</div></footer>
+
+<script>
+/* ?p=kit (padrão), ?p=recortes ou ?p=implantacao ajusta o que aparece. */
+(function(){
+  var p = (new URLSearchParams(location.search).get('p') || 'kit').toLowerCase();
+  var q = function(s){ return Array.prototype.slice.call(document.querySelectorAll(s)); };
+  if (p === 'recortes') {
+    q('.so-kit').forEach(function(e){ e.style.display = 'none'; });
+    document.getElementById('rec-tit').textContent = 'Abra os seus Recortes de conversa';
+    document.getElementById('lead').textContent = 'Obrigado pela compra! Em poucos minutos chega no seu e-mail o acesso aos seus Recortes de conversa.';
+  } else if (p === 'implantacao') {
+    q('#acesso,#roteiro,#implantacao').forEach(function(e){ e.style.display = 'none'; });
+    document.querySelector('h1').innerHTML = 'Horário <em>garantido.</em>';
+    document.getElementById('lead').textContent = 'Pagamento confirmado! A sua Implantação guiada está garantida no horário que você marcou. O link do Google Meet está no convite da agenda que chegou no seu e-mail. No dia, esteja no computador, com a sua conta do Notion aberta.';
+  }
+})();
+</script>
+</body>
+</html>
