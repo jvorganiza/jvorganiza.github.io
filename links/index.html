@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Links · Empresa JV</title>
+<meta name="description" content="Os links da Empresa JV: dica da semana, Resumão, kits, WhatsApp e ferramentas parceiras.">
+<link rel="canonical" href="https://jvorganiza.com.br/links/">
+<meta property="og:title" content="Links · Empresa JV">
+<meta property="og:description" content="Os links da Empresa JV: dica da semana, Resumão, kits, WhatsApp e ferramentas parceiras.">
+<meta property="og:image" content="https://jvorganiza.com.br/img/og.jpg">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#0E3B2A">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='32' fill='%230E3B2A'/%3E%3Cg transform='rotate(-6 22 33)'%3E%3Crect x='12' y='17' width='20' height='32' fill='%23d64034'/%3E%3Ctext x='22' y='43' font-family='Impact,Arial' font-size='26' text-anchor='middle' fill='%23fff'%3EJ%3C/text%3E%3C/g%3E%3Cg transform='rotate(5 42 33)'%3E%3Crect x='32' y='18' width='21' height='32' fill='%23f6f1e5'/%3E%3Ctext x='42.5' y='44' font-family='Impact,Arial' font-size='26' text-anchor='middle' fill='%2316130f'%3EV%3C/text%3E%3C/g%3E%3Crect x='20' y='12' width='22' height='7' fill='%23FFC82E' transform='rotate(-8 31 15)'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Bebas+Neue&family=Inter:wght@400;500;600;700&family=Caveat:wght@700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/caderno.css">
+</head>
+<body>
+<header class="topo-site"><div class="wrap"><a class="marca" href="/"><span class="logo">JV</span><b>Empresa JV</b><i>Caderno de dicas</i></a>
+<nav><a href="/#dicas">Dicas</a><a href="/#resumao">Resumão</a><a class="btn mini" href="/kits/">Kits</a></nav></div></header>
+<main class="wrap linkbio">
+  <span class="logo grande">JV</span>
+  <h1>Empresa JV</h1>
+  <p>Sistemas no Notion e dicas para pequenos negócios.</p>
+  <a class="lb destaque" href="/dicas/sinal-50-por-cento/?utm_source=ig&utm_medium=bio"><small>DICA DA SEMANA</small>Sinal de 50%: como pedir sem perder o cliente</a>
+  <a class="lb" href="/#resumao">Receber o Resumão da semana (grátis)</a>
+  <a class="lb" href="/kits/?utm_source=ig&utm_medium=bio">Conhecer os kits no Notion</a>
+  <a class="lb" href="/?utm_source=ig&utm_medium=bio">Todas as dicas do Caderno</a>
+  <a class="lb" href="https://wa.me/5521984942432?text=Oi!%20Vim%20pelo%20Caderno%20de%20dicas" target="_blank" rel="noopener">Falar no WhatsApp</a>
+  <a class="lb" href="https://app.leonasolutions.io/register?via=E39ECAB1" target="_blank" rel="sponsored noopener">Leona: automação de WhatsApp <span class="selo-parceiro">link de parceiro</span></a>
+</main>
+<footer class="rodape"><div class="wrap">
+<p><b>Empresa JV</b> · sistemas de gestão no Notion para pequenos negócios.</p>
+<p>Alguns links deste site são de parceiros: se você contratar por eles, a Empresa JV recebe comissão, sem custo a mais para você. Recomendamos só o que usamos.</p>
+<p><a href="/kits/">Kits</a> · <a href="/links/">Links</a> · <a href="https://www.instagram.com/jv_organiza/" target="_blank" rel="noopener">@jv_organiza</a> · <a href="https://wa.me/5521984942432?text=Oi!%20Vim%20pelo%20Caderno%20de%20dicas" target="_blank" rel="noopener">WhatsApp (21) 98494-2432</a></p>
+<p>© 2026 Empresa JV · CNPJ 59.461.672/0001-47 · Sistema montado pela Empresa JV</p>
+</div></footer>
+<script>
+document.querySelectorAll('.copiar').forEach(function(b){b.addEventListener('click',function(){
+  var t=b.parentNode.querySelector('.balao').innerText;
+  var ok=function(){b.textContent='Copiado!';setTimeout(function(){b.textContent='Copiar mensagem'},1800)};
+  if(navigator.clipboard){navigator.clipboard.writeText(t).then(ok,function(){})}
+})});
+/* Resumão: envia ao ActiveCampaign sem sair da página e mostra o aviso de confirmação. */
+document.querySelectorAll('form.resumao').forEach(function(f){f.addEventListener('submit',function(e){
+  e.preventDefault();var b=f.querySelector('button');b.disabled=true;b.textContent='Enviando...';
+  fetch(f.action,{method:'POST',mode:'no-cors',body:new FormData(f)}).then(function(){
+    f.innerHTML='<div><b>Quase lá!</b><span>Enviamos um e-mail para você confirmar a inscrição. Se não chegar em 2 minutos, olhe o spam e a aba Promoções.</span></div>';
+  },function(){f.submit();});
+})});
+</script>
+</body>
+</html>
