@@ -219,7 +219,7 @@ h2{font-family:Anton,Impact,sans-serif;font-weight:400;text-transform:uppercase;
 .plano .preco{font:400 54px/1 Anton,Impact,sans-serif;margin:14px 0 4px}
 .plano .preco small{font:600 16px/1 Inter,sans-serif}
 .plano .sub{color:var(--tinta2);font-size:15px;margin:0 0 16px}
-.plano ul{list-style:none;padding:0;margin:0 0 24px;display:grid;gap:8px;font-size:15.5px;flex:1}
+.plano ul{list-style:none;padding:0;margin:0 0 24px;display:grid;gap:8px;font-size:15.5px;flex:1;align-content:start}
 .plano li::before{content:"✓ ";font-weight:800;color:var(--verde2)}
 .plano .btn{width:100%}
 .plano .compras{display:grid;gap:14px}
@@ -227,6 +227,11 @@ h2{font-family:Anton,Impact,sans-serif;font-weight:400;text-transform:uppercase;
 .plano.destaque .sub,.plano.destaque li{color:#e8e1d2}
 .plano.destaque li::before{color:var(--amarelo)}
 .vagas{background:var(--amarelo);color:var(--tinta);padding:10px 12px;font-weight:700;font-size:14.5px;margin:2px 0 16px}
+.garantia{max-width:780px;margin:34px auto 0;display:flex;flex-wrap:wrap;gap:6px 18px;align-items:center;justify-content:center;text-align:center;padding:16px 22px;background:var(--amarelo);border:3px solid var(--tinta);box-shadow:6px 6px 0 var(--tinta);transform:rotate(var(--r,0))}
+.garantia b{font:400 30px/1 'Bebas Neue',sans-serif;letter-spacing:.05em}
+.garantia span{font-weight:600;font-size:15.5px}
+.fixo{display:none}
+@media (max-width:640px){.fixo{display:flex;position:fixed;left:max(12px,env(safe-area-inset-left,0px));right:auto;width:calc(100% - 112px)!important;max-width:calc(100% - 112px);bottom:max(20px,env(safe-area-inset-bottom,0px));z-index:49;min-height:52px;padding:0 12px;font-size:15.5px;box-shadow:4px 4px 0 var(--tinta)}footer{padding-bottom:90px}}
 .nota-precos{text-align:center;margin-top:30px;color:var(--tinta2);font-size:15px}
 
 /* dúvidas */
@@ -299,7 +304,7 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-betw
       <a href="#precos">Preços</a>
       <a href="#duvidas">Dúvidas</a>
     </nav>
-    <a class="btn pri" href="https://ig.me/m/jv_organiza">Falar no direct</a>
+    <a class="btn pri" href="#precos">Quero o meu kit</a>
   </div>
 </header>
 
@@ -317,11 +322,11 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-betw
       <p class="pra">Para <b id="nicho">pequenos negócios</b></p>
       <p class="lead">Pedidos, clientes, agenda e dinheiro organizados no Notion, no computador e no celular. <strong>A Empresa JV entrega o sistema pronto para o seu tipo de negócio, com videoaulas. Você só usa.</strong></p>
       <div class="ctas">
-        <a class="btn pri" href="https://ig.me/m/jv_organiza">Quero o meu sistema</a>
-        <a class="btn sec2" href="#historia">Ver o sistema em ação</a>
+        <a class="btn pri" href="#precos">Quero tirar do caderno</a>
+        <a class="btn sec2" href="#historia">Ver o sistema por dentro</a>
       </div>
-      <p class="dica">Abre o direct e manda <b>SISTEMA</b>. A gente responde.</p>
-      <div class="selos"><span>Sem mensalidade</span><span>Plano grátis do Notion</span><span>Videoaula para cada parte</span></div>
+      <p class="dica">Ficou com dúvida? Manda <b>SISTEMA</b> no <a href="https://ig.me/m/jv_organiza">direct</a> que a gente responde.</p>
+      <div class="selos"><span>Sem mensalidade</span><span>Plano grátis do Notion</span><span>Videoaula para cada parte</span><span>Garantia de 7 dias</span></div>
     </div>
 
     <div class="palco" aria-hidden="true">
@@ -341,8 +346,8 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-betw
 </section>
 
 <div class="faixa" aria-hidden="true"><div class="trilho">
-  <span>Pague uma vez</span><span>Sem mensalidade</span><span>Funciona no celular</span><span>Plano grátis do Notion</span><span>Videoaula para cada parte</span><span>Exemplos prontos do seu nicho</span>
-  <span>Pague uma vez</span><span>Sem mensalidade</span><span>Funciona no celular</span><span>Plano grátis do Notion</span><span>Videoaula para cada parte</span><span>Exemplos prontos do seu nicho</span>
+  <span>Pague uma vez</span><span>Sem mensalidade</span><span>Funciona no celular</span><span>Plano grátis do Notion</span><span>Videoaula para cada parte</span><span>Exemplos prontos do seu nicho</span><span>Garantia de 7 dias</span>
+  <span>Pague uma vez</span><span>Sem mensalidade</span><span>Funciona no celular</span><span>Plano grátis do Notion</span><span>Videoaula para cada parte</span><span>Exemplos prontos do seu nicho</span><span>Garantia de 7 dias</span>
 </div></div>
 
 <!-- 2. EXEMPLO NA PRÁTICA (no lugar de depoimento) -->
@@ -494,7 +499,7 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-betw
       <div><b>Passa orçamento ou tem pedido?</b>Do primeiro contato à entrega, com status e prazo.</div>
       <div><b>Tem agenda ou prazo?</b>O que fazer hoje e na semana, numa tela só.</div>
     </div>
-    <a class="btn pri" href="https://ig.me/m/jv_organiza">Contar o que eu faço</a>
+    <a class="btn pri" href="https://ig.me/m/jv_organiza">Me conta o seu negócio</a>
     <p class="dica">Manda <b>SISTEMA</b> no direct e diz com o que você trabalha. A gente explica como ficaria.</p>
   </div>
 </section>
@@ -528,7 +533,7 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-betw
       <div class="card papelzinho cola" style="--r:1deg"><span class="fita"></span><b>Clientes</b><p>Histórico de cada cliente e quem chamar para voltar.</p></div>
       <div class="card papelzinho cola" style="--r:-1deg"><span class="fita"></span><b>Agenda</b><p>Dias ocupados e livres antes de dizer “consigo”.</p></div>
       <div class="card papelzinho cola" style="--r:1deg"><span class="fita"></span><b>Financeiro</b><p>O que entrou, o que saiu e o lucro de cada mês.</p></div>
-      <div class="card papelzinho cola" style="--r:-1deg"><span class="fita"></span><b>Mensagens prontas</b><p>Confirmação, retorno e lembrete para copiar e mandar.</p></div>
+      <div class="card papelzinho cola" style="--r:-1deg"><span class="fita"></span><b>Videoaulas</b><p>6 para começar, uma para cada área do Menu e aulas de bancada com tarefas do dia a dia.</p></div>
     </div>
   </div>
 </section>
@@ -540,9 +545,9 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-betw
     <h2 style="margin-top:18px">Você não precisa saber Notion.</h2>
     <div class="passos">
       <div class="passo cola"><b>Escolha o kit</b><p>O Padrão ou o do seu tipo de negócio: confeitaria, gráfica ou trancista.</p></div>
-      <div class="passo cola"><b>Duplique no Notion</b><p>Um clique e o sistema vai para a sua conta, já com registros de exemplo.</p></div>
-      <div class="passo cola"><b>Assista às aulas</b><p>Uma videoaula para cada área do Menu e aulas extras com tarefas do dia a dia.</p></div>
-      <div class="passo cola"><b>Use no dia a dia</b><p>Troque os exemplos pelos seus clientes e pedidos. Dúvida pontual? Tem consultoria por hora.</p></div>
+      <div class="passo cola"><b>Cole no seu Notion</b><p>Um clique em Duplicar e o sistema vai para a sua conta, já com registros de exemplo.</p></div>
+      <div class="passo cola"><b>Assista às aulas</b><p>Uma videoaula para cada área do Menu e aulas de bancada com tarefas do dia a dia, do começo ao fim.</p></div>
+      <div class="passo cola"><b>Use no dia a dia</b><p>Troque os exemplos pelos seus clientes e pedidos. Quer ajuda para começar? Dá para montar junto com a gente.</p></div>
     </div>
     <div class="prova">
       <b>26/10/2026</b>
@@ -557,15 +562,15 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-betw
   <div class="wrap">
     <span class="secao"><i></i>PREÇOS</span>
     <h2 style="margin-top:18px">Pague uma vez. <span class="marca-texto">Sem mensalidade.</span></h2>
-    <p class="lead" style="margin-top:16px">Escolha o kit do seu negócio. Se quiser ajuda depois, tem consultoria por hora.</p>
+    <p class="lead" style="margin-top:16px">Aplicativo de gestão cobra todo mês. Aqui você paga uma vez e o sistema é seu. Se quiser, a gente monta junto com você.</p>
     <div class="grid">
       <div class="plano papelzinho">
         <span class="tag b">DISPONÍVEL</span>
         <h3>Kit Padrão</h3>
         <div class="preco">R$ 97</div>
         <p class="sub">ou em até 12x. Para qualquer pequeno negócio que atende cliente.</p>
-        <ul><li>Sistema pronto para duplicar no Notion</li><li>Videoaula para cada área</li><li>Registros de exemplo</li><li>Sem mensalidade</li></ul>
-        <a class="btn sec2" href="https://pay.kiwify.com.br/Gj6QHHl" target="_blank" rel="noopener">Comprar o Kit Padrão</a>
+        <ul><li>Sistema pronto para colar no seu Notion</li><li>25 videoaulas: 6 para começar, 13 por área e 6 de bancada</li><li>Registros de exemplo</li><li>Sem mensalidade</li></ul>
+        <a class="btn sec2" href="https://pay.kiwify.com.br/Gj6QHHl" target="_blank" rel="noopener">Quero o Kit Padrão</a>
       </div>
       <div class="plano destaque">
         <span class="tag y">DISPONÍVEL · POR NICHO</span>
@@ -573,19 +578,20 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-betw
         <div class="preco">R$ 147 <small>cada kit</small></div>
         <p class="sub">ou em até 12x</p>
         <div class="vagas">Confeitaria · Gráfica · Trancista</div>
-        <ul><li>Sistema pronto do seu nicho para duplicar no Notion</li><li>Videoaula para cada área do Menu</li><li>Aulas extras com tarefas do seu dia a dia</li><li>Exemplos do seu tipo de negócio</li><li>Sem mensalidade</li></ul>
-        <div class="compras"><a class="btn pri" href="https://pay.kiwify.com.br/ZakfhHG" target="_blank" rel="noopener">Comprar Kit Confeitaria</a><a class="btn pri" href="https://pay.kiwify.com.br/aMyiiBF" target="_blank" rel="noopener">Comprar Kit Gráfica</a><a class="btn pri" href="https://pay.kiwify.com.br/BGtr8af" target="_blank" rel="noopener">Comprar Kit Trancista</a></div>
+        <ul><li>Sistema pronto do seu nicho para colar no seu Notion</li><li>6 aulas para começar e 13 aulas, uma por área do Menu</li><li>5 a 7 aulas de bancada com tarefas do seu dia a dia</li><li>Exemplos do seu tipo de negócio</li><li>Sem mensalidade</li></ul>
+        <div class="compras"><a class="btn pri" href="https://pay.kiwify.com.br/ZakfhHG" target="_blank" rel="noopener">Quero o Kit Confeitaria</a><a class="btn pri" href="https://pay.kiwify.com.br/aMyiiBF" target="_blank" rel="noopener">Quero o Kit Gráfica</a><a class="btn pri" href="https://pay.kiwify.com.br/BGtr8af" target="_blank" rel="noopener">Quero o Kit Trancista</a></div>
       </div>
       <div class="plano papelzinho">
-        <span class="tag p">CONSULTORIA</span>
-        <h3>Uma hora com a gente</h3>
-        <div class="preco">R$ 199,90 <small>/hora</small></div>
-        <p class="sub">Para quem já usa o Notion e quer ajuda pontual.</p>
-        <ul><li>Uma hora de conversa ao vivo</li><li>Ajustes e dúvidas no seu sistema</li></ul>
-        <a class="btn sec2" href="https://ig.me/m/jv_organiza">Agendar uma hora</a>
+        <span class="tag p">IMPLANTAÇÃO GUIADA</span>
+        <h3>Monta junto com a gente</h3>
+        <div class="preco">R$ 197 <small>/1 hora</small></div>
+        <p class="sub">Para quem quer começar já com os próprios dados. Poucas vagas por semana.</p>
+        <ul><li>Uma hora ao vivo, por vídeo</li><li>Cadastramos juntos os seus primeiros clientes, serviços e contas</li><li>Ajustes e dúvidas no seu sistema</li></ul>
+        <a class="btn sec2" href="https://wa.me/5521984942432?text=Oi!%20Quero%20a%20Implanta%C3%A7%C3%A3o%20guiada%20(montar%20o%20sistema%20junto)." target="_blank" rel="noopener">Quero montar junto</a>
       </div>
     </div>
-    <p class="nota-precos">Todos funcionam no plano grátis do Notion, no computador e no celular.</p>
+    <div class="garantia cola" style="--r:-.6deg"><b>Garantia de 7 dias</b><span>Comprou e viu que não é para você? Peça o reembolso em até 7 dias pela Kiwify e o valor volta inteiro.</span></div>
+    <p class="nota-precos">Todos funcionam no plano grátis do Notion, no computador e no celular. No checkout, você pode levar junto os <b>Recortes de conversa</b>: 22 mensagens prontas do seu nicho para colar no WhatsApp, por R$ 27.</p>
   </div>
 </section>
 
@@ -596,10 +602,15 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-betw
     <h2 style="margin-top:18px">Perguntas que todo mundo faz.</h2>
     <div class="faq">
       <details><summary>Preciso pagar o Notion?</summary><p>Não. O sistema funciona no plano grátis do Notion.</p></details>
-      <details><summary>Nunca usei o Notion. Vou conseguir?</summary><p>Sim. O kit vem pronto, com exemplos, e cada área tem uma videoaula mostrando o que fazer. Se travar em algo, tem consultoria por hora.</p></details>
+      <details><summary>Nunca usei o Notion. Vou conseguir?</summary><p>Sim. O kit vem pronto, com exemplos, e cada área tem uma videoaula mostrando o que fazer. Se quiser ajuda para começar, dá para montar junto com a gente na Implantação guiada.</p></details>
       <details><summary>Funciona no celular?</summary><p>Sim, pelo app do Notion. O sistema tem atalhos para registrar pedidos, receitas e despesas na hora.</p></details>
       <details><summary>Tem mensalidade?</summary><p>Não. Você paga uma vez e o sistema é seu.</p></details>
       <details><summary>O meu negócio não é confeitaria, trancista nem gráfica. Serve?</summary><p>Serve o Kit Padrão: se você atende cliente, passa orçamento e controla pedidos ou agenda, ele funciona. Manda SISTEMA no direct com o que você trabalha que a gente indica o kit certo.</p></details>
+      <details><summary>Como eu recebo o sistema?</summary><p>Logo depois do pagamento chega um e-mail da Kiwify com o acesso à área de membros. Lá estão as aulas e um PDF com o link do seu sistema: é só abrir e clicar em Duplicar.</p></details>
+      <details><summary>Tem garantia?</summary><p>Sim, 7 dias. Se não for para você, peça o reembolso pela Kiwify dentro desse prazo e o valor volta inteiro.</p></details>
+      <details><summary>Quais as formas de pagamento?</summary><p>Pix, boleto ou cartão em até 12x.</p></details>
+      <details><summary>Tem suporte?</summary><p>Sim. Dúvidas sobre o sistema pelo WhatsApp da Empresa JV. E se quiser montar tudo com ajuda, tem a Implantação guiada.</p></details>
+      <details><summary>Posso usar em mais de um negócio?</summary><p>Cada kit é licenciado para um negócio. Se você tem dois negócios diferentes, cada um precisa do seu kit.</p></details>
       <details><summary>E se eu já uso outro app para a agenda?</summary><p>Se a ferramenta funciona bem para você, ela fica. O sistema organiza o resto e não obriga a trocar o que já dá certo.</p></details>
     </div>
   </div>
@@ -611,12 +622,14 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-betw
     <div class="bilhete"><span class="fita"></span><p>Seu negócio não precisa caber na sua cabeça.</p><small>Pedido, cliente, agenda e dinheiro ficam no sistema. Você abre, vê o que fazer hoje e volta a atender bem.</small></div>
     <h2>Qual é o seu kit?</h2>
     <p class="lead">Conta no direct com o que você trabalha. A gente responde e indica o kit certo para o seu negócio.</p>
-    <a class="btn pri" href="https://ig.me/m/jv_organiza">Chamar no direct</a>
+    <a class="btn pri" href="https://ig.me/m/jv_organiza">Me conta o seu negócio</a>
     <p class="dica">Manda <b>SISTEMA</b> e conta com o que você trabalha.</p>
     <p class="alt">Ainda não é a hora? Manda ORÇAMENTO no direct e receba 3 mensagens prontas para responder orçamento em 1 minuto.</p>
   </div>
 </section>
 </main>
+
+<a class="btn pri fixo" href="#precos">Quero o meu kit · R$ 97</a>
 
 <a class="zap" href="https://wa.me/5521984942432?text=Oi!%20Quero%20conhecer%20o%20sistema" target="_blank" rel="noopener" aria-label="Chamar a Empresa JV no WhatsApp">
   <span class="rot">Chamar no WhatsApp</span>
