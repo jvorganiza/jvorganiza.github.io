@@ -2,23 +2,24 @@
    com leitura confortável para os artigos. Gerado junto com caderno/gerar.py. */
 :root{
   --papel:#efe7d6;--papel2:#f6f1e5;--tinta:#16130f;--tinta2:#4a443b;
-  --verm:#d64034;--azul:#2b62c4;--verde:#0E3B2A;--verde2:#14794A;--amarelo:#FFC82E;--menta:#CFE3D6;
+  --folha:#fbfaf4;--pauta:rgba(43,98,196,.16);--verm:#d64034;--azul:#2b62c4;--verde:#0E3B2A;--verde2:#14794A;--amarelo:#FFC82E;--menta:#CFE3D6;
   --ruido:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .09 0 0 0 0 .07 0 0 0 0 .05 0 0 0 .09 0'/%3E%3C/filter%3E%3Crect width='220' height='220' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{margin:0;background:var(--papel) var(--ruido);color:var(--tinta);font:400 17px/1.65 Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+/* O Caderno é folha pautada (a página de venda em /kits continua no papel creme da colagem). */
+body{margin:0;background-color:var(--folha);background-image:var(--ruido),linear-gradient(90deg,transparent calc(max(18px,(100vw - 1160px)/2) - 14px),rgba(214,64,52,.45) calc(max(18px,(100vw - 1160px)/2) - 14px),rgba(214,64,52,.45) calc(max(18px,(100vw - 1160px)/2) - 12px),transparent calc(max(18px,(100vw - 1160px)/2) - 12px)),repeating-linear-gradient(transparent 0 31px,var(--pauta) 31px 32px);color:var(--tinta);font:400 17px/1.65 Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
 a{color:inherit}
 .wrap{width:min(1160px,100%);margin:0 auto;padding-left:max(18px,env(safe-area-inset-left,0px));padding-right:max(18px,env(safe-area-inset-right,0px))}
 h1,h2,h3{margin:0;text-wrap:balance}
 
 /* topo */
-.topo-site{background:var(--papel2);border-bottom:3px solid var(--tinta);position:sticky;top:0;z-index:10}
+.topo-site{background:var(--verde);color:var(--papel2);border-bottom:3px solid var(--tinta);position:sticky;top:0;z-index:10}
 .topo-site .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-block:10px}
 .marca{display:flex;align-items:center;gap:10px;text-decoration:none}
 .marca b{font:800 18px/1 Inter,sans-serif}
-.marca i{font:700 22px/1 Caveat,cursive;color:var(--verm);font-style:normal}
-.logo{width:40px;height:40px;flex:none;border-radius:50%;background:var(--verde);display:grid;place-items:center;color:var(--amarelo);font:400 18px/1 Anton,Impact,sans-serif}
+.marca i{font:700 22px/1 Caveat,cursive;color:var(--amarelo);font-style:normal}
+.logo{width:40px;height:40px;flex:none;border-radius:50%;background:var(--verde);border:2px solid var(--amarelo);display:grid;place-items:center;color:var(--amarelo);font:400 18px/1 Anton,Impact,sans-serif}
 .topo-site nav{display:flex;align-items:center;gap:16px;font-weight:600;font-size:15px}
 .topo-site nav a{text-decoration:none}
 @media (max-width:640px){.marca i,.topo-site nav a:not(.btn){display:none}}
@@ -46,6 +47,8 @@ h1,h2,h3{margin:0;text-wrap:balance}
 .grade-dicas{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:30px;padding-block:24px 10px}
 .card-dica{display:flex;flex-direction:column;gap:12px;padding:30px 24px 24px;background:#fff;border:3px solid var(--tinta);box-shadow:7px 7px 0 var(--tinta);text-decoration:none;transition:transform .15s ease}
 .card-dica:hover{transform:rotate(0deg) translate(-2px,-3px)}
+.card-dica img{width:calc(100% + 48px);max-width:none;margin:-30px -24px 4px;height:auto;aspect-ratio:1200/630;object-fit:cover;border-bottom:3px solid var(--tinta);display:block}
+.card-dica .fita{z-index:1}
 .card-dica .tag{align-self:flex-start}
 .card-dica h3{font:400 30px/1.02 'Bebas Neue',sans-serif;letter-spacing:.02em}
 .card-dica p{margin:0;font-size:15.5px;color:var(--tinta2)}
@@ -73,6 +76,7 @@ h1,h2,h3{margin:0;text-wrap:balance}
 .artigo{max-width:760px;padding-block:34px 30px}
 .trilha{font-size:14px;color:var(--tinta2);margin:0 0 18px}
 .artigo h1{font:400 clamp(36px,6vw,58px)/1.02 Anton,Impact,sans-serif;text-transform:uppercase;margin:16px 0 10px}
+.capa-dica{display:block;width:100%;height:auto;border:3px solid var(--tinta);box-shadow:6px 6px 0 var(--tinta);margin:0 0 26px;transform:rotate(-.6deg)}
 .meta{font-size:14px;color:var(--tinta2);margin:0 0 22px}
 .aviso-parceiro{font-size:14.5px;background:var(--papel2);border-left:5px solid var(--tinta);padding:10px 14px;margin:0 0 22px}
 .resumo{font-size:19px;line-height:1.55;background:#fff;border:3px solid var(--tinta);box-shadow:5px 5px 0 var(--amarelo);padding:18px 20px;margin:0 0 30px}
