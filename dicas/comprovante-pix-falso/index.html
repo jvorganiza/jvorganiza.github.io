@@ -66,6 +66,26 @@ document.querySelectorAll('.copiar').forEach(function(b){b.addEventListener('cli
   var ok=function(){b.textContent='Copiado!';setTimeout(function(){b.textContent='Copiar mensagem'},1800)};
   if(navigator.clipboard){navigator.clipboard.writeText(t).then(ok,function(){})}
 })});
+/* Pauta do caderno: empurra cada texto que fica direto na folha até a linha de base cair em cima de uma linha
+   (as linhas ficam a cada 28 px, a 27 px do topo de cada faixa). Refaz quando a fonte carrega e quando a tela muda. */
+(function(){
+  var SEL='.capa h1,.capa .lead,.ferramentas h2,.ferramentas .nota,.artigo .trilha,.artigo h1,.artigo .meta,.artigo>p:not(.aviso-parceiro):not(.resumo),.artigo>ul>li,.artigo>ol>li,.artigo>h2,.msg figcaption,.proxima span,.proxima a,.linkbio h1,.linkbio>p';
+  var PASSO=28, LINHA=26;
+  function base(el){var m=document.createElement('span');m.style.cssText='display:inline-block;width:0;height:0;vertical-align:baseline';
+    el.insertBefore(m,el.firstChild);var y=m.getBoundingClientRect().bottom+window.scrollY;m.remove();return y;}
+  function alinhar(){
+    var els=[].slice.call(document.querySelectorAll(SEL));
+    els.forEach(function(el){el.style.paddingTop='';});
+    els.forEach(function(el){
+      var d=((LINHA-base(el))%PASSO+PASSO)%PASSO;
+      if(d>.5) el.style.paddingTop=(parseFloat(getComputedStyle(el).paddingTop)+d)+'px';
+    });
+  }
+  var t;function agenda(){clearTimeout(t);t=setTimeout(alinhar,80);}
+  alinhar();
+  if(document.fonts&&document.fonts.ready) document.fonts.ready.then(alinhar);
+  window.addEventListener('load',alinhar);window.addEventListener('resize',agenda);
+})();
 /* Resumão: envia ao ActiveCampaign sem sair da página e mostra o aviso de confirmação. */
 document.querySelectorAll('form.resumao').forEach(function(f){f.addEventListener('submit',function(e){
   e.preventDefault();var b=f.querySelector('button');b.disabled=true;b.textContent='Enviando...';

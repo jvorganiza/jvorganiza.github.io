@@ -36,12 +36,12 @@ a{color:inherit}
 .sec{padding-block:clamp(64px,10vw,120px);position:relative}
 
 /* tipografia de colagem */
-.anton{font-family:Anton,Impact,sans-serif;font-weight:400;letter-spacing:-.005em;line-height:.9;text-transform:uppercase}
+.anton{font-family:Anton,Impact,sans-serif;font-weight:400;letter-spacing:-.005em;line-height:1.02;text-transform:uppercase}
 .bebas{font-family:'Bebas Neue',Anton,sans-serif;letter-spacing:.05em}
 h1,h2,h3{margin:0;text-wrap:balance}
-h2{font-family:Anton,Impact,sans-serif;font-weight:400;text-transform:uppercase;font-size:clamp(40px,7vw,78px);line-height:.95}
+h2{font-family:Anton,Impact,sans-serif;font-weight:400;text-transform:uppercase;font-size:clamp(40px,7vw,78px);line-height:1.14}
 .lead{font-size:clamp(17px,2vw,20px);color:var(--tinta2);max-width:60ch}
-.marca-texto{background:linear-gradient(transparent 8%,var(--amarelo) 8%,var(--amarelo) 92%,transparent 92%);padding:0 .12em;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+.marca-texto{background:linear-gradient(transparent 12%,var(--amarelo) 12%,var(--amarelo) 94%,transparent 94%);padding:0 .12em;box-decoration-break:clone;-webkit-box-decoration-break:clone}
 
 /* peças de colagem */
 .secao{display:inline-flex;align-items:center;gap:12px;background:var(--tinta);color:var(--papel2);font:400 20px/1 'Bebas Neue',sans-serif;letter-spacing:.08em;padding:9px 16px 7px}
@@ -65,7 +65,7 @@ h2{font-family:Anton,Impact,sans-serif;font-weight:400;text-transform:uppercase;
 .zap .bola{width:60px;height:60px;border-radius:50%;background:#25D366;border:3px solid var(--tinta);display:grid;place-items:center;box-shadow:5px 5px 0 var(--tinta);transition:transform .15s ease,box-shadow .15s ease}
 .zap .bola svg{width:32px;height:32px;fill:#fff}
 .zap:hover .bola{transform:translate(-2px,-2px);box-shadow:7px 7px 0 var(--tinta)}
-@media (max-width:640px){.zap .rot{display:none}}
+@media (max-width:640px){.zap .rot{display:none}.hero .selos{padding-right:76px}}
 
 .btn.sec2{background:transparent;color:var(--tinta)}
 .btn.sec2:hover{background:var(--tinta);color:var(--papel2)}
@@ -92,7 +92,7 @@ h2{font-family:Anton,Impact,sans-serif;font-weight:400;text-transform:uppercase;
 .hero .riscos{display:flex;flex-wrap:wrap;gap:10px;margin:20px 0 6px}
 .hero .riscos .tag{position:relative}
 .hero .riscos .tag::after{content:"";position:absolute;left:-4px;right:-4px;top:50%;height:4px;background:var(--tinta);transform:rotate(-4deg)}
-.hero h1{font-family:Anton,Impact,sans-serif;font-weight:400;text-transform:uppercase;font-size:clamp(54px,9.5vw,118px);line-height:.88;margin-top:18px}
+.hero h1{font-family:Anton,Impact,sans-serif;font-weight:400;text-transform:uppercase;font-size:clamp(54px,9.5vw,118px);line-height:1;margin-top:18px}
 .hero h1 em{font-style:normal;display:inline-block;background:var(--verde);color:var(--amarelo);padding:.04em .14em .02em;transform:rotate(-1.5deg)}
 .hero .lead{margin:24px 0 30px}
 .hero .ctas{display:flex;flex-wrap:wrap;gap:16px}
@@ -130,7 +130,7 @@ h2{font-family:Anton,Impact,sans-serif;font-weight:400;text-transform:uppercase;
 
 /* episódio */
 .ep .grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:56px;align-items:center}
-.ep .tres{margin-top:14px;font-family:Anton,Impact,sans-serif;font-size:clamp(150px,22vw,260px);line-height:.8;position:relative;display:inline-block}
+.ep .tres{margin:18px 0 22px;font-family:Anton,Impact,sans-serif;font-size:clamp(150px,22vw,260px);line-height:.8;position:relative;display:block;width:max-content}
 .ep .secao{position:relative;z-index:2}
 .ep .tres .circ{width:80%;aspect-ratio:1;background:var(--bege);left:28%;top:6%;z-index:-1}
 .ep .lugares{display:flex;flex-wrap:wrap;gap:10px;margin:18px 0 26px}
@@ -168,7 +168,7 @@ h2{font-family:Anton,Impact,sans-serif;font-weight:400;text-transform:uppercase;
 .nicho .colagem .nome b{display:block;font:400 34px/1 'Bebas Neue',sans-serif;letter-spacing:.04em}
 .nicho .colagem .nome span{font:600 12px/1 Inter,sans-serif;letter-spacing:.14em;opacity:.75}
 .nicho .num{font:400 clamp(64px,8vw,96px)/.85 Anton,Impact,sans-serif;color:var(--verm)}
-.nicho h3{font:400 clamp(34px,4.6vw,52px)/.98 Anton,Impact,sans-serif;text-transform:uppercase;margin:6px 0 16px}
+.nicho h3{font:400 clamp(34px,4.6vw,52px)/1.06 Anton,Impact,sans-serif;text-transform:uppercase;margin:6px 0 16px}
 .nicho .dor{font-size:18px;color:var(--tinta2);margin:0 0 22px;max-width:46ch}
 .nicho ul{list-style:none;margin:0 0 26px;padding:0;display:grid;gap:10px}
 .nicho li{display:flex;gap:12px;align-items:flex-start;font-size:16.5px}
@@ -232,7 +232,7 @@ h2{font-family:Anton,Impact,sans-serif;font-weight:400;text-transform:uppercase;
 .garantia b{font:400 30px/1 'Bebas Neue',sans-serif;letter-spacing:.05em}
 .garantia span{font-weight:600;font-size:15.5px}
 .fixo{display:none}
-@media (max-width:640px){.fixo{display:flex;position:fixed;left:max(12px,env(safe-area-inset-left,0px));right:auto;width:calc(100% - 112px)!important;max-width:calc(100% - 112px);bottom:max(20px,env(safe-area-inset-bottom,0px));z-index:49;min-height:52px;padding:0 12px;font-size:15.5px;box-shadow:4px 4px 0 var(--tinta)}footer{padding-bottom:90px}}
+@media (max-width:640px){.fixo{display:flex;position:fixed;left:max(12px,env(safe-area-inset-left,0px));right:auto;width:calc(100% - 112px)!important;max-width:calc(100% - 112px);bottom:max(20px,env(safe-area-inset-bottom,0px));z-index:49;min-height:52px;padding:0 12px;font-size:15.5px;box-shadow:4px 4px 0 var(--tinta);opacity:0;visibility:hidden;transform:translateY(12px);transition:opacity .2s ease,transform .2s ease,visibility .2s}.fixo.on{opacity:1;visibility:visible;transform:none}footer{padding-bottom:90px}}
 .recortes{position:relative;max-width:900px;margin:34px auto 0;padding:26px 26px 24px;background:var(--papel2);border:3px solid var(--tinta);box-shadow:6px 6px 0 var(--tinta);transform:rotate(var(--r,0))}
 .recortes .fita{position:absolute;top:-12px;left:40px}
 .recortes h3{font:400 30px/1 'Bebas Neue',sans-serif;letter-spacing:.04em;margin:12px 0 8px}
@@ -693,6 +693,10 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-betw
   var pendente = false;
   function agenda(){ if (!pendente) { pendente = true; setTimeout(function(){ pendente = false; revela(); }, 60); } }
   window.addEventListener('scroll', agenda, {passive: true});
+  /* botão fixo do celular: só aparece depois que a pessoa passa dos botões do topo, para não cobrir o começo */
+  var fixo = document.querySelector('.fixo'), ctas = document.querySelector('.hero .ctas');
+  function mostraFixo(){ if (fixo && ctas) fixo.classList.toggle('on', ctas.getBoundingClientRect().bottom < 0); }
+  window.addEventListener('scroll', mostraFixo, {passive: true}); mostraFixo();
   window.addEventListener('resize', agenda);
   revela();
 })();
