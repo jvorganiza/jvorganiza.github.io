@@ -55,7 +55,18 @@ h1,h2,h3{margin:0;text-wrap:balance}
 .card-dica .tag{align-self:flex-start}
 .card-dica h3{font:400 30px/1.02 'Bebas Neue',sans-serif;letter-spacing:.02em}
 .card-dica p{margin:0;font-size:15.5px;color:var(--tinta2)}
-@media (max-width:700px){.grade-dicas{grid-template-columns:1fr}}
+.grade-dicas{grid-template-columns:repeat(3,minmax(0,1fr))}
+@media (max-width:900px){.grade-dicas{grid-template-columns:1fr}}
+.card-dica.destaque{grid-column:1/-1}
+.card-dica.destaque h3{font-size:clamp(34px,5vw,48px)}
+.card-dica.destaque p{font-size:17px}
+.card-dica.destaque img{aspect-ratio:1200/500}
+.selo-semana{align-self:flex-start;padding:4px 10px;background:var(--tinta);color:#fff;font-size:13px;font-weight:700;letter-spacing:.08em}
+.dicas-anteriores{margin-block:22px 8px;padding:16px 20px;background:#fff;border:3px solid var(--tinta)}
+.dicas-anteriores summary{cursor:pointer;font:400 24px/1.1 'Bebas Neue',sans-serif;letter-spacing:.02em}
+.dicas-anteriores ul{list-style:none;margin:14px 0 0;padding:0;display:grid;gap:10px}
+.dicas-anteriores li{display:flex;flex-wrap:wrap;justify-content:space-between;gap:4px 16px;padding-top:10px;border-top:1px solid var(--tinta2)}
+.dicas-anteriores li span{font-size:14px;color:var(--tinta2)}
 .card-dica .ler{margin-top:auto;font-size:15px}
 #resumao{padding-block:44px 10px}
 .resumao{display:grid;grid-template-columns:1.2fr 1fr auto;align-items:end;gap:16px 20px;padding:26px;background:var(--verde);color:var(--papel2);border:3px solid var(--tinta);box-shadow:7px 7px 0 var(--tinta)}
