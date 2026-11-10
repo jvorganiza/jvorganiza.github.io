@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>{{NOME}} · modelo grátis · Empresa JV</title>
+<meta name="description" content="{{PROMESSA}} Passo a passo com vídeo, sem baixar nada.">
+<meta property="og:title" content="{{EMOJI}} {{NOME}} · modelo grátis da Empresa JV">
+<meta property="og:description" content="Passo a passo com vídeo: em 5 minutos o modelo está no seu celular. Não pede cartão.">
+<meta property="og:image" content="https://jvorganiza.com.br/img/og.jpg">
+<meta name="theme-color" content="#0E3B2A">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Bebas+Neue&family=Inter:wght@400;500;600;700&family=Caveat:wght@700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/caderno.css">
+<style>
+/* Página de entrega da isca: uma coluna, passos numerados (é um processo real), vídeo de cada passo e o botão do modelo só no passo 2. */
+.isca{max-width:680px;padding-block:22px 64px}
+.isca h1{font-family:Anton,Impact,sans-serif;font-weight:400;font-size:clamp(34px,8vw,52px);line-height:1.02;text-transform:uppercase;margin:10px 0 12px;text-wrap:balance}
+.isca .lead{font-size:18px;line-height:1.5;margin:0 0 14px}
+.selos{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 26px;padding:0;list-style:none}
+.selos li{background:var(--menta);color:var(--verde);font:600 13.5px/1 Inter,sans-serif;padding:8px 10px;border-radius:3px}
+.passo{position:relative;background:var(--papel2);border:2px solid var(--tinta);box-shadow:6px 6px 0 var(--tinta);padding:20px 18px 18px;margin:0 0 30px}
+.passo .n{position:absolute;top:-16px;left:14px;background:var(--amarelo);color:var(--tinta);font:400 22px/1 Anton,Impact,sans-serif;padding:6px 12px;transform:rotate(-3deg)}
+.passo h2{font-family:'Bebas Neue',Anton,sans-serif;font-weight:400;font-size:30px;line-height:1;margin:6px 0 10px;letter-spacing:.02em}
+.passo p{margin:0 0 12px;line-height:1.55}
+.passo ol{margin:0 0 12px;padding-left:22px;display:grid;gap:8px;line-height:1.5}
+.vid{margin:6px 0 0}
+.vid video{display:block;width:100%;max-width:360px;aspect-ratio:9/16;height:auto;background:#000;border:2px solid var(--tinta);margin:0 auto}
+.vid figcaption{text-align:center;font:600 14px/1.3 Inter,sans-serif;margin-top:8px;color:var(--tinta2)}
+.grande{display:block;text-align:center;font-size:19px;padding:16px 18px;margin:16px 0 8px}
+.dica{font-size:14.5px;color:var(--tinta2);background:var(--folha);border-left:4px solid var(--amarelo);padding:10px 12px;margin:8px 0 0}
+.atalho,.travou{border:2px dashed var(--verde);padding:16px;margin:0 0 26px;background:var(--folha)}
+.atalho b,.travou b{font-family:'Bebas Neue',Anton,sans-serif;font-weight:400;font-size:26px;display:block;margin-bottom:6px}
+.atalho p,.travou p{margin:0 0 12px;line-height:1.5}
+.rodape-isca{text-align:center;color:var(--tinta2);font-size:13px;margin-top:30px}
+</style>
+<script>!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init','{{PIXEL}}');fbq('track','PageView');fbq('trackCustom','AbriuPagina',{isca:'{{SLUG}}'});</script>
+</head>
+<body>
+<header class="topo-site"><div class="wrap"><a class="marca" href="/"><span class="logo">JV</span><b>Empresa JV</b><i>Modelo grátis</i></a></div></header>
+<main class="wrap isca">
+  <span class="tag amarelo">MODELO GRÁTIS</span>
+  <h1>{{EMOJI}} {{NOME}}</h1>
+  <p class="lead">{{PROMESSA}} São 3 passos, com vídeo, e não precisa baixar nada.</p>
+  <ul class="selos"><li>✔ Grátis de verdade</li><li>✔ Não pede cartão</li><li>✔ Fica na sua conta: nem a gente vê o que você anota</li></ul>
+
+  <section class="passo"><span class="n">ANTES</span>
+    <h2>O que é o Notion?</h2>
+    <p>É um aplicativo grátis de organização, tipo um caderno no celular. O nosso modelo funciona dentro dele. Abre direto no navegador, sem baixar nada, e o que você anota fica guardado na sua conta.</p>
+  </section>
+
+  <section class="passo"><span class="n">1</span>
+    <h2>Crie a sua conta grátis</h2>
+    <p>Se você já usa o Notion, pode pular este passo. Se não, é só entrar com o seu e-mail: leva um minutinho.</p>
+    {{V1}}
+  </section>
+
+  <section class="passo"><span class="n">2</span>
+    <h2>Traga o modelo pro seu Notion</h2>
+    <p>Assista primeiro, depois toque no botão. No celular, o <b>Duplicar</b> fica no menu <b>☰</b>, lá em cima, à direita.</p>
+    {{V2}}
+    <a class="btn grande" id="abrir" href="{{URL}}">Abrir o modelo {{NOME}}</a>
+    <p class="dica">Abriu uma página chamada "Primeiros passos"? É um tutorial do próprio Notion, pode ignorar. O seu modelo aparece na lista com o nome <b>{{NOME}}</b>.</p>
+  </section>
+
+  <section class="passo"><span class="n">3</span>
+    <h2>O primeiro uso</h2>
+    <ol>{{USO}}</ol>
+    {{VIDEO_USO}}
+  </section>
+
+  {{ATALHO}}
+
+  <aside class="travou"><b>Travou em algum passo?</b>
+    <p>Chama a gente no WhatsApp: a gente te ajuda na hora, com print e vídeo.</p>
+    <a class="btn claro" href="{{WA_TRAVEI}}">Falar no WhatsApp</a>
+  </aside>
+
+  <p class="rodape-isca">Sistema montado pela Empresa JV · CNPJ 59.461.672/0001-47</p>
+</main>
+<script>document.getElementById('abrir').addEventListener('click',function(){try{fbq('trackCustom','AbriuModelo',{isca:'{{SLUG}}'})}catch(e){}});</script>
+</body>
+</html>
