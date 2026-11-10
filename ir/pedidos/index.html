@@ -34,6 +34,7 @@
 .atalho,.travou{border:2px dashed var(--verde);padding:16px;margin:0 0 26px;background:var(--folha)}
 .atalho b,.travou b{font-family:'Bebas Neue',Anton,sans-serif;font-weight:400;font-size:26px;display:block;margin-bottom:6px}
 .atalho p,.travou p{margin:0 0 12px;line-height:1.5}
+.lojas{display:flex;flex-wrap:wrap;gap:10px;margin:0 0 6px}
 .rodape-isca{text-align:center;color:var(--tinta2);font-size:13px;margin-top:30px}
 </style>
 <script>!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
@@ -49,7 +50,10 @@ fbq('init','1129384439673429');fbq('track','PageView');fbq('trackCustom','AbriuP
 
   <section class="passo"><span class="n">ANTES</span>
     <h2>O que é o Notion?</h2>
-    <p>É um aplicativo grátis de organização, tipo um caderno no celular. O nosso modelo funciona dentro dele. Abre direto no navegador, sem baixar nada, e o que você anota fica guardado na sua conta.</p>
+    <p>É um aplicativo grátis de organização, tipo um caderno no celular. O nosso modelo funciona dentro dele, e o que você anota fica guardado na sua conta.</p>
+    <p><b>Precisa baixar?</b> Não: abre direto no navegador do celular. Se preferir o aplicativo, ele também é grátis, e o modelo aparece lá igualzinho:</p>
+    <div class="lojas"><a class="btn claro" id="app-android" href="https://play.google.com/store/apps/details?id=notion.id">Baixar no Android</a><a class="btn claro" id="app-iphone" href="https://apps.apple.com/br/app/notion-notas-tarefas-e-ia/id1232780281">Baixar no iPhone</a></div>
+    <p class="dica">Baixou o app? Entre com o mesmo e-mail e volte nesta página para o passo 2.</p>
   </section>
 
   <section class="passo"><span class="n">1</span>
@@ -90,7 +94,7 @@ fbq('init','1129384439673429');fbq('track','PageView');fbq('trackCustom','AbriuP
 <script>
 (function(){var I='pedidos';function ev(n,p){try{p=p||{};p.isca=I;fbq('trackCustom',n,p)}catch(e){}}
 function clique(id,n){var el=document.getElementById(id);if(el)el.addEventListener('click',function(){ev(n)})}
-clique('abrir','AbriuModelo');clique('travei','CliqueWhatsTravei');clique('kits','CliqueKits');
+clique('abrir','AbriuModelo');clique('app-android','BaixarApp');clique('app-iphone','BaixarApp');clique('travei','CliqueWhatsTravei');clique('kits','CliqueKits');
 document.querySelectorAll('.atalho a').forEach(function(a){a.addEventListener('click',function(){ev('CliqueCalcularWhats')})});
 document.querySelectorAll('video').forEach(function(v){var vis=false,fim=false;var nome=(v.getAttribute('src')||'').split('/').pop().replace('.mp4','');
  v.addEventListener('play',function(){if(!vis){vis=true;ev('AssistiuVideo',{video:nome})}});
