@@ -49,6 +49,7 @@ for slug, d in ISCAS.items():
            .replace('{{URL}}', d['url']).replace('{{PROMESSA}}', html.escape(d['promessa'])).replace('{{USO}}', uso)
            .replace('{{VIDEO_USO}}', vu).replace('{{ATALHO}}', calc).replace('{{PIXEL}}', PIXEL)
            .replace('{{WA_TRAVEI}}', wa('Travei para colocar o modelo'))
+           .replace('{{V0}}', video('ajuda-5-precisa-baixar-app', 'Precisa baixar o app? (30 s)'))
            .replace('{{V1}}', video('ajuda-1-criar-a-conta', 'Criar a conta grátis (35 s)'))
            .replace('{{V2}}', video('ajuda-2-trazer-o-modelo', 'Trazer o modelo pro seu Notion (41 s)')))
     os.makedirs(os.path.join(os.path.dirname(__file__), slug), exist_ok=True)
