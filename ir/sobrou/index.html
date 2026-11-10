@@ -76,11 +76,28 @@ fbq('init','1129384439673429');fbq('track','PageView');fbq('trackCustom','AbriuP
 
   <aside class="travou"><b>Travou em algum passo?</b>
     <p>Chama a gente no WhatsApp: a gente te ajuda na hora, com print e vídeo.</p>
-    <a class="btn claro" href="https://wa.me/5521984942432?text=Travei%20para%20colocar%20o%20modelo">Falar no WhatsApp</a>
+    <a class="btn claro" id="travei" href="https://wa.me/5521984942432?text=Travei%20para%20colocar%20o%20modelo">Falar no WhatsApp</a>
   </aside>
+
+  <section class="passo kit"><span class="n">DEPOIS</span>
+    <h2>Gostou? Isso é uma parte do sistema</h2>
+    <p>No kit completo, o preço se liga com as encomendas, as clientes, a agenda e o dinheiro do mês, tudo pronto e com aulas. E você não monta nada sozinha: <b>a gente instala junto com você</b>, pelo WhatsApp ou numa chamada de 20 minutos.</p>
+    <a class="btn claro" id="kits" href="/kits/">Conhecer os kits</a>
+  </section>
 
   <p class="rodape-isca">Sistema montado pela Empresa JV · CNPJ 59.461.672/0001-47</p>
 </main>
-<script>document.getElementById('abrir').addEventListener('click',function(){try{fbq('trackCustom','AbriuModelo',{isca:'sobrou'})}catch(e){}});</script>
+<script>
+(function(){var I='sobrou';function ev(n,p){try{p=p||{};p.isca=I;fbq('trackCustom',n,p)}catch(e){}}
+function clique(id,n){var el=document.getElementById(id);if(el)el.addEventListener('click',function(){ev(n)})}
+clique('abrir','AbriuModelo');clique('travei','CliqueWhatsTravei');clique('kits','CliqueKits');
+document.querySelectorAll('.atalho a').forEach(function(a){a.addEventListener('click',function(){ev('CliqueCalcularWhats')})});
+document.querySelectorAll('video').forEach(function(v){var vis=false,fim=false;var nome=(v.getAttribute('src')||'').split('/').pop().replace('.mp4','');
+ v.addEventListener('play',function(){if(!vis){vis=true;ev('AssistiuVideo',{video:nome})}});
+ v.addEventListener('ended',function(){if(!fim){fim=true;ev('TerminouVideo',{video:nome})}});});
+var marcas={50:false,90:false};window.addEventListener('scroll',function(){var h=document.documentElement;var pct=(h.scrollTop+innerHeight)/h.scrollHeight*100;
+ [50,90].forEach(function(m){if(!marcas[m]&&pct>=m){marcas[m]=true;ev('RolouPagina',{ate:m})}})},{passive:true});
+})();
+</script>
 </body>
 </html>
