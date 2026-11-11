@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Calculadora de preço grátis · Empresa JV</title>
+<meta name="description" content="Coloque quanto você cobra, quanto gasta e quanto tempo leva: a calculadora mostra quanto sobra, quanto vale a sua hora e o preço para ganhar o que você quer.">
+<link rel="canonical" href="https://jvorganiza.com.br/calculadora/">
+<meta property="og:title" content="Calculadora de preço grátis · Empresa JV">
+<meta property="og:description" content="Quanto sobra no seu serviço ou produto e quanto vale a sua hora, em 1 minuto.">
+<meta property="og:image" content="https://jvorganiza.com.br/img/dicas/preco-sem-chutar.jpg">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#0E3B2A">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='32' fill='%230E3B2A'/%3E%3Cg transform='rotate(-6 22 33)'%3E%3Crect x='12' y='17' width='20' height='32' fill='%23d64034'/%3E%3Ctext x='22' y='43' font-family='Impact,Arial' font-size='26' text-anchor='middle' fill='%23fff'%3EJ%3C/text%3E%3C/g%3E%3Cg transform='rotate(5 42 33)'%3E%3Crect x='32' y='18' width='21' height='32' fill='%23f6f1e5'/%3E%3Ctext x='42.5' y='44' font-family='Impact,Arial' font-size='26' text-anchor='middle' fill='%2316130f'%3EV%3C/text%3E%3C/g%3E%3Crect x='20' y='12' width='22' height='7' fill='%23FFC82E' transform='rotate(-8 31 15)'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Bebas+Neue&family=Inter:wght@400;500;600;700&family=Caveat:wght@700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/caderno.css">
+<script>if(!/jvorganiza/.test(location.hostname)){window.fbq=function(){console.log('[teste] fbq',[].slice.call(arguments))}}
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+var ORIGEM=(new URLSearchParams(location.search).get('utm_source')||'direto');
+fbq('init','1129384439673429');fbq('track','PageView');fbq('trackCustom','AbriuPagina',{pagina:'calculadora',origem:ORIGEM});
+document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a');if(!a)return;var h=a.getAttribute('href')||'';var d=/wa\.me|whatsapp|zap/i.test(h)?'whatsapp':/pay\./i.test(h)?'checkout':/\/kits/.test(h)?'kits':'outro';try{fbq('trackCustom','CliqueLink',{pagina:'calculadora',destino:d,texto:(a.innerText||'').trim().slice(0,40)})}catch(_){}
+if(d==='checkout'){try{fbq('track','InitiateCheckout',{value:27,currency:'BRL',content_name:'Tabela de preços com a sua marca'})}catch(_){}}},true);</script>
+<style>
+.calc{background:var(--folha);border:2px solid var(--tinta);border-radius:14px;padding:20px;display:grid;gap:14px;box-shadow:4px 4px 0 var(--tinta)}
+.calc label{display:grid;gap:6px;font-weight:600}
+.calc label small{font-weight:400;color:var(--tinta2)}
+.calc input{font:inherit;font-size:17px;padding:12px;border:2px solid var(--tinta2);border-radius:10px;background:#fff;width:100%;min-width:0}
+.calc input:focus{outline:3px solid var(--amarelo);border-color:var(--tinta)}
+.linha2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.calc .chk{display:flex;gap:10px;align-items:center;font-weight:500}
+.calc .chk input{width:22px;height:22px}
+.calc button{font:inherit;font-weight:700;font-size:18px;padding:14px;border:0;border-radius:10px;background:var(--verde);color:#fff;cursor:pointer}
+.calc .erro{color:var(--verm);font-weight:600;min-height:1em;margin:0}
+.res{display:none;gap:14px;margin-top:22px}
+.res.on{display:grid}
+.res .num{background:#fff;border:2px solid var(--tinta);border-radius:12px;padding:16px;display:grid;gap:6px}
+.res .num b{font-family:Anton,Impact,sans-serif;font-size:34px;font-weight:400;line-height:1.1}
+.res .num p{margin:0}
+.oferta{background:var(--amarelo);border:2px solid var(--tinta);border-radius:14px;padding:18px;display:grid;gap:10px;box-shadow:4px 4px 0 var(--tinta)}
+.oferta h2{margin:0}
+.oferta ul{margin:0;padding-left:20px}
+.oferta .btn{justify-self:start}
+.historico{display:none;gap:6px}
+.historico.on{display:grid;overflow-x:auto}
+.historico table{border-collapse:collapse;width:100%;font-size:15px;background:#fff}
+.historico td,.historico th{border:1px solid var(--tinta2);padding:6px 8px;text-align:left}
+.outra{background:none!important;color:var(--verde)!important;border:2px solid var(--verde)!important}
+@media (max-width:480px){.linha2{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header class="topo-site"><div class="wrap"><a class="marca" href="/"><span class="logo">JV</span><b>Empresa JV</b><i>Calculadora de preço</i></a></div></header>
+<main class="wrap artigo">
+<span class="tag amarelo">GRÁTIS</span>
+<h1>Calculadora de preço</h1>
+<p class="resumo">Coloque quanto você cobra, quanto gasta e quanto tempo leva. Em 1 minuto você vê quanto sobra, quanto vale a sua hora e qual preço paga o seu tempo. Pode calcular quantos serviços ou produtos quiser.</p>
+
+<form class="calc" id="calc" novalidate>
+<label>O que você vende?<small>Ex.: box braids, bolo de 1 kg, 100 cartões de visita</small><input id="nome" autocomplete="off" maxlength="60" placeholder="Nome do serviço ou produto"></label>
+<label>Quanto você cobra hoje? (R$)<input id="preco" inputmode="decimal" placeholder="Ex.: 250"></label>
+<label>Quanto gasta de material em cada um? (R$)<small>Ingredientes, cabelo, papel, embalagem. Pote de pomada ou tinta: só a parte que vai em um.</small><input id="mat" inputmode="decimal" placeholder="Ex.: 60"></label>
+<div class="linha2">
+<label>Tempo: horas<input id="h" inputmode="numeric" placeholder="Ex.: 5"></label>
+<label>e minutos<input id="m" inputmode="numeric" placeholder="Ex.: 30"></label>
+</div>
+<label>Quanto você quer ganhar por hora? (R$)<small>Se não souber, deixe R$ 25</small><input id="quer" inputmode="decimal" value="25"></label>
+<label class="chk"><input type="checkbox" id="cartao"> Recebo no cartão (soma uns 4% de taxa no preço)</label>
+<p class="erro" id="erro" role="alert"></p>
+<button type="submit">Calcular</button>
+</form>
+
+<section class="res" id="res" aria-live="polite">
+<div class="num"><span id="r-nome"></span><b id="r-sobra"></b><p id="r-sobra-txt"></p></div>
+<div class="num"><span>Sua hora vale</span><b id="r-hora"></b><p id="r-hora-txt"></p></div>
+<div class="num"><span>Preço para ganhar <span id="r-quer"></span> por hora</span><b id="r-sug"></b><p id="r-sug-txt"></p></div>
+<button class="btn outra" type="button" id="outra">Calcular outro</button>
+
+<div class="historico" id="hist"><b>Suas contas</b><table><thead><tr><th>Serviço ou produto</th><th>Cobra</th><th>Hora</th><th>Preço sugerido</th></tr></thead><tbody id="hist-b"></tbody></table></div>
+
+<aside class="oferta">
+<h2>Quer esses preços num catálogo com a sua marca?</h2>
+<p>A gente monta a sua <b>Tabela de preços com a sua marca</b>, pronta para mandar às clientes:</p>
+<ul><li>o preço certo de cada serviço ou produto, com a sua cor e a sua logo;</li><li>a conta que mostra por que custa isso;</li><li>uma mensagem pronta para avisar do preço novo sem perder cliente.</li></ul>
+<p><b>R$ 27</b>, pagamento único. Fica pronta em até 1 hora em horário comercial.</p>
+<a class="btn" href="https://pay.cakto.com.br/9kh84qf_1309507">Quero minha tabela</a>
+</aside>
+<aside class="card-jv cola"><p><span class="tag p">DA EMPRESA JV</span> Quer ver isso todo mês, sem fazer conta? Nos nossos kits no Notion, cada pedido mostra valor, gasto e o que sobrou, e o financeiro soma o mês sozinho.</p><a class="btn" href="/kits/#precos">Ver os kits</a></aside>
+<p>Ficou alguma dúvida? <a href="https://wa.me/5521984942432?text=Oi%21%20Usei%20a%20calculadora%20do%20site%20e%20fiquei%20com%20uma%20d%C3%BAvida">Fala com a gente no WhatsApp</a>.</p>
+</section>
+</main>
+<footer class="rodape"><div class="wrap">
+<p><b>Empresa JV</b> · sistemas de gestão no Notion para pequenos negócios.</p>
+<p><a href="/kits/">Kits</a> · <a href="/">Caderno de dicas</a> · <a href="https://wa.me/5521984942432?text=Oi%21%20Usei%20a%20calculadora%20do%20site%20e%20fiquei%20com%20uma%20d%C3%BAvida">WhatsApp (21) 98494-2432</a></p>
+<p>© 2026 Empresa JV · CNPJ 59.461.672/0001-47 · Sistema montado pela Empresa JV</p>
+</div></footer>
+<script>
+(function(){
+var $=function(i){return document.getElementById(i)};
+var num=function(v){v=(v||'').toString().replace(/[R$\s]/g,'');if(v.indexOf(',')>=0)v=v.replace(/\./g,'').replace(',','.');var n=parseFloat(v);return isNaN(n)?null:n};
+var brl=function(n){return 'R$ '+Math.round(n).toLocaleString('pt-BR')};
+var cima5=function(n){return Math.ceil(n/5)*5};
+var contas=0;
+$('calc').addEventListener('submit',function(e){
+  e.preventDefault();$('erro').textContent='';
+  var nome=($('nome').value||'').trim()||'Seu serviço';
+  var preco=num($('preco').value),mat=num($('mat').value)||0,h=num($('h').value)||0,m=num($('m').value)||0,quer=num($('quer').value)||25;
+  var horas=h+m/60;
+  if(!preco||preco<=0){$('erro').textContent='Coloque quanto você cobra.';$('preco').focus();return}
+  if(horas<=0){$('erro').textContent='Coloque quanto tempo leva (horas ou minutos).';$('h').focus();return}
+  var taxa=$('cartao').checked?0.04:0;
+  var sobra=preco*(1-taxa)-mat,hora=sobra/horas;
+  var sug=cima5((mat+horas*quer)/(1-taxa));
+  $('r-nome').textContent='No '+nome.toLowerCase()+', depois do material'+(taxa?' e da taxa':'')+', sobram';
+  $('r-sobra').textContent=sobra>=0?brl(sobra):'R$ 0';
+  $('r-sobra-txt').textContent=sobra>=0?'em '+(h?h+' h':'')+(h&&m?' e ':'')+(m?m+' min':'')+' de trabalho.':'O material e a taxa passam do preço: nesse valor, você paga para trabalhar.';
+  $('r-hora').textContent=hora>0?brl(hora):'R$ 0';
+  $('r-hora-txt').textContent=hora>=quer?'Acima dos '+brl(quer)+' que você quer. Bom sinal!':'Abaixo dos '+brl(quer)+' que você quer ganhar.';
+  $('r-quer').textContent=brl(quer);
+  if(sug>preco){$('r-sug').textContent=brl(sug);$('r-sug-txt').textContent='São '+brl(sug-preco)+' a mais do que você cobra hoje. Material + '+brl(quer)+' por hora'+(taxa?' + taxa do cartão':'')+'.';}
+  else{$('r-sug').textContent=brl(preco);$('r-sug-txt').textContent='Seu preço de hoje já paga isso. Mude a hora que você quer ganhar e calcule de novo para ver até onde dá para subir.';}
+  var tr=document.createElement('tr');[nome,brl(preco),hora>0?brl(hora):'R$ 0',brl(sug)].forEach(function(t){var td=document.createElement('td');td.textContent=t;tr.appendChild(td)});$('hist-b').appendChild(tr);
+  contas++;$('hist').classList.toggle('on',contas>1);
+  $('res').classList.add('on');$('res').scrollIntoView({behavior:'smooth',block:'start'});
+  try{fbq('trackCustom','Calculou',{n:contas,hora:Math.round(hora),origem:ORIGEM});if(contas===1)fbq('track','Lead',{content_name:'calculadora'});}catch(_){}
+});
+$('outra').addEventListener('click',function(){['nome','preco','mat','h','m'].forEach(function(i){$(i).value=''});$('calc').scrollIntoView({behavior:'smooth'});$('nome').focus()});
+})();
+</script>
+</body>
+</html>
