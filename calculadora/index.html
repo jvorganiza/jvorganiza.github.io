@@ -66,6 +66,7 @@ if(d==='checkout'){try{fbq('track','InitiateCheckout',{value:27,currency:'BRL',c
 <label>e minutos<input id="m" inputmode="numeric" placeholder="Ex.: 30"></label>
 </div>
 <label>Quanto você quer ganhar por hora? (R$)<small>Se não souber, deixe R$ 25</small><input id="quer" inputmode="decimal" value="25"></label>
+<label>Quanto de lucro você quer em cima disso? (%)<small>A média do mercado é 20%. Se não souber, deixe assim.</small><input id="lucro" inputmode="decimal" value="20"></label>
 <label class="chk"><input type="checkbox" id="cartao"> Recebo no cartão (soma uns 4% de taxa no preço)</label>
 <p class="erro" id="erro" role="alert"></p>
 <button type="submit">Calcular</button>
@@ -74,7 +75,7 @@ if(d==='checkout'){try{fbq('track','InitiateCheckout',{value:27,currency:'BRL',c
 <section class="res" id="res" aria-live="polite">
 <div class="num"><span id="r-nome"></span><b id="r-sobra"></b><p id="r-sobra-txt"></p></div>
 <div class="num"><span>Sua hora vale</span><b id="r-hora"></b><p id="r-hora-txt"></p></div>
-<div class="num"><span>Preço para ganhar <span id="r-quer"></span> por hora</span><b id="r-sug"></b><p id="r-sug-txt"></p></div>
+<div class="num"><span>Preço com <span id="r-quer"></span> por hora e <span id="r-lucro"></span>% de lucro</span><b id="r-sug"></b><p id="r-sug-txt"></p></div>
 <button class="btn outra" type="button" id="outra">Calcular outro</button>
 
 <div class="historico" id="hist"><b>Suas contas</b><table><thead><tr><th>Serviço ou produto</th><th>Cobra</th><th>Hora</th><th>Preço sugerido</th></tr></thead><tbody id="hist-b"></tbody></table></div>
@@ -105,21 +106,21 @@ var contas=0;
 $('calc').addEventListener('submit',function(e){
   e.preventDefault();$('erro').textContent='';
   var nome=($('nome').value||'').trim()||'Seu serviço';
-  var preco=num($('preco').value),mat=num($('mat').value)||0,h=num($('h').value)||0,m=num($('m').value)||0,quer=num($('quer').value)||25;
+  var preco=num($('preco').value),mat=num($('mat').value)||0,h=num($('h').value)||0,m=num($('m').value)||0,quer=num($('quer').value)||25,lucro=num($('lucro').value);if(lucro===null||lucro<0)lucro=20;
   var horas=h+m/60;
   if(!preco||preco<=0){$('erro').textContent='Coloque quanto você cobra.';$('preco').focus();return}
   if(horas<=0){$('erro').textContent='Coloque quanto tempo leva (horas ou minutos).';$('h').focus();return}
   var taxa=$('cartao').checked?0.04:0;
   var sobra=preco*(1-taxa)-mat,hora=sobra/horas;
-  var sug=cima5((mat+horas*quer)/(1-taxa));
+  var sug=cima5((mat+horas*quer)*(1+lucro/100)/(1-taxa));
   $('r-nome').textContent='No '+nome.toLowerCase()+', depois do material'+(taxa?' e da taxa':'')+', sobram';
   $('r-sobra').textContent=sobra>=0?brl(sobra):'R$ 0';
   $('r-sobra-txt').textContent=sobra>=0?'em '+(h?h+' h':'')+(h&&m?' e ':'')+(m?m+' min':'')+' de trabalho.':'O material e a taxa passam do preço: nesse valor, você paga para trabalhar.';
   $('r-hora').textContent=hora>0?brl(hora):'R$ 0';
   $('r-hora-txt').textContent=hora>=quer?'Acima dos '+brl(quer)+' que você quer. Bom sinal!':'Abaixo dos '+brl(quer)+' que você quer ganhar.';
-  $('r-quer').textContent=brl(quer);
-  if(sug>preco){$('r-sug').textContent=brl(sug);$('r-sug-txt').textContent='São '+brl(sug-preco)+' a mais do que você cobra hoje. Material + '+brl(quer)+' por hora'+(taxa?' + taxa do cartão':'')+'.';}
-  else{$('r-sug').textContent=brl(preco);$('r-sug-txt').textContent='Seu preço de hoje já paga isso. Mude a hora que você quer ganhar e calcule de novo para ver até onde dá para subir.';}
+  $('r-quer').textContent=brl(quer);$('r-lucro').textContent=String(lucro).replace('.',',');
+  if(sug>preco){$('r-sug').textContent=brl(sug);$('r-sug-txt').textContent='São '+brl(sug-preco)+' a mais do que você cobra hoje. Material + '+brl(quer)+' por hora + '+String(lucro).replace('.',',')+'% de lucro'+(taxa?' + taxa do cartão':'')+'.';}
+  else{$('r-sug').textContent=brl(preco);$('r-sug-txt').textContent='Seu preço de hoje já paga a sua hora e o lucro. Mude a hora ou o lucro que você quer e calcule de novo para ver até onde dá para subir.';}
   var tr=document.createElement('tr');[nome,brl(preco),hora>0?brl(hora):'R$ 0',brl(sug)].forEach(function(t){var td=document.createElement('td');td.textContent=t;tr.appendChild(td)});$('hist-b').appendChild(tr);
   contas++;$('hist').classList.toggle('on',contas>1);
   $('res').classList.add('on');$('res').scrollIntoView({behavior:'smooth',block:'start'});
