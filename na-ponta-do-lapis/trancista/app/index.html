@@ -220,7 +220,7 @@ input[type=file]{font-size:14px;padding:8px}
   <!-- TABELA -->
   <section class="tela" id="t-tabela" hidden>
     <div><h1>Minha tabela</h1><p class="sub">Monte a tabela de preços com a cara do seu negócio e mande no WhatsApp ou poste no status.</p></div>
-    <p class="sub" id="tb-falta" hidden>O nome do negócio e o seu @ ainda estão em branco. Preencha na aba "Meu negócio" para eles aparecerem na tabela.</p>
+    <p class="sub" id="tb-falta" hidden>Falta o nome do seu negócio ou o seu @. Preencha em "3. Textos", aqui embaixo, para eles aparecerem na tabela.</p>
 
     <div class="cartao">
       <h2>1. Modelo</h2>
@@ -252,6 +252,8 @@ input[type=file]{font-size:14px;padding:8px}
 
     <div class="cartao">
       <h2>3. Textos</h2>
+      <label for="tb-nome">Nome do seu negócio<input id="tb-nome" maxlength="34" placeholder="Ex.: Tranças da [seu nome]"></label>
+      <label for="tb-contato">Seu @ ou WhatsApp<input id="tb-contato" maxlength="34" placeholder="Ex.: @seuinstagram"></label>
       <label for="tb-titulo">Título<input id="tb-titulo" maxlength="26" placeholder="Tabela de preços"></label>
       <label for="tb-frase">Frase embaixo do nome<input id="tb-frase" maxlength="48" placeholder="Tranças feitas com capricho e hora marcada"></label>
       <label for="tb-aviso">Aviso no fim<small>Apague o texto se não quiser aviso.</small><input id="tb-aviso" maxlength="64"></label>
@@ -493,6 +495,8 @@ $('tb-cor2').oninput=function(){D.cfg.cor2=this.value;gravar();pintaTabela()};
 ['tb-feed','tb-story'].forEach(function(i){$(i).onchange=function(){D.cfg.formato=this.value;gravar();pintaTabela()}});
 ['tb-atual','tb-certo'].forEach(function(i){$(i).onchange=function(){D.cfg.tb=this.value;gravar();pintaTabela()}});
 $('tb-tempo').onchange=function(){D.cfg.tbTempo=this.checked;gravar();pintaTabela()};
+$('tb-nome').oninput=function(){D.cfg.nome=this.value.trim()?this.value:'';gravar();pintaTabela()};
+$('tb-contato').oninput=function(){D.cfg.contato=this.value.trim()?this.value:'';gravar();pintaTabela()};
 $('tb-titulo').oninput=function(){D.cfg.titulo=this.value;gravar();pintaTabela()};
 $('tb-frase').oninput=function(){D.cfg.frase=this.value;gravar();pintaTabela()};
 $('tb-aviso').oninput=function(){D.cfg.aviso=this.value;D.cfg.avisoMexido=true;gravar();pintaTabela()};
@@ -514,7 +518,7 @@ function avisoPadrao(){return 'O valor pode mudar com o tamanho e o comprimento 
 function pintaTabela(){
   var c=D.cfg,foco=document.activeElement;pintaCores();pintaModelos();
   $(c.tb==='certo'?'tb-certo':'tb-atual').checked=true;$(c.formato==='story'?'tb-story':'tb-feed').checked=true;$('tb-tempo').checked=!!c.tbTempo;$('tb-falta').hidden=!!(c.nome&&c.contato);
-  if(foco!==$('tb-titulo'))$('tb-titulo').value=c.titulo||'';if(foco!==$('tb-frase'))$('tb-frase').value=c.frase||'';if(foco!==$('tb-aviso'))$('tb-aviso').value=c.avisoMexido?(c.aviso||''):avisoPadrao();
+  if(foco!==$('tb-nome'))$('tb-nome').value=c.nome||'';if(foco!==$('tb-contato'))$('tb-contato').value=c.contato||'';if(foco!==$('tb-titulo'))$('tb-titulo').value=c.titulo||'';if(foco!==$('tb-frase'))$('tb-frase').value=c.frase||'';if(foco!==$('tb-aviso'))$('tb-aviso').value=c.avisoMexido?(c.aviso||''):avisoPadrao();
   var pr=c.promo||{},promo=!!(pr.on&&pr.pct>0);$('tb-promo').checked=!!pr.on;$('tb-promo-box').hidden=!pr.on;
   if(foco!==$('tb-promo-nome'))$('tb-promo-nome').value=pr.nome||'';if(foco!==$('tb-promo-pct'))$('tb-promo-pct').value=pr.pct?String(pr.pct).replace('.',','):'';$('tb-promo-ate').value=pr.ate||'';
   $('tb-logo-tirar').hidden=!c.logo;$('tb-logo-ver').hidden=!c.logo;if(c.logo)$('tb-logo-ver').src=c.logo;
@@ -535,7 +539,7 @@ function pintaTabela(){
     delicado:{bg:mistura(cor,'#ffffff',.9),topoTx:'#2a2420',card:'#ffffff',tx:'#2a2420',sub:'#7a6f66',roda:cor,rodaTx:sobre(cor),rodaSub:sobre(cor)}}[m];
   var centro=m==='delicado',X0=84,aviso=c.avisoMexido?(c.aviso||'').trim():avisoPadrao(),titulo=(c.titulo||'').trim()||TB_TITULO,frase=(c.frase||'').trim()||TB_FRASE;
   var yL=logoImg?70:0,LOGO=logoImg?176:0,TOPO=yL+LOGO+(m==='colagem'?372:340),RODA=m==='noite'?232:188,AV=aviso?132:0,ALT=c.tbTempo?150:124,H;
-  if(story){H=1920;ALT=Math.max(86,Math.min(ALT+20,Math.floor((H-TOPO-RODA-AV-110)/n)))}else H=Math.max(1350,TOPO+70+n*ALT+AV+RODA+30);
+  if(story){H=1920;ALT=Math.max(86,Math.min(230,Math.floor((H-TOPO-RODA-AV-110)/n)))}else{H=Math.max(1350,TOPO+70+n*ALT+AV+RODA+30);ALT=Math.max(ALT,Math.min(230,Math.floor((H-TOPO-RODA-AV-100)/n)))}
   var cv=document.createElement('canvas');cv.width=W;cv.height=H;var g=cv.getContext('2d');
   g.fillStyle=T.bg;g.fillRect(0,0,W,H);
   if(m==='colagem'){var sem=7;for(var i=0;i<2600;i++){sem=(sem*16807)%2147483647;var px=sem%W;sem=(sem*16807)%2147483647;var py=sem%H;g.fillStyle=(i%2)?'rgba(22,19,15,.045)':'rgba(255,255,255,.5)';g.fillRect(px,py,2,2)}
@@ -549,13 +553,15 @@ function pintaTabela(){
     var q=Math.max(2*R/logoImg.width,2*R/logoImg.height),lw=logoImg.width*q,lh=logoImg.height*q;g.drawImage(logoImg,cx-lw/2,cy-lh/2,lw,lh);g.restore();y+=2*R+26}
   /* título */
   g.textBaseline='alphabetic';g.textAlign=centro?'center':'left';var xt=centro?W/2:X0;
+  var temNome=!!(c.nome&&c.nome.trim());if(temNome){
   if(m==='colagem'){g.save();g.translate(X0,y-4);g.rotate(-0.035);g.font='42px '+AN;var tw=Math.min(W-200,g.measureText(titulo.toUpperCase()).width+60);g.fillStyle=cor2;g.fillRect(0,0,tw,66);g.fillStyle='rgba(22,19,15,.12)';g.fillRect(0,0,14,66);g.fillRect(tw-14,0,14,66);
     g.fillStyle=sobre(cor2);g.textBaseline='middle';cabe(g,titulo.toUpperCase(),tw-56,42,24,'#px '+AN);g.fillText(titulo.toUpperCase(),30,36);g.restore();g.textBaseline='alphabetic'}
   else if(m==='delicado'){g.fillStyle=cor;cabe(g,titulo.toLowerCase(),W-200,78,44,'700 #px '+CA);g.fillText(titulo.toLowerCase(),xt,y+58)}
   else{g.fillStyle=m==='noite'?cor2:cor;g.font='700 30px '+IN;var esp=titulo.toUpperCase().split('').join('  ');g.fillText(esp,xt,y+44);if(m==='limpo'){g.fillStyle=cor;g.fillRect(X0,y+62,90,8)}}
+  }
   /* nome e frase */
-  var nome=(c.nome||'Seu negócio aqui'),ny=y+(m==='colagem'?192:178);g.fillStyle=T.topoTx;
-  if(m==='limpo'){cabe(g,nome,W-170,92,44,'800 #px '+IN);g.fillText(nome,xt,ny)}else{cabe(g,nome.toUpperCase(),W-170,m==='delicado'?88:104,46,'#px '+AN);g.fillText(nome.toUpperCase(),xt,ny)}
+  var nome=temNome?c.nome:titulo,ny=y+(m==='colagem'?192:178);g.fillStyle=T.topoTx;
+  var LN=promo?(centro?W-560:W-400):W-170;if(m==='limpo'){cabe(g,nome,LN,92,44,'800 #px '+IN);g.fillText(nome,xt,ny)}else{cabe(g,nome.toUpperCase(),LN,m==='delicado'?88:104,46,'#px '+AN);g.fillText(nome.toUpperCase(),xt,ny)}
   g.fillStyle=m==='colagem'?(T.topoTx==='#ffffff'?'rgba(255,255,255,.88)':'rgba(22,19,15,.8)'):T.sub;cabe(g,frase,W-170,34,22,'600 #px '+IN);g.fillText(frase,xt,ny+58);
   /* selo da promoção */
   if(promo){var sx=W-150,sy=m==='colagem'?150:160;g.save();g.translate(sx,sy);g.rotate(0.12);g.fillStyle=cor2;g.beginPath();for(var k=0;k<32;k++){var rr=k%2?104:118,an=k*Math.PI/16;g.lineTo(Math.cos(an)*rr,Math.sin(an)*rr)}g.closePath();g.fill();
@@ -568,16 +574,16 @@ function pintaTabela(){
     else if(m==='noite'){g.fillStyle=T.card;caixa(g,70,y,W-140,ch,16);g.fill()}
     else if(m==='delicado'){g.fillStyle='rgba(0,0,0,.06)';caixa(g,64,y+5,W-128,ch,ch/2);g.fill();g.fillStyle=T.card;caixa(g,60,y,W-120,ch,ch/2);g.fill()}
     else{g.strokeStyle='#e4e4e4';g.lineWidth=2;g.beginPath();g.moveTo(X0,y+ch+10);g.lineTo(W-X0,y+ch+10);g.stroke()}
-    var xn=m==='limpo'?X0:(m==='delicado'?112:108),tn=Math.min(46,Math.round(ch*.42));
-    g.font='60px '+AN;var p=brl(preco),pf=Math.min(60,Math.round(ch*.56));g.font=pf+'px '+AN;var pw=g.measureText(p).width,dw=0,de='';
+    var gde=ch>140,xn=m==='limpo'?X0:(m==='delicado'?112:108),tn=gde?Math.min(64,Math.round(ch*.32)):Math.min(46,Math.round(ch*.42));
+    g.font='60px '+AN;var p=brl(preco),pf=gde?Math.min(84,Math.round(ch*.42)):Math.min(60,Math.round(ch*.56));g.font=pf+'px '+AN;var pw=g.measureText(p).width,dw=0,de='';
     if(promo){de=brl(base);g.font='500 '+Math.round(pf*.5)+'px '+IN;dw=g.measureText(de).width+22}
     var dir=m==='limpo'?W-X0:W-66-60,larg=(m==='colagem'||m==='delicado')?pw+56:pw,bx=dir-larg;
     g.fillStyle=T.tx;g.font='700 '+tn+'px '+IN;var nm=s.nome,maxN=bx-dw-xn-30;while(g.measureText(nm).width>maxN&&nm.length>4)nm=nm.slice(0,-2);if(nm!==s.nome)nm+='…';
     g.fillText(nm,xn,temTempo?y+ch*.44:meio+tn*.36);
-    if(temTempo){g.fillStyle=T.sub;g.font='500 30px '+IN;g.fillText('leva cerca de '+tempo(s.min),xn,y+ch*.8)}
+    if(temTempo){g.fillStyle=T.sub;g.font='500 '+(gde?38:30)+'px '+IN;g.fillText('leva cerca de '+tempo(s.min),xn,y+ch*.8)}
     if(promo){g.font='500 '+Math.round(pf*.5)+'px '+IN;g.fillStyle=T.sub;var dx=bx-dw,dy=meio+pf*.18;g.fillText(de,dx,dy);g.strokeStyle=T.sub;g.lineWidth=3;g.beginPath();g.moveTo(dx-4,dy-pf*.17);g.lineTo(dx+dw-18,dy-pf*.17);g.stroke()}
     g.font=pf+'px '+AN;
-    if(m==='colagem'||m==='delicado'){var fundo=m==='colagem'?(k%2?cor2:cor):cor,ah=Math.min(84,ch-22);g.fillStyle=fundo;caixa(g,bx,meio-ah/2,larg,ah,ah/2);g.fill();g.fillStyle=sobre(fundo);g.fillText(p,bx+28,meio+pf*.37)}
+    if(m==='colagem'||m==='delicado'){var fundo=m==='colagem'?(k%2?cor2:cor):cor,ah=gde?Math.min(116,Math.round(ch*.56)):Math.min(84,ch-22);g.fillStyle=fundo;caixa(g,bx,meio-ah/2,larg,ah,ah/2);g.fill();g.fillStyle=sobre(fundo);g.fillText(p,bx+28,meio+pf*.37)}
     else{g.fillStyle=m==='noite'?cor2:cor;g.fillText(p,bx,meio+pf*.37)}
     y+=ALT});
   /* aviso */
@@ -590,8 +596,8 @@ function pintaTabela(){
   else if(m==='limpo'){g.fillStyle=cor;g.fillRect(X0,yr+8,W-2*X0,4)}
   else{g.fillStyle=cor2;g.fillRect(X0,yr+8,W-2*X0,2)}
   var d=new Date();d.setDate(d.getDate()+30);var val=promo&&pr.ate?'Promoção até '+dataBR(pr.ate):(promo?'':'Válida até '+d.toLocaleDateString('pt-BR'));
-  g.fillStyle=T.rodaSub;g.font='600 28px '+IN;g.fillText('AGENDE O SEU HORÁRIO',X0,yr+72);
-  g.fillStyle=T.rodaTx;cabe(g,c.contato||'Seu @ ou WhatsApp',W-2*X0-(val?330:0),46,26,'700 #px '+IN);g.fillText(c.contato||'Seu @ ou WhatsApp',X0,yr+128);
+  if(c.contato&&c.contato.trim()){g.fillStyle=T.rodaSub;g.font='600 28px '+IN;g.fillText('AGENDE O SEU HORÁRIO',X0,yr+72);
+  g.fillStyle=T.rodaTx;cabe(g,c.contato,W-2*X0-(val?330:0),46,26,'700 #px '+IN);g.fillText(c.contato,X0,yr+128)}
   if(val){g.fillStyle=T.rodaSub;g.font='26px '+IN;g.fillText(val,W-X0-g.measureText(val).width,yr+126)}
   window.__cvTabela=cv;try{$('tabela-img').src=cv.toDataURL('image/png')}catch(e){}
 }
@@ -675,7 +681,7 @@ function pintaExtras(){pintaMsg();pintaMeta();pintaSim()}
 /* ---------- Abas ---------- */
 function abre(t){['servicos','mes','tabela','ajustes'].forEach(function(k){$('t-'+k).hidden=k!==t});
   [].forEach.call(document.querySelectorAll('.abas button'),function(b){b.setAttribute('aria-selected',String(b.dataset.t===t))});
-  if(t==='tabela')pintaTabela();if(t==='mes')pintaMes();window.scrollTo(0,0);try{sessionStorage.setItem(CHAVE+'-aba',t)}catch(e){}}
+  if(t==='tabela')pintaTabela();if(t==='mes')pintaMes();if(t==='ajustes')pintaAjustes();window.scrollTo(0,0);try{sessionStorage.setItem(CHAVE+'-aba',t)}catch(e){}}
 [].forEach.call(document.querySelectorAll('.abas button'),function(b){b.onclick=function(){abre(b.dataset.t)}});
 function pintaTudo(){pintaServ();pintaMes();pintaAjustes();pintaExtras();if(!$('t-tabela').hidden)pintaTabela()}
 pintaTudo();
