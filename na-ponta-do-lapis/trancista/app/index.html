@@ -106,6 +106,7 @@ input[type=file]{font-size:14px;padding:8px}
 #tabela-img{width:100%;border:2px solid var(--tinta);border-radius:10px;display:block}
 .abas{position:fixed;left:0;right:0;bottom:0;background:var(--tinta);display:flex;justify-content:center;
   padding-bottom:env(safe-area-inset-bottom,0px);padding-left:max(8px,env(safe-area-inset-left,0px));padding-right:max(8px,env(safe-area-inset-right,0px));z-index:5}
+body.digitando .abas{display:none}
 .abas button{flex:1;max-width:140px;background:none;border:0;border-radius:0;color:#cfc8b8;padding:13px 4px 12px;font-size:13.5px;font-weight:600;border-top:4px solid transparent}
 .abas button[aria-selected="true"]{color:var(--tinta);background:var(--amarelo);border-top-color:var(--verm)}
 .rodape{margin-top:22px;color:var(--tinta2);font-size:12px;text-align:center}
@@ -686,6 +687,10 @@ function abre(t){['servicos','mes','tabela','ajustes'].forEach(function(k){$('t-
   [].forEach.call(document.querySelectorAll('.abas button'),function(b){b.setAttribute('aria-selected',String(b.dataset.t===t))});
   if(t==='tabela')pintaTabela();if(t==='mes')pintaMes();if(t==='ajustes')pintaAjustes();window.scrollTo(0,0);try{sessionStorage.setItem(CHAVE+'-aba',t)}catch(e){}}
 [].forEach.call(document.querySelectorAll('.abas button'),function(b){b.onclick=function(){abre(b.dataset.t)}});
+/* Com o teclado aberto o menu de baixo some (no iPhone ele ficava flutuando no meio da tela) e volta quando o teclado fecha. */
+(function(){var espera;function digita(e){var x=e.target;if(!x||!x.tagName)return false;if(x.tagName==='TEXTAREA')return true;if(x.tagName!=='INPUT')return false;return ['checkbox','radio','color','file','button','submit','range'].indexOf(x.type)<0}
+document.addEventListener('focusin',function(e){if(digita(e)){clearTimeout(espera);document.body.classList.add('digitando')}});
+document.addEventListener('focusout',function(e){if(digita(e)){clearTimeout(espera);espera=setTimeout(function(){document.body.classList.remove('digitando')},150)}})})();
 function pintaTudo(){pintaServ();pintaMes();pintaAjustes();pintaExtras();if(!$('t-tabela').hidden)pintaTabela()}
 pintaTudo();
 var ini='servicos';try{ini=sessionStorage.getItem(CHAVE+'-aba')||ini}catch(e){}abre(ini);
