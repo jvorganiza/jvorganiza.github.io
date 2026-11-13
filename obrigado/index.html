@@ -72,18 +72,10 @@ document.addEventListener('click',function(e){var a=e.target.closest&&e.target.c
     <div class="bts"><a class="btn" href="https://aluno.cakto.com.br/" target="_blank" rel="noopener">Entrar na área de membros</a></div>
   </section>
 
-  <!-- Oferta: implantação guiada (só para quem comprou kit) -->
-  <section class="bloco impl so-kit" id="implantacao">
-    <h2>Quer montar junto com a gente?</h2>
-    <p>Na Implantação guiada, a gente passa uma hora com você, ao vivo pelo Google Meet: colamos o sistema no seu Notion e cadastramos juntos os seus primeiros clientes, serviços e contas. Você sai da chamada usando.</p>
-    <div class="preco">R$ 197</div>
-    <small>Poucas vagas por semana. Escolha o horário; o link de pagamento chega pelo WhatsApp.</small>
-    <div class="bts"><a class="btn" href="https://calendar.google.com/calendar/appointments/schedules/AcZssZ00W-NcNPnnAaIBCA9i8j9JeMPN1rK7qRcD3SBrGRhsOlLnzAuMIvte-QgvGuRjgfc4WVHWfj78" target="_blank" rel="noopener">Quero montar junto</a></div>
-  </section>
 
-  <!-- Roteiro gratuito para quem prefere começar sozinho -->
+  <!-- Roteiro gratuito dos primeiros 7 dias -->
   <section class="bloco so-kit" id="roteiro">
-    <h2>Prefere começar sozinho? Seu roteiro de 7 dias</h2>
+    <h2>Seu roteiro de 7 dias</h2>
     <p class="lead" style="font-size:16.5px;margin-bottom:18px">Meia hora por dia. No fim da semana, o sistema já está com os seus dados.</p>
     <div class="dias">
       <div class="dia"><b>Dia 1 · Colar o sistema</b><span>Aulas "Instalar o Notion" e "Trazer o sistema para a sua conta". Marque a estrela.</span></div>
@@ -106,7 +98,7 @@ document.addEventListener('click',function(e){var a=e.target.closest&&e.target.c
 <footer><div class="wrap">© 2026 Empresa JV · CNPJ 59.461.672/0001-47 · <a href="https://jvorganiza.com.br">jvorganiza.com.br</a> · <a href="https://wa.me/5521984942432?text=Oi%21%20Comprei%20um%20kit%20e%20preciso%20de%20ajuda">WhatsApp de suporte</a></div></footer>
 
 <script>
-/* ?p=kit (padrão), ?p=recortes ou ?p=implantacao ajusta o que aparece. */
+/* ?p=kit (padrão) ou ?p=recortes ajusta o que aparece. */
 (function(){
   var p = (new URLSearchParams(location.search).get('p') || 'kit').toLowerCase();
   var q = function(s){ return Array.prototype.slice.call(document.querySelectorAll(s)); };
@@ -114,10 +106,6 @@ document.addEventListener('click',function(e){var a=e.target.closest&&e.target.c
     q('.so-kit').forEach(function(e){ e.style.display = 'none'; });
     document.getElementById('rec-tit').textContent = 'Abra os seus Recortes de conversa';
     document.getElementById('lead').textContent = 'Obrigado pela compra! Em poucos minutos chega no seu e-mail o acesso aos seus Recortes de conversa.';
-  } else if (p === 'implantacao') {
-    q('#acesso,#roteiro,#implantacao').forEach(function(e){ e.style.display = 'none'; });
-    document.querySelector('h1').innerHTML = 'Horário <em>garantido.</em>';
-    document.getElementById('lead').textContent = 'Pagamento confirmado! A sua Implantação guiada está garantida no horário que você marcou. O link do Google Meet está no convite da agenda que chegou no seu e-mail. No dia, esteja no computador, com a sua conta do Notion aberta.';
   }
 })();
 </script>
