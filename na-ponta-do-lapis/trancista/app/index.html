@@ -124,12 +124,12 @@ body.digitando .abas{display:none}
 <body>
 <div id="portao" hidden><form class="cartao" id="portao-form" novalidate>
 <div class="topo" style="margin:0"><div class="marca-app"><i>na ponta do</i><b>LÁPIS</b></div><span>da Empresa JV</span></div>
-<h2>Digite o seu código de acesso</h2>
-<p class="sub">Ele chegou no e-mail da compra. Você só precisa digitar uma vez neste aparelho.</p>
-<label for="portao-cod">Código<input id="portao-cod" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="Ex.: TRANC-ABCDE"></label>
+<h2>Entre com o e-mail da compra</h2>
+<p class="sub">Use o mesmo e-mail que você pôs na hora de pagar. Se preferir, digite o código que chegou nesse e-mail. É uma vez só neste aparelho.</p>
+<label for="portao-cod">E-mail da compra ou código<input id="portao-cod" type="text" inputmode="email" autocomplete="email" autocapitalize="none" spellcheck="false" placeholder="voce@email.com"></label>
 <p class="erro" id="portao-erro" role="alert"></p>
-<button class="forte" type="submit">Entrar</button>
-<p class="sub">Não achou o código? Chame no WhatsApp: <a href="https://wa.me/5521984942432?text=Oi%21%20Comprei%20o%20Na%20Ponta%20do%20L%C3%A1pis%20e%20n%C3%A3o%20achei%20o%20meu%20c%C3%B3digo%20de%20acesso." target="_blank" rel="noopener">(21) 98494-2432</a></p>
+<button class="forte" type="submit" id="portao-btn">Entrar</button>
+<p class="sub">Não conseguiu entrar? Chame no WhatsApp: <a href="https://wa.me/5521984942432?text=Oi%21%20Comprei%20o%20Na%20Ponta%20do%20L%C3%A1pis%20e%20n%C3%A3o%20consegui%20entrar." target="_blank" rel="noopener">(21) 98494-2432</a></p>
 </form></div>
 
 
@@ -699,14 +699,22 @@ if(document.fonts&&document.fonts.ready)document.fonts.ready.then(function(){if(
 </script>
 <script>
 (function(){var K='jv-qs-acesso-trancista',H=['3d8afa99b71e4393b841ea6cd1ba34f4cee792a1e753f59c5b13795f5a8a0862'],P=document.getElementById('portao');
-var ok=false;try{ok=H.indexOf(localStorage.getItem(K))>=0}catch(e){}
+var ok=false,v='';try{v=localStorage.getItem(K)||'';ok=H.indexOf(v)>=0||/^e:[0-9a-f]{64}$/.test(v)}catch(e){}
+function api(dados){return fetch('/api/entrar',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify(Object.assign({produto:'trancista'},dados))}).then(function(r){return r.json().then(function(j){j.status=r.status;return j})})}
+/* quem entrou pelo e-mail: de 7 em 7 dias, com internet, confere se a compra continua valendo (reembolso tira o acesso); sem internet, segue usando */
+if(ok&&v.charAt(0)==='e'){try{var u0=+localStorage.getItem(K+'-v')||0;if(Date.now()-u0>6048e5){api({h:v.slice(2)}).then(function(j){if(j.ok){localStorage.setItem(K+'-v',String(Date.now()))}else if(j.motivo==='reembolso'){localStorage.removeItem(K);location.reload()}}).catch(function(){})}}catch(e){}}
 if(ok)return;P.hidden=false;
 function hex(buf){return Array.prototype.map.call(new Uint8Array(buf),function(b){return ('0'+b.toString(16)).slice(-2)}).join('')}
-document.getElementById('portao-form').addEventListener('submit',function(e){e.preventDefault();var er=document.getElementById('portao-erro'),c=document.getElementById('portao-cod').value.replace(/\s+/g,'').toUpperCase();er.textContent='';
-  if(!c){er.textContent='Digite o código.';return}
+document.getElementById('portao-form').addEventListener('submit',function(e){e.preventDefault();var er=document.getElementById('portao-erro'),bruto=document.getElementById('portao-cod').value.replace(/\s+/g,''),c=bruto.toUpperCase(),bt=document.getElementById('portao-btn');er.textContent='';
+  if(!c){er.textContent='Digite o e-mail da compra.';return}
+  if(bruto.indexOf('@')>0){bt.disabled=true;bt.textContent='Conferindo...';
+    api({email:bruto.toLowerCase()}).then(function(j){bt.disabled=false;bt.textContent='Entrar';
+      if(j.ok&&j.h){try{localStorage.setItem(K,'e:'+j.h);localStorage.setItem(K+'-v',String(Date.now()))}catch(_){}P.hidden=true;window.scrollTo(0,0);return}
+      er.textContent=j.motivo==='nao_achou'?'Não achei compra com esse e-mail. Confira se é o mesmo que você usou para pagar.':j.motivo==='reembolso'?'Essa compra foi reembolsada, por isso o acesso foi encerrado.':j.motivo==='muitas_tentativas'?'Muitas tentativas seguidas. Espere um pouco e tente de novo.':j.motivo==='email'?'Esse e-mail parece incompleto. Confira e tente de novo.':'A entrada por e-mail não respondeu agora. Use o código que chegou no e-mail da compra.'})
+    .catch(function(){bt.disabled=false;bt.textContent='Entrar';er.textContent='Sem internet agora. Conecte e tente de novo, ou use o código que chegou no e-mail da compra.'});return}
   if(!window.crypto||!crypto.subtle){er.textContent='Este navegador não consegue conferir o código. Abra pelo Chrome ou pelo Safari.';return}
   crypto.subtle.digest('SHA-256',new TextEncoder().encode('jv-quanto-sobra:'+c)).then(function(b){var h=hex(b);
-    if(H.indexOf(h)>=0){try{localStorage.setItem(K,h)}catch(_){}P.hidden=true;window.scrollTo(0,0)}else er.textContent='Código não confere. Veja se digitou igual ao do e-mail.'})});
+    if(H.indexOf(h)>=0){try{localStorage.setItem(K,h)}catch(_){}P.hidden=true;window.scrollTo(0,0)}else er.textContent='Não confere. Digite o e-mail da compra ou o código igual ao que chegou no e-mail.'})});
 /* O link do e-mail de entrega já traz o código (?c=...): entra sozinho e tira o código do endereço. */
 try{var u=new URLSearchParams(location.search).get('c');if(u){document.getElementById('portao-cod').value=u;document.getElementById('portao-form').dispatchEvent(new Event('submit',{cancelable:true}));try{history.replaceState(null,'',location.pathname)}catch(_){}}}catch(_){}
 })();
