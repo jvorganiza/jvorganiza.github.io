@@ -3,100 +3,72 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Caderno de dicas · Empresa JV</title>
-<meta name="description" content="Dicas curtas e práticas para quem toca um pequeno negócio pelo WhatsApp: cobrança, atendimento, agenda, Pix e MEI. Com mensagens prontas para copiar.">
+<title>Empresa JV · ferramentas simples para o seu negócio</title>
+<meta name="description" content="Ferramentas simples para quem atende, cobra e entrega sozinha: calculadora de preço grátis, mensagens prontas e sistemas de gestão.">
 <link rel="canonical" href="https://jvorganiza.com.br/">
-<meta property="og:title" content="Caderno de dicas · Empresa JV">
-<meta property="og:description" content="Dicas curtas e práticas para quem toca um pequeno negócio pelo WhatsApp: cobrança, atendimento, agenda, Pix e MEI. Com mensagens prontas para copiar.">
+<meta property="og:title" content="Empresa JV · ferramentas simples para o seu negócio">
+<meta property="og:description" content="Calculadora de preço grátis, mensagens prontas e sistemas de gestão para quem toca o negócio sozinha.">
 <meta property="og:image" content="https://jvorganiza.com.br/img/og.jpg">
 <meta property="og:type" content="website">
 <meta name="theme-color" content="#0E3B2A">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='32' fill='%230E3B2A'/%3E%3Cg transform='rotate(-6 22 33)'%3E%3Crect x='12' y='17' width='20' height='32' fill='%23d64034'/%3E%3Ctext x='22' y='43' font-family='Impact,Arial' font-size='26' text-anchor='middle' fill='%23fff'%3EJ%3C/text%3E%3C/g%3E%3Cg transform='rotate(5 42 33)'%3E%3Crect x='32' y='18' width='21' height='32' fill='%23f6f1e5'/%3E%3Ctext x='42.5' y='44' font-family='Impact,Arial' font-size='26' text-anchor='middle' fill='%2316130f'%3EV%3C/text%3E%3C/g%3E%3Crect x='20' y='12' width='22' height='7' fill='%23FFC82E' transform='rotate(-8 31 15)'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Anton&family=Bebas+Neue&family=Inter:wght@400;500;600;700&family=Caveat:wght@700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&family=Caveat:wght@700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/caderno.css">
-<script>!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
-fbq('consent',(function(){try{return localStorage.getItem('jv-cookies')==='sim'}catch(e){return false}})()?'grant':'revoke');fbq('init','1129384439673429');fbq('track','PageView');fbq('trackCustom','AbriuPagina',{pagina:'home',origem:(new URLSearchParams(location.search).get('utm_source')||'direto')});
-document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a');if(!a)return;var h=a.getAttribute('href')||'';var d=/wa\.me|whatsapp|zap/i.test(h)?'whatsapp':/kiwify|pay\./i.test(h)?'checkout':/\/kits/.test(h)?'kits':/\/ir\//.test(h)?'isca':/instagram/.test(h)?'instagram':'outro';try{fbq('trackCustom','CliqueLink',{pagina:'home',destino:d,texto:(a.innerText||'').trim().slice(0,40)})}catch(_){}} ,true);</script>
+<script>if(!/jvorganiza/.test(location.hostname)){window.fbq=function(){console.log('[teste] fbq',[].slice.call(arguments))}}
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+var ORIGEM=(new URLSearchParams(location.search).get('utm_source')||'direto');
+fbq('consent',(function(){try{return localStorage.getItem('jv-cookies')==='sim'}catch(e){return false}})()?'grant':'revoke');fbq('init','1129384439673429');fbq('track','PageView');fbq('trackCustom','AbriuPagina',{pagina:'home',origem:ORIGEM});var PAGINA='home';document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a');if(!a)return;var h=a.getAttribute('href')||'';var d=/wa\.me|\/ir\/zap|whatsapp/i.test(h)?'whatsapp':/pay\./i.test(h)?'checkout':/\/kits/.test(h)?'kits':/calculadora/.test(h)?'calculadora':/lapis/.test(h)?'lapis':'outro';try{fbq('trackCustom','CliqueLink',{pagina:PAGINA,destino:d,texto:(a.innerText||'').trim().slice(0,40)})}catch(_){}},true);</script>
 <script src="/cookies.js" defer></script>
+<style>
+body{background:var(--papel2)}
+.inicio{display:grid;gap:22px;padding-block:28px 48px;max-width:760px}
+.inicio h1{margin:0;font:400 clamp(34px,8vw,54px)/1.05 Anton,Impact,sans-serif;text-transform:uppercase}
+.inicio h1 em{font-style:normal;background:var(--amarelo);padding:0 .12em}
+.inicio .lead{margin:0;font-size:18px;color:var(--tinta2);max-width:54ch}
+.prods{display:grid;gap:14px}
+.prod{display:grid;gap:8px;background:var(--folha);border:2px solid var(--tinta);border-radius:14px;padding:18px 20px;text-decoration:none;color:inherit}
+a.prod:hover,a.prod:focus-visible{box-shadow:4px 4px 0 var(--tinta);outline:0}
+.prod h2{margin:0;font:400 28px/1.1 Anton,Impact,sans-serif;text-transform:uppercase}
+.prod p{margin:0;color:var(--tinta2)}
+.prod .tag{justify-self:start}
+.prod .preco{font:400 26px/1 Anton,Impact,sans-serif}
+.prod .preco small{font:500 14px Inter,sans-serif;color:var(--tinta2)}
+.prod .ir{font-weight:700;color:var(--verde)}
+.prod.destaque{border-width:3px}
+.prod.breve{border-style:dashed}
+.ramos{display:flex;flex-wrap:wrap;gap:8px}
+.ramos a{font-weight:600;text-decoration:none;color:var(--tinta);background:#fff;border:2px solid var(--tinta);border-radius:99px;padding:6px 14px}
+.ramos a:hover,.ramos a:focus-visible{background:var(--amarelo);outline:0}
+</style>
 </head>
 <body>
-<header class="topo-site"><div class="wrap"><a class="marca" href="/"><span class="logo">JV</span><b>Empresa JV</b><i>Caderno de dicas</i></a>
-<nav><a href="/#dicas">Dicas</a><a class="btn mini" href="/kits/">Kits</a></nav></div></header>
+<header class="topo-site"><div class="wrap"><a class="marca" href="/"><span class="logo">JV</span><b>Empresa JV</b></a>
+<nav><a class="btn mini" href="/ir/zap-site/" target="_blank" rel="noopener">WhatsApp</a></nav></div></header>
 <script>
-/* Links antigos da página de venda (#confeitaria, #precos...) e o "Ver o sistema" do Instagram vão para /kits/. */
+/* Links antigos (#confeitaria, #precos, #dicas...) e o "Ver o sistema" do Instagram vão para /kits/. */
 (function(){var h=location.hash.slice(1),q=location.search;
 var ancoras=['topo','nicho','historia','nichos','confeitaria','trancista','grafica','como-funciona','precos','implantacao','recortes','duvidas'];
 if(ancoras.indexOf(h)>=0||/utm_medium=(dm|comentario)/.test(q)){location.replace('/kits/'+q+location.hash);}})();
 </script>
-<main>
-<section class="wrap portas">
-  <a class="porta cola amarelo" href="/calculadora/"><span class="tag amarelo">GRÁTIS</span><b>Calculadora de preço</b><span>Quanto sobra no seu serviço e quanto vale a sua hora, em 1 minuto.</span><i>Calcular agora →</i></a>
-  <a class="porta cola menta" href="/kits/"><span class="tag menta">KITS NO NOTION</span><b>O seu negócio num lugar só</b><span>Clientes, agenda e dinheiro. Kit Padrão R$ 97 e kits Trancista, Confeitaria e Gráfica R$ 147.</span><i>Ver os kits →</i></a>
-</section>
-<style>.portas{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:16px;margin-top:24px}.porta{display:grid;gap:8px;background:var(--folha);border:2px solid var(--tinta);border-radius:14px;padding:18px;box-shadow:4px 4px 0 var(--tinta);color:var(--tinta);text-decoration:none}.porta b{font-family:Anton,Impact,sans-serif;font-weight:400;font-size:28px;line-height:1.1}.porta i{font-style:normal;font-weight:700;color:var(--verde2)}.porta:hover{transform:translate(-2px,-2px)}</style>
-<section class="capa wrap">
-  <span class="tag">CADERNO DE DICAS</span>
-  <h1>O que ninguém te ensina sobre <em>tocar um negócio</em> pelo WhatsApp.</h1>
-  <p class="lead">Dicas curtas para quem atende, cobra e entrega sozinha: como pedir sinal, o que fazer quando o cliente some, como não cair em golpe. Cada uma com mensagem pronta para copiar.</p>
-</section>
-<section class="wrap" id="dicas">
-  <div class="grade-dicas">
-    <a class="card-dica destaque cola amarelo" href="/dicas/preco-sem-chutar/" style="--r:-.6deg"><span class="fita"></span><img src="/img/dicas/preco-sem-chutar.jpg" width="1200" height="630" alt=""><span class="selo-semana">DICA DA SEMANA</span><span class="tag amarelo">PREÇO</span><h3>Como calcular o preço sem chutar</h3><p>Preço certo é custo do produto + parte das contas do mês + taxa + lucro. O pulo do gato é a última conta: em vez de somar a porcentagem em cima do…</p><b class="ler">Ler em 4 min →</b></a><a class="card-dica cola amarelo" href="/dicas/sinal-50-por-cento/" style="--r:0.8deg"><span class="fita"></span><img src="/img/dicas/sinal-50-por-cento.jpg" width="1200" height="630" alt="" loading="lazy"><span class="tag amarelo">COBRANÇA</span><h3>Sinal de 50%: como pedir sem perder o cliente</h3><p>Peça o sinal no mesmo momento em que manda o orçamento, por escrito, com o motivo e a data-limite. Quem explica o sinal como parte do processo quase…</p><b class="ler">Ler em 3 min →</b></a><a class="card-dica cola menta" href="/dicas/orcamento-sumiu/" style="--r:-0.6deg"><span class="fita"></span><img src="/img/dicas/orcamento-sumiu.jpg" width="1200" height="630" alt="" loading="lazy"><span class="tag menta">ATENDIMENTO</span><h3>Cliente pediu orçamento e sumiu: o que mandar e quando</h3><p>Mande no máximo três mensagens: no dia seguinte, no 3º dia e no 7º dia. Cada uma com um motivo novo, nunca &quot;e aí, viu?&quot;. Depois da terceira, pare e…</p><b class="ler">Ler em 3 min →</b></a><a class="card-dica cola verm" href="/dicas/comprovante-pix-falso/" style="--r:1.1deg"><span class="fita"></span><img src="/img/dicas/comprovante-pix-falso.jpg" width="1200" height="630" alt="" loading="lazy"><span class="tag verm">GOLPE DA SEMANA</span><h3>Comprovante de Pix falso: 4 conferências antes de entregar</h3><p>Comprovante não é dinheiro. Antes de entregar, confira o valor caindo no extrato do seu banco, não na imagem que o cliente mandou. Leva 20 segundos e…</p><b class="ler">Ler em 3 min →</b></a>
-  </div>
-  <details class="dicas-anteriores"><summary>Dicas anteriores (1)</summary><ul><li><a href="/dicas/cliente-faltou-taxa-de-reserva/">Cliente faltou no horário: pode cobrar taxa de reserva?</a><span>Agenda · 01/11</span></li></ul></details>
-</section>
-<section class="wrap ferramentas" id="ferramentas">
-  <h2>Ferramentas que a gente usa</h2>
-  <p class="nota">Indicamos só o que usamos na Empresa JV. Os links abaixo são de parceiros.</p>
-  <div class="grade-ferr">
-    <a class="ferr" href="/ir/leona/" target="_blank" rel="sponsored noopener"><b>Leona</b><span>Automação de WhatsApp: fluxos de mensagem, etiquetas, kanban de atendimento e agente de IA.</span><span class="selo-parceiro">link de parceiro</span></a>
-    <a class="ferr" href="/ir/mercadopago-point/" target="_blank" rel="sponsored noopener"><b>Mercado Pago Point</b><span>Maquininha para cartão e Pix: o pagamento aparece no app na hora, sem depender de comprovante.</span><span class="selo-parceiro">link de parceiro</span></a>
-    <a class="ferr" href="/ir/mercadopago-tap/" target="_blank" rel="sponsored noopener"><b>Mercado Pago Point Tap</b><span>Cobrar por aproximação direto no celular, sem comprar maquininha. Bom para quem atende em casa ou vai até a cliente.</span><span class="selo-parceiro">link de parceiro</span></a>
-    <a class="ferr" href="https://pay.cakto.com.br/hpc9jak_592954?affiliate=fZGMgRxF" target="_blank" rel="sponsored noopener"><b>TCS Spy</b><span>Várias IAs num site só, por uma assinatura: escrever posts e respostas, criar imagens para o Instagram, montar apresentações e gravar áudios. Bom para quem faz o próprio marketing.</span><span class="selo-parceiro">link de parceiro</span></a>
-  </div>
-</section>
+<main class="wrap inicio">
+<div style="display:grid;gap:12px">
+<h1>Seu negócio <em>na ponta do lápis</em>.</h1>
+<p class="lead">Ferramentas simples para quem atende, cobra e entrega sozinha. Escolha por onde começar.</p>
+</div>
+<div class="prods">
+<a class="prod" href="/calculadora/"><span class="tag">GRÁTIS</span><h2>Calculadora de preço</h2><p>Em 1 minuto você vê quanto sobra no seu serviço e quanto vale a sua hora.</p><span class="ir">Calcular agora →</span></a>
+<div class="prod destaque breve"><span class="tag amarelo">EM BREVE · PARA TRANCISTAS</span><h2>Na Ponta do Lápis</h2><p>Quanto sobra em cada trança, a conta do mês e a sua tabela de preços com a sua logo. Abre no celular, sem baixar nada.</p><b class="preco">R$ 27 <small>uma vez só</small></b></div>
+<div class="prod"><span class="tag">MENSAGENS PRONTAS</span><h2>Recortes de conversa</h2><p>22 mensagens para colar no WhatsApp: responder quem pede preço, cobrar o sinal, avisar que ficou pronto e chamar de volta quem sumiu.</p><b class="preco">R$ 27 <small>uma vez só</small></b><div class="ramos"><a href="https://pay.cakto.com.br/3b59uga_1309945?split=1">Trancista</a><a href="https://pay.cakto.com.br/ahxpg6o_1309946?split=1">Confeitaria</a><a href="https://pay.cakto.com.br/ucev7ps_1309949?split=1">Gráfica</a><a href="https://pay.cakto.com.br/j4wazy7_1309951?split=1">Outros ramos</a></div></div>
+<a class="prod" href="/kits/"><span class="tag">SISTEMA COMPLETO</span><h2>Kits no Notion</h2><p>Clientes, agenda, pedidos e dinheiro num lugar só, com videoaulas. Para trancista, confeitaria, gráfica e outros serviços.</p><b class="preco">a partir de R$ 97 <small>uma vez só</small></b><span class="ir">Ver os kits →</span></a>
+<a class="prod" href="/ir/zap-site/" target="_blank" rel="noopener"><span class="tag">FALE COM A GENTE</span><h2>WhatsApp</h2><p>Dúvida sobre qualquer produto: a mensagem já vai pronta. Atendimento de segunda a sexta, das 9h às 18h.</p><span class="ir">Abrir o WhatsApp →</span></a>
+</div>
 </main>
 <footer class="rodape"><div class="wrap">
-<p><b>Empresa JV</b> · sistemas de gestão no Notion para pequenos negócios.</p>
-<p>Alguns links deste site são de parceiros: se você contratar por eles, a Empresa JV recebe comissão, sem custo a mais para você. Recomendamos só o que usamos.</p>
-<p><a href="/kits/">Kits</a> · <a href="/links/">Links</a> · <a href="/ir/whatsapp/" target="_blank" rel="noopener">WhatsApp (21) 98494-2432</a></p>
+<p><b>Empresa JV</b> · sistemas simples para quem toca o negócio sozinha.</p>
+<p><a href="/calculadora/">Calculadora de preço</a> · <a href="/kits/">Kits</a> · <a href="/">Caderno de dicas</a></p>
 <p>© 2026 Empresa JV · CNPJ 59.461.672/0001-47 · Sistema montado pela Empresa JV</p>
 </div></footer>
-<script>
-document.querySelectorAll('.copiar').forEach(function(b){b.addEventListener('click',function(){
-  var t=b.parentNode.querySelector('.balao').innerText;
-  var ok=function(){b.textContent='Copiado!';setTimeout(function(){b.textContent='Copiar mensagem'},1800)};
-  if(navigator.clipboard){navigator.clipboard.writeText(t).then(ok,function(){})}
-})});
-/* Pauta do caderno: empurra cada texto que fica direto na folha até a linha de base cair em cima de uma linha
-   (as linhas ficam a cada 28 px, a 27 px do topo de cada faixa). Refaz quando a fonte carrega e quando a tela muda. */
-(function(){
-  var SEL='.capa h1,.capa .lead,.ferramentas h2,.ferramentas .nota,.artigo .trilha,.artigo h1,.artigo .meta,.artigo>p:not(.aviso-parceiro):not(.resumo),.artigo>ul>li,.artigo>ol>li,.artigo>h2,.msg figcaption,.proxima span,.proxima a,.linkbio h1,.linkbio>p';
-  var PASSO=28, LINHA=26;
-  function base(el){var m=document.createElement('span');m.style.cssText='display:inline-block;width:0;height:0;vertical-align:baseline';
-    el.insertBefore(m,el.firstChild);var y=m.getBoundingClientRect().bottom+window.scrollY;m.remove();return y;}
-  function alinhar(){
-    var els=[].slice.call(document.querySelectorAll(SEL));
-    els.forEach(function(el){el.style.paddingTop='';});
-    els.forEach(function(el){
-      var d=((LINHA-base(el))%PASSO+PASSO)%PASSO;
-      if(d>.5) el.style.paddingTop=(parseFloat(getComputedStyle(el).paddingTop)+d)+'px';
-    });
-  }
-  var t;function agenda(){clearTimeout(t);t=setTimeout(alinhar,80);}
-  alinhar();
-  if(document.fonts&&document.fonts.ready) document.fonts.ready.then(alinhar);
-  window.addEventListener('load',alinhar);window.addEventListener('resize',agenda);
-})();
-/* Resumão: envia ao ActiveCampaign sem sair da página e mostra o aviso de confirmação. */
-document.querySelectorAll('form.resumao').forEach(function(f){f.addEventListener('submit',function(e){
-  e.preventDefault();var b=f.querySelector('button');b.disabled=true;b.textContent='Enviando...';
-  fetch(f.action,{method:'POST',mode:'no-cors',body:new FormData(f)}).then(function(){
-    f.innerHTML='<div><b>Quase lá!</b><span>Enviamos um e-mail para você confirmar a inscrição. Se não chegar em 2 minutos, olhe o spam e a aba Promoções.</span></div>';
-  },function(){f.submit();});
-})});
-</script>
 </body>
 </html>
