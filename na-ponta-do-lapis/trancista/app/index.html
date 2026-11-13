@@ -699,6 +699,8 @@ document.getElementById('portao-form').addEventListener('submit',function(e){e.p
   if(!window.crypto||!crypto.subtle){er.textContent='Este navegador não consegue conferir o código. Abra pelo Chrome ou pelo Safari.';return}
   crypto.subtle.digest('SHA-256',new TextEncoder().encode('jv-quanto-sobra:'+c)).then(function(b){var h=hex(b);
     if(H.indexOf(h)>=0){try{localStorage.setItem(K,h)}catch(_){}P.hidden=true;window.scrollTo(0,0)}else er.textContent='Código não confere. Veja se digitou igual ao do e-mail.'})});
+/* O link do e-mail de entrega já traz o código (?c=...): entra sozinho e tira o código do endereço. */
+try{var u=new URLSearchParams(location.search).get('c');if(u){document.getElementById('portao-cod').value=u;document.getElementById('portao-form').dispatchEvent(new Event('submit',{cancelable:true}));try{history.replaceState(null,'',location.pathname)}catch(_){}}}catch(_){}
 })();
 </script>
 
