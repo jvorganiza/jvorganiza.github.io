@@ -6,16 +6,16 @@
 <meta name="robots" content="noindex,nofollow">
 <meta name="theme-color" content="#0E3B2A">
 <meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-title" content="Quanto Sobra">
+<meta name="apple-mobile-web-app-title" content="Ponta do Lápis">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='32' fill='%230E3B2A'/%3E%3Cg transform='rotate(-6 22 33)'%3E%3Crect x='12' y='17' width='20' height='32' fill='%23d64034'/%3E%3Ctext x='22' y='43' font-family='Impact,Arial' font-size='26' text-anchor='middle' fill='%23fff'%3EJ%3C/text%3E%3C/g%3E%3Cg transform='rotate(5 42 33)'%3E%3Crect x='32' y='18' width='21' height='32' fill='%23f6f1e5'/%3E%3Ctext x='42.5' y='44' font-family='Impact,Arial' font-size='26' text-anchor='middle' fill='%2316130f'%3EV%3C/text%3E%3C/g%3E%3Crect x='20' y='12' width='22' height='7' fill='%23FFC82E' transform='rotate(-8 31 15)'/%3E%3C/svg%3E">
-<title>Quanto Sobra · Trancista</title>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&display=swap">
+<title>Na Ponta do Lápis</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Caveat:wght@700&family=Inter:wght@400;500;600;700&display=swap">
 <style>
 /* Layout: app de uma coluna para celular; barra de abas fixa embaixo; cartões de papel com borda de tinta (identidade colagem da JV). Visual único, claro, por escolha da marca. */
 :root{
   --papel:#f6f1e5; --folha:#fffdf7; --tinta:#16130f; --tinta2:#5b554b; --linha:#d9d1bf;
   --verde:#0E3B2A; --verde-claro:#dcebe2; --amarelo:#FFC82E; --verm:#c8372c; --verm-claro:#f9e2df;
-  --display:Anton,Impact,'Arial Narrow',sans-serif; --texto:Inter,system-ui,-apple-system,'Segoe UI',sans-serif;
+  --display:Anton,Impact,'Arial Narrow',sans-serif; --mao:Caveat,'Comic Sans MS',cursive; --texto:Inter,system-ui,-apple-system,'Segoe UI',sans-serif;
 }
 html,body{height:100%}
 body{background:var(--papel);color:var(--tinta);font-family:var(--texto);font-size:16px;line-height:1.45}
@@ -64,6 +64,18 @@ input,textarea,select{font:inherit;font-size:16px;padding:11px;border:2px solid 
 .opcao input{width:22px;height:22px;flex:none;margin-top:2px}
 .opcao span{display:flex;flex-direction:column;gap:2px;min-width:0}
 .opcao:has(input:checked){border-color:var(--tinta);background:var(--verde-claro)}
+.marca-app{display:flex;flex-direction:column;line-height:.92}
+.marca-app i{font-family:var(--mao);font-style:normal;font-weight:700;color:var(--verm);font-size:19px;transform:rotate(-3deg);transform-origin:left bottom}
+.marca-app b{font-size:27px}
+.lapis{flex:none}
+.modelos{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.modelos button{display:flex;flex-direction:column;align-items:flex-start;gap:2px;text-align:left;border-color:var(--linha);padding:10px;min-width:0}
+.modelos button small{font-weight:400;color:var(--tinta2);font-size:12.5px}
+.modelos button[aria-pressed="true"]{border-color:var(--tinta);background:var(--verde-claro)}
+.logo-linha{display:flex;gap:12px;align-items:flex-start}
+.logo-linha img{width:72px;height:72px;border-radius:50%;object-fit:cover;border:2px solid var(--tinta);flex:none;background:#fff}
+input[type=color]{height:46px;padding:4px}
+input[type=file]{font-size:14px;padding:8px}
 .chips button{background:var(--folha);border-color:var(--tinta2);font-weight:500;font-size:14px;padding:8px 11px}
 .mes-nav{display:flex;align-items:center;justify-content:space-between;gap:8px}
 .mes-nav b{font-family:var(--display);font-weight:400;font-size:22px;text-transform:uppercase}
@@ -101,7 +113,7 @@ input,textarea,select{font:inherit;font-size:16px;padding:11px;border:2px solid 
 </head>
 <body>
 <div id="portao" hidden><form class="cartao" id="portao-form" novalidate>
-<div class="topo" style="margin:0"><span class="logo">JV</span><b>QUANTO SOBRA</b></div>
+<div class="topo" style="margin:0"><div class="marca-app"><i>na ponta do</i><b>LÁPIS</b></div><span>da Empresa JV</span></div>
 <h2>Digite o seu código de acesso</h2>
 <p class="sub">Ele chegou no e-mail da compra. Você só precisa digitar uma vez neste aparelho.</p>
 <label for="portao-cod">Código<input id="portao-cod" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="Ex.: TRANC-ABCDE"></label>
@@ -112,7 +124,7 @@ input,textarea,select{font:inherit;font-size:16px;padding:11px;border:2px solid 
 
 
 <div class="app">
-  <div class="topo"><span class="logo">JV</span><b>QUANTO SOBRA</b><span>Trancista</span></div>
+  <div class="topo"><svg class="lapis" width="40" height="40" viewBox="0 0 84 84" aria-hidden="true"><g transform="rotate(-18 42 42)"><rect x="30" y="12" width="24" height="44" fill="#FFC82E" stroke="#16130f" stroke-width="3"/><rect x="30" y="5" width="24" height="10" fill="#c8372c" stroke="#16130f" stroke-width="3"/><path d="M30 56 L42 78 L54 56 Z" fill="#fffdf7" stroke="#16130f" stroke-width="3"/><path d="M38.5 71 L42 78 L45.5 71 Z" fill="#16130f"/></g></svg><div class="marca-app"><i>na ponta do</i><b>LÁPIS</b></div><span>da Empresa JV</span></div>
 
   <!-- SERVIÇOS -->
   <section class="tela" id="t-servicos">
@@ -196,16 +208,62 @@ input,textarea,select{font:inherit;font-size:16px;padding:11px;border:2px solid 
 
   <!-- TABELA -->
   <section class="tela" id="t-tabela" hidden>
-    <div><h1>Minha tabela</h1><p class="sub">Sua tabela de preços pronta para mandar no WhatsApp ou pôr no status.</p></div>
+    <div><h1>Minha tabela</h1><p class="sub">Monte a tabela de preços com a cara do seu negócio e mande no WhatsApp ou poste no status.</p></div>
+    <p class="sub" id="tb-falta" hidden>O nome do negócio e o seu @ ainda estão em branco. Preencha na aba "Meu negócio" para eles aparecerem na tabela.</p>
+
     <div class="cartao">
-      <b style="font-size:14.5px">Qual preço vai aparecer na tabela</b>
+      <h2>1. Modelo</h2>
+      <div class="modelos" id="tb-modelos"></div>
+      <b style="font-size:14.5px">Formato</b>
+      <div class="duas">
+        <label class="opcao" for="tb-feed"><input type="radio" name="tbf" id="tb-feed" value="feed"><span><b>Feed</b><small>Para postar e mandar no WhatsApp.</small></span></label>
+        <label class="opcao" for="tb-story"><input type="radio" name="tbf" id="tb-story" value="story"><span><b>Story</b><small>Em pé, para status e stories.</small></span></label>
+      </div>
+    </div>
+
+    <div class="cartao">
+      <h2>2. Suas cores e a sua logo</h2>
+      <div><b style="font-size:14.5px">Cor principal</b><div class="cores" id="cores" style="margin-top:6px"></div></div>
+      <div class="duas">
+        <label for="tb-cor">Outra cor principal<input type="color" id="tb-cor"></label>
+        <label for="tb-cor2">Cor de destaque<input type="color" id="tb-cor2"></label>
+      </div>
+      <div class="logo-linha">
+        <img id="tb-logo-ver" alt="Sua logo" hidden>
+        <div style="display:flex;flex-direction:column;gap:8px;min-width:0;flex:1">
+          <label for="tb-logo">Sua logo (foto ou imagem)<small>Se não tiver logo, deixe sem. A tabela fica bonita só com o nome.</small><input type="file" id="tb-logo" accept="image/png,image/jpeg,image/webp"></label>
+          <button class="leve" id="tb-logo-tirar" type="button" hidden>Tirar a logo</button>
+        </div>
+      </div>
+      <p class="erro" id="tb-logo-erro" role="alert"></p>
+    </div>
+
+    <div class="cartao">
+      <h2>3. Textos</h2>
+      <label for="tb-titulo">Título<input id="tb-titulo" maxlength="26" placeholder="Tabela de preços"></label>
+      <label for="tb-frase">Frase embaixo do nome<input id="tb-frase" maxlength="48" placeholder="Tranças feitas com capricho e hora marcada"></label>
+      <label for="tb-aviso">Aviso no fim<small>Apague o texto se não quiser aviso.</small><input id="tb-aviso" maxlength="64"></label>
+      <label class="chk" for="tb-tempo"><input type="checkbox" id="tb-tempo"> Mostrar quanto tempo leva cada trança</label>
+    </div>
+
+    <div class="cartao">
+      <h2>4. Preços</h2>
       <label class="opcao" for="tb-atual"><input type="radio" name="tb" id="tb-atual" value="atual"><span><b>Os preços que eu cobro hoje</b><small>Exatamente o que você escreveu em cada trança, na aba Serviços.</small></span></label>
       <label class="opcao" for="tb-certo"><input type="radio" name="tb" id="tb-certo" value="certo"><span><b>Os preços novos, já corrigidos</b><small>O "Preço certo" que o sistema calculou: seu gasto + a hora que você quer ganhar + o lucro. Se der menos do que você já cobra, fica o seu preço de hoje.</small></span></label>
       <div class="lista" id="tb-compara"></div>
-      <div><b style="font-size:14.5px">Cor</b><div class="cores" id="cores" style="margin-top:6px"></div></div>
-      <label class="chk" for="tb-tempo"><input type="checkbox" id="tb-tempo"> Mostrar quanto tempo leva cada trança</label>
-      <p class="sub" id="tb-falta" hidden>O nome do negócio e o seu @ ainda estão em branco. Preencha na aba "Meu negócio" para eles aparecerem na tabela.</p>
     </div>
+
+    <div class="cartao">
+      <h2>5. Tabela de promoção</h2>
+      <p class="sub">Para Black Friday, Natal ou semana de aniversário. A tabela mostra o preço normal riscado e o preço com desconto.</p>
+      <label class="chk" for="tb-promo"><input type="checkbox" id="tb-promo"> Esta é uma tabela de promoção</label>
+      <div id="tb-promo-box" hidden style="display:flex;flex-direction:column;gap:10px">
+        <label for="tb-promo-nome">Nome da promoção<input id="tb-promo-nome" maxlength="18" placeholder="Black Friday"></label>
+        <div class="duas"><label for="tb-promo-pct">Desconto (%)<input id="tb-promo-pct" inputmode="decimal" placeholder="Ex.: 10"></label><label for="tb-promo-ate">Vale até<input type="date" id="tb-promo-ate"></label></div>
+        <p class="dica" id="tb-promo-dica" hidden></p>
+      </div>
+    </div>
+
     <img id="tabela-img" alt="Sua tabela de preços">
     <button class="forte" id="tb-baixar" type="button">Baixar ou mandar a tabela</button>
     <p class="sub">Se o botão não abrir nada no seu celular, segure o dedo em cima da imagem e escolha "Salvar imagem".</p>
@@ -243,7 +301,7 @@ input,textarea,select{font:inherit;font-size:16px;padding:11px;border:2px solid 
       <button class="perigo" id="zerar" type="button">Apagar tudo</button>
       <div class="aviso" id="zerar-conf" hidden><p><b>Tem certeza?</b> Não dá para desfazer.</p><div class="acoes"><button class="perigo" id="zerar-sim" type="button">Sim, apagar tudo</button><button id="zerar-nao" type="button">Não</button></div></div>
     </div>
-    <div class="cartao"><h2>Deixe na tela inicial</h2><p class="sub">No menu do navegador (os três pontinhos ou o botão de compartilhar), toque em "Adicionar à tela inicial". O Quanto Sobra vira um atalho, como um aplicativo.</p><p class="sub">Use sempre o mesmo navegador. Na janela anônima e no navegador de dentro do Instagram os dados podem não ficar guardados.</p></div>
+    <div class="cartao"><h2>Deixe na tela inicial</h2><p class="sub">No menu do navegador (os três pontinhos ou o botão de compartilhar), toque em "Adicionar à tela inicial". O Na Ponta do Lápis vira um atalho, como um aplicativo.</p><p class="sub">Use sempre o mesmo navegador. Na janela anônima e no navegador de dentro do Instagram os dados podem não ficar guardados.</p></div>
     <p class="sub">Ficou com dúvida: WhatsApp (21) 98494-2432.</p>
   </section>
 
@@ -274,7 +332,11 @@ var D;
 function limpa(o){var p=PADRAO();if(!o||typeof o!=='object')return p;
   var n0=function(v){v=Number(v);return isFinite(v)&&v>0?Math.min(v,1e7):0},st=function(v,m){return String(v==null?'':v).slice(0,m)},novoId=function(){return Math.random().toString(36).slice(2,10)};
   var CO=['#0E3B2A','#c8372c','#7a2e8f','#1f4f9c','#b0562a','#16130f'],c=(o.cfg&&typeof o.cfg==='object')?o.cfg:{},lu=Number(c.lucro);
-  p.cfg={nome:st(c.nome,34),contato:st(c.contato,34),hora:n0(c.hora)||25,lucro:(isFinite(lu)&&lu>=0&&lu<=500)?lu:20,cartao:!!c.cartao,cor:CO.indexOf(c.cor)>=0?c.cor:CO[0],tb:c.tb==='certo'?'certo':'atual',tbTempo:!!c.tbTempo};
+  var hx=function(v,pad){return (typeof v==='string'&&/^#[0-9a-fA-F]{6}$/.test(v))?v:pad};
+  p.cfg={nome:st(c.nome,34),contato:st(c.contato,34),hora:n0(c.hora)||25,lucro:(isFinite(lu)&&lu>=0&&lu<=500)?lu:20,cartao:!!c.cartao,cor:hx(c.cor,CO[0]),cor2:hx(c.cor2,'#FFC82E'),tb:c.tb==='certo'?'certo':'atual',tbTempo:!!c.tbTempo,
+    modelo:['colagem','limpo','noite','delicado'].indexOf(c.modelo)>=0?c.modelo:'colagem',formato:c.formato==='story'?'story':'feed',titulo:st(c.titulo,26),frase:st(c.frase,48),aviso:st(c.aviso,64),avisoMexido:!!c.avisoMexido};
+  if(typeof c.logo==='string'&&c.logo.length<600000&&/^data:image\/(png|jpeg|webp);base64,[A-Za-z0-9+\/=]+$/.test(c.logo))p.cfg.logo=c.logo;
+  if(c.promo&&typeof c.promo==='object'){var pp=Number(c.promo.pct);p.cfg.promo={on:!!c.promo.on,nome:st(c.promo.nome,18),pct:(isFinite(pp)&&pp>0&&pp<=90)?pp:0,ate:/^\d{4}-\d{2}-\d{2}$/.test(c.promo.ate||'')?c.promo.ate:''}}
   if(typeof c.msg==='string'&&c.msg)p.cfg.msg=c.msg.slice(0,1500);
   if(c.metas&&typeof c.metas==='object'){p.cfg.metas={};Object.keys(c.metas).slice(0,120).forEach(function(k){if(/^\d{4}-\d{2}$/.test(k)&&n0(c.metas[k]))p.cfg.metas[k]=n0(c.metas[k])})}
   p.serv=(Array.isArray(o.serv)?o.serv:[]).slice(0,80).filter(function(s){return s&&typeof s==='object'&&n0(s.preco)}).map(function(s){var r={id:st(s.id,20)||novoId(),nome:st(s.nome,40)||'Trança',preco:n0(s.preco),gasto:n0(s.gasto),min:Math.round(n0(s.min))||60};
@@ -388,50 +450,123 @@ $('f-add').onclick=function(){var n=$('f-nome').value.trim(),v=num($('f-valor').
   D.fixos.push({id:uid(),mes:mes,nome:n,valor:v});gravar();$('f-nome').value='';$('f-valor').value='';pintaMes();toast('Conta anotada')};
 
 /* ---------- Tabela ---------- */
-var CORES=['#0E3B2A','#c8372c','#7a2e8f','#1f4f9c','#b0562a','#16130f'];
-function pintaCores(){var c=$('cores');c.textContent='';CORES.forEach(function(k){var b=el('button');b.type='button';b.style.background=k;b.setAttribute('aria-label','Cor '+k);b.setAttribute('aria-pressed',String(D.cfg.cor===k));b.onclick=function(){D.cfg.cor=k;gravar();pintaTabela()};c.appendChild(b)})}
+var CORES=['#0E3B2A','#c8372c','#7a2e8f','#1f4f9c','#b0562a','#16130f','#c2185b','#00796b'];
+var MODELOS_TB=[['colagem','Colagem','Papel, fita e cor forte'],['limpo','Clean','Fundo branco, bem simples'],['noite','Noite','Fundo escuro, elegante'],['delicado','Delicado','Tons claros e letra à mão']];
+var TB_TITULO='Tabela de preços',TB_FRASE='Tranças feitas com capricho e hora marcada';
+var logoImg=null,logoSrc='';
+function hexRgb(h){return [parseInt(h.slice(1,3),16),parseInt(h.slice(3,5),16),parseInt(h.slice(5,7),16)]}
+function mistura(h,alvo,q){var a=hexRgb(h),b=hexRgb(alvo);return 'rgb('+a.map(function(v,i){return Math.round(v+(b[i]-v)*q)}).join(',')+')'}
+function sobre(h){var c=hexRgb(h);return (c[0]*299+c[1]*587+c[2]*114)/1000>165?'#16130f':'#ffffff'}
+function caixa(g,x,y,w,h,r){g.beginPath();if(g.roundRect)g.roundRect(x,y,w,h,r);else g.rect(x,y,w,h);}
+function cabe(g,txt,max,tam,min,fmt){g.font=fmt.replace('#',tam);while(g.measureText(txt).width>max&&tam>min){tam-=2;g.font=fmt.replace('#',tam)}return tam}
+function pintaCores(){var c=$('cores');c.textContent='';CORES.forEach(function(k){var b=el('button');b.type='button';b.style.background=k;b.setAttribute('aria-label','Cor '+k);b.setAttribute('aria-pressed',String(D.cfg.cor.toLowerCase()===k.toLowerCase()));b.onclick=function(){D.cfg.cor=k;gravar();pintaTabela()};c.appendChild(b)});
+  $('tb-cor').value=D.cfg.cor;$('tb-cor2').value=D.cfg.cor2||'#FFC82E'}
+function pintaModelos(){var m=$('tb-modelos');m.textContent='';MODELOS_TB.forEach(function(x){var b=el('button');b.type='button';b.setAttribute('aria-pressed',String((D.cfg.modelo||'colagem')===x[0]));b.appendChild(el('b',null,x[1]));b.appendChild(el('small',null,x[2]));b.onclick=function(){D.cfg.modelo=x[0];gravar();pintaTabela()};m.appendChild(b)})}
+$('tb-cor').oninput=function(){D.cfg.cor=this.value;gravar();pintaTabela()};
+$('tb-cor2').oninput=function(){D.cfg.cor2=this.value;gravar();pintaTabela()};
+['tb-feed','tb-story'].forEach(function(i){$(i).onchange=function(){D.cfg.formato=this.value;gravar();pintaTabela()}});
 ['tb-atual','tb-certo'].forEach(function(i){$(i).onchange=function(){D.cfg.tb=this.value;gravar();pintaTabela()}});
 $('tb-tempo').onchange=function(){D.cfg.tbTempo=this.checked;gravar();pintaTabela()};
-function caixa(g,x,y,w,h,r){g.beginPath();if(g.roundRect)g.roundRect(x,y,w,h,r);else g.rect(x,y,w,h);}
+$('tb-titulo').oninput=function(){D.cfg.titulo=this.value;gravar();pintaTabela()};
+$('tb-frase').oninput=function(){D.cfg.frase=this.value;gravar();pintaTabela()};
+$('tb-aviso').oninput=function(){D.cfg.aviso=this.value;D.cfg.avisoMexido=true;gravar();pintaTabela()};
+function promoCfg(){D.cfg.promo=D.cfg.promo||{on:false,nome:'',pct:0,ate:''};return D.cfg.promo}
+$('tb-promo').onchange=function(){promoCfg().on=this.checked;gravar();pintaTabela()};
+$('tb-promo-nome').oninput=function(){promoCfg().nome=this.value;gravar();pintaTabela()};
+$('tb-promo-pct').oninput=function(){var v=num(this.value);promoCfg().pct=(v&&v>0&&v<=90)?v:0;gravar();pintaTabela()};
+$('tb-promo-ate').onchange=function(){promoCfg().ate=this.value;gravar();pintaTabela()};
+$('tb-logo').onchange=function(){var f=this.files&&this.files[0],er=$('tb-logo-erro'),campo=this;er.textContent='';if(!f)return;
+  if(!/^image\/(png|jpeg|webp)$/.test(f.type)){er.textContent='Use uma imagem PNG ou JPG.';campo.value='';return}
+  if(f.size>12*1024*1024){er.textContent='Essa imagem é grande demais. Use uma de até 12 MB.';campo.value='';return}
+  var rd=new FileReader();rd.onerror=function(){er.textContent='Não consegui abrir essa imagem.'};
+  rd.onload=function(){var im=new Image();im.onerror=function(){er.textContent='Não consegui abrir essa imagem.'};
+    im.onload=function(){var L=360,q=Math.min(1,L/Math.max(im.width,im.height)),cv=document.createElement('canvas');cv.width=Math.max(1,Math.round(im.width*q));cv.height=Math.max(1,Math.round(im.height*q));
+      cv.getContext('2d').drawImage(im,0,0,cv.width,cv.height);try{D.cfg.logo=cv.toDataURL('image/png')}catch(e){er.textContent='Não consegui usar essa imagem.';return}
+      campo.value='';gravar();pintaTabela();toast('Logo colocada')};im.src=rd.result};rd.readAsDataURL(f)};
+$('tb-logo-tirar').onclick=function(){delete D.cfg.logo;gravar();pintaTabela();toast('Logo tirada')};
+function avisoPadrao(){return 'O valor pode mudar com o tamanho e o comprimento do cabelo.'}
 function pintaTabela(){
-  pintaCores();$(D.cfg.tb==='certo'?'tb-certo':'tb-atual').checked=true;
-  var CP=$('tb-compara');CP.textContent='';D.serv.forEach(function(s){var c=Math.max(conta(s).certo,s.preco),d=el('div');d.appendChild(el('span',null,s.nome));
-    d.appendChild(el('b',null,D.cfg.tb==='certo'&&c>s.preco?brl(s.preco)+' → '+brl(c):brl(D.cfg.tb==='certo'?c:s.preco)));CP.appendChild(d)});
-  $('tb-tempo').checked=!!D.cfg.tbTempo;$('tb-falta').hidden=!!(D.cfg.nome&&D.cfg.contato);
-  var W=1080,ALT=D.cfg.tbTempo?150:124,n=Math.max(D.serv.length,1),H=Math.max(1350,470+n*ALT+330),cv=document.createElement('canvas');cv.width=W;cv.height=H;
-  var g=cv.getContext('2d'),cor=D.cfg.cor,AN='Anton, Impact, sans-serif',IN='Inter, Arial, sans-serif';
-  /* papel com grão */
-  g.fillStyle='#f6f1e5';g.fillRect(0,0,W,H);var sem=7;for(var i=0;i<2600;i++){sem=(sem*16807)%2147483647;var px=sem%W;sem=(sem*16807)%2147483647;var py=sem%H;g.fillStyle=(i%2)?'rgba(22,19,15,.045)':'rgba(255,255,255,.5)';g.fillRect(px,py,2,2)}
-  /* cabeçalho rasgado na cor dela */
-  g.fillStyle=cor;g.beginPath();g.moveTo(0,0);g.lineTo(W,0);g.lineTo(W,372);for(var x=W;x>=0;x-=36){g.lineTo(x,372+((x/36)%2?16:0))}g.closePath();g.fill();
-  g.fillStyle='rgba(255,255,255,.08)';g.beginPath();g.arc(W-110,90,210,0,7);g.fill();g.beginPath();g.arc(W-40,300,120,0,7);g.fill();
-  /* fita amarela */
-  g.save();g.translate(84,70);g.rotate(-0.035);g.fillStyle='#FFC82E';g.fillRect(0,0,400,66);g.fillStyle='rgba(22,19,15,.12)';g.fillRect(0,0,14,66);g.fillRect(386,0,14,66);
-  g.fillStyle='#16130f';g.font='42px '+AN;g.textBaseline='middle';g.fillText('TABELA DE PREÇOS',30,36);g.restore();
-  g.textBaseline='alphabetic';g.fillStyle='#fff';var nome=(D.cfg.nome||'Seu negócio aqui').toUpperCase(),fs=104;g.font=fs+'px '+AN;
-  while(g.measureText(nome).width>W-170&&fs>46){fs-=4;g.font=fs+'px '+AN}g.fillText(nome,84,262);
-  g.font='600 34px '+IN;g.fillStyle='rgba(255,255,255,.88)';g.fillText('Tranças feitas com capricho e hora marcada',84,322);
-  /* linhas em cartões */
-  var y=452;
-  if(!D.serv.length){g.fillStyle='#5b554b';g.font='40px '+IN;g.fillText('Salve suas tranças na aba Serviços.',84,y+50)}
-  D.serv.forEach(function(s,k){var preco=D.cfg.tb==='certo'?Math.max(conta(s).certo,s.preco):s.preco,ch=ALT-22;
-    g.fillStyle='rgba(22,19,15,.9)';caixa(g,66,y+6,W-126,ch,18);g.fill();
-    g.fillStyle='#fffdf7';caixa(g,60,y,W-126,ch,18);g.fill();
-    g.fillStyle=cor;caixa(g,60,y,16,ch,[18,0,0,18]);g.fill();
-    g.fillStyle='#16130f';g.font='700 46px '+IN;var nm=s.nome;while(g.measureText(nm).width>560&&nm.length>4)nm=nm.slice(0,-2);if(nm!==s.nome)nm+='…';
-    g.fillText(nm,108,y+(D.cfg.tbTempo?58:ch/2+16));
-    if(D.cfg.tbTempo){g.fillStyle='#5b554b';g.font='500 30px '+IN;g.fillText('leva cerca de '+tempo(s.min),108,y+104)}
-    g.font='60px '+AN;var p=brl(preco),pw=g.measureText(p).width,bx=W-66-60-pw-56;
-    g.fillStyle=k%2?'#FFC82E':cor;caixa(g,bx,y+(ch-84)/2,pw+56,84,42);g.fill();
-    g.fillStyle=k%2?'#16130f':'#fff';g.fillText(p,bx+28,y+ch/2+22);y+=ALT});
-  /* aviso e rodapé */
-  g.save();g.translate(84,y+34);g.rotate(0.012);g.fillStyle='#fffdf7';g.strokeStyle='#16130f';g.lineWidth=3;caixa(g,0,0,W-168,84,10);g.fill();g.stroke();
-  var av='O valor pode mudar com o tamanho e o comprimento do cabelo.',af=30;g.fillStyle='#16130f';g.font='500 '+af+'px '+IN;
-  while(g.measureText(av).width>W-168-52&&af>20){af-=1;g.font='500 '+af+'px '+IN}g.fillText(av,26,53);g.restore();
-  g.fillStyle='#16130f';g.fillRect(0,H-178,W,178);g.fillStyle='#FFC82E';g.fillRect(0,H-178,W,10);
-  g.fillStyle='#cfc8b8';g.font='600 28px '+IN;g.fillText('AGENDE O SEU HORÁRIO',84,H-116);
-  g.fillStyle='#fff';g.font='700 46px '+IN;g.fillText(D.cfg.contato||'Seu @ ou WhatsApp',84,H-60);
-  var d=new Date();d.setDate(d.getDate()+30);g.fillStyle='#cfc8b8';g.font='26px '+IN;var val='Válida até '+d.toLocaleDateString('pt-BR');g.fillText(val,W-84-g.measureText(val).width,H-62);
+  var c=D.cfg,foco=document.activeElement;pintaCores();pintaModelos();
+  $(c.tb==='certo'?'tb-certo':'tb-atual').checked=true;$(c.formato==='story'?'tb-story':'tb-feed').checked=true;$('tb-tempo').checked=!!c.tbTempo;$('tb-falta').hidden=!!(c.nome&&c.contato);
+  if(foco!==$('tb-titulo'))$('tb-titulo').value=c.titulo||'';if(foco!==$('tb-frase'))$('tb-frase').value=c.frase||'';if(foco!==$('tb-aviso'))$('tb-aviso').value=c.avisoMexido?(c.aviso||''):avisoPadrao();
+  var pr=c.promo||{},promo=!!(pr.on&&pr.pct>0);$('tb-promo').checked=!!pr.on;$('tb-promo-box').hidden=!pr.on;
+  if(foco!==$('tb-promo-nome'))$('tb-promo-nome').value=pr.nome||'';if(foco!==$('tb-promo-pct'))$('tb-promo-pct').value=pr.pct?String(pr.pct).replace('.',','):'';$('tb-promo-ate').value=pr.ate||'';
+  $('tb-logo-tirar').hidden=!c.logo;$('tb-logo-ver').hidden=!c.logo;if(c.logo)$('tb-logo-ver').src=c.logo;
+  if(c.logo&&logoSrc!==c.logo){logoSrc=c.logo;logoImg=null;var li=new Image();li.onload=function(){if(logoSrc===c.logo){logoImg=li;pintaTabela()}};li.src=c.logo}
+  if(!c.logo){logoImg=null;logoSrc=''}
+  var precoDe=function(s){return c.tb==='certo'?Math.max(conta(s).certo,s.preco):s.preco},comDesc=function(p){return Math.max(1,Math.round(p*(1-pr.pct/100)))};
+  var CP=$('tb-compara');CP.textContent='';D.serv.forEach(function(s){var base=precoDe(s),d=el('div');d.appendChild(el('span',null,s.nome));
+    d.appendChild(el('b',null,promo?brl(base)+' → '+brl(comDesc(base)):(c.tb==='certo'&&base>s.preco?brl(s.preco)+' → '+brl(base):brl(base))));CP.appendChild(d)});
+  var PD=$('tb-promo-dica');PD.hidden=!promo||!D.serv.length;
+  if(promo&&D.serv.length){var pior=null;D.serv.forEach(function(s){var k=conta({preco:comDesc(precoDe(s)),gasto:s.gasto,min:s.min});if(!pior||k.hora<pior.hora)pior={hora:k.hora,nome:s.nome,sobra:k.sobra}});
+    PD.className='dica '+(pior.hora>=c.hora?'bom':'ruim');PD.textContent=pior.sobra<=0?'Atenção: com esse desconto, em "'+pior.nome+'" você paga para trabalhar.':'Com esse desconto, a hora mais baixa fica em '+brl(pior.hora)+' ("'+pior.nome+'").'}
+
+  /* ----- desenho ----- */
+  var W=1080,story=c.formato==='story',n=Math.max(D.serv.length,1),m=c.modelo||'colagem',cor=c.cor,cor2=c.cor2||'#FFC82E',AN='Anton, Impact, sans-serif',IN='Inter, Arial, sans-serif',CA='Caveat, "Comic Sans MS", cursive';
+  var T={colagem:{bg:'#f6f1e5',topoTx:sobre(cor),card:'#fffdf7',tx:'#16130f',sub:'#5b554b',roda:'#16130f',rodaTx:'#ffffff',rodaSub:'#cfc8b8'},
+    limpo:{bg:'#ffffff',topoTx:'#16130f',card:'#ffffff',tx:'#16130f',sub:'#6b6b6b',roda:'#ffffff',rodaTx:'#16130f',rodaSub:'#6b6b6b'},
+    noite:{bg:'#141110',topoTx:'#ffffff',card:'#221d1a',tx:'#ffffff',sub:'#b9b0a4',roda:'#0c0a09',rodaTx:'#ffffff',rodaSub:'#b9b0a4'},
+    delicado:{bg:mistura(cor,'#ffffff',.9),topoTx:'#2a2420',card:'#ffffff',tx:'#2a2420',sub:'#7a6f66',roda:cor,rodaTx:sobre(cor),rodaSub:sobre(cor)}}[m];
+  var centro=m==='delicado',X0=84,aviso=c.avisoMexido?(c.aviso||'').trim():avisoPadrao(),titulo=(c.titulo||'').trim()||TB_TITULO,frase=(c.frase||'').trim()||TB_FRASE;
+  var yL=logoImg?70:0,LOGO=logoImg?176:0,TOPO=yL+LOGO+(m==='colagem'?372:340),RODA=m==='noite'?232:188,AV=aviso?132:0,ALT=c.tbTempo?150:124,H;
+  if(story){H=1920;ALT=Math.max(86,Math.min(ALT+20,Math.floor((H-TOPO-RODA-AV-110)/n)))}else H=Math.max(1350,TOPO+70+n*ALT+AV+RODA+30);
+  var cv=document.createElement('canvas');cv.width=W;cv.height=H;var g=cv.getContext('2d');
+  g.fillStyle=T.bg;g.fillRect(0,0,W,H);
+  if(m==='colagem'){var sem=7;for(var i=0;i<2600;i++){sem=(sem*16807)%2147483647;var px=sem%W;sem=(sem*16807)%2147483647;var py=sem%H;g.fillStyle=(i%2)?'rgba(22,19,15,.045)':'rgba(255,255,255,.5)';g.fillRect(px,py,2,2)}
+    g.fillStyle=cor;g.beginPath();g.moveTo(0,0);g.lineTo(W,0);g.lineTo(W,TOPO-20);for(var x=W;x>=0;x-=36){g.lineTo(x,TOPO-20+((x/36)%2?16:0))}g.closePath();g.fill();
+    g.fillStyle=T.topoTx==='#ffffff'?'rgba(255,255,255,.08)':'rgba(22,19,15,.06)';g.beginPath();g.arc(W-110,90,210,0,7);g.fill();g.beginPath();g.arc(W-40,300,120,0,7);g.fill()}
+  if(m==='noite'){g.strokeStyle=cor2;g.lineWidth=3;caixa(g,34,34,W-68,H-68,26);g.stroke();g.globalAlpha=.35;g.lineWidth=1.5;caixa(g,48,48,W-96,H-96,18);g.stroke();g.globalAlpha=1}
+  if(m==='delicado'){g.fillStyle=mistura(cor,'#ffffff',.72);g.beginPath();g.arc(W/2,-120,560,0,7);g.fill();g.fillStyle=mistura(cor,'#ffffff',.8);g.beginPath();g.arc(120,H-120,260,0,7);g.fill();g.beginPath();g.arc(W-60,H*.55,170,0,7);g.fill()}
+  /* logo em círculo */
+  var y=74;
+  if(logoImg){var R=80,cx=centro?W/2:X0+R,cy=y+R;g.save();g.beginPath();g.arc(cx,cy,R+7,0,7);g.fillStyle=m==='noite'?cor2:'#ffffff';g.fill();g.beginPath();g.arc(cx,cy,R,0,7);g.fillStyle='#ffffff';g.fill();g.clip();
+    var q=Math.max(2*R/logoImg.width,2*R/logoImg.height),lw=logoImg.width*q,lh=logoImg.height*q;g.drawImage(logoImg,cx-lw/2,cy-lh/2,lw,lh);g.restore();y+=2*R+26}
+  /* título */
+  g.textBaseline='alphabetic';g.textAlign=centro?'center':'left';var xt=centro?W/2:X0;
+  if(m==='colagem'){g.save();g.translate(X0,y-4);g.rotate(-0.035);g.font='42px '+AN;var tw=Math.min(W-200,g.measureText(titulo.toUpperCase()).width+60);g.fillStyle=cor2;g.fillRect(0,0,tw,66);g.fillStyle='rgba(22,19,15,.12)';g.fillRect(0,0,14,66);g.fillRect(tw-14,0,14,66);
+    g.fillStyle=sobre(cor2);g.textBaseline='middle';cabe(g,titulo.toUpperCase(),tw-56,42,24,'#px '+AN);g.fillText(titulo.toUpperCase(),30,36);g.restore();g.textBaseline='alphabetic'}
+  else if(m==='delicado'){g.fillStyle=cor;cabe(g,titulo.toLowerCase(),W-200,78,44,'700 #px '+CA);g.fillText(titulo.toLowerCase(),xt,y+58)}
+  else{g.fillStyle=m==='noite'?cor2:cor;g.font='700 30px '+IN;var esp=titulo.toUpperCase().split('').join('  ');g.fillText(esp,xt,y+44);if(m==='limpo'){g.fillStyle=cor;g.fillRect(X0,y+62,90,8)}}
+  /* nome e frase */
+  var nome=(c.nome||'Seu negócio aqui'),ny=y+(m==='colagem'?192:178);g.fillStyle=T.topoTx;
+  if(m==='limpo'){cabe(g,nome,W-170,92,44,'800 #px '+IN);g.fillText(nome,xt,ny)}else{cabe(g,nome.toUpperCase(),W-170,m==='delicado'?88:104,46,'#px '+AN);g.fillText(nome.toUpperCase(),xt,ny)}
+  g.fillStyle=m==='colagem'?(T.topoTx==='#ffffff'?'rgba(255,255,255,.88)':'rgba(22,19,15,.8)'):T.sub;cabe(g,frase,W-170,34,22,'600 #px '+IN);g.fillText(frase,xt,ny+58);
+  /* selo da promoção */
+  if(promo){var sx=W-150,sy=m==='colagem'?150:160;g.save();g.translate(sx,sy);g.rotate(0.12);g.fillStyle=cor2;g.beginPath();for(var k=0;k<32;k++){var rr=k%2?104:118,an=k*Math.PI/16;g.lineTo(Math.cos(an)*rr,Math.sin(an)*rr)}g.closePath();g.fill();
+    g.fillStyle=sobre(cor2);g.textAlign='center';var pn=(pr.nome||'Promoção').toUpperCase();cabe(g,pn,170,30,16,'700 #px '+IN);g.fillText(pn,0,-28);g.font='74px '+AN;g.fillText('−'+String(pr.pct).replace('.',',')+'%',0,44);g.restore()}
+  /* linhas */
+  g.textAlign='left';y=TOPO+(story?Math.max(40,Math.floor((H-TOPO-RODA-AV-n*ALT)/2)):56);
+  if(!D.serv.length){g.fillStyle=T.sub;g.font='40px '+IN;g.fillText('Salve suas tranças na aba Serviços.',X0,y+50)}
+  D.serv.forEach(function(s,k){var base=precoDe(s),preco=promo?comDesc(base):base,ch=ALT-22,meio=y+ch/2,temTempo=c.tbTempo&&ALT>=120;
+    if(m==='colagem'){g.fillStyle='rgba(22,19,15,.9)';caixa(g,66,y+6,W-126,ch,18);g.fill();g.fillStyle=T.card;caixa(g,60,y,W-126,ch,18);g.fill();g.fillStyle=cor;caixa(g,60,y,16,ch,[18,0,0,18]);g.fill()}
+    else if(m==='noite'){g.fillStyle=T.card;caixa(g,70,y,W-140,ch,16);g.fill()}
+    else if(m==='delicado'){g.fillStyle='rgba(0,0,0,.06)';caixa(g,64,y+5,W-128,ch,ch/2);g.fill();g.fillStyle=T.card;caixa(g,60,y,W-120,ch,ch/2);g.fill()}
+    else{g.strokeStyle='#e4e4e4';g.lineWidth=2;g.beginPath();g.moveTo(X0,y+ch+10);g.lineTo(W-X0,y+ch+10);g.stroke()}
+    var xn=m==='limpo'?X0:(m==='delicado'?112:108),tn=Math.min(46,Math.round(ch*.42));
+    g.font='60px '+AN;var p=brl(preco),pf=Math.min(60,Math.round(ch*.56));g.font=pf+'px '+AN;var pw=g.measureText(p).width,dw=0,de='';
+    if(promo){de=brl(base);g.font='500 '+Math.round(pf*.5)+'px '+IN;dw=g.measureText(de).width+22}
+    var dir=m==='limpo'?W-X0:W-66-60,larg=(m==='colagem'||m==='delicado')?pw+56:pw,bx=dir-larg;
+    g.fillStyle=T.tx;g.font='700 '+tn+'px '+IN;var nm=s.nome,maxN=bx-dw-xn-30;while(g.measureText(nm).width>maxN&&nm.length>4)nm=nm.slice(0,-2);if(nm!==s.nome)nm+='…';
+    g.fillText(nm,xn,temTempo?y+ch*.44:meio+tn*.36);
+    if(temTempo){g.fillStyle=T.sub;g.font='500 30px '+IN;g.fillText('leva cerca de '+tempo(s.min),xn,y+ch*.8)}
+    if(promo){g.font='500 '+Math.round(pf*.5)+'px '+IN;g.fillStyle=T.sub;var dx=bx-dw,dy=meio+pf*.18;g.fillText(de,dx,dy);g.strokeStyle=T.sub;g.lineWidth=3;g.beginPath();g.moveTo(dx-4,dy-pf*.17);g.lineTo(dx+dw-18,dy-pf*.17);g.stroke()}
+    g.font=pf+'px '+AN;
+    if(m==='colagem'||m==='delicado'){var fundo=m==='colagem'?(k%2?cor2:cor):cor,ah=Math.min(84,ch-22);g.fillStyle=fundo;caixa(g,bx,meio-ah/2,larg,ah,ah/2);g.fill();g.fillStyle=sobre(fundo);g.fillText(p,bx+28,meio+pf*.37)}
+    else{g.fillStyle=m==='noite'?cor2:cor;g.fillText(p,bx,meio+pf*.37)}
+    y+=ALT});
+  /* aviso */
+  var ya=H-RODA-AV+16;
+  if(aviso){if(m==='colagem'){g.save();g.translate(X0,ya);g.rotate(0.012);g.fillStyle='#fffdf7';g.strokeStyle='#16130f';g.lineWidth=3;caixa(g,0,0,W-168,84,10);g.fill();g.stroke();g.fillStyle='#16130f';cabe(g,aviso,W-168-52,30,20,'500 #px '+IN);g.fillText(aviso,26,53);g.restore()}
+    else{g.fillStyle=T.sub;g.textAlign=centro?'center':'left';cabe(g,aviso,W-170,30,20,(m==='delicado'?'italic ':'')+'500 #px '+IN);g.fillText(aviso,centro?W/2:X0,ya+52);g.textAlign='left'}}
+  /* rodapé */
+  var yr=H-RODA;
+  if(m==='colagem'||m==='delicado'){g.fillStyle=T.roda;g.fillRect(0,yr,W,RODA);if(m==='colagem'){g.fillStyle=cor2;g.fillRect(0,yr,W,10)}}
+  else if(m==='limpo'){g.fillStyle=cor;g.fillRect(X0,yr+8,W-2*X0,4)}
+  else{g.fillStyle=cor2;g.fillRect(X0,yr+8,W-2*X0,2)}
+  var d=new Date();d.setDate(d.getDate()+30);var val=promo&&pr.ate?'Promoção até '+dataBR(pr.ate):(promo?'':'Válida até '+d.toLocaleDateString('pt-BR'));
+  g.fillStyle=T.rodaSub;g.font='600 28px '+IN;g.fillText('AGENDE O SEU HORÁRIO',X0,yr+72);
+  g.fillStyle=T.rodaTx;cabe(g,c.contato||'Seu @ ou WhatsApp',W-2*X0-(val?330:0),46,26,'700 #px '+IN);g.fillText(c.contato||'Seu @ ou WhatsApp',X0,yr+128);
+  if(val){g.fillStyle=T.rodaSub;g.font='26px '+IN;g.fillText(val,W-X0-g.measureText(val).width,yr+126)}
   window.__cvTabela=cv;try{$('tabela-img').src=cv.toDataURL('image/png')}catch(e){}
 }
 function baixarCanvas(cv,arqNome){if(!cv)return;
@@ -449,12 +584,12 @@ $('tb-baixar').onclick=function(){baixarCanvas(window.__cvTabela,'tabela-de-prec
 /* ---------- Meu negócio ---------- */
 function pintaAjustes(){$('a-nome').value=D.cfg.nome;$('a-contato').value=D.cfg.contato;$('a-hora').value=String(D.cfg.hora).replace('.',',');$('a-lucro').value=String(D.cfg.lucro).replace('.',',');$('a-cartao').checked=!!D.cfg.cartao}
 $('a-salvar').onclick=function(){var h=num($('a-hora').value),l=num($('a-lucro').value);D.cfg.nome=$('a-nome').value.trim();D.cfg.contato=$('a-contato').value.trim();D.cfg.hora=h&&h>0?h:25;D.cfg.lucro=(l===null||l<0)?20:l;D.cfg.cartao=$('a-cartao').checked;gravar();pintaTudo();toast('Salvo')};
-$('bk-copiar').onclick=function(){var txt='QUANTOSOBRA:'+btoa(unescape(encodeURIComponent(JSON.stringify(D))));
+$('bk-copiar').onclick=function(){var txt='LAPIS:'+btoa(unescape(encodeURIComponent(JSON.stringify(D))));
   var ok=function(){toast('Cópia copiada. Cole numa conversa sua para guardar.')},falha=function(){$('bk-texto').value=txt;$('bk-texto').select();toast('Selecione o texto abaixo e copie')};
   try{navigator.clipboard.writeText(txt).then(ok,falha)}catch(e){falha()}};
 $('bk-restaurar').onclick=function(){$('bk-erro').textContent='';var t=$('bk-texto').value.trim();
-  try{if(t.indexOf('QUANTOSOBRA:')!==0)throw 0;var o=JSON.parse(decodeURIComponent(escape(atob(t.slice(12)))));if(!o||typeof o!=='object'||!Array.isArray(o.serv)||!o.cfg)throw 0;D=limpa(o);gravar();$('bk-texto').value='';pintaTudo();toast('Dados trazidos de volta')}
-  catch(e){$('bk-erro').textContent='Esse texto não é uma cópia válida. Copie de novo, inteiro, a partir de QUANTOSOBRA.'}};
+  try{var pre=t.indexOf('LAPIS:')===0?6:(t.indexOf('QUANTOSOBRA:')===0?12:-1);if(pre<0)throw 0;var o=JSON.parse(decodeURIComponent(escape(atob(t.slice(pre)))));if(!o||typeof o!=='object'||!Array.isArray(o.serv)||!o.cfg)throw 0;D=limpa(o);gravar();$('bk-texto').value='';pintaTudo();toast('Dados trazidos de volta')}
+  catch(e){$('bk-erro').textContent='Esse texto não é uma cópia válida. Copie de novo, inteiro, desde a palavra LAPIS.'}};
 $('zerar').onclick=function(){$('zerar-conf').hidden=false};$('zerar-nao').onclick=function(){$('zerar-conf').hidden=true};
 $('zerar-sim').onclick=function(){D=PADRAO();gravar();$('zerar-conf').hidden=true;pintaTudo();toast('Tudo apagado')};
 
@@ -495,7 +630,7 @@ $('resumo-baixar').onclick=function(){var t=totaisMes(),p=mes.split('-'),W=1080,
   g.fillStyle='#fffdf7';g.strokeStyle='#16130f';g.lineWidth=4;caixa(g,60,y+10,W-120,230,20);g.fill();g.stroke();g.fillStyle='#5b554b';g.font='600 38px '+IN;g.fillText('SOBROU PRA MIM',100,y+86);
   g.fillStyle=t.sobrou>=0?cor:'#c8372c';g.font='120px '+AN;g.fillText(brl(t.sobrou),100,y+205);
   var hr=t.min>0?t.sobrou/(t.min/60):0;g.fillStyle='#16130f';g.font='500 38px '+IN;g.fillText(t.min>0?'Foram '+tempo(t.min)+' de trabalho. Cada hora rendeu '+brl(hr)+'.':'Nenhuma trança anotada neste mês.',84,y+320);
-  g.fillStyle='#16130f';g.fillRect(0,H-120,W,120);g.fillStyle='#fff';g.font='600 36px '+IN;g.fillText(D.cfg.nome||'Quanto Sobra',84,H-48);
+  g.fillStyle='#16130f';g.fillRect(0,H-120,W,120);g.fillStyle='#fff';g.font='600 36px '+IN;g.fillText(D.cfg.nome||'Na Ponta do Lápis',84,H-48);
   baixarCanvas(cv,'meu-mes-'+mes+'.png')};
 function pintaExtras(){pintaMsg(false);pintaMeta();pintaSim()}
 
