@@ -76,6 +76,12 @@ input,textarea,select{font:inherit;font-size:16px;padding:11px;border:2px solid 
 .logo-linha img{width:72px;height:72px;border-radius:50%;object-fit:cover;border:2px solid var(--tinta);flex:none;background:#fff}
 input[type=color]{height:46px;padding:4px}
 input[type=file]{font-size:14px;padding:8px}
+.oferta{background:var(--verde-claro);box-shadow:none;border-style:dashed}
+.botao{display:inline-block;align-self:flex-start;font-weight:700;text-decoration:none;color:#fff;background:var(--verde);border:2px solid var(--verde);border-radius:10px;padding:11px 14px}
+.botao.leve{background:var(--folha);color:var(--tinta);border-color:var(--tinta);font-weight:600;padding:8px 12px;font-size:14px}
+.botao:focus-visible{outline:3px solid var(--amarelo);outline-offset:2px}
+.extra{display:flex;flex-direction:column;gap:6px;padding-top:10px;border-top:1px dashed var(--tinta2)}
+.chips button[aria-pressed="true"]{background:var(--amarelo);border-color:var(--tinta);font-weight:700}
 .chips button{background:var(--folha);border-color:var(--tinta2);font-weight:500;font-size:14px;padding:8px 11px}
 .mes-nav{display:flex;align-items:center;justify-content:space-between;gap:8px}
 .mes-nav b{font-family:var(--display);font-weight:400;font-size:22px;text-transform:uppercase}
@@ -170,6 +176,11 @@ input[type=file]{font-size:14px;padding:8px}
       <div class="duas"><label for="sim-serv">Trança<select id="sim-serv"></select></label><label for="sim-pct">Desconto (%)<input id="sim-pct" inputmode="decimal" placeholder="Ex.: 10"></label></div>
       <div class="conta" id="sim-conta"></div>
       <p class="dica" id="sim-dica" hidden></p>
+      <div class="acoes" id="sim-acoes" hidden>
+        <button class="amar" id="sim-tabela" type="button">Fazer a tabela de promoção com esse desconto</button>
+        <button id="sim-aplicar" type="button">Mudar o preço dessa trança</button>
+      </div>
+      <div class="aviso" id="sim-conf" hidden><p id="sim-conf-txt"></p><div class="acoes"><button class="forte" id="sim-conf-sim" type="button">Sim, mudar o preço</button><button id="sim-conf-nao" type="button">Não</button></div></div>
     </div>
   </section>
 
@@ -268,11 +279,18 @@ input[type=file]{font-size:14px;padding:8px}
     <button class="forte" id="tb-baixar" type="button">Baixar ou mandar a tabela</button>
     <p class="sub">Se o botão não abrir nada no seu celular, segure o dedo em cima da imagem e escolha "Salvar imagem".</p>
     <div class="cartao">
-      <h2>Mensagem para avisar do preço novo</h2>
-      <p class="sub">Vai mudar o preço? Mande esta mensagem antes da tabela. Pode mexer no texto à vontade.</p>
-      <label for="msg-data">A partir de que dia vale o preço novo<input id="msg-data" type="date"></label>
+      <h2>Mensagens prontas</h2>
+      <p class="sub">Escolha a mensagem, ajuste o texto se quiser e copie. O que está entre [colchetes] é para você trocar.</p>
+      <div class="toques chips" id="msg-tipos"></div>
+      <label for="msg-data" id="msg-data-box">A partir de que dia vale o preço novo<input id="msg-data" type="date"></label>
       <label for="msg-texto">Mensagem<textarea id="msg-texto" rows="8"></textarea></label>
       <div class="acoes"><button class="amar" id="msg-copiar" type="button">Copiar mensagem</button><button class="leve" id="msg-refazer" type="button">Voltar ao texto original</button></div>
+    </div>
+    <div class="cartao oferta">
+      <span class="selo">DA EMPRESA JV</span>
+      <h2>Quer responder mais rápido?</h2>
+      <p>Os <b>Recortes de conversa</b> são 22 mensagens prontas para trancista: responder quem pede preço, cobrar o sinal, lembrar a manutenção e chamar de volta quem sumiu.</p>
+      <a class="botao" href="https://wa.me/5521984942432?text=Oi%21%20Uso%20o%20Na%20Ponta%20do%20L%C3%A1pis%20e%20quero%20conhecer%20os%20Recortes%20de%20conversa%20para%20trancista" target="_blank" rel="noopener">Quero conhecer os Recortes</a>
     </div>
   </section>
 
@@ -300,6 +318,12 @@ input[type=file]{font-size:14px;padding:8px}
       <p class="sub">Apaga serviços, meses e ajustes deste celular.</p>
       <button class="perigo" id="zerar" type="button">Apagar tudo</button>
       <div class="aviso" id="zerar-conf" hidden><p><b>Tem certeza?</b> Não dá para desfazer.</p><div class="acoes"><button class="perigo" id="zerar-sim" type="button">Sim, apagar tudo</button><button id="zerar-nao" type="button">Não</button></div></div>
+    </div>
+    <div class="cartao oferta">
+      <span class="selo">PARA IR ALÉM</span>
+      <h2>Quando o preço estiver em dia</h2>
+      <div class="extra"><b>Recortes de conversa</b><p class="sub">22 mensagens prontas para o WhatsApp: preço, sinal, manutenção e cliente que sumiu.</p><a class="botao leve" href="https://wa.me/5521984942432?text=Oi%21%20Uso%20o%20Na%20Ponta%20do%20L%C3%A1pis%20e%20quero%20conhecer%20os%20Recortes%20de%20conversa%20para%20trancista" target="_blank" rel="noopener">Conhecer os Recortes</a></div>
+      <div class="extra"><b>Kit Trancista completo</b><p class="sub">Clientes, lembrete de manutenção, agenda e financeiro num sistema só, com videoaulas.</p><a class="botao leve" href="https://jvorganiza.com.br/kits/trancista/" target="_blank" rel="noopener">Ver o Kit Trancista</a></div>
     </div>
     <div class="cartao"><h2>Deixe na tela inicial</h2><p class="sub">No menu do navegador (os três pontinhos ou o botão de compartilhar), toque em "Adicionar à tela inicial". O Na Ponta do Lápis vira um atalho, como um aplicativo.</p><p class="sub">Use sempre o mesmo navegador. Na janela anônima e no navegador de dentro do Instagram os dados podem não ficar guardados.</p></div>
     <p class="sub">Ficou com dúvida: WhatsApp (21) 98494-2432.</p>
@@ -337,7 +361,8 @@ function limpa(o){var p=PADRAO();if(!o||typeof o!=='object')return p;
     modelo:['colagem','limpo','noite','delicado'].indexOf(c.modelo)>=0?c.modelo:'colagem',formato:c.formato==='story'?'story':'feed',titulo:st(c.titulo,26),frase:st(c.frase,48),aviso:st(c.aviso,64),avisoMexido:!!c.avisoMexido};
   if(typeof c.logo==='string'&&c.logo.length<600000&&/^data:image\/(png|jpeg|webp);base64,[A-Za-z0-9+\/=]+$/.test(c.logo))p.cfg.logo=c.logo;
   if(c.promo&&typeof c.promo==='object'){var pp=Number(c.promo.pct);p.cfg.promo={on:!!c.promo.on,nome:st(c.promo.nome,18),pct:(isFinite(pp)&&pp>0&&pp<=90)?pp:0,ate:/^\d{4}-\d{2}-\d{2}$/.test(c.promo.ate||'')?c.promo.ate:''}}
-  if(typeof c.msg==='string'&&c.msg)p.cfg.msg=c.msg.slice(0,1500);
+  if(c.msgs&&typeof c.msgs==='object'){p.cfg.msgs={};['preco','promo','horario','sinal'].forEach(function(k){if(typeof c.msgs[k]==='string'&&c.msgs[k])p.cfg.msgs[k]=c.msgs[k].slice(0,1500)})}
+  p.cfg.msgTipo=['preco','promo','horario','sinal'].indexOf(c.msgTipo)>=0?c.msgTipo:'preco';
   if(c.metas&&typeof c.metas==='object'){p.cfg.metas={};Object.keys(c.metas).slice(0,120).forEach(function(k){if(/^\d{4}-\d{2}$/.test(k)&&n0(c.metas[k]))p.cfg.metas[k]=n0(c.metas[k])})}
   p.serv=(Array.isArray(o.serv)?o.serv:[]).slice(0,80).filter(function(s){return s&&typeof s==='object'&&n0(s.preco)}).map(function(s){var r={id:st(s.id,20)||novoId(),nome:st(s.nome,40)||'Trança',preco:n0(s.preco),gasto:n0(s.gasto),min:Math.round(n0(s.min))||60};
     if(s.g&&typeof s.g==='object'){r.g={pas:!!s.g.pas};['jp','jv','pp','pr','el','out','pv'].forEach(function(k){r.g[k]=n0(s.g[k])})}return r});
@@ -595,13 +620,20 @@ $('zerar-sim').onclick=function(){D=PADRAO();gravar();$('zerar-conf').hidden=tru
 
 /* ---------- Extras: mensagem, meta, desconto, resumo ---------- */
 function dataBR(iso){var p=(iso||'').split('-');return p.length===3?p[2]+'/'+p[1]:''}
-function msgPadrao(){var quando=dataBR($('msg-data').value)||'[dia]',ass=D.cfg.nome?'\n'+D.cfg.nome:'';
+var MSG_TIPOS=[['preco','Preço novo'],['promo','Promoção'],['horario','Confirmar horário'],['sinal','Pedir o sinal']];
+function msgPadrao(tipo){var quando=dataBR($('msg-data').value)||'[dia]',ass=D.cfg.nome?'\n'+D.cfg.nome:'',pr=D.cfg.promo||{};
+  if(tipo==='promo')return 'Oi! Tudo bem? 💛\nChegou a '+(pr.nome||'[nome da promoção]')+' por aqui: '+(pr.pct?String(pr.pct).replace('.',','):'[tanto]')+'% de desconto nas tranças'+(pr.ate?', até '+dataBR(pr.ate):'')+'.\nA tabela da promoção vai logo aqui embaixo.\nOs horários são poucos, então me chama para garantir o seu!'+ass;
+  if(tipo==='horario')return 'Oi! Tudo bem? 💛\nPassando para confirmar o seu horário de [dia], às [hora].\nMe responde com um "confirmado" para eu deixar tudo pronto para você?\nSe precisar remarcar, me avisa até a véspera, combinado?'+ass;
+  if(tipo==='sinal')return 'Oi! Para garantir o seu horário eu trabalho com um sinal de R$ [valor], que já é descontado do total no dia.\nAssim que o Pix cair eu reservo a sua vaga.\nChave Pix: [sua chave]\nQualquer dúvida, é só me chamar!'+ass;
   return 'Oi! Tudo bem? 💛\nPassando para avisar com antecedência: a partir de '+quando+' minha tabela de preços muda.\nFiz a conta de cada trança (material, tempo e o cuidado que cada uma pede) para continuar te atendendo com o mesmo capricho.\nQuem já está com horário marcado antes de '+quando+' continua com o valor de hoje.\nA tabela nova vai logo aqui embaixo. Qualquer dúvida, é só me chamar!'+ass}
-function pintaMsg(forca){if(!$('msg-data').value){var d=new Date();d.setDate(d.getDate()+15);$('msg-data').value=d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')}
-  if(forca||!D.cfg.msg)$('msg-texto').value=msgPadrao();else $('msg-texto').value=D.cfg.msg}
-$('msg-data').onchange=function(){delete D.cfg.msg;gravar();pintaMsg(true)};
-$('msg-texto').oninput=function(){D.cfg.msg=this.value;gravar()};
-$('msg-refazer').onclick=function(){delete D.cfg.msg;gravar();pintaMsg(true);toast('Texto original de volta')};
+function pintaMsg(){var tipo=D.cfg.msgTipo||'preco',box=$('msg-tipos');box.textContent='';
+  MSG_TIPOS.forEach(function(x){var b=el('button',null,x[1]);b.type='button';b.setAttribute('aria-pressed',String(x[0]===tipo));b.onclick=function(){D.cfg.msgTipo=x[0];gravar();pintaMsg()};box.appendChild(b)});
+  if(!$('msg-data').value){var d=new Date();d.setDate(d.getDate()+15);$('msg-data').value=d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')}
+  $('msg-data-box').hidden=tipo!=='preco';var salvo=D.cfg.msgs&&D.cfg.msgs[tipo];if(document.activeElement!==$('msg-texto'))$('msg-texto').value=salvo||msgPadrao(tipo)}
+function msgLimpa(){var tipo=D.cfg.msgTipo||'preco';if(D.cfg.msgs)delete D.cfg.msgs[tipo];gravar();pintaMsg()}
+$('msg-data').onchange=msgLimpa;
+$('msg-texto').oninput=function(){D.cfg.msgs=D.cfg.msgs||{};D.cfg.msgs[D.cfg.msgTipo||'preco']=this.value;gravar()};
+$('msg-refazer').onclick=function(){msgLimpa();toast('Texto original de volta')};
 $('msg-copiar').onclick=function(){var tx=$('msg-texto').value,ok=function(){toast('Mensagem copiada. Agora é só colar no WhatsApp.')},falha=function(){$('msg-texto').select();toast('Selecione o texto e copie')};
   try{navigator.clipboard.writeText(tx).then(ok,falha)}catch(e){falha()}};
 function totaisMes(){var vs=D.vendas.filter(function(v){return v.dia.slice(0,7)===mes}),fx=D.fixos.filter(function(f){return f.mes===mes}),entrou=0,gasto=0,min=0;
@@ -615,13 +647,18 @@ function pintaMeta(){var m=D.cfg.metas&&D.cfg.metas[mes],T=$('meta-txt');if(docu
 $('meta-valor').oninput=function(){var v=num(this.value);D.cfg.metas=D.cfg.metas||{};if(v&&v>0)D.cfg.metas[mes]=v;else delete D.cfg.metas[mes];gravar();pintaMeta()};
 function pintaSim(){var box=$('sim-box');box.hidden=!D.serv.length;if(!D.serv.length)return;var sel=$('sim-serv'),atual=sel.value;sel.textContent='';
   D.serv.forEach(function(s){var o=el('option',null,s.nome);o.value=s.id;sel.appendChild(o)});if(D.serv.some(function(s){return s.id===atual}))sel.value=atual;
-  var s=D.serv.filter(function(x){return x.id===sel.value})[0],pct=num($('sim-pct').value),C=$('sim-conta'),DI=$('sim-dica');C.textContent='';DI.hidden=true;
-  if(!s||!pct||pct<=0||pct>=100)return;var antes=conta(s),novo={preco:s.preco*(1-pct/100),gasto:s.gasto,min:s.min},dep=conta(novo);
+  var s=D.serv.filter(function(x){return x.id===sel.value})[0],pct=num($('sim-pct').value),C=$('sim-conta'),DI=$('sim-dica');C.textContent='';DI.hidden=true;$('sim-acoes').hidden=true;$('sim-conf').hidden=true;
+  if(!s||!pct||pct<=0||pct>=100)return;$('sim-acoes').hidden=false;$('sim-aplicar').textContent='Mudar o preço da '+s.nome+' para '+brl(Math.round(s.preco*(1-pct/100)));var antes=conta(s),novo={preco:s.preco*(1-pct/100),gasto:s.gasto,min:s.min},dep=conta(novo);
   [['Preço',brl(s.preco)+' → '+brl(novo.preco)],['Sobra pra você',brl(antes.sobra)+' → '+brl(dep.sobra)],['Sua hora',brl(antes.hora)+' → '+brl(dep.hora)]].forEach(function(x){var d=el('div');d.appendChild(el('span',null,x[0]));d.appendChild(el('b',null,x[1]));C.appendChild(d)});
   DI.hidden=false;if(dep.sobra<=0){DI.className='dica ruim';DI.textContent='Com esse desconto você paga para trabalhar.'}
   else{var extra=antes.sobra>0?Math.round((antes.sobra/dep.sobra-1)*100):0;DI.className='dica '+(dep.hora>=D.cfg.hora?'bom':'ruim');
     DI.textContent='O desconto sai inteiro do que sobra pra você. Para ganhar o mesmo de antes, precisa fazer '+extra+'% mais tranças.'}}
 $('sim-serv').onchange=pintaSim;$('sim-pct').oninput=pintaSim;
+function simAtual(){var s=D.serv.filter(function(x){return x.id===$('sim-serv').value})[0],pct=num($('sim-pct').value);return (s&&pct>0&&pct<100)?{s:s,pct:pct,novo:Math.max(1,Math.round(s.preco*(1-pct/100)))}:null}
+$('sim-tabela').onclick=function(){var x=simAtual();if(!x)return;var pr=D.cfg.promo=D.cfg.promo||{on:false,nome:'',pct:0,ate:''};pr.on=true;pr.pct=Math.min(90,x.pct);if(!pr.nome)pr.nome='Promoção';gravar();abre('tabela');toast('Tabela de promoção com '+String(pr.pct).replace('.',',')+'% pronta')};
+$('sim-aplicar').onclick=function(){var x=simAtual();if(!x)return;$('sim-conf-txt').textContent='O preço da '+x.s.nome+' vai passar de '+brl(x.s.preco)+' para '+brl(x.novo)+' em todo o sistema. As tranças já anotadas no mês não mudam.';$('sim-conf').hidden=false};
+$('sim-conf-nao').onclick=function(){$('sim-conf').hidden=true};
+$('sim-conf-sim').onclick=function(){var x=simAtual();if(!x)return;x.s.preco=x.novo;gravar();$('sim-pct').value='';pintaTudo();toast('Preço da '+x.s.nome+' agora é '+brl(x.novo))};
 $('resumo-baixar').onclick=function(){var t=totaisMes(),p=mes.split('-'),W=1080,H=1350,cv=document.createElement('canvas');cv.width=W;cv.height=H;var g=cv.getContext('2d'),cor=D.cfg.cor,AN='Anton, Impact, sans-serif',IN='Inter, Arial, sans-serif';
   g.fillStyle='#f6f1e5';g.fillRect(0,0,W,H);g.fillStyle=cor;g.fillRect(0,0,W,330);g.fillStyle='#FFC82E';g.fillRect(84,70,330,62);g.fillStyle='#16130f';g.font='40px '+AN;g.textBaseline='middle';g.fillText('MEU MÊS',104,103);g.textBaseline='alphabetic';
   g.fillStyle='#fff';g.font='96px '+AN;g.fillText((MESES[+p[1]-1]+' de '+p[0]).toUpperCase(),84,262);
@@ -632,7 +669,7 @@ $('resumo-baixar').onclick=function(){var t=totaisMes(),p=mes.split('-'),W=1080,
   var hr=t.min>0?t.sobrou/(t.min/60):0;g.fillStyle='#16130f';g.font='500 38px '+IN;g.fillText(t.min>0?'Foram '+tempo(t.min)+' de trabalho. Cada hora rendeu '+brl(hr)+'.':'Nenhuma trança anotada neste mês.',84,y+320);
   g.fillStyle='#16130f';g.fillRect(0,H-120,W,120);g.fillStyle='#fff';g.font='600 36px '+IN;g.fillText(D.cfg.nome||'Na Ponta do Lápis',84,H-48);
   baixarCanvas(cv,'meu-mes-'+mes+'.png')};
-function pintaExtras(){pintaMsg(false);pintaMeta();pintaSim()}
+function pintaExtras(){pintaMsg();pintaMeta();pintaSim()}
 
 /* ---------- Abas ---------- */
 function abre(t){['servicos','mes','tabela','ajustes'].forEach(function(k){$('t-'+k).hidden=k!==t});
