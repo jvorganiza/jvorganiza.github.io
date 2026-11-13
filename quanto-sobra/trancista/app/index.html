@@ -1,0 +1,527 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<meta name="theme-color" content="#0E3B2A">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Quanto Sobra">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='32' fill='%230E3B2A'/%3E%3Cg transform='rotate(-6 22 33)'%3E%3Crect x='12' y='17' width='20' height='32' fill='%23d64034'/%3E%3Ctext x='22' y='43' font-family='Impact,Arial' font-size='26' text-anchor='middle' fill='%23fff'%3EJ%3C/text%3E%3C/g%3E%3Cg transform='rotate(5 42 33)'%3E%3Crect x='32' y='18' width='21' height='32' fill='%23f6f1e5'/%3E%3Ctext x='42.5' y='44' font-family='Impact,Arial' font-size='26' text-anchor='middle' fill='%2316130f'%3EV%3C/text%3E%3C/g%3E%3Crect x='20' y='12' width='22' height='7' fill='%23FFC82E' transform='rotate(-8 31 15)'/%3E%3C/svg%3E">
+<title>Quanto Sobra · Trancista</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: app de uma coluna para celular; barra de abas fixa embaixo; cartões de papel com borda de tinta (identidade colagem da JV). Visual único, claro, por escolha da marca. */
+:root{
+  --papel:#f6f1e5; --folha:#fffdf7; --tinta:#16130f; --tinta2:#5b554b; --linha:#d9d1bf;
+  --verde:#0E3B2A; --verde-claro:#dcebe2; --amarelo:#FFC82E; --verm:#c8372c; --verm-claro:#f9e2df;
+  --display:Anton,Impact,'Arial Narrow',sans-serif; --texto:Inter,system-ui,-apple-system,'Segoe UI',sans-serif;
+}
+html,body{height:100%}
+body{background:var(--papel);color:var(--tinta);font-family:var(--texto);font-size:16px;line-height:1.45}
+.app{max-width:560px;margin:0 auto;min-height:100%;display:flex;flex-direction:column;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:16px 96px}
+.topo{display:flex;align-items:center;gap:10px;margin-bottom:14px}
+.logo{background:var(--verm);color:#fff;font-family:var(--display);padding:2px 9px;transform:rotate(-4deg);font-size:20px}
+.topo b{font-family:var(--display);font-weight:400;font-size:22px;letter-spacing:.02em}
+.topo span{color:var(--tinta2);font-size:13px;margin-left:auto}
+h1{font-family:var(--display);font-weight:400;font-size:30px;line-height:1.1;margin:0 0 4px;text-wrap:balance}
+h2{font-family:var(--display);font-weight:400;font-size:21px;margin:0}
+p{margin:0}
+.sub{color:var(--tinta2);font-size:14px}
+.tela{display:flex;flex-direction:column;gap:14px}
+.cartao{background:var(--folha);border:2px solid var(--tinta);border-radius:14px;padding:14px;display:flex;flex-direction:column;gap:10px;box-shadow:3px 3px 0 var(--tinta)}
+.aviso{background:var(--amarelo);border:2px solid var(--tinta);border-radius:12px;padding:12px;display:flex;flex-direction:column;gap:8px;font-size:14px}
+.serv-top{display:flex;justify-content:space-between;gap:10px;align-items:baseline}
+.serv-top b{font-size:17px;min-width:0;overflow-wrap:anywhere}
+.serv-top span{font-family:var(--display);font-size:22px;white-space:nowrap}
+.trio{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.trio div{background:var(--papel);border-radius:10px;padding:8px;min-width:0}
+.trio small{display:block;color:var(--tinta2);font-size:11.5px;line-height:1.2}
+.trio b{font-size:16px;font-variant-numeric:tabular-nums}
+.bom{color:var(--verde)} .ruim{color:var(--verm)}
+.dica{font-size:13.5px;border-radius:10px;padding:8px 10px}
+.dica.ruim{background:var(--verm-claro)} .dica.bom{background:var(--verde-claro)}
+.acoes{display:flex;gap:8px;flex-wrap:wrap}
+button{font:inherit;cursor:pointer;border-radius:10px;padding:11px 14px;font-weight:600;border:2px solid var(--tinta);background:var(--folha);color:var(--tinta)}
+button.forte{background:var(--verde);color:#fff;border-color:var(--verde)}
+button.amar{background:var(--amarelo)}
+button.leve{border-color:var(--linha);font-weight:500;padding:8px 12px;font-size:14px}
+button.perigo{border-color:var(--verm);color:var(--verm)}
+button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible{outline:3px solid var(--amarelo);outline-offset:2px}
+label{display:flex;flex-direction:column;gap:5px;font-weight:600;font-size:14.5px}
+label small{font-weight:400;color:var(--tinta2)}
+input,textarea,select{font:inherit;font-size:16px;padding:11px;border:2px solid var(--tinta2);border-radius:10px;background:#fff;color:var(--tinta);width:100%;min-width:0;box-sizing:border-box}
+.duas{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.chk{flex-direction:row;align-items:center;gap:10px;font-weight:500}
+.chk input{width:22px;height:22px;flex:none}
+.erro{color:var(--verm);font-weight:600;font-size:14px;min-height:1em}
+.amostra{border-style:dashed;box-shadow:none;opacity:.92}
+.selo{align-self:flex-start;background:var(--amarelo);border:2px solid var(--tinta);font-size:12px;font-weight:700;letter-spacing:.04em;padding:2px 8px;transform:rotate(-1.5deg)}
+.gasto{display:flex;flex-direction:column;gap:10px;background:var(--papel);border-radius:12px;padding:12px}
+.gasto .total{font-weight:700;font-size:16px;border-top:2px solid var(--tinta);padding-top:8px;font-variant-numeric:tabular-nums}
+.opcao{flex-direction:row;align-items:flex-start;gap:10px;border:2px solid var(--linha);border-radius:12px;padding:10px;font-weight:500;cursor:pointer}
+.opcao input{width:22px;height:22px;flex:none;margin-top:2px}
+.opcao span{display:flex;flex-direction:column;gap:2px;min-width:0}
+.opcao:has(input:checked){border-color:var(--tinta);background:var(--verde-claro)}
+.chips button{background:var(--folha);border-color:var(--tinta2);font-weight:500;font-size:14px;padding:8px 11px}
+.mes-nav{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.mes-nav b{font-family:var(--display);font-weight:400;font-size:22px;text-transform:uppercase}
+.conta{display:flex;flex-direction:column}
+.conta div{display:flex;justify-content:space-between;gap:10px;padding:7px 0;border-bottom:1px dashed var(--linha);font-variant-numeric:tabular-nums}
+.conta div:last-child{border-bottom:0}
+.conta .tot{font-weight:700;font-size:18px;border-top:2px solid var(--tinta);border-bottom:0;margin-top:4px;padding-top:10px}
+.toques{display:flex;flex-wrap:wrap;gap:8px}
+.toques button{background:var(--amarelo);font-size:14.5px;padding:10px 12px}
+.lista{display:flex;flex-direction:column}
+.lista div{display:flex;align-items:center;gap:8px;padding:8px 0;border-bottom:1px dashed var(--linha);font-size:14.5px}
+.lista div span:first-child{flex:1;min-width:0;overflow-wrap:anywhere}
+.lista div b{font-variant-numeric:tabular-nums;white-space:nowrap}
+.lista button{padding:4px 9px;font-size:13px;border-color:var(--linha)}
+.vazio{color:var(--tinta2);font-size:14px;padding:6px 0}
+.cores{display:flex;gap:10px;flex-wrap:wrap}
+.cores button{width:40px;height:40px;border-radius:50%;padding:0;border:3px solid var(--folha);box-shadow:0 0 0 2px var(--linha)}
+.cores button[aria-pressed="true"]{box-shadow:0 0 0 3px var(--tinta)}
+#tabela-img{width:100%;border:2px solid var(--tinta);border-radius:10px;display:block}
+.abas{position:fixed;left:0;right:0;bottom:0;background:var(--tinta);display:flex;justify-content:center;
+  padding-bottom:env(safe-area-inset-bottom,0px);padding-left:max(8px,env(safe-area-inset-left,0px));padding-right:max(8px,env(safe-area-inset-right,0px));z-index:5}
+.abas button{flex:1;max-width:140px;background:none;border:0;border-radius:0;color:#cfc8b8;padding:13px 4px 12px;font-size:13.5px;font-weight:600;border-top:4px solid transparent}
+.abas button[aria-selected="true"]{color:var(--tinta);background:var(--amarelo);border-top-color:var(--verm)}
+.rodape{margin-top:22px;color:var(--tinta2);font-size:12px;text-align:center}
+.toast{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(76px + env(safe-area-inset-bottom,0px));background:var(--tinta);color:#fff;padding:10px 16px;border-radius:999px;font-size:14px;z-index:9;max-width:90%}
+@media (max-width:360px){.trio{grid-template-columns:1fr 1fr}.duas{grid-template-columns:1fr}}
+@media (prefers-reduced-motion:no-preference){.toast{animation:sobe .2s ease-out}@keyframes sobe{from{opacity:0;transform:translate(-50%,8px)}}}
+
+*{box-sizing:border-box}body{margin:0}img{max-width:100%}[hidden]{display:none!important}
+#portao{position:fixed;inset:0;z-index:50;background:var(--papel);display:flex;align-items:center;justify-content:center;padding:20px;overflow:auto}
+#portao .cartao{max-width:420px;width:100%}
+.legal-app{margin-top:10px;color:var(--tinta2);font-size:12px;text-align:center;line-height:1.5}
+.legal-app a{color:inherit}
+</style>
+</head>
+<body>
+<div id="portao" hidden><form class="cartao" id="portao-form" novalidate>
+<div class="topo" style="margin:0"><span class="logo">JV</span><b>QUANTO SOBRA</b></div>
+<h2>Digite o seu código de acesso</h2>
+<p class="sub">Ele chegou no e-mail da compra. Você só precisa digitar uma vez neste aparelho.</p>
+<label for="portao-cod">Código<input id="portao-cod" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="Ex.: TRANC-ABCDE"></label>
+<p class="erro" id="portao-erro" role="alert"></p>
+<button class="forte" type="submit">Entrar</button>
+<p class="sub">Não achou o código? Chame no WhatsApp (21) 98494-2432.</p>
+</form></div>
+
+
+<div class="app">
+  <div class="topo"><span class="logo">JV</span><b>QUANTO SOBRA</b><span>Trancista</span></div>
+
+  <!-- SERVIÇOS -->
+  <section class="tela" id="t-servicos">
+    <div><h1>Meus serviços</h1><p class="sub">Quanto sobra em cada trança e o preço que paga a sua hora.</p></div>
+    <div class="cartao amostra" id="amostra"><p class="selo">AMOSTRA · é assim que fica</p><div class="serv-top"><b>Nagô</b><span>R$ 180</span></div><div class="trio"><div><small>Sobra pra você</small><b class="bom">R$ 120</b></div><div><small>Sua hora (5 h)</small><b class="ruim">R$ 24</b></div><div><small>Preço certo</small><b>R$ 225</b></div></div><p class="sub">Cadastre a sua primeira trança para ver a sua conta.</p></div>
+    <div id="lista-serv" class="tela"></div>
+    <button class="forte" id="novo-serv" type="button">+ Novo serviço</button>
+
+    <form class="cartao" id="form-serv" hidden novalidate>
+      <h2 id="form-serv-tit">Novo serviço</h2>
+      <div id="s-modelos-box"><b style="font-size:14.5px">Escolha um modelo ou escreva o seu</b><div class="toques chips" id="s-modelos" style="margin-top:6px"></div></div>
+      <label for="s-nome">Nome da trança<input id="s-nome" maxlength="40" autocomplete="off" placeholder="Ex.: nagô"></label>
+      <label for="s-preco">Quanto você cobra nessa trança (R$)<input id="s-preco" inputmode="decimal" placeholder="Ex.: 180"></label>
+      <div class="gasto">
+        <b>Quanto você gasta para fazer essa trança</b>
+        <p class="sub">Preencha só o que você usa. O que não usar, deixe em branco.</p>
+        <div class="duas">
+          <label for="s-jp">Jumbo: quantos pacotes<input id="s-jp" inputmode="decimal" placeholder="Ex.: 2"></label>
+          <label for="s-jv">Preço de cada pacote (R$)<input id="s-jv" inputmode="decimal" placeholder="Ex.: 25"></label>
+        </div>
+        <div class="duas">
+          <label for="s-pp">Pomada: preço do pote (R$)<input id="s-pp" inputmode="decimal" placeholder="Ex.: 30"></label>
+          <label for="s-pr">O pote dá para quantas tranças<input id="s-pr" inputmode="decimal" placeholder="Ex.: 6"></label>
+        </div>
+        <div class="duas">
+          <label for="s-el">Elástico ou lastex (R$)<input id="s-el" inputmode="decimal" placeholder="Ex.: 3"></label>
+          <label for="s-out">Outros: contas, anéis, linha (R$)<input id="s-out" inputmode="decimal" placeholder="Ex.: 5"></label>
+        </div>
+        <label class="chk" for="s-pas"><input type="checkbox" id="s-pas"> Pego condução por causa dessa trança</label>
+        <label for="s-pv" id="s-pv-box" hidden>Passagem de ida e volta (R$)<input id="s-pv" inputmode="decimal" placeholder="Ex.: 10"></label>
+        <p class="total" id="s-total">Gasto nessa trança: R$ 0</p>
+      </div>
+      <div class="duas">
+        <label for="s-h">Horas<input id="s-h" inputmode="numeric" placeholder="Ex.: 5"></label>
+        <label for="s-m">Minutos<input id="s-m" inputmode="numeric" placeholder="Ex.: 0"></label>
+      </div>
+      <p class="erro" id="s-erro" role="alert"></p>
+      <div class="acoes"><button class="forte" type="submit">Salvar</button><button type="button" id="s-cancelar">Cancelar</button><button type="button" class="perigo" id="s-apagar" hidden>Apagar serviço</button></div>
+    </form>
+    <div class="cartao" id="sim-box" hidden>
+      <h2>E se eu der desconto?</h2>
+      <p class="sub">Antes de fazer promoção, veja quanto sobra de verdade.</p>
+      <div class="duas"><label for="sim-serv">Trança<select id="sim-serv"></select></label><label for="sim-pct">Desconto (%)<input id="sim-pct" inputmode="decimal" placeholder="Ex.: 10"></label></div>
+      <div class="conta" id="sim-conta"></div>
+      <p class="dica" id="sim-dica" hidden></p>
+    </div>
+  </section>
+
+  <!-- MEU MÊS -->
+  <section class="tela" id="t-mes" hidden>
+    <div><h1>Meu mês</h1><p class="sub">Toque na trança cada vez que fizer uma. A conta do mês se faz sozinha.</p></div>
+    <div class="mes-nav"><button class="leve" id="mes-ant" type="button" aria-label="Mês anterior">◀</button><b id="mes-nome"></b><button class="leve" id="mes-prox" type="button" aria-label="Próximo mês">▶</button></div>
+    <div class="cartao">
+      <h2>1. Contas fixas do mês</h2>
+      <p class="sub">Comece por aqui. É o que você paga mesmo sem atender ninguém: aluguel da cadeira, luz, internet, celular.</p>
+      <div class="lista" id="lista-fixos"></div>
+      <div class="duas"><label for="f-nome">O quê<input id="f-nome" maxlength="30" placeholder="Ex.: aluguel"></label><label for="f-valor">Valor (R$)<input id="f-valor" inputmode="decimal" placeholder="Ex.: 300"></label></div>
+      <button class="amar" id="f-add" type="button">Anotar conta fixa</button>
+    </div>
+    <div class="cartao">
+      <h2>2. Fiz hoje</h2>
+      <p class="sub">Toque na trança que você fez. Ela entra na conta na hora.</p>
+      <div class="toques" id="toques"></div>
+      <div id="mes-novo">
+        <b style="font-size:14.5px">Fez um modelo que não está aqui?</b>
+        <p class="sub">Toque no modelo ou escreva o nome. Você põe o preço e o gasto uma vez só e ele fica salvo.</p>
+        <div class="toques chips" id="mes-modelos" style="margin-top:8px"></div>
+        <div class="duas" style="margin-top:8px;align-items:end"><label for="mes-outro">Outro modelo<input id="mes-outro" maxlength="40" placeholder="Escreva o nome"></label><button id="mes-outro-ok" type="button">Cadastrar</button></div>
+      </div>
+    </div>
+    <div class="cartao"><h2>3. Tranças feitas no mês</h2><div class="lista" id="lista-vendas"></div></div>
+    <div class="cartao">
+      <h2>4. Como ficou o seu mês</h2>
+      <div class="conta" id="conta-mes"></div>
+      <p class="dica" id="dica-mes"></p>
+      <label for="meta-valor">Quanto você quer que sobre neste mês (R$)<small>É a sua meta. O sistema mostra quanto falta.</small><input id="meta-valor" inputmode="decimal" placeholder="Ex.: 2000"></label>
+      <p class="dica" id="meta-txt" hidden></p>
+      <button id="resumo-baixar" type="button">Baixar o resumo do mês</button>
+    </div>
+  </section>
+
+  <!-- TABELA -->
+  <section class="tela" id="t-tabela" hidden>
+    <div><h1>Minha tabela</h1><p class="sub">Sua tabela de preços pronta para mandar no WhatsApp ou pôr no status.</p></div>
+    <div class="cartao">
+      <b style="font-size:14.5px">Qual preço vai aparecer na tabela</b>
+      <label class="opcao" for="tb-atual"><input type="radio" name="tb" id="tb-atual" value="atual"><span><b>Os preços que eu cobro hoje</b><small>Exatamente o que você escreveu em cada trança, na aba Serviços.</small></span></label>
+      <label class="opcao" for="tb-certo"><input type="radio" name="tb" id="tb-certo" value="certo"><span><b>Os preços novos, já corrigidos</b><small>O "Preço certo" que o sistema calculou: seu gasto + a hora que você quer ganhar + o lucro. Se der menos do que você já cobra, fica o seu preço de hoje.</small></span></label>
+      <div class="lista" id="tb-compara"></div>
+      <div><b style="font-size:14.5px">Cor</b><div class="cores" id="cores" style="margin-top:6px"></div></div>
+      <label class="chk" for="tb-tempo"><input type="checkbox" id="tb-tempo"> Mostrar quanto tempo leva cada trança</label>
+      <p class="sub" id="tb-falta" hidden>O nome do negócio e o seu @ ainda estão em branco. Preencha na aba "Meu negócio" para eles aparecerem na tabela.</p>
+    </div>
+    <img id="tabela-img" alt="Sua tabela de preços">
+    <button class="forte" id="tb-baixar" type="button">Baixar ou mandar a tabela</button>
+    <p class="sub">Se o botão não abrir nada no seu celular, segure o dedo em cima da imagem e escolha "Salvar imagem".</p>
+    <div class="cartao">
+      <h2>Mensagem para avisar do preço novo</h2>
+      <p class="sub">Vai mudar o preço? Mande esta mensagem antes da tabela. Pode mexer no texto à vontade.</p>
+      <label for="msg-data">A partir de que dia vale o preço novo<input id="msg-data" type="date"></label>
+      <label for="msg-texto">Mensagem<textarea id="msg-texto" rows="8"></textarea></label>
+      <div class="acoes"><button class="amar" id="msg-copiar" type="button">Copiar mensagem</button><button class="leve" id="msg-refazer" type="button">Voltar ao texto original</button></div>
+    </div>
+  </section>
+
+  <!-- AJUSTES -->
+  <section class="tela" id="t-ajustes" hidden>
+    <div><h1>Meu negócio</h1><p class="sub">Esses números valem para todas as contas.</p></div>
+    <div class="cartao">
+      <label for="a-nome">Nome do seu negócio<small>Aparece na tabela de preços.</small><input id="a-nome" maxlength="34" placeholder="Ex.: Tranças da Ju"></label>
+      <label for="a-contato">@ ou WhatsApp<small>Também aparece na tabela.</small><input id="a-contato" maxlength="34" placeholder="Ex.: @trancasdaju"></label>
+      <label for="a-hora">Quanto você quer ganhar por hora (R$)<small>Se não souber, deixe R$ 25.</small><input id="a-hora" inputmode="decimal"></label>
+      <label for="a-lucro">Lucro em cima disso (%)<small>A média do mercado é 20%.</small><input id="a-lucro" inputmode="decimal"></label>
+      <label class="chk" for="a-cartao"><input type="checkbox" id="a-cartao"> Recebo a maior parte no cartão (tira uns 4% de taxa)</label>
+      <button class="forte" id="a-salvar" type="button">Salvar</button>
+    </div>
+    <div class="cartao">
+      <h2>Cópia de segurança</h2>
+      <p class="sub">Seus dados ficam só neste celular. Se trocar de aparelho ou limpar o navegador, eles somem. Faça uma cópia de vez em quando e guarde, por exemplo, numa conversa sua no WhatsApp.</p>
+      <button class="amar" id="bk-copiar" type="button">Copiar minha cópia</button>
+      <label for="bk-texto">Para trazer de volta, cole a cópia aqui<textarea id="bk-texto" rows="3" placeholder="Cole aqui o texto da cópia"></textarea></label>
+      <p class="erro" id="bk-erro" role="alert"></p>
+      <button id="bk-restaurar" type="button">Trazer meus dados de volta</button>
+    </div>
+    <div class="cartao">
+      <h2>Começar do zero</h2>
+      <p class="sub">Apaga serviços, meses e ajustes deste celular.</p>
+      <button class="perigo" id="zerar" type="button">Apagar tudo</button>
+      <div class="aviso" id="zerar-conf" hidden><p><b>Tem certeza?</b> Não dá para desfazer.</p><div class="acoes"><button class="perigo" id="zerar-sim" type="button">Sim, apagar tudo</button><button id="zerar-nao" type="button">Não</button></div></div>
+    </div>
+    <div class="cartao"><h2>Deixe na tela inicial</h2><p class="sub">No menu do navegador (os três pontinhos ou o botão de compartilhar), toque em "Adicionar à tela inicial". O Quanto Sobra vira um atalho, como um aplicativo.</p><p class="sub">Use sempre o mesmo navegador. Na janela anônima e no navegador de dentro do Instagram os dados podem não ficar guardados.</p></div>
+    <p class="sub">Ficou com dúvida: WhatsApp (21) 98494-2432.</p>
+  </section>
+
+  <p class="rodape">Sistema montado pela Empresa JV · CNPJ 59.461.672/0001-47</p>
+  <p class="legal-app">Ferramenta de apoio para as suas contas. Não substitui contador.<br><a href="/termos/">Termos de uso</a> · <a href="/privacidade/">Privacidade</a></p>
+</div>
+
+<nav class="abas" role="tablist" aria-label="Telas">
+  <button role="tab" data-t="servicos" aria-selected="true">Serviços</button>
+  <button role="tab" data-t="mes" aria-selected="false">Meu mês</button>
+  <button role="tab" data-t="ajustes" aria-selected="false">Meu negócio</button>
+  <button role="tab" data-t="tabela" aria-selected="false">Tabela</button>
+</nav>
+<div class="toast" id="toast" hidden role="status"></div>
+
+<script>
+(function(){
+var CHAVE='jv-quanto-sobra-trancista-v2';
+var $=function(i){return document.getElementById(i)};
+/* Exemplos (valores pesquisados em 11 e 12/11/2026): nagô R$ 180 e fulani R$ 280 em cerca de 5 h (Superprof, tabelas de trancistas);
+   boho braids R$ 330 em 8 h com R$ 80 de fibra e pomada (relato de trancistas no atendimento); jumbo de 400 g de R$ 22 a R$ 40 (Mercado Livre). */
+var PADRAO=function(){return {v:1,cfg:{nome:'',contato:'',hora:25,lucro:20,cartao:false,cor:'#0E3B2A',tb:'atual'},
+  serv:[],vendas:[],fixos:[]}};
+var MODELOS=['Nagô','Box braids','Knotless braids','Fulani braids','Boho braids','Gypsy braids','Twist','Ghana braids','Entrelace','Manutenção'];
+function modelosLivres(){var tem=D.serv.map(function(s){return s.nome.toLowerCase()});return MODELOS.filter(function(m){return tem.indexOf(m.toLowerCase())<0})}
+var D;
+/* Tudo que vem do aparelho ou de uma cópia colada passa por aqui: só entram números válidos e textos curtos. */
+function limpa(o){var p=PADRAO();if(!o||typeof o!=='object')return p;
+  var n0=function(v){v=Number(v);return isFinite(v)&&v>0?Math.min(v,1e7):0},st=function(v,m){return String(v==null?'':v).slice(0,m)},novoId=function(){return Math.random().toString(36).slice(2,10)};
+  var CO=['#0E3B2A','#c8372c','#7a2e8f','#1f4f9c','#b0562a','#16130f'],c=(o.cfg&&typeof o.cfg==='object')?o.cfg:{},lu=Number(c.lucro);
+  p.cfg={nome:st(c.nome,34),contato:st(c.contato,34),hora:n0(c.hora)||25,lucro:(isFinite(lu)&&lu>=0&&lu<=500)?lu:20,cartao:!!c.cartao,cor:CO.indexOf(c.cor)>=0?c.cor:CO[0],tb:c.tb==='certo'?'certo':'atual',tbTempo:!!c.tbTempo};
+  if(typeof c.msg==='string'&&c.msg)p.cfg.msg=c.msg.slice(0,1500);
+  if(c.metas&&typeof c.metas==='object'){p.cfg.metas={};Object.keys(c.metas).slice(0,120).forEach(function(k){if(/^\d{4}-\d{2}$/.test(k)&&n0(c.metas[k]))p.cfg.metas[k]=n0(c.metas[k])})}
+  p.serv=(Array.isArray(o.serv)?o.serv:[]).slice(0,80).filter(function(s){return s&&typeof s==='object'&&n0(s.preco)}).map(function(s){var r={id:st(s.id,20)||novoId(),nome:st(s.nome,40)||'Trança',preco:n0(s.preco),gasto:n0(s.gasto),min:Math.round(n0(s.min))||60};
+    if(s.g&&typeof s.g==='object'){r.g={pas:!!s.g.pas};['jp','jv','pp','pr','el','out','pv'].forEach(function(k){r.g[k]=n0(s.g[k])})}return r});
+  p.vendas=(Array.isArray(o.vendas)?o.vendas:[]).slice(-6000).filter(function(v){return v&&/^\d{4}-\d{2}-\d{2}$/.test(v.dia)}).map(function(v){return {id:st(v.id,20)||novoId(),nome:st(v.nome,40)||'Trança',preco:n0(v.preco),gasto:n0(v.gasto),min:Math.round(n0(v.min)),dia:v.dia}});
+  p.fixos=(Array.isArray(o.fixos)?o.fixos:[]).slice(-2000).filter(function(f){return f&&/^\d{4}-\d{2}$/.test(f.mes)&&n0(f.valor)}).map(function(f){return {id:st(f.id,20)||novoId(),mes:f.mes,nome:st(f.nome,30)||'Conta',valor:n0(f.valor)}});
+  return p}
+function ler(){try{var s=localStorage.getItem(CHAVE);if(s)return limpa(JSON.parse(s))}catch(e){}return PADRAO()}
+function gravar(){try{localStorage.setItem(CHAVE,JSON.stringify(D))}catch(e){}}
+D=ler();
+var num=function(v){v=(v||'').toString().replace(/[R$\s%]/g,'');if(v.indexOf(',')>=0)v=v.replace(/\./g,'').replace(',','.');var n=parseFloat(v);return isNaN(n)?null:n};
+var brl=function(n){var neg=n<0;n=Math.abs(n);var s=(Math.round(n*100)%100===0)?Math.round(n).toLocaleString('pt-BR'):n.toLocaleString('pt-BR',{minimumFractionDigits:2,maximumFractionDigits:2});return (neg?'− ':'')+'R$ '+s};
+var cima5=function(n){return Math.ceil(n/5)*5};
+var uid=function(){return Date.now().toString(36)+Math.random().toString(36).slice(2,6)};
+var tempo=function(min){var h=Math.floor(min/60),m=min%60;return (h?h+' h':'')+(h&&m?' ':'')+(m?m+' min':'')||'0 min'};
+var taxa=function(){return D.cfg.cartao?0.04:0};
+function conta(s){var t=taxa(),horas=s.min/60,sobra=s.preco*(1-t)-s.gasto,hora=horas>0?sobra/horas:0;
+  var certo=cima5((s.gasto+horas*D.cfg.hora)*(1+D.cfg.lucro/100)/(1-t));return {sobra:sobra,hora:hora,certo:certo}}
+var toastT;function toast(m){var t=$('toast');t.textContent=m;t.hidden=false;clearTimeout(toastT);toastT=setTimeout(function(){t.hidden=true},2200)}
+function el(tag,cls,txt){var e=document.createElement(tag);if(cls)e.className=cls;if(txt!=null)e.textContent=txt;return e}
+
+/* ---------- Serviços ---------- */
+var editando=null;
+function pintaServ(){
+  var L=$('lista-serv');L.textContent='';
+  $('amostra').hidden=D.serv.length>0;
+  D.serv.forEach(function(s){
+    var c=conta(s),card=el('div','cartao');
+    var top=el('div','serv-top');top.appendChild(el('b',null,s.nome+(s.ex?' (exemplo)':'')));top.appendChild(el('span',null,brl(s.preco)));card.appendChild(top);
+    var trio=el('div','trio');
+    [['Sobra pra você',brl(c.sobra),c.sobra>0?'bom':'ruim'],['Sua hora ('+tempo(s.min)+')',brl(c.hora),c.hora>=D.cfg.hora?'bom':'ruim'],['Preço certo',brl(Math.max(c.certo,0)),'']].forEach(function(x){
+      var d=el('div');d.appendChild(el('small',null,x[0]));d.appendChild(el('b',x[2],x[1]));trio.appendChild(d)});
+    card.appendChild(trio);
+    var dica;
+    if(c.sobra<=0)dica=el('p','dica ruim','O gasto passa do preço: nesse valor você paga para trabalhar.');
+    else if(c.certo>s.preco)dica=el('p','dica ruim','Para ganhar '+brl(D.cfg.hora)+' por hora com '+D.cfg.lucro+'% de lucro, essa trança sai a '+brl(c.certo)+'. São '+brl(c.certo-s.preco)+' a mais.');
+    else dica=el('p','dica bom','Esse preço já paga a sua hora e o lucro que você quer.');
+    card.appendChild(dica);
+    var ac=el('div','acoes'),b=el('button','leve','Mudar');b.type='button';b.onclick=function(){abreForm(s)};ac.appendChild(b);card.appendChild(ac);
+    L.appendChild(card)});
+}
+var voltarMes=false,GC=['jp','jv','pp','pr','el','out','pv'];
+var txt=function(n){return n?String(n).replace('.',','):''};
+function lerGasto(){var g={};GC.forEach(function(k){g[k]=Math.max(0,num($('s-'+k).value)||0)});g.pas=$('s-pas').checked;
+  var total=g.jp*g.jv+(g.pr>0?g.pp/g.pr:0)+g.el+g.out+(g.pas?g.pv:0);return {g:g,total:Math.round(total*100)/100}}
+function pintaGasto(){$('s-pv-box').hidden=!$('s-pas').checked;$('s-total').textContent='Gasto nessa trança: '+brl(lerGasto().total)}
+GC.forEach(function(k){$('s-'+k).addEventListener('input',pintaGasto)});$('s-pas').addEventListener('change',pintaGasto);
+function abreForm(s,nomeIni){
+  editando=s||null;$('form-serv').hidden=false;$('novo-serv').hidden=true;$('s-erro').textContent='';
+  $('form-serv-tit').textContent=s?'Mudar serviço':'Novo serviço';$('s-apagar').hidden=!s;
+  $('s-nome').value=s?s.nome:(nomeIni||'');$('s-preco').value=s?txt(s.preco):'';
+  var g=s?(s.g||{out:s.gasto}):{};GC.forEach(function(k){$('s-'+k).value=txt(g[k])});$('s-pas').checked=!!g.pas;pintaGasto();
+  $('s-h').value=s?Math.floor(s.min/60)||'':'';$('s-m').value=s?(s.min%60)||'':'';
+  var livres=s?[]:modelosLivres(),box=$('s-modelos');box.textContent='';$('s-modelos-box').hidden=!livres.length;
+  livres.forEach(function(m){var b=el('button',null,m);b.type='button';b.onclick=function(){$('s-nome').value=m;$('s-preco').focus()};box.appendChild(b)});
+  $('form-serv').scrollIntoView({behavior:'smooth',block:'start'});
+}
+function fechaForm(){$('form-serv').hidden=true;$('novo-serv').hidden=false;editando=null}
+$('novo-serv').onclick=function(){voltarMes=false;abreForm(null)};
+$('s-cancelar').onclick=fechaForm;
+$('s-apagar').onclick=function(){if(!editando)return;D.serv=D.serv.filter(function(x){return x!==editando});gravar();fechaForm();pintaTudo();toast('Serviço apagado')};
+$('form-serv').addEventListener('submit',function(e){
+  e.preventDefault();var nome=$('s-nome').value.trim(),preco=num($('s-preco').value),gd=lerGasto(),gasto=gd.total,min=Math.round((num($('s-h').value)||0)*60+(num($('s-m').value)||0));
+  if(!nome){$('s-erro').textContent='Ponha o nome da trança.';$('s-nome').focus();return}
+  if(!preco||preco<=0){$('s-erro').textContent='Ponha quanto você cobra.';$('s-preco').focus();return}
+  if(min<=0){$('s-erro').textContent='Ponha quanto tempo leva.';$('s-h').focus();return}
+  if(editando){editando.nome=nome;editando.preco=preco;editando.gasto=gasto;editando.g=gd.g;editando.min=min;delete editando.ex}
+  else D.serv.push({id:uid(),nome:nome,preco:preco,gasto:gasto,g:gd.g,min:min});
+  gravar();fechaForm();pintaTudo();
+  if(voltarMes){voltarMes=false;abre('mes');toast(nome+' salva. Agora é só tocar nela em "Fiz hoje".')}else toast('Salvo')});
+function cadastrarDoMes(nome){voltarMes=true;abre('servicos');abreForm(null,nome);$('s-preco').focus()}
+$('mes-outro-ok').onclick=function(){var n=$('mes-outro').value.trim();if(!n){toast('Escreva o nome do modelo');return}$('mes-outro').value='';cadastrarDoMes(n)};
+
+/* ---------- Meu mês ---------- */
+var hoje=new Date(),mesAtual=hoje.getFullYear()+'-'+String(hoje.getMonth()+1).padStart(2,'0'),mes=mesAtual;
+var MESES=['janeiro','fevereiro','março','abril','maio','junho','julho','agosto','setembro','outubro','novembro','dezembro'];
+function mudaMes(d){var p=mes.split('-'),dt=new Date(+p[0],+p[1]-1+d,1);mes=dt.getFullYear()+'-'+String(dt.getMonth()+1).padStart(2,'0');pintaMes()}
+$('mes-ant').onclick=function(){mudaMes(-1)};$('mes-prox').onclick=function(){mudaMes(1)};
+function pintaMes(){
+  var p=mes.split('-');$('mes-nome').textContent=MESES[+p[1]-1]+' de '+p[0];
+  var T=$('toques');T.textContent='';
+  if(mes!==mesAtual)T.appendChild(el('p','vazio','Para anotar uma trança, volte para o mês de agora.'));
+  else if(!D.serv.length)T.appendChild(el('p','vazio','Você ainda não salvou nenhuma trança. Escolha um modelo aqui embaixo.'));
+  else D.serv.forEach(function(s){var b=el('button',null,'+ '+s.nome);b.type='button';b.onclick=function(){
+    var d=new Date(),dia=d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
+    D.vendas.push({id:uid(),nome:s.nome,preco:s.preco,gasto:s.gasto,min:s.min,dia:dia});gravar();pintaMes();toast(s.nome+' anotada: '+brl(s.preco))};T.appendChild(b)});
+  $('mes-novo').hidden=mes!==mesAtual;var MM=$('mes-modelos');MM.textContent='';
+  modelosLivres().forEach(function(m){var b=el('button',null,m);b.type='button';b.onclick=function(){cadastrarDoMes(m)};MM.appendChild(b)});
+  var vs=D.vendas.filter(function(v){return v.dia.slice(0,7)===mes}),fx=D.fixos.filter(function(f){return f.mes===mes});
+  var entrou=0,gasto=0,min=0;vs.forEach(function(v){entrou+=v.preco;gasto+=v.gasto;min+=v.min});
+  var tx=entrou*taxa(),fixo=fx.reduce(function(a,f){return a+f.valor},0),sobrou=entrou-gasto-tx-fixo;
+  var C=$('conta-mes');C.textContent='';
+  var linhas=[['Entrou ('+vs.length+(vs.length===1?' trança)':' tranças)'),brl(entrou)],['Gasto para fazer',brl(-gasto)]];
+  if(taxa())linhas.push(['Taxa do cartão',brl(-tx)]);
+  linhas.push(['Contas fixas',brl(-fixo)]);
+  linhas.forEach(function(x){var d=el('div');d.appendChild(el('span',null,x[0]));d.appendChild(el('span',null,x[1]));C.appendChild(d)});
+  var t=el('div','tot');t.appendChild(el('span',null,'Sobrou pra você'));t.appendChild(el('span',sobrou>=0?'bom':'ruim',brl(sobrou)));C.appendChild(t);
+  var dm=$('dica-mes');
+  if(!vs.length){dm.className='dica';dm.textContent='Ainda não tem trança anotada neste mês.'}
+  else{var hr=min>0?sobrou/(min/60):0;dm.className='dica '+(hr>=D.cfg.hora?'bom':'ruim');
+    dm.textContent='Foram '+tempo(min)+' de trabalho. Cada hora rendeu '+brl(hr)+(hr>=D.cfg.hora?', acima dos ':', abaixo dos ')+brl(D.cfg.hora)+' que você quer.'}
+  if(typeof pintaMeta==='function')pintaMeta();
+  var LF=$('lista-fixos');LF.textContent='';
+  if(!fx.length)LF.appendChild(el('p','vazio','Nenhuma conta fixa anotada neste mês.'));
+  fx.forEach(function(f){var d=el('div');d.appendChild(el('span',null,f.nome));d.appendChild(el('b',null,brl(f.valor)));var b=el('button',null,'Tirar');b.type='button';b.onclick=function(){D.fixos=D.fixos.filter(function(x){return x!==f});gravar();pintaMes()};d.appendChild(b);LF.appendChild(d)});
+  var LV=$('lista-vendas');LV.textContent='';
+  if(!vs.length)LV.appendChild(el('p','vazio','Nada por aqui ainda.'));
+  vs.slice().reverse().forEach(function(v){var d=el('div');d.appendChild(el('span',null,v.dia.slice(8)+'/'+v.dia.slice(5,7)+' · '+v.nome));d.appendChild(el('b',null,brl(v.preco)));var b=el('button',null,'Tirar');b.type='button';b.onclick=function(){D.vendas=D.vendas.filter(function(x){return x!==v});gravar();pintaMes()};d.appendChild(b);LV.appendChild(d)});
+}
+$('f-add').onclick=function(){var n=$('f-nome').value.trim(),v=num($('f-valor').value);if(!n||!v||v<=0){toast('Ponha o nome e o valor da conta');return}
+  D.fixos.push({id:uid(),mes:mes,nome:n,valor:v});gravar();$('f-nome').value='';$('f-valor').value='';pintaMes();toast('Conta anotada')};
+
+/* ---------- Tabela ---------- */
+var CORES=['#0E3B2A','#c8372c','#7a2e8f','#1f4f9c','#b0562a','#16130f'];
+function pintaCores(){var c=$('cores');c.textContent='';CORES.forEach(function(k){var b=el('button');b.type='button';b.style.background=k;b.setAttribute('aria-label','Cor '+k);b.setAttribute('aria-pressed',String(D.cfg.cor===k));b.onclick=function(){D.cfg.cor=k;gravar();pintaTabela()};c.appendChild(b)})}
+['tb-atual','tb-certo'].forEach(function(i){$(i).onchange=function(){D.cfg.tb=this.value;gravar();pintaTabela()}});
+$('tb-tempo').onchange=function(){D.cfg.tbTempo=this.checked;gravar();pintaTabela()};
+function caixa(g,x,y,w,h,r){g.beginPath();if(g.roundRect)g.roundRect(x,y,w,h,r);else g.rect(x,y,w,h);}
+function pintaTabela(){
+  pintaCores();$(D.cfg.tb==='certo'?'tb-certo':'tb-atual').checked=true;
+  var CP=$('tb-compara');CP.textContent='';D.serv.forEach(function(s){var c=Math.max(conta(s).certo,s.preco),d=el('div');d.appendChild(el('span',null,s.nome));
+    d.appendChild(el('b',null,D.cfg.tb==='certo'&&c>s.preco?brl(s.preco)+' → '+brl(c):brl(D.cfg.tb==='certo'?c:s.preco)));CP.appendChild(d)});
+  $('tb-tempo').checked=!!D.cfg.tbTempo;$('tb-falta').hidden=!!(D.cfg.nome&&D.cfg.contato);
+  var W=1080,ALT=D.cfg.tbTempo?150:124,n=Math.max(D.serv.length,1),H=Math.max(1350,470+n*ALT+330),cv=document.createElement('canvas');cv.width=W;cv.height=H;
+  var g=cv.getContext('2d'),cor=D.cfg.cor,AN='Anton, Impact, sans-serif',IN='Inter, Arial, sans-serif';
+  /* papel com grão */
+  g.fillStyle='#f6f1e5';g.fillRect(0,0,W,H);var sem=7;for(var i=0;i<2600;i++){sem=(sem*16807)%2147483647;var px=sem%W;sem=(sem*16807)%2147483647;var py=sem%H;g.fillStyle=(i%2)?'rgba(22,19,15,.045)':'rgba(255,255,255,.5)';g.fillRect(px,py,2,2)}
+  /* cabeçalho rasgado na cor dela */
+  g.fillStyle=cor;g.beginPath();g.moveTo(0,0);g.lineTo(W,0);g.lineTo(W,372);for(var x=W;x>=0;x-=36){g.lineTo(x,372+((x/36)%2?16:0))}g.closePath();g.fill();
+  g.fillStyle='rgba(255,255,255,.08)';g.beginPath();g.arc(W-110,90,210,0,7);g.fill();g.beginPath();g.arc(W-40,300,120,0,7);g.fill();
+  /* fita amarela */
+  g.save();g.translate(84,70);g.rotate(-0.035);g.fillStyle='#FFC82E';g.fillRect(0,0,400,66);g.fillStyle='rgba(22,19,15,.12)';g.fillRect(0,0,14,66);g.fillRect(386,0,14,66);
+  g.fillStyle='#16130f';g.font='42px '+AN;g.textBaseline='middle';g.fillText('TABELA DE PREÇOS',30,36);g.restore();
+  g.textBaseline='alphabetic';g.fillStyle='#fff';var nome=(D.cfg.nome||'Seu negócio aqui').toUpperCase(),fs=104;g.font=fs+'px '+AN;
+  while(g.measureText(nome).width>W-170&&fs>46){fs-=4;g.font=fs+'px '+AN}g.fillText(nome,84,262);
+  g.font='600 34px '+IN;g.fillStyle='rgba(255,255,255,.88)';g.fillText('Tranças feitas com capricho e hora marcada',84,322);
+  /* linhas em cartões */
+  var y=452;
+  if(!D.serv.length){g.fillStyle='#5b554b';g.font='40px '+IN;g.fillText('Salve suas tranças na aba Serviços.',84,y+50)}
+  D.serv.forEach(function(s,k){var preco=D.cfg.tb==='certo'?Math.max(conta(s).certo,s.preco):s.preco,ch=ALT-22;
+    g.fillStyle='rgba(22,19,15,.9)';caixa(g,66,y+6,W-126,ch,18);g.fill();
+    g.fillStyle='#fffdf7';caixa(g,60,y,W-126,ch,18);g.fill();
+    g.fillStyle=cor;caixa(g,60,y,16,ch,[18,0,0,18]);g.fill();
+    g.fillStyle='#16130f';g.font='700 46px '+IN;var nm=s.nome;while(g.measureText(nm).width>560&&nm.length>4)nm=nm.slice(0,-2);if(nm!==s.nome)nm+='…';
+    g.fillText(nm,108,y+(D.cfg.tbTempo?58:ch/2+16));
+    if(D.cfg.tbTempo){g.fillStyle='#5b554b';g.font='500 30px '+IN;g.fillText('leva cerca de '+tempo(s.min),108,y+104)}
+    g.font='60px '+AN;var p=brl(preco),pw=g.measureText(p).width,bx=W-66-60-pw-56;
+    g.fillStyle=k%2?'#FFC82E':cor;caixa(g,bx,y+(ch-84)/2,pw+56,84,42);g.fill();
+    g.fillStyle=k%2?'#16130f':'#fff';g.fillText(p,bx+28,y+ch/2+22);y+=ALT});
+  /* aviso e rodapé */
+  g.save();g.translate(84,y+34);g.rotate(0.012);g.fillStyle='#fffdf7';g.strokeStyle='#16130f';g.lineWidth=3;caixa(g,0,0,W-168,84,10);g.fill();g.stroke();
+  var av='O valor pode mudar com o tamanho e o comprimento do cabelo.',af=30;g.fillStyle='#16130f';g.font='500 '+af+'px '+IN;
+  while(g.measureText(av).width>W-168-52&&af>20){af-=1;g.font='500 '+af+'px '+IN}g.fillText(av,26,53);g.restore();
+  g.fillStyle='#16130f';g.fillRect(0,H-178,W,178);g.fillStyle='#FFC82E';g.fillRect(0,H-178,W,10);
+  g.fillStyle='#cfc8b8';g.font='600 28px '+IN;g.fillText('AGENDE O SEU HORÁRIO',84,H-116);
+  g.fillStyle='#fff';g.font='700 46px '+IN;g.fillText(D.cfg.contato||'Seu @ ou WhatsApp',84,H-60);
+  var d=new Date();d.setDate(d.getDate()+30);g.fillStyle='#cfc8b8';g.font='26px '+IN;var val='Válida até '+d.toLocaleDateString('pt-BR');g.fillText(val,W-84-g.measureText(val).width,H-62);
+  window.__cvTabela=cv;try{$('tabela-img').src=cv.toDataURL('image/png')}catch(e){}
+}
+function baixarCanvas(cv,arqNome){if(!cv)return;
+  cv.toBlob(function(blob){if(!blob){toast('Segure o dedo na imagem para salvar');return}
+    var arq;try{arq=new File([blob],arqNome,{type:'image/png'})}catch(e){}
+    var baixa=function(){try{var a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=arqNome;document.body.appendChild(a);a.click();a.remove();toast('Se não baixou, segure o dedo na imagem')}catch(e){toast('Segure o dedo na imagem para salvar')}};
+    var noSite=function(){try{if(arq&&navigator.canShare&&navigator.canShare({files:[arq]})){navigator.share({files:[arq],title:'Tabela de preços'}).catch(function(e){if(!e||e.name!=='AbortError')baixa()})}else baixa()}catch(e){baixa()}};
+    /* No link de teste (Artifact) o arquivo sai pela permissão de download da página; no site vale o caminho normal. */
+    if(window.claude&&window.claude.use){window.claude.use('downloads').then(function(dl){if(!dl){noSite();return}
+      dl.save({filename:arqNome,data:blob}).then(function(){toast('Imagem salva')},function(e){toast(e&&e.code==='declined'?'Você cancelou o download':'Segure o dedo na imagem para salvar')})},noSite)}
+    else noSite();
+  },'image/png')}
+$('tb-baixar').onclick=function(){baixarCanvas(window.__cvTabela,'tabela-de-precos.png')};
+
+/* ---------- Meu negócio ---------- */
+function pintaAjustes(){$('a-nome').value=D.cfg.nome;$('a-contato').value=D.cfg.contato;$('a-hora').value=String(D.cfg.hora).replace('.',',');$('a-lucro').value=String(D.cfg.lucro).replace('.',',');$('a-cartao').checked=!!D.cfg.cartao}
+$('a-salvar').onclick=function(){var h=num($('a-hora').value),l=num($('a-lucro').value);D.cfg.nome=$('a-nome').value.trim();D.cfg.contato=$('a-contato').value.trim();D.cfg.hora=h&&h>0?h:25;D.cfg.lucro=(l===null||l<0)?20:l;D.cfg.cartao=$('a-cartao').checked;gravar();pintaTudo();toast('Salvo')};
+$('bk-copiar').onclick=function(){var txt='QUANTOSOBRA:'+btoa(unescape(encodeURIComponent(JSON.stringify(D))));
+  var ok=function(){toast('Cópia copiada. Cole numa conversa sua para guardar.')},falha=function(){$('bk-texto').value=txt;$('bk-texto').select();toast('Selecione o texto abaixo e copie')};
+  try{navigator.clipboard.writeText(txt).then(ok,falha)}catch(e){falha()}};
+$('bk-restaurar').onclick=function(){$('bk-erro').textContent='';var t=$('bk-texto').value.trim();
+  try{if(t.indexOf('QUANTOSOBRA:')!==0)throw 0;var o=JSON.parse(decodeURIComponent(escape(atob(t.slice(12)))));if(!o||typeof o!=='object'||!Array.isArray(o.serv)||!o.cfg)throw 0;D=limpa(o);gravar();$('bk-texto').value='';pintaTudo();toast('Dados trazidos de volta')}
+  catch(e){$('bk-erro').textContent='Esse texto não é uma cópia válida. Copie de novo, inteiro, a partir de QUANTOSOBRA.'}};
+$('zerar').onclick=function(){$('zerar-conf').hidden=false};$('zerar-nao').onclick=function(){$('zerar-conf').hidden=true};
+$('zerar-sim').onclick=function(){D=PADRAO();gravar();$('zerar-conf').hidden=true;pintaTudo();toast('Tudo apagado')};
+
+/* ---------- Extras: mensagem, meta, desconto, resumo ---------- */
+function dataBR(iso){var p=(iso||'').split('-');return p.length===3?p[2]+'/'+p[1]:''}
+function msgPadrao(){var quando=dataBR($('msg-data').value)||'[dia]',ass=D.cfg.nome?'\n'+D.cfg.nome:'';
+  return 'Oi! Tudo bem? 💛\nPassando para avisar com antecedência: a partir de '+quando+' minha tabela de preços muda.\nFiz a conta de cada trança (material, tempo e o cuidado que cada uma pede) para continuar te atendendo com o mesmo capricho.\nQuem já está com horário marcado antes de '+quando+' continua com o valor de hoje.\nA tabela nova vai logo aqui embaixo. Qualquer dúvida, é só me chamar!'+ass}
+function pintaMsg(forca){if(!$('msg-data').value){var d=new Date();d.setDate(d.getDate()+15);$('msg-data').value=d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')}
+  if(forca||!D.cfg.msg)$('msg-texto').value=msgPadrao();else $('msg-texto').value=D.cfg.msg}
+$('msg-data').onchange=function(){delete D.cfg.msg;gravar();pintaMsg(true)};
+$('msg-texto').oninput=function(){D.cfg.msg=this.value;gravar()};
+$('msg-refazer').onclick=function(){delete D.cfg.msg;gravar();pintaMsg(true);toast('Texto original de volta')};
+$('msg-copiar').onclick=function(){var tx=$('msg-texto').value,ok=function(){toast('Mensagem copiada. Agora é só colar no WhatsApp.')},falha=function(){$('msg-texto').select();toast('Selecione o texto e copie')};
+  try{navigator.clipboard.writeText(tx).then(ok,falha)}catch(e){falha()}};
+function totaisMes(){var vs=D.vendas.filter(function(v){return v.dia.slice(0,7)===mes}),fx=D.fixos.filter(function(f){return f.mes===mes}),entrou=0,gasto=0,min=0;
+  vs.forEach(function(v){entrou+=v.preco;gasto+=v.gasto;min+=v.min});var tx=entrou*taxa(),fixo=fx.reduce(function(a,f){return a+f.valor},0);
+  return {n:vs.length,entrou:entrou,gasto:gasto,tx:tx,fixo:fixo,min:min,sobrou:entrou-gasto-tx-fixo}}
+function pintaMeta(){var m=D.cfg.metas&&D.cfg.metas[mes],T=$('meta-txt');if(document.activeElement!==$('meta-valor'))$('meta-valor').value=m?String(m).replace('.',','):'';
+  if(!m){T.hidden=true;return}var t=totaisMes(),falta=m-t.sobrou;T.hidden=false;
+  if(falta<=0){T.className='dica bom';T.textContent='Meta batida! Sobraram '+brl(t.sobrou)+', '+brl(-falta)+' acima da sua meta.';return}
+  var ss=D.serv.map(function(s){return conta(s).sobra}).filter(function(x){return x>0}),media=ss.length?ss.reduce(function(a,b){return a+b},0)/ss.length:0;
+  T.className='dica ruim';T.textContent='Faltam '+brl(falta)+' para a sua meta.'+(media>0?' Pelo que sobra em média nas suas tranças ('+brl(media)+'), são mais '+Math.ceil(falta/media)+(Math.ceil(falta/media)===1?' trança.':' tranças.'):'')}
+$('meta-valor').oninput=function(){var v=num(this.value);D.cfg.metas=D.cfg.metas||{};if(v&&v>0)D.cfg.metas[mes]=v;else delete D.cfg.metas[mes];gravar();pintaMeta()};
+function pintaSim(){var box=$('sim-box');box.hidden=!D.serv.length;if(!D.serv.length)return;var sel=$('sim-serv'),atual=sel.value;sel.textContent='';
+  D.serv.forEach(function(s){var o=el('option',null,s.nome);o.value=s.id;sel.appendChild(o)});if(D.serv.some(function(s){return s.id===atual}))sel.value=atual;
+  var s=D.serv.filter(function(x){return x.id===sel.value})[0],pct=num($('sim-pct').value),C=$('sim-conta'),DI=$('sim-dica');C.textContent='';DI.hidden=true;
+  if(!s||!pct||pct<=0||pct>=100)return;var antes=conta(s),novo={preco:s.preco*(1-pct/100),gasto:s.gasto,min:s.min},dep=conta(novo);
+  [['Preço',brl(s.preco)+' → '+brl(novo.preco)],['Sobra pra você',brl(antes.sobra)+' → '+brl(dep.sobra)],['Sua hora',brl(antes.hora)+' → '+brl(dep.hora)]].forEach(function(x){var d=el('div');d.appendChild(el('span',null,x[0]));d.appendChild(el('b',null,x[1]));C.appendChild(d)});
+  DI.hidden=false;if(dep.sobra<=0){DI.className='dica ruim';DI.textContent='Com esse desconto você paga para trabalhar.'}
+  else{var extra=antes.sobra>0?Math.round((antes.sobra/dep.sobra-1)*100):0;DI.className='dica '+(dep.hora>=D.cfg.hora?'bom':'ruim');
+    DI.textContent='O desconto sai inteiro do que sobra pra você. Para ganhar o mesmo de antes, precisa fazer '+extra+'% mais tranças.'}}
+$('sim-serv').onchange=pintaSim;$('sim-pct').oninput=pintaSim;
+$('resumo-baixar').onclick=function(){var t=totaisMes(),p=mes.split('-'),W=1080,H=1350,cv=document.createElement('canvas');cv.width=W;cv.height=H;var g=cv.getContext('2d'),cor=D.cfg.cor,AN='Anton, Impact, sans-serif',IN='Inter, Arial, sans-serif';
+  g.fillStyle='#f6f1e5';g.fillRect(0,0,W,H);g.fillStyle=cor;g.fillRect(0,0,W,330);g.fillStyle='#FFC82E';g.fillRect(84,70,330,62);g.fillStyle='#16130f';g.font='40px '+AN;g.textBaseline='middle';g.fillText('MEU MÊS',104,103);g.textBaseline='alphabetic';
+  g.fillStyle='#fff';g.font='96px '+AN;g.fillText((MESES[+p[1]-1]+' de '+p[0]).toUpperCase(),84,262);
+  var L=[['Entrou ('+t.n+(t.n===1?' trança)':' tranças)'),brl(t.entrou)],['Gasto para fazer',brl(-t.gasto)]];if(taxa())L.push(['Taxa do cartão',brl(-t.tx)]);L.push(['Contas fixas',brl(-t.fixo)]);
+  var y=470;L.forEach(function(x){g.fillStyle='#16130f';g.font='500 44px '+IN;g.fillText(x[0],84,y);g.font='600 44px '+IN;var w=g.measureText(x[1]).width;g.fillText(x[1],W-84-w,y);g.strokeStyle='#bdb5a3';g.setLineDash([4,10]);g.lineWidth=3;g.beginPath();g.moveTo(84,y+34);g.lineTo(W-84,y+34);g.stroke();g.setLineDash([]);y+=110});
+  g.fillStyle='#fffdf7';g.strokeStyle='#16130f';g.lineWidth=4;caixa(g,60,y+10,W-120,230,20);g.fill();g.stroke();g.fillStyle='#5b554b';g.font='600 38px '+IN;g.fillText('SOBROU PRA MIM',100,y+86);
+  g.fillStyle=t.sobrou>=0?cor:'#c8372c';g.font='120px '+AN;g.fillText(brl(t.sobrou),100,y+205);
+  var hr=t.min>0?t.sobrou/(t.min/60):0;g.fillStyle='#16130f';g.font='500 38px '+IN;g.fillText(t.min>0?'Foram '+tempo(t.min)+' de trabalho. Cada hora rendeu '+brl(hr)+'.':'Nenhuma trança anotada neste mês.',84,y+320);
+  g.fillStyle='#16130f';g.fillRect(0,H-120,W,120);g.fillStyle='#fff';g.font='600 36px '+IN;g.fillText(D.cfg.nome||'Quanto Sobra',84,H-48);
+  baixarCanvas(cv,'meu-mes-'+mes+'.png')};
+function pintaExtras(){pintaMsg(false);pintaMeta();pintaSim()}
+
+/* ---------- Abas ---------- */
+function abre(t){['servicos','mes','tabela','ajustes'].forEach(function(k){$('t-'+k).hidden=k!==t});
+  [].forEach.call(document.querySelectorAll('.abas button'),function(b){b.setAttribute('aria-selected',String(b.dataset.t===t))});
+  if(t==='tabela')pintaTabela();if(t==='mes')pintaMes();window.scrollTo(0,0);try{sessionStorage.setItem(CHAVE+'-aba',t)}catch(e){}}
+[].forEach.call(document.querySelectorAll('.abas button'),function(b){b.onclick=function(){abre(b.dataset.t)}});
+function pintaTudo(){pintaServ();pintaMes();pintaAjustes();pintaExtras();if(!$('t-tabela').hidden)pintaTabela()}
+pintaTudo();
+var ini='servicos';try{ini=sessionStorage.getItem(CHAVE+'-aba')||ini}catch(e){}abre(ini);
+if(document.fonts&&document.fonts.ready)document.fonts.ready.then(function(){if(!$('t-tabela').hidden)pintaTabela()});
+})();
+</script>
+<script>
+(function(){var K='jv-qs-acesso-trancista',H=['3d8afa99b71e4393b841ea6cd1ba34f4cee792a1e753f59c5b13795f5a8a0862'],P=document.getElementById('portao');
+var ok=false;try{ok=H.indexOf(localStorage.getItem(K))>=0}catch(e){}
+if(ok)return;P.hidden=false;
+function hex(buf){return Array.prototype.map.call(new Uint8Array(buf),function(b){return ('0'+b.toString(16)).slice(-2)}).join('')}
+document.getElementById('portao-form').addEventListener('submit',function(e){e.preventDefault();var er=document.getElementById('portao-erro'),c=document.getElementById('portao-cod').value.replace(/\s+/g,'').toUpperCase();er.textContent='';
+  if(!c){er.textContent='Digite o código.';return}
+  if(!window.crypto||!crypto.subtle){er.textContent='Este navegador não consegue conferir o código. Abra pelo Chrome ou pelo Safari.';return}
+  crypto.subtle.digest('SHA-256',new TextEncoder().encode('jv-quanto-sobra:'+c)).then(function(b){var h=hex(b);
+    if(H.indexOf(h)>=0){try{localStorage.setItem(K,h)}catch(_){}P.hidden=true;window.scrollTo(0,0)}else er.textContent='Código não confere. Veja se digitou igual ao do e-mail.'})});
+})();
+</script>
+
+</body>
+</html>

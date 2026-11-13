@@ -19,7 +19,7 @@
 <script>if(!/jvorganiza/.test(location.hostname)){window.fbq=function(){console.log('[teste] fbq',[].slice.call(arguments))}}
 !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
 var ORIGEM=(new URLSearchParams(location.search).get('utm_source')||'direto');var PROD={content_name:'Kit Confeitaria',content_ids:['confeitaria'],content_type:'product',value:147,currency:'BRL'};
-fbq('init','1129384439673429');fbq('track','PageView');fbq('track','ViewContent',PROD);fbq('trackCustom','AbriuPagina',{pagina:'kit-confeitaria',origem:ORIGEM});
+fbq('consent',(function(){try{return localStorage.getItem('jv-cookies')==='sim'}catch(e){return false}})()?'grant':'revoke');fbq('init','1129384439673429');fbq('track','PageView');fbq('track','ViewContent',PROD);fbq('trackCustom','AbriuPagina',{pagina:'kit-confeitaria',origem:ORIGEM});
 document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a');if(!a)return;var h=a.getAttribute('href')||'';var d=/wa\.me|whatsapp|zap/i.test(h)?'whatsapp':/pay\./i.test(h)?'checkout':/\/kits/.test(h)?'kits':'outro';try{fbq('trackCustom','CliqueLink',{pagina:'kit-confeitaria',destino:d,texto:(a.innerText||'').trim().slice(0,40)});if(d==='checkout')fbq('track','InitiateCheckout',PROD)}catch(_){}},true);</script>
 <style>
 .kit{display:grid;gap:26px;padding-block:22px 40px}
@@ -42,6 +42,7 @@ document.addEventListener('click',function(e){var a=e.target.closest&&e.target.c
 .faq p{margin:8px 0 0}
 .topo-kit .btn{font-size:15px}
 </style>
+<script src="/cookies.js" defer></script>
 </head>
 <body>
 <header class="topo-site topo-kit"><div class="wrap"><a class="marca" href="/kits/"><span class="logo">JV</span><b>Empresa JV</b><i>Kits no Notion</i></a>

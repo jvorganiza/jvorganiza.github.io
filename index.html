@@ -17,8 +17,9 @@
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Bebas+Neue&family=Inter:wght@400;500;600;700&family=Caveat:wght@700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/caderno.css">
 <script>!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
-fbq('init','1129384439673429');fbq('track','PageView');fbq('trackCustom','AbriuPagina',{pagina:'home',origem:(new URLSearchParams(location.search).get('utm_source')||'direto')});
+fbq('consent',(function(){try{return localStorage.getItem('jv-cookies')==='sim'}catch(e){return false}})()?'grant':'revoke');fbq('init','1129384439673429');fbq('track','PageView');fbq('trackCustom','AbriuPagina',{pagina:'home',origem:(new URLSearchParams(location.search).get('utm_source')||'direto')});
 document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a');if(!a)return;var h=a.getAttribute('href')||'';var d=/wa\.me|whatsapp|zap/i.test(h)?'whatsapp':/kiwify|pay\./i.test(h)?'checkout':/\/kits/.test(h)?'kits':/\/ir\//.test(h)?'isca':/instagram/.test(h)?'instagram':'outro';try{fbq('trackCustom','CliqueLink',{pagina:'home',destino:d,texto:(a.innerText||'').trim().slice(0,40)})}catch(_){}} ,true);</script>
+<script src="/cookies.js" defer></script>
 </head>
 <body>
 <header class="topo-site"><div class="wrap"><a class="marca" href="/"><span class="logo">JV</span><b>Empresa JV</b><i>Caderno de dicas</i></a>

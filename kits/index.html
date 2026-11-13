@@ -19,7 +19,7 @@
 <script>if(!/jvorganiza/.test(location.hostname)){window.fbq=function(){console.log('[teste] fbq',[].slice.call(arguments))}}
 !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
 var ORIGEM=(new URLSearchParams(location.search).get('utm_source')||'direto');var PROD={content_name:'Kits',content_type:'product_group',currency:'BRL'};
-fbq('init','1129384439673429');fbq('track','PageView');fbq('track','ViewContent',PROD);fbq('trackCustom','AbriuPagina',{pagina:'kits',origem:ORIGEM});
+fbq('consent',(function(){try{return localStorage.getItem('jv-cookies')==='sim'}catch(e){return false}})()?'grant':'revoke');fbq('init','1129384439673429');fbq('track','PageView');fbq('track','ViewContent',PROD);fbq('trackCustom','AbriuPagina',{pagina:'kits',origem:ORIGEM});
 document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a');if(!a)return;var h=a.getAttribute('href')||'';var d=/wa\.me|whatsapp|zap/i.test(h)?'whatsapp':/pay\./i.test(h)?'checkout':/\/kits/.test(h)?'kits':'outro';try{fbq('trackCustom','CliqueLink',{pagina:'kits',destino:d,texto:(a.innerText||'').trim().slice(0,40)});if(d==='checkout')fbq('track','InitiateCheckout',PROD)}catch(_){}},true);</script>
 <style>
 .kits{display:grid;gap:24px;padding-block:22px 40px}
@@ -35,6 +35,7 @@ document.addEventListener('click',function(e){var a=e.target.closest&&e.target.c
 .caixa{background:var(--folha);border:2px solid var(--tinta);border-radius:14px;padding:18px 20px;display:grid;gap:8px}
 .caixa p{margin:0}
 </style>
+<script src="/cookies.js" defer></script>
 </head>
 <body>
 <header class="topo-site"><div class="wrap"><a class="marca" href="/"><span class="logo">JV</span><b>Empresa JV</b><i>Kits no Notion</i></a>

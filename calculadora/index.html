@@ -19,7 +19,7 @@
 <script>if(!/jvorganiza/.test(location.hostname)){window.fbq=function(){console.log('[teste] fbq',[].slice.call(arguments))}}
 !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
 var ORIGEM=(new URLSearchParams(location.search).get('utm_source')||'direto');
-fbq('init','1129384439673429');fbq('track','PageView');fbq('trackCustom','AbriuPagina',{pagina:'calculadora',origem:ORIGEM});
+fbq('consent',(function(){try{return localStorage.getItem('jv-cookies')==='sim'}catch(e){return false}})()?'grant':'revoke');fbq('init','1129384439673429');fbq('track','PageView');fbq('trackCustom','AbriuPagina',{pagina:'calculadora',origem:ORIGEM});
 document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a');if(!a)return;var h=a.getAttribute('href')||'';var d=/wa\.me|whatsapp|zap/i.test(h)?'whatsapp':/pay\./i.test(h)?'checkout':/\/kits/.test(h)?'kits':'outro';try{fbq('trackCustom','CliqueLink',{pagina:'calculadora',destino:d,texto:(a.innerText||'').trim().slice(0,40)})}catch(_){}
 if(d==='checkout'){try{fbq('track','InitiateCheckout',{value:27,currency:'BRL',content_name:'Tabela de preços com a sua marca'})}catch(_){}}},true);</script>
 <style>
@@ -49,6 +49,7 @@ if(d==='checkout'){try{fbq('track','InitiateCheckout',{value:27,currency:'BRL',c
 .outra{background:none!important;color:var(--verde)!important;border:2px solid var(--verde)!important}
 @media (max-width:480px){.linha2{grid-template-columns:1fr}}
 </style>
+<script src="/cookies.js" defer></script>
 </head>
 <body>
 <header class="topo-site"><div class="wrap"><a class="marca" href="/"><span class="logo">JV</span><b>Empresa JV</b><i>Calculadora de preço</i></a></div></header>
