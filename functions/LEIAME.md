@@ -9,3 +9,5 @@ Configuração no painel da Cloudflare (projeto jvorganiza → Configurações �
 - Variável secreta `CAKTO_SECRET` = segredo do webhook criado na Cakto (quem cola é o João).
 
 O e-mail da compradora não é guardado; fica só um resumo (SHA-256) dele.
+
+Segredo CAKTO_SECRET colado pelo João em 13/11/2026 (noite).
