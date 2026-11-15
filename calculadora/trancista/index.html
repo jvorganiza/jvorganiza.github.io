@@ -20,7 +20,7 @@
 !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
 var ORIGEM=(new URLSearchParams(location.search).get('utm_source')||'direto');
 fbq('consent',(function(){try{return localStorage.getItem('jv-cookies')==='sim'}catch(e){return false}})()?'grant':'revoke');fbq('init','1129384439673429');fbq('track','PageView');fbq('trackCustom','AbriuPagina',{pagina:'calculadora-trancista',origem:ORIGEM});
-document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a');if(!a)return;var h=a.getAttribute('href')||'';var d=/wa\.me|whatsapp/i.test(h)?'whatsapp':/pay\./i.test(h)?'checkout':/lapis/.test(h)?'lapis':'outro';try{fbq('trackCustom','CliqueLink',{pagina:'calculadora-trancista',destino:d,texto:(a.innerText||'').trim().slice(0,40)})}catch(_){}},true);</script>
+document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a');if(!a)return;var h=a.getAttribute('href')||'';var d=/wa\.me|whatsapp/i.test(h)?'whatsapp':/pay\./i.test(h)?'checkout':/lapis/.test(h)?'lapis':'outro';try{fbq('trackCustom','CliqueLink',{pagina:'calculadora-trancista',destino:d,texto:(a.innerText||'').trim().slice(0,40)});if(d==='checkout')fbq('track','InitiateCheckout',{content_name:'Na Ponta do Lapis trancista',content_ids:['quanto-sobra-trancista'],content_type:'product',value:27,currency:'BRL'})}catch(_){}},true);</script>
 <style>
 .calc{background:var(--folha);border:2px solid var(--tinta);border-radius:14px;padding:20px;display:grid;gap:14px;box-shadow:4px 4px 0 var(--tinta)}
 .calc label{display:grid;gap:6px;font-weight:600}
@@ -57,7 +57,8 @@ document.addEventListener('click',function(e){var a=e.target.closest&&e.target.c
 .trava .mes div{background:#fff;border-radius:8px;padding:8px;min-width:0}
 .trava .mes small{display:block;font-size:12px;color:var(--tinta2)}
 .trava .mes b{filter:blur(5px);user-select:none;font-size:18px}
-.previa .btn{justify-self:start;font-size:18px;background:var(--verde);color:#fff}
+.previa .btn{justify-self:stretch;text-align:center;font-size:19px;background:var(--verde);color:#fff}
+.previa .ver{justify-self:center;color:var(--tinta);font-weight:600}
 .miudo{font-size:13px;color:var(--tinta2);margin:0}
 @media (max-width:480px){.linha2{grid-template-columns:1fr}}
 </style>
@@ -108,11 +109,11 @@ document.addEventListener('click',function(e){var a=e.target.closest&&e.target.c
 <div class="mes" aria-hidden="true"><div><small>Entrou</small><b>R$ 3.240</b></div><div><small>Gastou</small><b>R$ 1.080</b></div><div><small>Sobrou</small><b>R$ 2.160</b></div></div>
 <p class="miudo">Você toca na trança que fez e, no fim do mês, vê quanto entrou, quanto saiu e quanto sobrou de verdade.</p>
 </div>
-<p><b>R$ 27, uma vez só.</b> Abre no celular, sem baixar nada, com 7 dias de garantia.</p>
-<a class="btn" id="ir-npl" href="/na-ponta-do-lapis/trancista/?utm_source=calculadora-trancista">Ver todas as minhas tranças</a>
+<p><b>R$ 27, uma vez só.</b> Pix ou cartão. Abre no celular, sem baixar nada, com 7 dias de garantia.</p>
+<a class="btn" id="comprar" href="https://pay.cakto.com.br/4dkmz5v?split=1">Quero o Na Ponta do Lápis</a>
+<a class="ver" href="/na-ponta-do-lapis/trancista/?utm_source=calculadora-trancista">Ver como funciona antes</a>
 </aside>
 
-<button class="outra" type="button" id="outra">Calcular outra trança</button>
 <p>Ficou alguma dúvida? <a href="https://wa.me/5521984942432?text=Oi%21%20Usei%20a%20calculadora%20de%20tran%C3%A7a%20do%20site%20e%20fiquei%20com%20uma%20d%C3%BAvida">Fala com a gente no WhatsApp</a>, a mensagem já vai pronta.</p>
 </section>
 <p class="miudo" style="margin-top:22px">A calculadora é uma ferramenta de apoio. O resultado depende dos números que você coloca e a decisão de preço é sempre sua.</p>
@@ -156,7 +157,6 @@ $('calc').addEventListener('submit',function(e){
   $('res').classList.add('on');$('res').scrollIntoView({behavior:'smooth',block:'start'});
   try{fbq('trackCustom','Calculou',{n:contas,hora:Math.round(hora),origem:ORIGEM,pagina:'calculadora-trancista'});if(contas===1)fbq('track','Lead',{content_name:'calculadora-trancista'});}catch(_){}
 });
-$('outra').addEventListener('click',function(){['nome','preco','mat','h','m'].forEach(function(i){$(i).value=''});$('calc').scrollIntoView({behavior:'smooth'});$('nome').focus()});
 })();
 </script>
 </body>
