@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Calculadora grátis para confeitaria · Empresa JV</title>
+<meta name="description" content="Coloque quanto você cobra, quanto gasta de ingredientes e quanto tempo leva: a calculadora mostra quanto sobra da sua encomenda, quanto vale a sua hora e o preço certo.">
+<link rel="canonical" href="https://jvorganiza.com.br/calculadora/confeitaria/">
+<meta property="og:title" content="Quanto sobra do seu bolo? · Calculadora grátis">
+<meta property="og:description" content="Em 1 minuto você vê quanto fica com você em cada encomenda e quanto vale a sua hora.">
+<meta property="og:image" content="https://jvorganiza.com.br/img/na-ponta-do-lapis/tabela-confeitaria-colagem.png">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#0E3B2A">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='32' fill='%230E3B2A'/%3E%3Cg transform='rotate(-6 22 33)'%3E%3Crect x='12' y='17' width='20' height='32' fill='%23d64034'/%3E%3Ctext x='22' y='43' font-family='Impact,Arial' font-size='26' text-anchor='middle' fill='%23fff'%3EJ%3C/text%3E%3C/g%3E%3Cg transform='rotate(5 42 33)'%3E%3Crect x='32' y='18' width='21' height='32' fill='%23f6f1e5'/%3E%3Ctext x='42.5' y='44' font-family='Impact,Arial' font-size='26' text-anchor='middle' fill='%2316130f'%3EV%3C/text%3E%3C/g%3E%3Crect x='20' y='12' width='22' height='7' fill='%23FFC82E' transform='rotate(-8 31 15)'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&family=Caveat:wght@700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/caderno.css">
+<script>if(!/jvorganiza/.test(location.hostname)){window.fbq=function(){console.log('[teste] fbq',[].slice.call(arguments))}}
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+var ORIGEM=(new URLSearchParams(location.search).get('utm_source')||'direto');
+fbq('consent',(function(){try{return localStorage.getItem('jv-cookies')==='sim'}catch(e){return false}})()?'grant':'revoke');fbq('init','1129384439673429');fbq('track','PageView');fbq('trackCustom','AbriuPagina',{pagina:'calculadora-confeitaria',origem:ORIGEM});
+document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a');if(!a)return;var h=a.getAttribute('href')||'';var d=/wa\.me|whatsapp/i.test(h)?'whatsapp':/pay\./i.test(h)?'checkout':/lapis/.test(h)?'lapis':'outro';try{fbq('trackCustom','CliqueLink',{pagina:'calculadora-confeitaria',destino:d,texto:(a.innerText||'').trim().slice(0,40)});if(d==='checkout')fbq('track','InitiateCheckout',{content_name:'Na Ponta do Lapis confeitaria',content_ids:['quanto-sobra-confeitaria'],content_type:'product',value:27,currency:'BRL'})}catch(_){}},true);</script>
+<style>
+.calc{background:var(--folha);border:2px solid var(--tinta);border-radius:14px;padding:20px;display:grid;gap:14px;box-shadow:4px 4px 0 var(--tinta)}
+.calc label{display:grid;gap:6px;font-weight:600}
+.calc label small{font-weight:400;color:var(--tinta2)}
+.calc input{font:inherit;font-size:17px;padding:12px;border:2px solid var(--tinta2);border-radius:10px;background:#fff;width:100%;min-width:0}
+.calc input:focus{outline:3px solid var(--amarelo);border-color:var(--tinta)}
+.linha2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.calc .chk{display:flex;gap:10px;align-items:center;font-weight:500}
+.calc .chk input{width:22px;height:22px}
+.calc button{font:inherit;font-weight:700;font-size:18px;padding:14px;border:0;border-radius:10px;background:var(--verde);color:#fff;cursor:pointer}
+.calc .erro{color:var(--verm);font-weight:600;min-height:1em;margin:0}
+.res{display:none;gap:14px;margin-top:22px}
+.res.on{display:grid}
+.res .num{background:#fff;border:2px solid var(--tinta);border-radius:12px;padding:16px;display:grid;gap:6px}
+.res .num b{font-family:Anton,Impact,sans-serif;font-size:34px;font-weight:400;line-height:1.1}
+.res .num p{margin:0}
+.outra{font:inherit;font-weight:700;padding:12px;border-radius:10px;background:none;color:var(--verde);border:2px solid var(--verde);cursor:pointer}
+.previa{background:var(--amarelo);border:2px solid var(--tinta);border-radius:14px;padding:18px;display:grid;gap:14px;box-shadow:4px 4px 0 var(--tinta)}
+.previa h2{margin:0}
+.previa p{margin:0}
+.tab{background:#0E3B2A;color:#fff;border:2px solid var(--tinta);border-radius:12px;overflow:hidden;max-width:380px;width:100%;justify-self:center}
+.tab .cab{padding:14px 16px 10px;display:grid;gap:4px}
+.tab .cab small{font-family:Anton,Impact,sans-serif;background:var(--amarelo);color:var(--tinta);justify-self:start;padding:1px 8px;font-size:15px;letter-spacing:.02em}
+.tab .cab b{font-family:Anton,Impact,sans-serif;font-size:28px;font-weight:400;line-height:1.05}
+.tab ul{list-style:none;margin:0;padding:12px;background:#f6f1e5;display:grid;gap:8px}
+.tab li{background:#fff;color:var(--tinta);border:2px solid var(--tinta);border-left:6px solid #0E3B2A;border-radius:8px;padding:8px 10px;display:flex;justify-content:space-between;align-items:center;gap:10px}
+.tab li span{font-weight:700;min-width:0;overflow-wrap:anywhere}
+.tab li span small{display:block;font-weight:400;color:var(--tinta2);font-size:12px}
+.tab li em{font-style:normal;font-family:Anton,Impact,sans-serif;font-size:20px;background:#0E3B2A;color:#fff;border-radius:99px;padding:2px 12px;white-space:nowrap}
+.tab li.borr{filter:blur(4px);user-select:none}
+.tab .rod{padding:10px 16px;font-size:13px;background:#16130f}
+.trava{display:grid;gap:8px;background:var(--folha);border:2px dashed var(--tinta);border-radius:12px;padding:14px}
+.trava .mes{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.trava .mes div{background:#fff;border-radius:8px;padding:8px;min-width:0}
+.trava .mes small{display:block;font-size:12px;color:var(--tinta2)}
+.trava .mes b{filter:blur(5px);user-select:none;font-size:18px}
+.previa .btn{justify-self:stretch;text-align:center;font-size:19px;background:var(--verde);color:#fff}
+.previa .ver{justify-self:center;color:var(--tinta);font-weight:600}
+.miudo{font-size:13px;color:var(--tinta2);margin:0}
+@media (max-width:480px){.linha2{grid-template-columns:1fr}}
+.res>p{line-height:28px;margin:0}
+</style>
+<script src="/cookies.js" defer></script>
+</head>
+<body>
+<header class="topo-site"><div class="wrap"><a class="marca" href="/"><span class="logo">JV</span><b>Empresa JV</b><i>Calculadora para confeitaria</i></a></div></header>
+<main class="wrap artigo">
+<span class="tag amarelo">GRÁTIS · PARA CONFEITARIA</span>
+<h1>Quanto sobra do seu bolo?</h1>
+<p class="resumo">Coloque quanto você cobra, quanto gasta de ingredientes e quanto tempo leva. Em 1 minuto você vê quanto fica com você, quanto vale a sua hora e qual seria o preço certo.</p>
+
+<form class="calc" id="calc" novalidate>
+<label>Qual bolo ou doce?<small>Ex.: bolo de 2 kg, cento de brigadeiro, bolo de pote, naked cake</small><input id="nome" autocomplete="off" maxlength="40" placeholder="Nome do bolo ou doce"></label>
+<label>Quanto você cobra nela hoje? (R$)<input id="preco" inputmode="decimal" placeholder="Ex.: 85"></label>
+<label>Quanto gasta em cada encomenda? (R$)<small>Ingredientes, embalagem, forminhas e a parte do gás. Do pacote, só o que vai nesta encomenda. Se paga entrega, some aqui.</small><input id="mat" inputmode="decimal" placeholder="Ex.: 50"></label>
+<div class="linha2">
+<label>Tempo: horas<input id="h" inputmode="numeric" placeholder="Ex.: 2"></label>
+<label>e minutos<input id="m" inputmode="numeric" placeholder="Ex.: 0"></label>
+</div>
+<label>Quanto você quer ganhar por hora? (R$)<small>Se não souber, deixe R$ 25</small><input id="quer" inputmode="decimal" value="25"></label>
+<label>Quanto de lucro você quer em cima disso? (%)<small>A média do mercado é 20%. Se não souber, deixe assim.</small><input id="lucro" inputmode="decimal" value="20"></label>
+<label class="chk"><input type="checkbox" id="cartao"> Recebo no cartão (soma uns 4% de taxa no preço)</label>
+<p class="erro" id="erro" role="alert"></p>
+<button type="submit">Ver quanto sobra</button>
+</form>
+
+<section class="res" id="res" aria-live="polite">
+<div class="num"><span id="r-nome"></span><b id="r-sobra"></b><p id="r-sobra-txt"></p></div>
+<div class="num"><span>Sua hora vale</span><b id="r-hora"></b><p id="r-hora-txt"></p></div>
+<div class="num"><span>Preço certo com <span id="r-quer"></span> por hora e <span id="r-lucro"></span>% de lucro</span><b id="r-sug"></b><p id="r-sug-txt"></p></div>
+
+<aside class="previa" id="previa">
+<h2>Essa foi 1 encomenda. E as outras?</h2>
+<p>Cada bolo e cada doce tem um gasto e um tempo diferente. O que parece dar mais dinheiro nem sempre é o que sobra mais. No <b>Na Ponta do Lápis</b> você coloca todos, vê qual compensa e sai com o cardápio pronto, assim:</p>
+<div class="tab" aria-label="Prévia do seu cardápio">
+<div class="cab"><small>CARDÁPIO</small><b>SEU NOME AQUI</b></div>
+<ul>
+<li><span id="t-nome">Seu bolo<small>leva cerca de 2 h</small></span><em id="t-preco">R$ 0</em></li>
+<li class="borr" aria-hidden="true"><span>Bolo de 2 kg<small>leva cerca de 3 h</small></span><em>R$ ••</em></li>
+<li class="borr" aria-hidden="true"><span>Doce gourmet (cento)<small>leva cerca de 3 h</small></span><em>R$ •••</em></li>
+<li class="borr" aria-hidden="true"><span>Bolo de pote<small>leva cerca de 10 min</small></span><em>R$ ••</em></li>
+</ul>
+<div class="rod">Com a sua logo, as suas cores e o seu @</div>
+</div>
+<div class="trava">
+<b>E o seu mês?</b>
+<div class="mes" aria-hidden="true"><div><small>Entrou</small><b>R$ 1.595</b></div><div><small>Gastou</small><b>R$ 770</b></div><div><small>Sobrou</small><b>R$ 825</b></div></div>
+<p class="miudo">Você toca na encomenda que entregou e, no fim do mês, vê quanto entrou, quanto saiu e quanto sobrou de verdade.</p>
+</div>
+<p><b>R$ 27, uma vez só.</b> Pix ou cartão. Abre no celular, sem baixar nada, com 7 dias de garantia.</p>
+<a class="btn" id="comprar" href="https://pay.cakto.com.br/p2rxiny_1327720?split=1">Quero o Na Ponta do Lápis</a>
+<a class="ver" href="/na-ponta-do-lapis/confeitaria/?utm_source=calculadora-confeitaria">Ver como funciona antes</a>
+</aside>
+
+<p>Ficou alguma dúvida? <a href="https://wa.me/5521984942432?text=Oi%21%20Usei%20a%20calculadora%20de%20confeitaria%20do%20site%20e%20fiquei%20com%20uma%20d%C3%BAvida">Fala com a gente no WhatsApp</a>, a mensagem já vai pronta.</p>
+</section>
+</main>
+<footer class="rodape"><div class="wrap">
+<p><b>Empresa JV</b> · sistemas simples para quem toca o negócio sozinha.</p>
+<p><a href="/na-ponta-do-lapis/confeitaria/">Na Ponta do Lápis</a> · <a href="/calculadora/">Calculadora para outros ramos</a> · <a href="/">Caderno de dicas</a></p>
+<p>A calculadora é uma ferramenta de apoio. O resultado depende dos números que você coloca e a decisão de preço é sempre sua.</p>
+<p>© 2026 Empresa JV · CNPJ 59.461.672/0001-47 · Sistema montado pela Empresa JV</p>
+</div></footer>
+<script>
+(function(){
+var $=function(i){return document.getElementById(i)};
+var num=function(v){v=(v||'').toString().replace(/[R$\s]/g,'');if(v.indexOf(',')>=0)v=v.replace(/\./g,'').replace(',','.');var n=parseFloat(v);return isNaN(n)?null:n};
+var brl=function(n){return 'R$ '+Math.round(n).toLocaleString('pt-BR')};
+var cima5=function(n){return Math.ceil(n/5)*5};
+var cap=function(s){return s.charAt(0).toUpperCase()+s.slice(1)};
+var contas=0;
+$('calc').addEventListener('submit',function(e){
+  e.preventDefault();$('erro').textContent='';
+  var nome=($('nome').value||'').trim()||'Seu bolo';
+  var preco=num($('preco').value),mat=num($('mat').value)||0,h=num($('h').value)||0,m=num($('m').value)||0,quer=num($('quer').value)||25,lucro=num($('lucro').value);if(lucro===null||lucro<0)lucro=20;
+  var horas=h+m/60;
+  if(!preco||preco<=0){$('erro').textContent='Coloque quanto você cobra.';$('preco').focus();return}
+  if(horas<=0){$('erro').textContent='Coloque quanto tempo leva (horas ou minutos).';$('h').focus();return}
+  var taxa=$('cartao').checked?0.04:0;
+  var sobra=preco*(1-taxa)-mat,hora=sobra/horas;
+  var sug=cima5((mat+horas*quer)*(1+lucro/100)/(1-taxa));
+  var tempo=(h?h+' h':'')+(h&&m?' e ':'')+(m?m+' min':'');
+  $('r-nome').textContent='Em '+nome.toLowerCase()+', depois dos ingredientes'+(taxa?' e da taxa':'')+', sobram';
+  $('r-sobra').textContent=sobra>=0?brl(sobra):'R$ 0';
+  $('r-sobra-txt').textContent=sobra>=0?'em '+tempo+' de trabalho.':'Os ingredientes e a taxa passam do preço: nesse valor, você paga para trabalhar.';
+  $('r-hora').textContent=hora>0?brl(hora):'R$ 0';
+  $('r-hora-txt').textContent=hora>=quer?'Acima dos '+brl(quer)+' que você quer. Bom sinal!':'Abaixo dos '+brl(quer)+' que você quer ganhar.';
+  $('r-quer').textContent=brl(quer);$('r-lucro').textContent=String(lucro).replace('.',',');
+  var final=sug>preco?sug:preco;
+  if(sug>preco){$('r-sug').textContent=brl(sug);$('r-sug-txt').textContent='São '+brl(sug-preco)+' a mais do que você cobra hoje. Ingredientes + '+brl(quer)+' por hora + '+String(lucro).replace('.',',')+'% de lucro'+(taxa?' + taxa do cartão':'')+'.';}
+  else{$('r-sug').textContent=brl(preco);$('r-sug-txt').textContent='Seu preço de hoje já paga a sua hora e o lucro. Mude a hora ou o lucro que você quer e calcule de novo para ver até onde dá para subir.';}
+  var tn=$('t-nome');tn.textContent=cap(nome);var sm=document.createElement('small');sm.textContent='leva cerca de '+tempo;tn.appendChild(sm);
+  $('t-preco').textContent=brl(final);
+  contas++;
+  $('res').classList.add('on');if(window.__pauta)window.__pauta();$('res').scrollIntoView({behavior:'smooth',block:'start'});
+  try{fbq('trackCustom','Calculou',{n:contas,hora:Math.round(hora),origem:ORIGEM,pagina:'calculadora-confeitaria'});if(contas===1)fbq('track','Lead',{content_name:'calculadora-confeitaria',value:2.7,currency:'BRL'});}catch(_){}
+});
+})();
+/* Pauta do caderno (mesma regra do caderno/gerar.py): empurra cada texto solto na folha até a linha de base cair na pauta (linhas a cada 28 px). */
+(function(){
+  var SEL='.artigo>.tag,.artigo>h1,.res>p';
+  var PASSO=28,LINHA=26;
+  function base(el){var m=document.createElement('span');m.style.cssText='display:inline-block;width:0;height:0;vertical-align:baseline';el.insertBefore(m,el.firstChild);var y=m.getBoundingClientRect().bottom+window.scrollY;m.remove();return y;}
+  function alinhar(){var els=[].slice.call(document.querySelectorAll(SEL)).filter(function(el){return el.offsetParent});els.forEach(function(el){el.style.paddingTop='';});
+    els.forEach(function(el){var d=((LINHA-base(el))%PASSO+PASSO)%PASSO;if(d>.5)el.style.paddingTop=(parseFloat(getComputedStyle(el).paddingTop)+d)+'px';});}
+  var t;function agenda(){clearTimeout(t);t=setTimeout(alinhar,80);}
+  window.__pauta=alinhar;alinhar();
+  if(document.fonts&&document.fonts.ready)document.fonts.ready.then(alinhar);
+  window.addEventListener('load',alinhar);window.addEventListener('resize',agenda);
+})();
+</script>
+</body>
+</html>
