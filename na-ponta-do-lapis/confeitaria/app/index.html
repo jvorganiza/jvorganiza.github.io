@@ -1,0 +1,725 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<meta name="theme-color" content="#0E3B2A">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="format-detection" content="telephone=no">
+<meta name="apple-mobile-web-app-title" content="Ponta do Lápis">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='32' fill='%230E3B2A'/%3E%3Cg transform='rotate(-6 22 33)'%3E%3Crect x='12' y='17' width='20' height='32' fill='%23d64034'/%3E%3Ctext x='22' y='43' font-family='Impact,Arial' font-size='26' text-anchor='middle' fill='%23fff'%3EJ%3C/text%3E%3C/g%3E%3Cg transform='rotate(5 42 33)'%3E%3Crect x='32' y='18' width='21' height='32' fill='%23f6f1e5'/%3E%3Ctext x='42.5' y='44' font-family='Impact,Arial' font-size='26' text-anchor='middle' fill='%2316130f'%3EV%3C/text%3E%3C/g%3E%3Crect x='20' y='12' width='22' height='7' fill='%23FFC82E' transform='rotate(-8 31 15)'/%3E%3C/svg%3E">
+<title>Na Ponta do Lápis</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Caveat:wght@700&family=Inter:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: app de uma coluna para celular; barra de abas fixa embaixo; cartões de papel com borda de tinta (identidade colagem da JV). Visual único, claro, por escolha da marca. */
+:root{
+  --papel:#f6f1e5; --folha:#fffdf7; --tinta:#16130f; --tinta2:#5b554b; --linha:#d9d1bf;
+  --verde:#0E3B2A; --verde-claro:#dcebe2; --amarelo:#FFC82E; --verm:#c8372c; --verm-claro:#f9e2df;
+  --display:Anton,Impact,'Arial Narrow',sans-serif; --mao:Caveat,'Comic Sans MS',cursive; --texto:Inter,system-ui,-apple-system,'Segoe UI',sans-serif;
+}
+html,body{height:100%}
+body{background:var(--papel);color:var(--tinta);font-family:var(--texto);font-size:16px;line-height:1.45}
+.app{max-width:560px;margin:0 auto;min-height:100%;display:flex;flex-direction:column;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:16px 96px}
+.topo{display:flex;align-items:center;gap:10px;margin-bottom:14px}
+.logo{background:var(--verm);color:#fff;font-family:var(--display);padding:2px 9px;transform:rotate(-4deg);font-size:20px}
+.topo b{font-family:var(--display);font-weight:400;font-size:22px;letter-spacing:.02em}
+.topo span{color:var(--tinta2);font-size:13px;margin-left:auto}
+h1{font-family:var(--display);font-weight:400;font-size:30px;line-height:1.1;margin:0 0 4px;text-wrap:balance}
+h2{font-family:var(--display);font-weight:400;font-size:21px;margin:0}
+p{margin:0}
+.sub{color:var(--tinta2);font-size:14px}
+.tela{display:flex;flex-direction:column;gap:14px}
+.cartao{background:var(--folha);border:2px solid var(--tinta);border-radius:14px;padding:14px;display:flex;flex-direction:column;gap:10px;box-shadow:3px 3px 0 var(--tinta)}
+.aviso{background:var(--amarelo);border:2px solid var(--tinta);border-radius:12px;padding:12px;display:flex;flex-direction:column;gap:8px;font-size:14px}
+.serv-top{display:flex;justify-content:space-between;gap:10px;align-items:baseline}
+.serv-top b{font-size:17px;min-width:0;overflow-wrap:anywhere}
+.serv-top span{font-family:var(--display);font-size:22px;white-space:nowrap}
+.trio{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.trio div{background:var(--papel);border-radius:10px;padding:8px;min-width:0}
+.trio small{display:block;color:var(--tinta2);font-size:11.5px;line-height:1.2}
+.trio b{font-size:16px;font-variant-numeric:tabular-nums}
+.bom{color:var(--verde)} .ruim{color:var(--verm)}
+.dica{font-size:13.5px;border-radius:10px;padding:8px 10px}
+.dica.ruim{background:var(--verm-claro)} .dica.bom{background:var(--verde-claro)}
+.acoes{display:flex;gap:8px;flex-wrap:wrap}
+button{font:inherit;cursor:pointer;border-radius:10px;padding:11px 14px;font-weight:600;border:2px solid var(--tinta);background:var(--folha);color:var(--tinta)}
+button.forte{background:var(--verde);color:#fff;border-color:var(--verde)}
+button.amar{background:var(--amarelo)}
+button.leve{border-color:var(--linha);font-weight:500;padding:8px 12px;font-size:14px}
+button.perigo{border-color:var(--verm);color:var(--verm)}
+button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible{outline:3px solid var(--amarelo);outline-offset:2px}
+label{display:flex;flex-direction:column;gap:5px;font-weight:600;font-size:14.5px}
+label small{font-weight:400;color:var(--tinta2)}
+input,textarea,select{font:inherit;font-size:16px;padding:11px;border:2px solid var(--tinta2);border-radius:10px;background:#fff;color:var(--tinta);width:100%;min-width:0;box-sizing:border-box}
+.duas{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.chk{flex-direction:row;align-items:center;gap:10px;font-weight:500}
+.chk input{width:22px;height:22px;flex:none}
+.erro{color:var(--verm);font-weight:600;font-size:14px;min-height:1em}
+.amostra{border-style:dashed;box-shadow:none;opacity:.92}
+.selo{align-self:flex-start;background:var(--amarelo);border:2px solid var(--tinta);font-size:12px;font-weight:700;letter-spacing:.04em;padding:2px 8px;transform:rotate(-1.5deg)}
+.gasto{display:flex;flex-direction:column;gap:10px;background:var(--papel);border-radius:12px;padding:12px}
+.gasto .total{font-weight:700;font-size:16px;border-top:2px solid var(--tinta);padding-top:8px;font-variant-numeric:tabular-nums}
+.opcao{flex-direction:row;align-items:flex-start;gap:10px;border:2px solid var(--linha);border-radius:12px;padding:10px;font-weight:500;cursor:pointer}
+.opcao input{width:22px;height:22px;flex:none;margin-top:2px}
+.opcao span{display:flex;flex-direction:column;gap:2px;min-width:0}
+.opcao:has(input:checked){border-color:var(--tinta);background:var(--verde-claro)}
+.marca-app{display:flex;flex-direction:column;line-height:.92}
+.marca-app i{font-family:var(--mao);font-style:normal;font-weight:700;color:var(--verm);font-size:19px;transform:rotate(-3deg);transform-origin:left bottom}
+.marca-app b{font-size:27px}
+.lapis{flex:none}
+.modelos{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.modelos button{display:flex;flex-direction:column;align-items:flex-start;gap:2px;text-align:left;border-color:var(--linha);padding:10px;min-width:0}
+.modelos button small{font-weight:400;color:var(--tinta2);font-size:12.5px}
+.modelos button[aria-pressed="true"]{border-color:var(--tinta);background:var(--verde-claro)}
+.logo-linha{display:flex;gap:12px;align-items:flex-start}
+.logo-linha img{width:72px;height:72px;border-radius:50%;object-fit:cover;border:2px solid var(--tinta);flex:none;background:#fff}
+input[type=date]{-webkit-appearance:none;appearance:none;display:block;max-width:100%;min-height:46px;text-align:left}
+input[type=date]::-webkit-date-and-time-value{text-align:left;margin:0}
+input[type=color]{height:46px;padding:4px}
+input[type=file]{font-size:14px;padding:8px}
+.oferta{background:var(--verde-claro);box-shadow:none;border-style:dashed}
+.botao{display:inline-block;align-self:flex-start;font-weight:700;text-decoration:none;color:#fff;background:var(--verde);border:2px solid var(--verde);border-radius:10px;padding:11px 14px}
+.botao.leve{background:var(--folha);color:var(--tinta);border-color:var(--tinta);font-weight:600;padding:8px 12px;font-size:14px}
+.botao:focus-visible{outline:3px solid var(--amarelo);outline-offset:2px}
+.extra{display:flex;flex-direction:column;gap:6px;padding-top:10px;border-top:1px dashed var(--tinta2)}
+.chips button[aria-pressed="true"]{background:var(--amarelo);border-color:var(--tinta);font-weight:700}
+.chips button{background:var(--folha);border-color:var(--tinta2);font-weight:500;font-size:14px;padding:8px 11px}
+.mes-nav{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.mes-nav b{font-family:var(--display);font-weight:400;font-size:22px;text-transform:uppercase}
+.conta{display:flex;flex-direction:column}
+.conta div{display:flex;justify-content:space-between;gap:10px;padding:7px 0;border-bottom:1px dashed var(--linha);font-variant-numeric:tabular-nums}
+.conta div:last-child{border-bottom:0}
+.conta .tot{font-weight:700;font-size:18px;border-top:2px solid var(--tinta);border-bottom:0;margin-top:4px;padding-top:10px}
+.toques{display:flex;flex-wrap:wrap;gap:8px}
+.toques button{background:var(--amarelo);font-size:14.5px;padding:10px 12px}
+.lista{display:flex;flex-direction:column}
+.lista div{display:flex;align-items:center;gap:8px;padding:8px 0;border-bottom:1px dashed var(--linha);font-size:14.5px}
+.lista div span:first-child{flex:1;min-width:0;overflow-wrap:anywhere}
+.lista div b{font-variant-numeric:tabular-nums;white-space:nowrap}
+.lista button{padding:4px 9px;font-size:13px;border-color:var(--linha)}
+.vazio{color:var(--tinta2);font-size:14px;padding:6px 0}
+.cores{display:flex;gap:10px;flex-wrap:wrap}
+.cores button{width:40px;height:40px;border-radius:50%;padding:0;border:3px solid var(--folha);box-shadow:0 0 0 2px var(--linha)}
+.cores button[aria-pressed="true"]{box-shadow:0 0 0 3px var(--tinta)}
+#tabela-img{width:100%;border:2px solid var(--tinta);border-radius:10px;display:block}
+.abas{position:fixed;left:0;right:0;bottom:0;background:var(--tinta);display:flex;justify-content:center;
+  padding-bottom:env(safe-area-inset-bottom,0px);padding-left:max(8px,env(safe-area-inset-left,0px));padding-right:max(8px,env(safe-area-inset-right,0px));z-index:5}
+body.digitando .abas{display:none}
+.abas button{flex:1;max-width:140px;background:none;border:0;border-radius:0;color:#cfc8b8;padding:13px 4px 12px;font-size:13.5px;font-weight:600;border-top:4px solid transparent}
+.abas button[aria-selected="true"]{color:var(--tinta);background:var(--amarelo);border-top-color:var(--verm)}
+.rodape{margin-top:22px;color:var(--tinta2);font-size:12px;text-align:center}
+.toast{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(76px + env(safe-area-inset-bottom,0px));background:var(--tinta);color:#fff;padding:10px 16px;border-radius:999px;font-size:14px;z-index:9;max-width:90%}
+@media (max-width:360px){.trio{grid-template-columns:1fr 1fr}.duas{grid-template-columns:1fr}}
+@media (prefers-reduced-motion:no-preference){.toast{animation:sobe .2s ease-out}@keyframes sobe{from{opacity:0;transform:translate(-50%,8px)}}}
+
+*{box-sizing:border-box}body{margin:0}img{max-width:100%}[hidden]{display:none!important}
+#portao{position:fixed;inset:0;z-index:50;background:var(--papel);display:flex;align-items:center;justify-content:center;padding:20px;overflow:auto}
+#portao .cartao{max-width:420px;width:100%}
+.legal-app{margin-top:10px;color:var(--tinta2);font-size:12px;text-align:center;line-height:1.5}
+.legal-app a{color:inherit}
+</style>
+</head>
+<body>
+<div id="portao" hidden><form class="cartao" id="portao-form" novalidate>
+<div class="topo" style="margin:0"><div class="marca-app"><i>na ponta do</i><b>LÁPIS</b></div><span>da Empresa JV</span></div>
+<h2>Entre com o e-mail da compra</h2>
+<p class="sub">Use o mesmo e-mail que você pôs na hora de pagar. Se preferir, digite o código que chegou nesse e-mail. É uma vez só neste aparelho.</p>
+<label for="portao-cod">E-mail da compra ou código<input id="portao-cod" type="text" inputmode="email" autocomplete="email" autocapitalize="none" spellcheck="false" placeholder="voce@email.com"></label>
+<p class="erro" id="portao-erro" role="alert"></p>
+<button class="forte" type="submit" id="portao-btn">Entrar</button>
+<p class="sub">Não conseguiu entrar? Chame no WhatsApp: <a href="https://wa.me/5521984942432?text=Oi%21%20Comprei%20o%20Na%20Ponta%20do%20L%C3%A1pis%20e%20n%C3%A3o%20consegui%20entrar." target="_blank" rel="noopener">(21) 98494-2432</a></p>
+</form></div>
+
+
+<div class="app">
+  <div class="topo"><svg class="lapis" width="40" height="40" viewBox="0 0 84 84" aria-hidden="true"><g transform="rotate(-18 42 42)"><rect x="30" y="12" width="24" height="44" fill="#FFC82E" stroke="#16130f" stroke-width="3"/><rect x="30" y="5" width="24" height="10" fill="#c8372c" stroke="#16130f" stroke-width="3"/><path d="M30 56 L42 78 L54 56 Z" fill="#fffdf7" stroke="#16130f" stroke-width="3"/><path d="M38.5 71 L42 78 L45.5 71 Z" fill="#16130f"/></g></svg><div class="marca-app"><i>na ponta do</i><b>LÁPIS</b></div><span>da Empresa JV</span></div>
+
+  <!-- SERVIÇOS -->
+  <section class="tela" id="t-servicos">
+    <div><h1>Meus serviços</h1><p class="sub">Quanto sobra em cada encomenda e o preço que paga a sua hora.</p></div>
+    <div class="cartao amostra" id="amostra"><p class="selo">AMOSTRA · é assim que fica</p><div class="serv-top"><b>Brigadeiro (cento)</b><span>R$ 85</span></div><div class="trio"><div><small>Sobra pra você</small><b class="bom">R$ 35</b></div><div><small>Sua hora (2 h)</small><b class="ruim">R$ 17,50</b></div><div><small>Preço certo</small><b>R$ 120</b></div></div><p class="sub">Cadastre o seu primeiro bolo ou doce para ver a sua conta.</p></div>
+    <div id="lista-serv" class="tela"></div>
+    <button class="forte" id="novo-serv" type="button">+ Novo serviço</button>
+
+    <form class="cartao" id="form-serv" hidden novalidate>
+      <h2 id="form-serv-tit">Novo serviço</h2>
+      <div id="s-modelos-box"><b style="font-size:14.5px">Escolha um modelo ou escreva o seu</b><div class="toques chips" id="s-modelos" style="margin-top:6px"></div></div>
+      <label for="s-nome">Nome do bolo ou doce<input id="s-nome" maxlength="40" autocomplete="off" placeholder="Ex.: bolo de 2 kg de brigadeiro"></label>
+      <label for="s-preco">Quanto você cobra nessa encomenda (R$)<input id="s-preco" inputmode="decimal" placeholder="Ex.: 180"></label>
+      <div class="gasto">
+        <b>Quanto você gasta para fazer essa encomenda</b>
+        <p class="sub">Preencha só o que você usa. O que não usar, deixe em branco.</p>
+        <div class="duas">
+          <label for="s-jp">Ingredientes (R$)<input id="s-jp" inputmode="decimal" placeholder="Ex.: 30"></label>
+          <label for="s-jv">Embalagem: caixa, base, forminhas (R$)<input id="s-jv" inputmode="decimal" placeholder="Ex.: 6"></label>
+        </div>
+        <div class="duas">
+          <label for="s-pp">Gás: preço do botijão (R$)<input id="s-pp" inputmode="decimal" placeholder="Ex.: 110"></label>
+          <label for="s-pr">O botijão dá para quantas encomendas<input id="s-pr" inputmode="decimal" placeholder="Ex.: 55"></label>
+        </div>
+        <div class="duas">
+          <label for="s-el">Topo, fita e decoração (R$)<input id="s-el" inputmode="decimal" placeholder="Ex.: 5"></label>
+          <label for="s-out">Outros: luz, papel-manteiga, sacola (R$)<input id="s-out" inputmode="decimal" placeholder="Ex.: 2"></label>
+        </div>
+        <label class="chk" for="s-pas"><input type="checkbox" id="s-pas"> Eu levo a encomenda até a cliente</label>
+        <label for="s-pv" id="s-pv-box" hidden>Gasto com a entrega: gasolina, app ou passagem (R$)<input id="s-pv" inputmode="decimal" placeholder="Ex.: 20"></label>
+        <p class="total" id="s-total">Gasto nessa encomenda: R$ 0</p>
+      </div>
+      <div class="duas">
+        <label for="s-h">Horas<input id="s-h" inputmode="numeric" placeholder="Ex.: 3"></label>
+        <label for="s-m">Minutos<input id="s-m" inputmode="numeric" placeholder="Ex.: 0"></label>
+      </div>
+      <p class="erro" id="s-erro" role="alert"></p>
+      <div class="acoes"><button class="forte" type="submit">Salvar</button><button type="button" id="s-cancelar">Cancelar</button><button type="button" class="perigo" id="s-apagar" hidden>Apagar serviço</button></div>
+    </form>
+    <div class="cartao" id="sim-box" hidden>
+      <h2>E se eu der desconto?</h2>
+      <p class="sub">Antes de fazer promoção, veja quanto sobra de verdade.</p>
+      <div class="duas"><label for="sim-serv">Bolo ou doce<select id="sim-serv"></select></label><label for="sim-pct">Desconto (%)<input id="sim-pct" inputmode="decimal" placeholder="Ex.: 10"></label></div>
+      <div class="conta" id="sim-conta"></div>
+      <p class="dica" id="sim-dica" hidden></p>
+      <div class="acoes" id="sim-acoes" hidden>
+        <button class="amar" id="sim-tabela" type="button">Fazer a tabela de promoção com esse desconto</button>
+        <button id="sim-aplicar" type="button">Mudar o preço desse produto</button>
+      </div>
+      <div class="aviso" id="sim-conf" hidden><p id="sim-conf-txt"></p><div class="acoes"><button class="forte" id="sim-conf-sim" type="button">Sim, mudar o preço</button><button id="sim-conf-nao" type="button">Não</button></div></div>
+    </div>
+  </section>
+
+  <!-- MEU MÊS -->
+  <section class="tela" id="t-mes" hidden>
+    <div><h1>Meu mês</h1><p class="sub">Toque no bolo ou doce cada vez que entregar uma encomenda. A conta do mês se faz sozinha.</p></div>
+    <div class="mes-nav"><button class="leve" id="mes-ant" type="button" aria-label="Mês anterior">◀</button><b id="mes-nome"></b><button class="leve" id="mes-prox" type="button" aria-label="Próximo mês">▶</button></div>
+    <div class="cartao">
+      <h2>1. Contas fixas do mês</h2>
+      <p class="sub">Comece por aqui. É o que você paga mesmo sem atender ninguém: aluguel da cadeira, luz, internet, celular.</p>
+      <div class="lista" id="lista-fixos"></div>
+      <div class="duas"><label for="f-nome">O quê<input id="f-nome" maxlength="30" placeholder="Ex.: aluguel"></label><label for="f-valor">Valor (R$)<input id="f-valor" inputmode="decimal" placeholder="Ex.: 300"></label></div>
+      <button class="amar" id="f-add" type="button">Anotar conta fixa</button>
+    </div>
+    <div class="cartao">
+      <h2>2. Fiz hoje</h2>
+      <p class="sub">Toque no que você entregou. Entra na conta na hora.</p>
+      <div class="toques" id="toques"></div>
+      <div id="mes-novo">
+        <b style="font-size:14.5px">Fez um modelo que não está aqui?</b>
+        <p class="sub">Toque no modelo ou escreva o nome. Você põe o preço e o gasto uma vez só e ele fica salvo.</p>
+        <div class="toques chips" id="mes-modelos" style="margin-top:8px"></div>
+        <div class="duas" style="margin-top:8px;align-items:end"><label for="mes-outro">Outro bolo ou doce<input id="mes-outro" maxlength="40" placeholder="Escreva o nome"></label><button id="mes-outro-ok" type="button">Cadastrar</button></div>
+      </div>
+    </div>
+    <div class="cartao"><h2>3. Encomendas do mês</h2><div class="lista" id="lista-vendas"></div></div>
+    <div class="cartao">
+      <h2>4. Como ficou o seu mês</h2>
+      <div class="conta" id="conta-mes"></div>
+      <p class="dica" id="dica-mes"></p>
+      <label for="meta-valor">Quanto você quer que sobre neste mês (R$)<small>É a sua meta. O sistema mostra quanto falta.</small><input id="meta-valor" inputmode="decimal" placeholder="Ex.: 2000"></label>
+      <p class="dica" id="meta-txt" hidden></p>
+      <button id="resumo-baixar" type="button">Baixar o resumo do mês</button>
+    </div>
+  </section>
+
+  <!-- TABELA -->
+  <section class="tela" id="t-tabela" hidden>
+    <div><h1>Minha tabela</h1><p class="sub">Monte a tabela de preços com a cara do seu negócio e mande no WhatsApp ou poste no status.</p></div>
+    <p class="sub" id="tb-falta" hidden>Falta o nome do seu negócio ou o seu @. Preencha em "3. Textos", aqui embaixo, para eles aparecerem na tabela.</p>
+
+    <div class="cartao">
+      <h2>1. Modelo</h2>
+      <div class="modelos" id="tb-modelos"></div>
+      <b style="font-size:14.5px">Formato</b>
+      <div class="duas">
+        <label class="opcao" for="tb-feed"><input type="radio" name="tbf" id="tb-feed" value="feed"><span><b>Feed</b><small>Para postar e mandar no WhatsApp.</small></span></label>
+        <label class="opcao" for="tb-story"><input type="radio" name="tbf" id="tb-story" value="story"><span><b>Story</b><small>Em pé, para status e stories.</small></span></label>
+      </div>
+    </div>
+
+    <div class="cartao">
+      <h2>2. Suas cores e a sua logo</h2>
+      <p class="sub">Escolha a cor do seu negócio. A tabela inteira acompanha.</p>
+      <div><b style="font-size:14.5px">Cor principal</b><div class="cores" id="cores" style="margin-top:6px"></div></div>
+      <div class="duas">
+        <label for="tb-cor">Outra cor principal<input type="color" id="tb-cor"></label>
+        <label for="tb-cor2">Cor de destaque<input type="color" id="tb-cor2"></label>
+      </div>
+      <div class="logo-linha">
+        <img id="tb-logo-ver" alt="Sua logo" hidden>
+        <div style="display:flex;flex-direction:column;gap:8px;min-width:0;flex:1">
+          <label for="tb-logo">Sua logo (foto ou imagem)<small>Se não tiver logo, deixe sem. A tabela fica bonita só com o nome.</small><input type="file" id="tb-logo" accept="image/png,image/jpeg,image/webp"></label>
+          <button class="leve" id="tb-logo-tirar" type="button" hidden>Tirar a logo</button>
+        </div>
+      </div>
+      <p class="erro" id="tb-logo-erro" role="alert"></p>
+    </div>
+
+    <div class="cartao">
+      <h2>3. Textos</h2>
+      <label for="tb-nome">Nome do seu negócio<input id="tb-nome" maxlength="34" placeholder="Ex.: Doces da [seu nome]"></label>
+      <label for="tb-contato">Seu @ ou WhatsApp<input id="tb-contato" maxlength="34" placeholder="Ex.: @seuinstagram"></label>
+      <label for="tb-titulo">Título<input id="tb-titulo" maxlength="26" placeholder="Tabela de preços"></label>
+      <label for="tb-frase">Frase embaixo do nome<input id="tb-frase" maxlength="48" placeholder="Bolos e doces feitos com carinho, por encomenda"></label>
+      <label for="tb-aviso">Aviso no fim<small>Apague o texto se não quiser aviso.</small><input id="tb-aviso" maxlength="64"></label>
+      <label class="chk" for="tb-tempo"><input type="checkbox" id="tb-tempo"> Mostrar quanto tempo leva cada encomenda</label>
+    </div>
+
+    <div class="cartao">
+      <h2>4. Preços</h2>
+      <label class="opcao" for="tb-atual"><input type="radio" name="tb" id="tb-atual" value="atual"><span><b>Os preços que eu cobro hoje</b><small>Exatamente o que você escreveu em cada bolo e doce, na aba Serviços.</small></span></label>
+      <label class="opcao" for="tb-certo"><input type="radio" name="tb" id="tb-certo" value="certo"><span><b>Os preços novos, já corrigidos</b><small>O "Preço certo" que o sistema calculou: seu gasto + a hora que você quer ganhar + o lucro. Se der menos do que você já cobra, fica o seu preço de hoje.</small></span></label>
+      <div class="lista" id="tb-compara"></div>
+    </div>
+
+    <div class="cartao">
+      <h2>5. Tabela de promoção</h2>
+      <p class="sub">Para Black Friday, Natal ou semana de aniversário. A tabela mostra o preço normal riscado e o preço com desconto.</p>
+      <label class="chk" for="tb-promo"><input type="checkbox" id="tb-promo"> Esta é uma tabela de promoção</label>
+      <div id="tb-promo-box" hidden style="display:flex;flex-direction:column;gap:10px">
+        <label for="tb-promo-nome">Nome da promoção<input id="tb-promo-nome" maxlength="18" placeholder="Black Friday"></label>
+        <div class="duas"><label for="tb-promo-pct">Desconto (%)<input id="tb-promo-pct" inputmode="decimal" placeholder="Ex.: 10"></label><label for="tb-promo-ate">Vale até<input type="date" id="tb-promo-ate"></label></div>
+        <p class="dica" id="tb-promo-dica" hidden></p>
+      </div>
+    </div>
+
+    <img id="tabela-img" alt="Sua tabela de preços">
+    <button class="forte" id="tb-baixar" type="button">Baixar ou mandar a tabela</button>
+    <p class="sub">Se o botão não abrir nada no seu celular, segure o dedo em cima da imagem e escolha "Salvar imagem".</p>
+    <div class="cartao">
+      <h2>Mensagens prontas</h2>
+      <p class="sub">Escolha a mensagem, ajuste o texto se quiser e copie. O que está entre [colchetes] é para você trocar.</p>
+      <div class="toques chips" id="msg-tipos"></div>
+      <label for="msg-data" id="msg-data-box">A partir de que dia vale o preço novo<input id="msg-data" type="date"></label>
+      <label for="msg-texto">Mensagem<textarea id="msg-texto" rows="8"></textarea></label>
+      <div class="acoes"><button class="amar" id="msg-copiar" type="button">Copiar mensagem</button><button class="leve" id="msg-refazer" type="button">Voltar ao texto original</button></div>
+    </div>
+    <div class="cartao oferta">
+      <span class="selo">DA EMPRESA JV</span>
+      <h2>Quer responder mais rápido?</h2>
+      <p>Os <b>Recortes de conversa</b> são mensagens prontas para confeitaria: responder quem pede preço, cobrar o sinal, confirmar a encomenda e lembrar a retirada.</p>
+      <a class="botao" href="https://pay.cakto.com.br/3b59uga_1309945?split=1" target="_blank" rel="noopener">Quero os Recortes por R$ 27</a>
+    </div>
+  </section>
+
+  <!-- AJUSTES -->
+  <section class="tela" id="t-ajustes" hidden>
+    <div><h1>Meu negócio</h1><p class="sub">Esses números valem para todas as contas.</p></div>
+    <div class="cartao">
+      <label for="a-nome">Nome do seu negócio<small>Aparece na tabela de preços.</small><input id="a-nome" maxlength="34" placeholder="Ex.: Doces da Ju"></label>
+      <label for="a-contato">@ ou WhatsApp<small>Também aparece na tabela.</small><input id="a-contato" maxlength="34" placeholder="Ex.: @trancasdaju"></label>
+      <label for="a-hora">Quanto você quer ganhar por hora (R$)<small>Se não souber, deixe R$ 25.</small><input id="a-hora" inputmode="decimal"></label>
+      <label for="a-lucro">Lucro em cima disso (%)<small>A média do mercado é 20%.</small><input id="a-lucro" inputmode="decimal"></label>
+      <label class="chk" for="a-cartao"><input type="checkbox" id="a-cartao"> Recebo a maior parte no cartão (tira uns 4% de taxa)</label>
+      <button class="forte" id="a-salvar" type="button">Salvar</button>
+    </div>
+    <div class="cartao">
+      <h2>Cópia de segurança</h2>
+      <p class="sub">Seus dados ficam só neste celular. Se trocar de aparelho ou limpar o navegador, eles somem. Faça uma cópia de vez em quando e guarde, por exemplo, numa conversa sua no WhatsApp.</p>
+      <button class="amar" id="bk-copiar" type="button">Copiar minha cópia</button>
+      <label for="bk-texto">Para trazer de volta, cole a cópia aqui<textarea id="bk-texto" rows="3" placeholder="Cole aqui o texto da cópia"></textarea></label>
+      <p class="erro" id="bk-erro" role="alert"></p>
+      <button id="bk-restaurar" type="button">Trazer meus dados de volta</button>
+    </div>
+    <div class="cartao">
+      <h2>Começar do zero</h2>
+      <p class="sub">Apaga serviços, meses e ajustes deste celular.</p>
+      <button class="perigo" id="zerar" type="button">Apagar tudo</button>
+      <div class="aviso" id="zerar-conf" hidden><p><b>Tem certeza?</b> Não dá para desfazer.</p><div class="acoes"><button class="perigo" id="zerar-sim" type="button">Sim, apagar tudo</button><button id="zerar-nao" type="button">Não</button></div></div>
+    </div>
+    <div class="cartao oferta">
+      <span class="selo">PARA IR ALÉM</span>
+      <h2>Quando o preço estiver em dia</h2>
+      <div class="extra"><b>Recortes de conversa</b><p class="sub">Mensagens prontas para o WhatsApp: preço, sinal, confirmação da encomenda e retirada.</p><a class="botao leve" href="https://pay.cakto.com.br/ahxpg6o_1309946?split=1" target="_blank" rel="noopener">Ver os Recortes · R$ 27</a></div>
+      <div class="extra"><b>Kit Confeitaria completo</b><p class="sub">Clientes, encomendas por data, receitas e financeiro num sistema só, com videoaulas.</p><a class="botao leve" href="https://jvorganiza.com.br/kits/confeitaria/" target="_blank" rel="noopener">Ver o Kit Confeitaria</a></div>
+    </div>
+    <div class="cartao"><h2>Deixe na tela inicial</h2><p class="sub">No menu do navegador (os três pontinhos ou o botão de compartilhar), toque em "Adicionar à tela inicial". O Na Ponta do Lápis vira um atalho, como um aplicativo.</p><p class="sub">Use sempre o mesmo navegador. Na janela anônima e no navegador de dentro do Instagram os dados podem não ficar guardados.</p></div>
+    <p class="sub">Ficou com dúvida? Chame no WhatsApp: <a href="https://wa.me/5521984942432?text=Oi%21%20Uso%20o%20Na%20Ponta%20do%20L%C3%A1pis%20e%20fiquei%20com%20uma%20d%C3%BAvida." target="_blank" rel="noopener">(21) 98494-2432</a></p>
+  </section>
+
+  <p class="rodape">Sistema montado pela Empresa JV · CNPJ 59.461.672/0001-47</p>
+  <p class="legal-app">Ferramenta de apoio para as suas contas. Não substitui contador.<br><a href="/termos/">Termos de uso</a> · <a href="/privacidade/">Privacidade</a></p>
+</div>
+
+<nav class="abas" role="tablist" aria-label="Telas">
+  <button role="tab" data-t="servicos" aria-selected="true">Serviços</button>
+  <button role="tab" data-t="mes" aria-selected="false">Meu mês</button>
+  <button role="tab" data-t="ajustes" aria-selected="false">Meu negócio</button>
+  <button role="tab" data-t="tabela" aria-selected="false">Tabela</button>
+</nav>
+<div class="toast" id="toast" hidden role="status"></div>
+
+<script>
+(function(){
+var CHAVE='jv-quanto-sobra-confeitaria-v2';
+var $=function(i){return document.getElementById(i)};
+/* Exemplos da confeitaria: pesquisa de 15/11/2026. Bolo de festa R$ 70-120/kg, 2 kg decorado R$ 140-250 (patroa.ai, tabela 2025); bolo de 2 kg de brigadeiro: R$ 30 de ingredientes e 3 h (reidodelivery.com.br); caixa R$ 4-8 e cake board R$ 3,41 (reidodelivery, Magalu); botijão R$ 110-115 (ANP 2026) e cerca de R$ 2 de gás por hora de forno; cento de brigadeiro R$ 85-110, gourmet 30-60% acima (cidesp.com.br, mai/2026), R$ 45-65 de material e preço sugerido R$ 120-160 (Catraca Livre, jan/2026); 2 h para o cento é estimativa; bolo de pote R$ 8-15, R$ 4,50-6 de material (Serasa, Nuvemshop); sinal de 50% é o costume; entrega R$ 20-50 (patroa.ai). */
+/* (trancista:: nagô R$ 180 e fulani R$ 280 em cerca de 5 h (Superprof, tabelas de trancistas);
+   boho braids R$ 330 em 8 h com R$ 80 de fibra e pomada (relato de trancistas no atendimento); jumbo de 400 g de R$ 22 a R$ 40 (Mercado Livre). */
+var PADRAO=function(){return {v:1,cfg:{nome:'',contato:'',hora:25,lucro:20,cartao:false,cor:'#16130f',cor2:'#d9b36a',modelo:'limpo',tb:'atual'},
+  serv:[],vendas:[],fixos:[]}};
+var MODELOS=['Bolo de festa (kg)', 'Bolo de 2 kg', 'Bolo de pote', 'Brigadeiro (cento)', 'Doce gourmet (cento)', 'Bolo caseiro', 'Bolo vulcão', 'Naked cake', 'Kit festa', 'Torta'];
+function modelosLivres(){var tem=D.serv.map(function(s){return s.nome.toLowerCase()});return MODELOS.filter(function(m){return tem.indexOf(m.toLowerCase())<0})}
+var D;
+/* Tudo que vem do aparelho ou de uma cópia colada passa por aqui: só entram números válidos e textos curtos. */
+function limpa(o){var p=PADRAO();if(!o||typeof o!=='object')return p;
+  var n0=function(v){v=Number(v);return isFinite(v)&&v>0?Math.min(v,1e7):0},st=function(v,m){return String(v==null?'':v).slice(0,m)},novoId=function(){return Math.random().toString(36).slice(2,10)};
+  var CO=['#0E3B2A','#c8372c','#7a2e8f','#1f4f9c','#b0562a','#16130f'],c=(o.cfg&&typeof o.cfg==='object')?o.cfg:{},lu=Number(c.lucro);
+  var hx=function(v,pad){return (typeof v==='string'&&/^#[0-9a-fA-F]{6}$/.test(v))?v:pad};
+  p.cfg={nome:st(c.nome,34),contato:st(c.contato,34),hora:n0(c.hora)||25,lucro:(isFinite(lu)&&lu>=0&&lu<=500)?lu:20,cartao:!!c.cartao,cor:hx(c.cor,'#16130f'),cor2:hx(c.cor2,'#d9b36a'),tb:c.tb==='certo'?'certo':'atual',tbTempo:!!c.tbTempo,
+    modelo:['colagem','limpo','noite','delicado'].indexOf(c.modelo)>=0?c.modelo:'limpo',formato:c.formato==='story'?'story':'feed',titulo:st(c.titulo,26),frase:st(c.frase,48),aviso:st(c.aviso,64),avisoMexido:!!c.avisoMexido};
+  if(typeof c.logo==='string'&&c.logo.length<600000&&/^data:image\/(png|jpeg|webp);base64,[A-Za-z0-9+\/=]+$/.test(c.logo))p.cfg.logo=c.logo;
+  if(c.promo&&typeof c.promo==='object'){var pp=Number(c.promo.pct);p.cfg.promo={on:!!c.promo.on,nome:st(c.promo.nome,18),pct:(isFinite(pp)&&pp>0&&pp<=90)?pp:0,ate:/^\d{4}-\d{2}-\d{2}$/.test(c.promo.ate||'')?c.promo.ate:''}}
+  if(c.msgs&&typeof c.msgs==='object'){p.cfg.msgs={};['preco','promo','horario','sinal'].forEach(function(k){if(typeof c.msgs[k]==='string'&&c.msgs[k])p.cfg.msgs[k]=c.msgs[k].slice(0,1500)})}
+  p.cfg.msgTipo=['preco','promo','horario','sinal'].indexOf(c.msgTipo)>=0?c.msgTipo:'preco';
+  if(c.metas&&typeof c.metas==='object'){p.cfg.metas={};Object.keys(c.metas).slice(0,120).forEach(function(k){if(/^\d{4}-\d{2}$/.test(k)&&n0(c.metas[k]))p.cfg.metas[k]=n0(c.metas[k])})}
+  p.serv=(Array.isArray(o.serv)?o.serv:[]).slice(0,80).filter(function(s){return s&&typeof s==='object'&&n0(s.preco)}).map(function(s){var r={id:st(s.id,20)||novoId(),nome:st(s.nome,40)||'Encomenda',preco:n0(s.preco),gasto:n0(s.gasto),min:Math.round(n0(s.min))||60};
+    if(s.g&&typeof s.g==='object'){r.g={pas:!!s.g.pas};['jp','jv','pp','pr','el','out','pv'].forEach(function(k){r.g[k]=n0(s.g[k])})}return r});
+  p.vendas=(Array.isArray(o.vendas)?o.vendas:[]).slice(-6000).filter(function(v){return v&&/^\d{4}-\d{2}-\d{2}$/.test(v.dia)}).map(function(v){return {id:st(v.id,20)||novoId(),nome:st(v.nome,40)||'Encomenda',preco:n0(v.preco),gasto:n0(v.gasto),min:Math.round(n0(v.min)),dia:v.dia}});
+  p.fixos=(Array.isArray(o.fixos)?o.fixos:[]).slice(-2000).filter(function(f){return f&&/^\d{4}-\d{2}$/.test(f.mes)&&n0(f.valor)}).map(function(f){return {id:st(f.id,20)||novoId(),mes:f.mes,nome:st(f.nome,30)||'Conta',valor:n0(f.valor)}});
+  return p}
+function ler(){try{var s=localStorage.getItem(CHAVE);if(s)return limpa(JSON.parse(s))}catch(e){}return PADRAO()}
+function gravar(){try{localStorage.setItem(CHAVE,JSON.stringify(D))}catch(e){}}
+D=ler();
+var num=function(v){v=(v||'').toString().replace(/[R$\s%]/g,'');if(v.indexOf(',')>=0)v=v.replace(/\./g,'').replace(',','.');var n=parseFloat(v);return isNaN(n)?null:n};
+var brl=function(n){var neg=n<0;n=Math.abs(n);var s=(Math.round(n*100)%100===0)?Math.round(n).toLocaleString('pt-BR'):n.toLocaleString('pt-BR',{minimumFractionDigits:2,maximumFractionDigits:2});return (neg?'− ':'')+'R$ '+s};
+var cima5=function(n){return Math.ceil(n/5)*5};
+var uid=function(){return Date.now().toString(36)+Math.random().toString(36).slice(2,6)};
+var tempo=function(min){var h=Math.floor(min/60),m=min%60;return (h?h+' h':'')+(h&&m?' ':'')+(m?m+' min':'')||'0 min'};
+var taxa=function(){return D.cfg.cartao?0.04:0};
+function conta(s){var t=taxa(),horas=s.min/60,sobra=s.preco*(1-t)-s.gasto,hora=horas>0?sobra/horas:0;
+  var certo=cima5((s.gasto+horas*D.cfg.hora)*(1+D.cfg.lucro/100)/(1-t));return {sobra:sobra,hora:hora,certo:certo}}
+var toastT;function toast(m){var t=$('toast');t.textContent=m;t.hidden=false;clearTimeout(toastT);toastT=setTimeout(function(){t.hidden=true},2200)}
+function el(tag,cls,txt){var e=document.createElement(tag);if(cls)e.className=cls;if(txt!=null)e.textContent=txt;return e}
+
+/* ---------- Serviços ---------- */
+var editando=null;
+function pintaServ(){
+  var L=$('lista-serv');L.textContent='';
+  $('amostra').hidden=D.serv.length>0;
+  D.serv.forEach(function(s){
+    var c=conta(s),card=el('div','cartao');
+    var top=el('div','serv-top');top.appendChild(el('b',null,s.nome+(s.ex?' (exemplo)':'')));top.appendChild(el('span',null,brl(s.preco)));card.appendChild(top);
+    var trio=el('div','trio');
+    [['Sobra pra você',brl(c.sobra),c.sobra>0?'bom':'ruim'],['Sua hora ('+tempo(s.min)+')',brl(c.hora),c.hora>=D.cfg.hora?'bom':'ruim'],['Preço certo',brl(Math.max(c.certo,0)),'']].forEach(function(x){
+      var d=el('div');d.appendChild(el('small',null,x[0]));d.appendChild(el('b',x[2],x[1]));trio.appendChild(d)});
+    card.appendChild(trio);
+    var dica;
+    if(c.sobra<=0)dica=el('p','dica ruim','O gasto passa do preço: nesse valor você paga para trabalhar.');
+    else if(c.certo>s.preco)dica=el('p','dica ruim','Para ganhar '+brl(D.cfg.hora)+' por hora com '+D.cfg.lucro+'% de lucro, essa encomenda sai a '+brl(c.certo)+'. São '+brl(c.certo-s.preco)+' a mais.');
+    else dica=el('p','dica bom','Esse preço já paga a sua hora e o lucro que você quer.');
+    card.appendChild(dica);
+    var ac=el('div','acoes'),b=el('button','leve','Mudar');b.type='button';b.onclick=function(){abreForm(s)};ac.appendChild(b);card.appendChild(ac);
+    L.appendChild(card)});
+}
+var voltarMes=false,GC=['jp','jv','pp','pr','el','out','pv'];
+var txt=function(n){return n?String(n).replace('.',','):''};
+function lerGasto(){var g={};GC.forEach(function(k){g[k]=Math.max(0,num($('s-'+k).value)||0)});g.pas=$('s-pas').checked;
+  var total=g.jp+g.jv+(g.pr>0?g.pp/g.pr:0)+g.el+g.out+(g.pas?g.pv:0);return {g:g,total:Math.round(total*100)/100}}
+function pintaGasto(){$('s-pv-box').hidden=!$('s-pas').checked;$('s-total').textContent='Gasto nessa encomenda: '+brl(lerGasto().total)}
+GC.forEach(function(k){$('s-'+k).addEventListener('input',pintaGasto)});$('s-pas').addEventListener('change',pintaGasto);
+function abreForm(s,nomeIni){
+  editando=s||null;$('form-serv').hidden=false;$('novo-serv').hidden=true;$('s-erro').textContent='';
+  $('form-serv-tit').textContent=s?'Mudar serviço':'Novo serviço';$('s-apagar').hidden=!s;
+  $('s-nome').value=s?s.nome:(nomeIni||'');$('s-preco').value=s?txt(s.preco):'';
+  var g=s?(s.g||{out:s.gasto}):{};GC.forEach(function(k){$('s-'+k).value=txt(g[k])});$('s-pas').checked=!!g.pas;pintaGasto();
+  $('s-h').value=s?Math.floor(s.min/60)||'':'';$('s-m').value=s?(s.min%60)||'':'';
+  var livres=s?[]:modelosLivres(),box=$('s-modelos');box.textContent='';$('s-modelos-box').hidden=!livres.length;
+  livres.forEach(function(m){var b=el('button',null,m);b.type='button';b.onclick=function(){$('s-nome').value=m;$('s-preco').focus()};box.appendChild(b)});
+  $('form-serv').scrollIntoView({behavior:'smooth',block:'start'});
+}
+function fechaForm(){$('form-serv').hidden=true;$('novo-serv').hidden=false;editando=null}
+$('novo-serv').onclick=function(){voltarMes=false;abreForm(null)};
+$('s-cancelar').onclick=fechaForm;
+$('s-apagar').onclick=function(){if(!editando)return;D.serv=D.serv.filter(function(x){return x!==editando});gravar();fechaForm();pintaTudo();toast('Serviço apagado')};
+$('form-serv').addEventListener('submit',function(e){
+  e.preventDefault();var nome=$('s-nome').value.trim(),preco=num($('s-preco').value),gd=lerGasto(),gasto=gd.total,min=Math.round((num($('s-h').value)||0)*60+(num($('s-m').value)||0));
+  if(!nome){$('s-erro').textContent='Ponha o nome do bolo ou doce.';$('s-nome').focus();return}
+  if(!preco||preco<=0){$('s-erro').textContent='Ponha quanto você cobra.';$('s-preco').focus();return}
+  if(min<=0){$('s-erro').textContent='Ponha quanto tempo leva.';$('s-h').focus();return}
+  if(editando){editando.nome=nome;editando.preco=preco;editando.gasto=gasto;editando.g=gd.g;editando.min=min;delete editando.ex}
+  else D.serv.push({id:uid(),nome:nome,preco:preco,gasto:gasto,g:gd.g,min:min});
+  gravar();fechaForm();pintaTudo();
+  if(voltarMes){voltarMes=false;abre('mes');toast(nome+' salva. Agora é só tocar nela em "Fiz hoje".')}else toast('Salvo')});
+function cadastrarDoMes(nome){voltarMes=true;abre('servicos');abreForm(null,nome);$('s-preco').focus()}
+$('mes-outro-ok').onclick=function(){var n=$('mes-outro').value.trim();if(!n){toast('Escreva o nome do bolo ou doce');return}$('mes-outro').value='';cadastrarDoMes(n)};
+
+/* ---------- Meu mês ---------- */
+var hoje=new Date(),mesAtual=hoje.getFullYear()+'-'+String(hoje.getMonth()+1).padStart(2,'0'),mes=mesAtual;
+var MESES=['janeiro','fevereiro','março','abril','maio','junho','julho','agosto','setembro','outubro','novembro','dezembro'];
+function mudaMes(d){var p=mes.split('-'),dt=new Date(+p[0],+p[1]-1+d,1);mes=dt.getFullYear()+'-'+String(dt.getMonth()+1).padStart(2,'0');pintaMes()}
+$('mes-ant').onclick=function(){mudaMes(-1)};$('mes-prox').onclick=function(){mudaMes(1)};
+function pintaMes(){
+  var p=mes.split('-');$('mes-nome').textContent=MESES[+p[1]-1]+' de '+p[0];
+  var T=$('toques');T.textContent='';
+  if(mes!==mesAtual)T.appendChild(el('p','vazio','Para anotar uma encomenda, volte para o mês de agora.'));
+  else if(!D.serv.length)T.appendChild(el('p','vazio','Você ainda não salvou nenhum bolo ou doce. Escolha um aqui embaixo.'));
+  else D.serv.forEach(function(s){var b=el('button',null,'+ '+s.nome);b.type='button';b.onclick=function(){
+    var d=new Date(),dia=d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
+    D.vendas.push({id:uid(),nome:s.nome,preco:s.preco,gasto:s.gasto,min:s.min,dia:dia});gravar();pintaMes();toast(s.nome+' anotada: '+brl(s.preco))};T.appendChild(b)});
+  $('mes-novo').hidden=mes!==mesAtual;var MM=$('mes-modelos');MM.textContent='';
+  modelosLivres().forEach(function(m){var b=el('button',null,m);b.type='button';b.onclick=function(){cadastrarDoMes(m)};MM.appendChild(b)});
+  var vs=D.vendas.filter(function(v){return v.dia.slice(0,7)===mes}),fx=D.fixos.filter(function(f){return f.mes===mes});
+  var entrou=0,gasto=0,min=0;vs.forEach(function(v){entrou+=v.preco;gasto+=v.gasto;min+=v.min});
+  var tx=entrou*taxa(),fixo=fx.reduce(function(a,f){return a+f.valor},0),sobrou=entrou-gasto-tx-fixo;
+  var C=$('conta-mes');C.textContent='';
+  var linhas=[['Entrou ('+vs.length+(vs.length===1?' encomenda)':' encomendas)'),brl(entrou)],['Gasto para fazer',brl(-gasto)]];
+  if(taxa())linhas.push(['Taxa do cartão',brl(-tx)]);
+  linhas.push(['Contas fixas',brl(-fixo)]);
+  linhas.forEach(function(x){var d=el('div');d.appendChild(el('span',null,x[0]));d.appendChild(el('span',null,x[1]));C.appendChild(d)});
+  var t=el('div','tot');t.appendChild(el('span',null,'Sobrou pra você'));t.appendChild(el('span',sobrou>=0?'bom':'ruim',brl(sobrou)));C.appendChild(t);
+  var dm=$('dica-mes');
+  if(!vs.length){dm.className='dica';dm.textContent='Ainda não tem encomenda anotada neste mês.'}
+  else{var hr=min>0?sobrou/(min/60):0;dm.className='dica '+(hr>=D.cfg.hora?'bom':'ruim');
+    dm.textContent='Foram '+tempo(min)+' de trabalho. Cada hora rendeu '+brl(hr)+(hr>=D.cfg.hora?', acima dos ':', abaixo dos ')+brl(D.cfg.hora)+' que você quer.'}
+  if(typeof pintaMeta==='function')pintaMeta();
+  var LF=$('lista-fixos');LF.textContent='';
+  if(!fx.length)LF.appendChild(el('p','vazio','Nenhuma conta fixa anotada neste mês.'));
+  fx.forEach(function(f){var d=el('div');d.appendChild(el('span',null,f.nome));d.appendChild(el('b',null,brl(f.valor)));var b=el('button',null,'Tirar');b.type='button';b.onclick=function(){D.fixos=D.fixos.filter(function(x){return x!==f});gravar();pintaMes()};d.appendChild(b);LF.appendChild(d)});
+  var LV=$('lista-vendas');LV.textContent='';
+  if(!vs.length)LV.appendChild(el('p','vazio','Nada por aqui ainda.'));
+  vs.slice().reverse().forEach(function(v){var d=el('div');d.appendChild(el('span',null,v.dia.slice(8)+'/'+v.dia.slice(5,7)+' · '+v.nome));d.appendChild(el('b',null,brl(v.preco)));var b=el('button',null,'Tirar');b.type='button';b.onclick=function(){D.vendas=D.vendas.filter(function(x){return x!==v});gravar();pintaMes()};d.appendChild(b);LV.appendChild(d)});
+}
+$('f-add').onclick=function(){var n=$('f-nome').value.trim(),v=num($('f-valor').value);if(!n||!v||v<=0){toast('Ponha o nome e o valor da conta');return}
+  D.fixos.push({id:uid(),mes:mes,nome:n,valor:v});gravar();$('f-nome').value='';$('f-valor').value='';pintaMes();toast('Conta anotada')};
+
+/* ---------- Tabela ---------- */
+var CORES=['#16130f','#c2185b','#7a2e8f','#1f4f9c','#00796b','#0E3B2A','#b0562a','#c8372c'];
+var MODELOS_TB=[['limpo','Clean','Fundo branco, bem simples'],['colagem','Colagem','Papel, fita e cor forte'],['noite','Noite','Fundo escuro, elegante'],['delicado','Delicado','Tons claros e letra à mão']];
+var TB_TITULO='Cardápio',TB_FRASE='Bolos e doces feitos com carinho, por encomenda';
+var logoImg=null,logoSrc='';
+function hexRgb(h){return [parseInt(h.slice(1,3),16),parseInt(h.slice(3,5),16),parseInt(h.slice(5,7),16)]}
+function mistura(h,alvo,q){var a=hexRgb(h),b=hexRgb(alvo);return 'rgb('+a.map(function(v,i){return Math.round(v+(b[i]-v)*q)}).join(',')+')'}
+function sobre(h){var c=hexRgb(h);return (c[0]*299+c[1]*587+c[2]*114)/1000>165?'#16130f':'#ffffff'}
+function caixa(g,x,y,w,h,r){g.beginPath();if(g.roundRect)g.roundRect(x,y,w,h,r);else g.rect(x,y,w,h);}
+function cabe(g,txt,max,tam,min,fmt){g.font=fmt.replace('#',tam);while(g.measureText(txt).width>max&&tam>min){tam-=2;g.font=fmt.replace('#',tam)}return tam}
+function pintaCores(){var c=$('cores');c.textContent='';CORES.forEach(function(k){var b=el('button');b.type='button';b.style.background=k;b.setAttribute('aria-label','Cor '+k);b.setAttribute('aria-pressed',String(D.cfg.cor.toLowerCase()===k.toLowerCase()));b.onclick=function(){D.cfg.cor=k;gravar();pintaTabela()};c.appendChild(b)});
+  $('tb-cor').value=D.cfg.cor;$('tb-cor2').value=D.cfg.cor2||'#d9b36a'}
+function pintaModelos(){var m=$('tb-modelos');m.textContent='';MODELOS_TB.forEach(function(x){var b=el('button');b.type='button';b.setAttribute('aria-pressed',String((D.cfg.modelo||'limpo')===x[0]));b.appendChild(el('b',null,x[1]));b.appendChild(el('small',null,x[2]));b.onclick=function(){D.cfg.modelo=x[0];gravar();pintaTabela()};m.appendChild(b)})}
+$('tb-cor').oninput=function(){D.cfg.cor=this.value;gravar();pintaTabela()};
+$('tb-cor2').oninput=function(){D.cfg.cor2=this.value;gravar();pintaTabela()};
+['tb-feed','tb-story'].forEach(function(i){$(i).onchange=function(){D.cfg.formato=this.value;gravar();pintaTabela()}});
+['tb-atual','tb-certo'].forEach(function(i){$(i).onchange=function(){D.cfg.tb=this.value;gravar();pintaTabela()}});
+$('tb-tempo').onchange=function(){D.cfg.tbTempo=this.checked;gravar();pintaTabela()};
+$('tb-nome').oninput=function(){D.cfg.nome=this.value.trim()?this.value:'';gravar();pintaTabela()};
+$('tb-contato').oninput=function(){D.cfg.contato=this.value.trim()?this.value:'';gravar();pintaTabela()};
+$('tb-titulo').oninput=function(){D.cfg.titulo=this.value;gravar();pintaTabela()};
+$('tb-frase').oninput=function(){D.cfg.frase=this.value;gravar();pintaTabela()};
+$('tb-aviso').oninput=function(){D.cfg.aviso=this.value;D.cfg.avisoMexido=true;gravar();pintaTabela()};
+function promoCfg(){D.cfg.promo=D.cfg.promo||{on:false,nome:'',pct:0,ate:''};return D.cfg.promo}
+$('tb-promo').onchange=function(){promoCfg().on=this.checked;gravar();pintaTabela()};
+$('tb-promo-nome').oninput=function(){promoCfg().nome=this.value;gravar();pintaTabela()};
+$('tb-promo-pct').oninput=function(){var v=num(this.value);promoCfg().pct=(v&&v>0&&v<=90)?v:0;gravar();pintaTabela()};
+$('tb-promo-ate').onchange=function(){promoCfg().ate=this.value;gravar();pintaTabela()};
+$('tb-logo').onchange=function(){var f=this.files&&this.files[0],er=$('tb-logo-erro'),campo=this;er.textContent='';if(!f)return;
+  if(!/^image\/(png|jpeg|webp)$/.test(f.type)){er.textContent='Use uma imagem PNG ou JPG.';campo.value='';return}
+  if(f.size>12*1024*1024){er.textContent='Essa imagem é grande demais. Use uma de até 12 MB.';campo.value='';return}
+  var rd=new FileReader();rd.onerror=function(){er.textContent='Não consegui abrir essa imagem.'};
+  rd.onload=function(){var im=new Image();im.onerror=function(){er.textContent='Não consegui abrir essa imagem.'};
+    im.onload=function(){var L=360,q=Math.min(1,L/Math.max(im.width,im.height)),cv=document.createElement('canvas');cv.width=Math.max(1,Math.round(im.width*q));cv.height=Math.max(1,Math.round(im.height*q));
+      cv.getContext('2d').drawImage(im,0,0,cv.width,cv.height);try{D.cfg.logo=cv.toDataURL('image/png')}catch(e){er.textContent='Não consegui usar essa imagem.';return}
+      campo.value='';gravar();pintaTabela();toast('Logo colocada')};im.src=rd.result};rd.readAsDataURL(f)};
+$('tb-logo-tirar').onclick=function(){delete D.cfg.logo;gravar();pintaTabela();toast('Logo tirada')};
+function avisoPadrao(){return 'O valor pode mudar com o recheio, a decoração e a data. Encomendas com antecedência.'}
+function pintaTabela(){
+  var c=D.cfg,foco=document.activeElement;pintaCores();pintaModelos();
+  $(c.tb==='certo'?'tb-certo':'tb-atual').checked=true;$(c.formato==='story'?'tb-story':'tb-feed').checked=true;$('tb-tempo').checked=!!c.tbTempo;$('tb-falta').hidden=!!(c.nome&&c.contato);
+  if(foco!==$('tb-nome'))$('tb-nome').value=c.nome||'';if(foco!==$('tb-contato'))$('tb-contato').value=c.contato||'';if(foco!==$('tb-titulo'))$('tb-titulo').value=c.titulo||'';if(foco!==$('tb-frase'))$('tb-frase').value=c.frase||'';if(foco!==$('tb-aviso'))$('tb-aviso').value=c.avisoMexido?(c.aviso||''):avisoPadrao();
+  var pr=c.promo||{},promo=!!(pr.on&&pr.pct>0);$('tb-promo').checked=!!pr.on;$('tb-promo-box').hidden=!pr.on;
+  if(foco!==$('tb-promo-nome'))$('tb-promo-nome').value=pr.nome||'';if(foco!==$('tb-promo-pct'))$('tb-promo-pct').value=pr.pct?String(pr.pct).replace('.',','):'';$('tb-promo-ate').value=pr.ate||'';
+  $('tb-logo-tirar').hidden=!c.logo;$('tb-logo-ver').hidden=!c.logo;if(c.logo)$('tb-logo-ver').src=c.logo;
+  if(c.logo&&logoSrc!==c.logo){logoSrc=c.logo;logoImg=null;var li=new Image();li.onload=function(){if(logoSrc===c.logo){logoImg=li;pintaTabela()}};li.src=c.logo}
+  if(!c.logo){logoImg=null;logoSrc=''}
+  var precoDe=function(s){return c.tb==='certo'?Math.max(conta(s).certo,s.preco):s.preco},comDesc=function(p){return Math.max(1,Math.round(p*(1-pr.pct/100)))};
+  var CP=$('tb-compara');CP.textContent='';D.serv.forEach(function(s){var base=precoDe(s),d=el('div');d.appendChild(el('span',null,s.nome));
+    d.appendChild(el('b',null,promo?brl(base)+' → '+brl(comDesc(base)):(c.tb==='certo'&&base>s.preco?brl(s.preco)+' → '+brl(base):brl(base))));CP.appendChild(d)});
+  var PD=$('tb-promo-dica');PD.hidden=!promo||!D.serv.length;
+  if(promo&&D.serv.length){var pior=null;D.serv.forEach(function(s){var k=conta({preco:comDesc(precoDe(s)),gasto:s.gasto,min:s.min});if(!pior||k.hora<pior.hora)pior={hora:k.hora,nome:s.nome,sobra:k.sobra}});
+    PD.className='dica '+(pior.hora>=c.hora?'bom':'ruim');PD.textContent=pior.sobra<=0?'Atenção: com esse desconto, em "'+pior.nome+'" você paga para trabalhar.':'Com esse desconto, a hora mais baixa fica em '+brl(pior.hora)+' ("'+pior.nome+'").'}
+
+  /* ----- desenho ----- */
+  var W=1080,story=c.formato==='story',n=Math.max(D.serv.length,1),m=c.modelo||'limpo',cor=c.cor,cor2=c.cor2||'#d9b36a',AN='Anton, Impact, sans-serif',IN='Inter, Arial, sans-serif',CA='Caveat, "Comic Sans MS", cursive';
+  var T={colagem:{bg:'#f6f1e5',topoTx:sobre(cor),card:'#fffdf7',tx:'#16130f',sub:'#5b554b',roda:'#16130f',rodaTx:'#ffffff',rodaSub:'#cfc8b8'},
+    limpo:{bg:'#ffffff',topoTx:'#16130f',card:'#ffffff',tx:'#16130f',sub:'#6b6b6b',roda:'#ffffff',rodaTx:'#16130f',rodaSub:'#6b6b6b'},
+    noite:{bg:'#141110',topoTx:'#ffffff',card:'#221d1a',tx:'#ffffff',sub:'#b9b0a4',roda:'#0c0a09',rodaTx:'#ffffff',rodaSub:'#b9b0a4'},
+    delicado:{bg:mistura(cor,'#ffffff',.9),topoTx:'#2a2420',card:'#ffffff',tx:'#2a2420',sub:'#7a6f66',roda:cor,rodaTx:sobre(cor),rodaSub:sobre(cor)}}[m];
+  var centro=m==='delicado',X0=84,aviso=c.avisoMexido?(c.aviso||'').trim():avisoPadrao(),titulo=(c.titulo||'').trim()||TB_TITULO,frase=(c.frase||'').trim()||TB_FRASE;
+  var yL=logoImg?70:0,LOGO=logoImg?176:0,TOPO=yL+LOGO+(m==='colagem'?372:340),RODA=m==='noite'?232:188,AV=aviso?132:0,ALT=c.tbTempo?150:124,H;
+  if(story){H=1920;ALT=Math.max(86,Math.min(230,Math.floor((H-TOPO-RODA-AV-110)/n)))}else{H=Math.max(1350,TOPO+70+n*ALT+AV+RODA+30);ALT=Math.max(ALT,Math.min(230,Math.floor((H-TOPO-RODA-AV-100)/n)))}
+  var cv=document.createElement('canvas');cv.width=W;cv.height=H;var g=cv.getContext('2d');
+  g.fillStyle=T.bg;g.fillRect(0,0,W,H);
+  if(m==='colagem'){var sem=7;for(var i=0;i<2600;i++){sem=(sem*16807)%2147483647;var px=sem%W;sem=(sem*16807)%2147483647;var py=sem%H;g.fillStyle=(i%2)?'rgba(22,19,15,.045)':'rgba(255,255,255,.5)';g.fillRect(px,py,2,2)}
+    g.fillStyle=cor;g.beginPath();g.moveTo(0,0);g.lineTo(W,0);g.lineTo(W,TOPO-20);for(var x=W;x>=0;x-=36){g.lineTo(x,TOPO-20+((x/36)%2?16:0))}g.closePath();g.fill();
+    g.fillStyle=T.topoTx==='#ffffff'?'rgba(255,255,255,.08)':'rgba(22,19,15,.06)';g.beginPath();g.arc(W-110,90,210,0,7);g.fill();g.beginPath();g.arc(W-40,300,120,0,7);g.fill()}
+  if(m==='noite'){g.strokeStyle=cor2;g.lineWidth=3;caixa(g,34,34,W-68,H-68,26);g.stroke();g.globalAlpha=.35;g.lineWidth=1.5;caixa(g,48,48,W-96,H-96,18);g.stroke();g.globalAlpha=1}
+  if(m==='delicado'){g.fillStyle=mistura(cor,'#ffffff',.72);g.beginPath();g.arc(W/2,-120,560,0,7);g.fill();g.fillStyle=mistura(cor,'#ffffff',.8);g.beginPath();g.arc(120,H-120,260,0,7);g.fill();g.beginPath();g.arc(W-60,H*.55,170,0,7);g.fill()}
+  /* logo em círculo */
+  var y=74;
+  if(logoImg){var R=80,cx=centro?W/2:X0+R,cy=y+R;g.save();g.beginPath();g.arc(cx,cy,R+7,0,7);g.fillStyle=m==='noite'?cor2:'#ffffff';g.fill();g.beginPath();g.arc(cx,cy,R,0,7);g.fillStyle='#ffffff';g.fill();g.clip();
+    var q=Math.max(2*R/logoImg.width,2*R/logoImg.height),lw=logoImg.width*q,lh=logoImg.height*q;g.drawImage(logoImg,cx-lw/2,cy-lh/2,lw,lh);g.restore();y+=2*R+26}
+  /* título */
+  g.textBaseline='alphabetic';g.textAlign=centro?'center':'left';var xt=centro?W/2:X0;
+  var temNome=!!(c.nome&&c.nome.trim());if(temNome){
+  if(m==='colagem'){g.save();g.translate(X0,y-4);g.rotate(-0.035);g.font='42px '+AN;var tw=Math.min(W-200,g.measureText(titulo.toUpperCase()).width+60);g.fillStyle=cor2;g.fillRect(0,0,tw,66);g.fillStyle='rgba(22,19,15,.12)';g.fillRect(0,0,14,66);g.fillRect(tw-14,0,14,66);
+    g.fillStyle=sobre(cor2);g.textBaseline='middle';cabe(g,titulo.toUpperCase(),tw-56,42,24,'#px '+AN);g.fillText(titulo.toUpperCase(),30,36);g.restore();g.textBaseline='alphabetic'}
+  else if(m==='delicado'){g.fillStyle=cor;cabe(g,titulo.toLowerCase(),W-200,78,44,'700 #px '+CA);g.fillText(titulo.toLowerCase(),xt,y+58)}
+  else{g.fillStyle=m==='noite'?cor2:cor;g.font='700 30px '+IN;var esp=titulo.toUpperCase().split('').join('  ');g.fillText(esp,xt,y+44);if(m==='limpo'){g.fillStyle=cor;g.fillRect(X0,y+62,90,8)}}
+  }
+  /* nome e frase */
+  var nome=temNome?c.nome:titulo,ny=y+(m==='colagem'?192:178);g.fillStyle=T.topoTx;
+  var LN=promo?(centro?W-560:W-400):W-170;if(m==='limpo'){cabe(g,nome,LN,92,44,'800 #px '+IN);g.fillText(nome,xt,ny)}else{cabe(g,nome.toUpperCase(),LN,m==='delicado'?88:104,46,'#px '+AN);g.fillText(nome.toUpperCase(),xt,ny)}
+  g.fillStyle=m==='colagem'?(T.topoTx==='#ffffff'?'rgba(255,255,255,.88)':'rgba(22,19,15,.8)'):T.sub;cabe(g,frase,W-170,34,22,'600 #px '+IN);g.fillText(frase,xt,ny+58);
+  /* selo da promoção */
+  if(promo){var sx=W-150,sy=m==='colagem'?150:160;g.save();g.translate(sx,sy);g.rotate(0.12);g.fillStyle=cor2;g.beginPath();for(var k=0;k<32;k++){var rr=k%2?104:118,an=k*Math.PI/16;g.lineTo(Math.cos(an)*rr,Math.sin(an)*rr)}g.closePath();g.fill();
+    g.fillStyle=sobre(cor2);g.textAlign='center';var pn=(pr.nome||'Promoção').toUpperCase();cabe(g,pn,170,30,16,'700 #px '+IN);g.fillText(pn,0,-28);g.font='74px '+AN;g.fillText('−'+String(pr.pct).replace('.',',')+'%',0,44);g.restore()}
+  /* linhas */
+  g.textAlign='left';y=TOPO+(story?Math.max(40,Math.floor((H-TOPO-RODA-AV-n*ALT)/2)):56);
+  if(!D.serv.length){g.fillStyle=T.sub;g.font='40px '+IN;g.fillText('Salve seus bolos e doces na aba Serviços.',X0,y+50)}
+  D.serv.forEach(function(s,k){var base=precoDe(s),preco=promo?comDesc(base):base,ch=ALT-22,meio=y+ch/2,temTempo=c.tbTempo&&ALT>=120;
+    if(m==='colagem'){g.fillStyle='rgba(22,19,15,.9)';caixa(g,66,y+6,W-126,ch,18);g.fill();g.fillStyle=T.card;caixa(g,60,y,W-126,ch,18);g.fill();g.fillStyle=cor;caixa(g,60,y,16,ch,[18,0,0,18]);g.fill()}
+    else if(m==='noite'){g.fillStyle=T.card;caixa(g,70,y,W-140,ch,16);g.fill()}
+    else if(m==='delicado'){g.fillStyle='rgba(0,0,0,.06)';caixa(g,64,y+5,W-128,ch,ch/2);g.fill();g.fillStyle=T.card;caixa(g,60,y,W-120,ch,ch/2);g.fill()}
+    else{g.strokeStyle='#e4e4e4';g.lineWidth=2;g.beginPath();g.moveTo(X0,y+ch+10);g.lineTo(W-X0,y+ch+10);g.stroke()}
+    var gde=ch>140,xn=m==='limpo'?X0:(m==='delicado'?112:108),tn=gde?Math.min(64,Math.round(ch*.32)):Math.min(46,Math.round(ch*.42));
+    g.font='60px '+AN;var p=brl(preco),pf=gde?Math.min(84,Math.round(ch*.42)):Math.min(60,Math.round(ch*.56));g.font=pf+'px '+AN;var pw=g.measureText(p).width,dw=0,de='';
+    if(promo){de=brl(base);g.font='500 '+Math.round(pf*.5)+'px '+IN;dw=g.measureText(de).width+22}
+    var dir=m==='limpo'?W-X0:W-66-60,larg=(m==='colagem'||m==='delicado')?pw+56:pw,bx=dir-larg;
+    g.fillStyle=T.tx;g.font='700 '+tn+'px '+IN;var nm=s.nome,maxN=bx-dw-xn-30;while(g.measureText(nm).width>maxN&&nm.length>4)nm=nm.slice(0,-2);if(nm!==s.nome)nm+='…';
+    g.fillText(nm,xn,temTempo?y+ch*.44:meio+tn*.36);
+    if(temTempo){g.fillStyle=T.sub;g.font='500 '+(gde?38:30)+'px '+IN;g.fillText('leva cerca de '+tempo(s.min),xn,y+ch*.8)}
+    if(promo){g.font='500 '+Math.round(pf*.5)+'px '+IN;g.fillStyle=T.sub;var dx=bx-dw,dy=meio+pf*.18;g.fillText(de,dx,dy);g.strokeStyle=T.sub;g.lineWidth=3;g.beginPath();g.moveTo(dx-4,dy-pf*.17);g.lineTo(dx+dw-18,dy-pf*.17);g.stroke()}
+    g.font=pf+'px '+AN;
+    if(m==='colagem'||m==='delicado'){var fundo=m==='colagem'?(k%2?cor2:cor):cor,ah=gde?Math.min(116,Math.round(ch*.56)):Math.min(84,ch-22);g.fillStyle=fundo;caixa(g,bx,meio-ah/2,larg,ah,ah/2);g.fill();g.fillStyle=sobre(fundo);g.fillText(p,bx+28,meio+pf*.37)}
+    else{g.fillStyle=m==='noite'?cor2:cor;g.fillText(p,bx,meio+pf*.37)}
+    y+=ALT});
+  /* aviso */
+  var ya=H-RODA-AV+16;
+  if(aviso){if(m==='colagem'){g.save();g.translate(X0,ya);g.rotate(0.012);g.fillStyle='#fffdf7';g.strokeStyle='#16130f';g.lineWidth=3;caixa(g,0,0,W-168,84,10);g.fill();g.stroke();g.fillStyle='#16130f';cabe(g,aviso,W-168-52,30,20,'500 #px '+IN);g.fillText(aviso,26,53);g.restore()}
+    else{g.fillStyle=T.sub;g.textAlign=centro?'center':'left';cabe(g,aviso,W-170,30,20,(m==='delicado'?'italic ':'')+'500 #px '+IN);g.fillText(aviso,centro?W/2:X0,ya+52);g.textAlign='left'}}
+  /* rodapé */
+  var yr=H-RODA;
+  if(m==='colagem'||m==='delicado'){g.fillStyle=T.roda;g.fillRect(0,yr,W,RODA);if(m==='colagem'){g.fillStyle=cor2;g.fillRect(0,yr,W,10)}}
+  else if(m==='limpo'){g.fillStyle=cor;g.fillRect(X0,yr+8,W-2*X0,4)}
+  else{g.fillStyle=cor2;g.fillRect(X0,yr+8,W-2*X0,2)}
+  var d=new Date();d.setDate(d.getDate()+30);var val=promo&&pr.ate?'Promoção até '+dataBR(pr.ate):(promo?'':'Válida até '+d.toLocaleDateString('pt-BR'));
+  if(c.contato&&c.contato.trim()){g.fillStyle=T.rodaSub;g.font='600 28px '+IN;g.fillText('FAÇA A SUA ENCOMENDA',X0,yr+72);
+  g.fillStyle=T.rodaTx;cabe(g,c.contato,W-2*X0-(val?330:0),46,26,'700 #px '+IN);g.fillText(c.contato,X0,yr+128)}
+  if(val){g.fillStyle=T.rodaSub;g.font='26px '+IN;g.fillText(val,W-X0-g.measureText(val).width,yr+126)}
+  window.__cvTabela=cv;try{$('tabela-img').src=cv.toDataURL('image/png')}catch(e){}
+}
+function baixarCanvas(cv,arqNome){if(!cv)return;
+  cv.toBlob(function(blob){if(!blob){toast('Segure o dedo na imagem para salvar');return}
+    var arq;try{arq=new File([blob],arqNome,{type:'image/png'})}catch(e){}
+    var baixa=function(){try{var a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=arqNome;document.body.appendChild(a);a.click();a.remove();toast('Se não baixou, segure o dedo na imagem')}catch(e){toast('Segure o dedo na imagem para salvar')}};
+    var noSite=function(){try{if(arq&&navigator.canShare&&navigator.canShare({files:[arq]})){navigator.share({files:[arq],title:'Tabela de preços'}).catch(function(e){if(!e||e.name!=='AbortError')baixa()})}else baixa()}catch(e){baixa()}};
+    /* No link de teste (Artifact) o arquivo sai pela permissão de download da página; no site vale o caminho normal. */
+    if(window.claude&&window.claude.use){window.claude.use('downloads').then(function(dl){if(!dl){noSite();return}
+      dl.save({filename:arqNome,data:blob}).then(function(){toast('Imagem salva')},function(e){toast(e&&e.code==='declined'?'Você cancelou o download':'Segure o dedo na imagem para salvar')})},noSite)}
+    else noSite();
+  },'image/png')}
+$('tb-baixar').onclick=function(){baixarCanvas(window.__cvTabela,'tabela-de-precos.png')};
+
+/* ---------- Meu negócio ---------- */
+function pintaAjustes(){$('a-nome').value=D.cfg.nome;$('a-contato').value=D.cfg.contato;$('a-hora').value=String(D.cfg.hora).replace('.',',');$('a-lucro').value=String(D.cfg.lucro).replace('.',',');$('a-cartao').checked=!!D.cfg.cartao}
+$('a-salvar').onclick=function(){var h=num($('a-hora').value),l=num($('a-lucro').value);D.cfg.nome=$('a-nome').value.trim();D.cfg.contato=$('a-contato').value.trim();D.cfg.hora=h&&h>0?h:25;D.cfg.lucro=(l===null||l<0)?20:l;D.cfg.cartao=$('a-cartao').checked;gravar();pintaTudo();toast('Salvo')};
+$('bk-copiar').onclick=function(){var txt='LAPIS:'+btoa(unescape(encodeURIComponent(JSON.stringify(D))));
+  var ok=function(){toast('Cópia copiada. Cole numa conversa sua para guardar.')},falha=function(){$('bk-texto').value=txt;$('bk-texto').select();toast('Selecione o texto abaixo e copie')};
+  try{navigator.clipboard.writeText(txt).then(ok,falha)}catch(e){falha()}};
+$('bk-restaurar').onclick=function(){$('bk-erro').textContent='';var t=$('bk-texto').value.trim();
+  try{var pre=t.indexOf('LAPIS:')===0?6:(t.indexOf('QUANTOSOBRA:')===0?12:-1);if(pre<0)throw 0;var o=JSON.parse(decodeURIComponent(escape(atob(t.slice(pre)))));if(!o||typeof o!=='object'||!Array.isArray(o.serv)||!o.cfg)throw 0;D=limpa(o);gravar();$('bk-texto').value='';pintaTudo();toast('Dados trazidos de volta')}
+  catch(e){$('bk-erro').textContent='Esse texto não é uma cópia válida. Copie de novo, inteiro, desde a palavra LAPIS.'}};
+$('zerar').onclick=function(){$('zerar-conf').hidden=false};$('zerar-nao').onclick=function(){$('zerar-conf').hidden=true};
+$('zerar-sim').onclick=function(){D=PADRAO();gravar();$('zerar-conf').hidden=true;pintaTudo();toast('Tudo apagado')};
+
+/* ---------- Extras: mensagem, meta, desconto, resumo ---------- */
+function dataBR(iso){var p=(iso||'').split('-');return p.length===3?p[2]+'/'+p[1]:''}
+var MSG_TIPOS=[['preco','Preço novo'],['promo','Promoção'],['horario','Confirmar encomenda'],['sinal','Pedir o sinal']];
+function msgPadrao(tipo){var quando=dataBR($('msg-data').value)||'[dia]',ass=D.cfg.nome?'\n'+D.cfg.nome:'',pr=D.cfg.promo||{};
+  if(tipo==='promo')return 'Oi! Tudo bem? 💛\nChegou a '+(pr.nome||'[nome da promoção]')+' por aqui: '+(pr.pct?String(pr.pct).replace('.',','):'[tanto]')+'% de desconto nas encomendas'+(pr.ate?', até '+dataBR(pr.ate):'')+'.\nA tabela da promoção vai logo aqui embaixo.\nAs datas são poucas, então me chama para garantir a sua!'+ass;
+  if(tipo==='horario')return 'Oi! Tudo bem? 💛\nPassando para confirmar a sua encomenda: [o que é], para [dia], às [hora], [retirada ou entrega].\nMe responde com um "confirmado" para eu deixar tudo pronto para você?\nSe precisar mudar alguma coisa, me avisa até [dia], combinado?'+ass;
+  if(tipo==='sinal')return 'Oi! Para garantir a sua encomenda eu trabalho com um sinal de R$ [valor], que já é descontado do total na entrega.\nAssim que o Pix cair eu reservo a sua data.\nChave Pix: [sua chave]\nQualquer dúvida, é só me chamar!'+ass;
+  return 'Oi! Tudo bem? 💛\nPassando para avisar com antecedência: a partir de '+quando+' minha tabela de preços muda.\nFiz a conta de cada bolo e doce (ingredientes, embalagem e tempo) para continuar caprichando em cada encomenda.\nQuem já fez encomenda para antes de '+quando+' continua com o valor de hoje.\nA tabela nova vai logo aqui embaixo. Qualquer dúvida, é só me chamar!'+ass}
+function pintaMsg(){var tipo=D.cfg.msgTipo||'preco',box=$('msg-tipos');box.textContent='';
+  MSG_TIPOS.forEach(function(x){var b=el('button',null,x[1]);b.type='button';b.setAttribute('aria-pressed',String(x[0]===tipo));b.onclick=function(){D.cfg.msgTipo=x[0];gravar();pintaMsg()};box.appendChild(b)});
+  if(!$('msg-data').value){var d=new Date();d.setDate(d.getDate()+15);$('msg-data').value=d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')}
+  $('msg-data-box').hidden=tipo!=='preco';var salvo=D.cfg.msgs&&D.cfg.msgs[tipo];if(document.activeElement!==$('msg-texto'))$('msg-texto').value=salvo||msgPadrao(tipo)}
+function msgLimpa(){var tipo=D.cfg.msgTipo||'preco';if(D.cfg.msgs)delete D.cfg.msgs[tipo];gravar();pintaMsg()}
+$('msg-data').onchange=msgLimpa;
+$('msg-texto').oninput=function(){D.cfg.msgs=D.cfg.msgs||{};D.cfg.msgs[D.cfg.msgTipo||'preco']=this.value;gravar()};
+$('msg-refazer').onclick=function(){msgLimpa();toast('Texto original de volta')};
+$('msg-copiar').onclick=function(){var tx=$('msg-texto').value,ok=function(){toast('Mensagem copiada. Agora é só colar no WhatsApp.')},falha=function(){$('msg-texto').select();toast('Selecione o texto e copie')};
+  try{navigator.clipboard.writeText(tx).then(ok,falha)}catch(e){falha()}};
+function totaisMes(){var vs=D.vendas.filter(function(v){return v.dia.slice(0,7)===mes}),fx=D.fixos.filter(function(f){return f.mes===mes}),entrou=0,gasto=0,min=0;
+  vs.forEach(function(v){entrou+=v.preco;gasto+=v.gasto;min+=v.min});var tx=entrou*taxa(),fixo=fx.reduce(function(a,f){return a+f.valor},0);
+  return {n:vs.length,entrou:entrou,gasto:gasto,tx:tx,fixo:fixo,min:min,sobrou:entrou-gasto-tx-fixo}}
+function pintaMeta(){var m=D.cfg.metas&&D.cfg.metas[mes],T=$('meta-txt');if(document.activeElement!==$('meta-valor'))$('meta-valor').value=m?String(m).replace('.',','):'';
+  if(!m){T.hidden=true;return}var t=totaisMes(),falta=m-t.sobrou;T.hidden=false;
+  if(falta<=0){T.className='dica bom';T.textContent='Meta batida! Sobraram '+brl(t.sobrou)+', '+brl(-falta)+' acima da sua meta.';return}
+  var ss=D.serv.map(function(s){return conta(s).sobra}).filter(function(x){return x>0}),media=ss.length?ss.reduce(function(a,b){return a+b},0)/ss.length:0;
+  T.className='dica ruim';T.textContent='Faltam '+brl(falta)+' para a sua meta.'+(media>0?' Pelo que sobra em média nas suas encomendas ('+brl(media)+'), são mais '+Math.ceil(falta/media)+(Math.ceil(falta/media)===1?' encomenda.':' encomendas.'):'')}
+$('meta-valor').oninput=function(){var v=num(this.value);D.cfg.metas=D.cfg.metas||{};if(v&&v>0)D.cfg.metas[mes]=v;else delete D.cfg.metas[mes];gravar();pintaMeta()};
+function pintaSim(){var box=$('sim-box');box.hidden=!D.serv.length;if(!D.serv.length)return;var sel=$('sim-serv'),atual=sel.value;sel.textContent='';
+  D.serv.forEach(function(s){var o=el('option',null,s.nome);o.value=s.id;sel.appendChild(o)});if(D.serv.some(function(s){return s.id===atual}))sel.value=atual;
+  var s=D.serv.filter(function(x){return x.id===sel.value})[0],pct=num($('sim-pct').value),C=$('sim-conta'),DI=$('sim-dica');C.textContent='';DI.hidden=true;$('sim-acoes').hidden=true;$('sim-conf').hidden=true;
+  if(!s||!pct||pct<=0||pct>=100)return;$('sim-acoes').hidden=false;$('sim-aplicar').textContent='Mudar o preço da '+s.nome+' para '+brl(Math.round(s.preco*(1-pct/100)));var antes=conta(s),novo={preco:s.preco*(1-pct/100),gasto:s.gasto,min:s.min},dep=conta(novo);
+  [['Preço',brl(s.preco)+' → '+brl(novo.preco)],['Sobra pra você',brl(antes.sobra)+' → '+brl(dep.sobra)],['Sua hora',brl(antes.hora)+' → '+brl(dep.hora)]].forEach(function(x){var d=el('div');d.appendChild(el('span',null,x[0]));d.appendChild(el('b',null,x[1]));C.appendChild(d)});
+  DI.hidden=false;if(dep.sobra<=0){DI.className='dica ruim';DI.textContent='Com esse desconto você paga para trabalhar.'}
+  else{var extra=antes.sobra>0?Math.round((antes.sobra/dep.sobra-1)*100):0;DI.className='dica '+(dep.hora>=D.cfg.hora?'bom':'ruim');
+    DI.textContent='O desconto sai inteiro do que sobra pra você. Para ganhar o mesmo de antes, precisa fazer '+extra+'% mais encomendas.'}}
+$('sim-serv').onchange=pintaSim;$('sim-pct').oninput=pintaSim;
+function simAtual(){var s=D.serv.filter(function(x){return x.id===$('sim-serv').value})[0],pct=num($('sim-pct').value);return (s&&pct>0&&pct<100)?{s:s,pct:pct,novo:Math.max(1,Math.round(s.preco*(1-pct/100)))}:null}
+$('sim-tabela').onclick=function(){var x=simAtual();if(!x)return;var pr=D.cfg.promo=D.cfg.promo||{on:false,nome:'',pct:0,ate:''};pr.on=true;pr.pct=Math.min(90,x.pct);if(!pr.nome)pr.nome='Promoção';gravar();abre('tabela');toast('Tabela de promoção com '+String(pr.pct).replace('.',',')+'% pronta')};
+$('sim-aplicar').onclick=function(){var x=simAtual();if(!x)return;$('sim-conf-txt').textContent='O preço de "'+x.s.nome+'" vai passar de '+brl(x.s.preco)+' para '+brl(x.novo)+' em todo o sistema. As encomendas já anotadas no mês não mudam.';$('sim-conf').hidden=false};
+$('sim-conf-nao').onclick=function(){$('sim-conf').hidden=true};
+$('sim-conf-sim').onclick=function(){var x=simAtual();if(!x)return;x.s.preco=x.novo;gravar();$('sim-pct').value='';pintaTudo();toast('Preço de "'+x.s.nome+'" agora é '+brl(x.novo))};
+$('resumo-baixar').onclick=function(){var t=totaisMes(),p=mes.split('-'),W=1080,H=1350,cv=document.createElement('canvas');cv.width=W;cv.height=H;var g=cv.getContext('2d'),cor=D.cfg.cor,AN='Anton, Impact, sans-serif',IN='Inter, Arial, sans-serif';
+  g.fillStyle='#f6f1e5';g.fillRect(0,0,W,H);g.fillStyle=cor;g.fillRect(0,0,W,330);g.fillStyle='#FFC82E';g.fillRect(84,70,330,62);g.fillStyle='#16130f';g.font='40px '+AN;g.textBaseline='middle';g.fillText('MEU MÊS',104,103);g.textBaseline='alphabetic';
+  g.fillStyle='#fff';g.font='96px '+AN;g.fillText((MESES[+p[1]-1]+' de '+p[0]).toUpperCase(),84,262);
+  var L=[['Entrou ('+t.n+(t.n===1?' encomenda)':' encomendas)'),brl(t.entrou)],['Gasto para fazer',brl(-t.gasto)]];if(taxa())L.push(['Taxa do cartão',brl(-t.tx)]);L.push(['Contas fixas',brl(-t.fixo)]);
+  var y=470;L.forEach(function(x){g.fillStyle='#16130f';g.font='500 44px '+IN;g.fillText(x[0],84,y);g.font='600 44px '+IN;var w=g.measureText(x[1]).width;g.fillText(x[1],W-84-w,y);g.strokeStyle='#bdb5a3';g.setLineDash([4,10]);g.lineWidth=3;g.beginPath();g.moveTo(84,y+34);g.lineTo(W-84,y+34);g.stroke();g.setLineDash([]);y+=110});
+  g.fillStyle='#fffdf7';g.strokeStyle='#16130f';g.lineWidth=4;caixa(g,60,y+10,W-120,230,20);g.fill();g.stroke();g.fillStyle='#5b554b';g.font='600 38px '+IN;g.fillText('SOBROU PRA MIM',100,y+86);
+  g.fillStyle=t.sobrou>=0?cor:'#c8372c';g.font='120px '+AN;g.fillText(brl(t.sobrou),100,y+205);
+  var hr=t.min>0?t.sobrou/(t.min/60):0;g.fillStyle='#16130f';g.font='500 38px '+IN;g.fillText(t.min>0?'Foram '+tempo(t.min)+' de trabalho. Cada hora rendeu '+brl(hr)+'.':'Nenhuma encomenda anotada neste mês.',84,y+320);
+  g.fillStyle='#16130f';g.fillRect(0,H-120,W,120);g.fillStyle='#fff';g.font='600 36px '+IN;g.fillText(D.cfg.nome||'Na Ponta do Lápis',84,H-48);
+  baixarCanvas(cv,'meu-mes-'+mes+'.png')};
+function pintaExtras(){pintaMsg();pintaMeta();pintaSim()}
+
+/* ---------- Abas ---------- */
+function abre(t){['servicos','mes','tabela','ajustes'].forEach(function(k){$('t-'+k).hidden=k!==t});
+  [].forEach.call(document.querySelectorAll('.abas button'),function(b){b.setAttribute('aria-selected',String(b.dataset.t===t))});
+  if(t==='tabela')pintaTabela();if(t==='mes')pintaMes();if(t==='ajustes')pintaAjustes();window.scrollTo(0,0);try{sessionStorage.setItem(CHAVE+'-aba',t)}catch(e){}}
+[].forEach.call(document.querySelectorAll('.abas button'),function(b){b.onclick=function(){abre(b.dataset.t)}});
+/* Com o teclado aberto o menu de baixo some (no iPhone ele ficava flutuando no meio da tela) e volta quando o teclado fecha. */
+(function(){var espera;function digita(e){var x=e.target;if(!x||!x.tagName)return false;if(x.tagName==='TEXTAREA')return true;if(x.tagName!=='INPUT')return false;return ['checkbox','radio','color','file','button','submit','range'].indexOf(x.type)<0}
+document.addEventListener('focusin',function(e){if(digita(e)){clearTimeout(espera);document.body.classList.add('digitando')}});
+document.addEventListener('focusout',function(e){if(digita(e)){clearTimeout(espera);espera=setTimeout(function(){document.body.classList.remove('digitando')},150)}})})();
+function pintaTudo(){pintaServ();pintaMes();pintaAjustes();pintaExtras();if(!$('t-tabela').hidden)pintaTabela()}
+pintaTudo();
+var ini='servicos';try{ini=sessionStorage.getItem(CHAVE+'-aba')||ini}catch(e){}abre(ini);
+if(document.fonts&&document.fonts.ready)document.fonts.ready.then(function(){if(!$('t-tabela').hidden)pintaTabela()});
+})();
+</script>
+<script>
+(function(){var K='jv-qs-acesso-confeitaria',H=['317619ddef1cc7706b0ef8c5277c8d665ff6064797ea57c0513fe9a867860d10'],P=document.getElementById('portao');
+var ok=false,v='';try{v=localStorage.getItem(K)||'';ok=H.indexOf(v)>=0||/^e:[0-9a-f]{64}$/.test(v)}catch(e){}
+function api(dados){return fetch('/api/entrar',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify(Object.assign({produto:'confeitaria'},dados))}).then(function(r){return r.json().then(function(j){j.status=r.status;return j})})}
+/* quem entrou pelo e-mail: de 7 em 7 dias, com internet, confere se a compra continua valendo (reembolso tira o acesso); sem internet, segue usando */
+if(ok&&v.charAt(0)==='e'){try{var u0=+localStorage.getItem(K+'-v')||0;if(Date.now()-u0>6048e5){api({h:v.slice(2)}).then(function(j){if(j.ok){localStorage.setItem(K+'-v',String(Date.now()))}else if(j.motivo==='reembolso'){localStorage.removeItem(K);location.reload()}}).catch(function(){})}}catch(e){}}
+if(ok)return;P.hidden=false;
+function hex(buf){return Array.prototype.map.call(new Uint8Array(buf),function(b){return ('0'+b.toString(16)).slice(-2)}).join('')}
+document.getElementById('portao-form').addEventListener('submit',function(e){e.preventDefault();var er=document.getElementById('portao-erro'),bruto=document.getElementById('portao-cod').value.replace(/\s+/g,''),c=bruto.toUpperCase(),bt=document.getElementById('portao-btn');er.textContent='';
+  if(!c){er.textContent='Digite o e-mail da compra.';return}
+  if(bruto.indexOf('@')>0){bt.disabled=true;bt.textContent='Conferindo...';
+    api({email:bruto.toLowerCase()}).then(function(j){bt.disabled=false;bt.textContent='Entrar';
+      if(j.ok&&j.h){try{localStorage.setItem(K,'e:'+j.h);localStorage.setItem(K+'-v',String(Date.now()))}catch(_){}P.hidden=true;window.scrollTo(0,0);return}
+      er.textContent=j.motivo==='nao_achou'?'Não achei compra com esse e-mail. Confira se é o mesmo que você usou para pagar.':j.motivo==='reembolso'?'Essa compra foi reembolsada, por isso o acesso foi encerrado.':j.motivo==='muitas_tentativas'?'Muitas tentativas seguidas. Espere um pouco e tente de novo.':j.motivo==='email'?'Esse e-mail parece incompleto. Confira e tente de novo.':'A entrada por e-mail não respondeu agora. Use o código que chegou no e-mail da compra.'})
+    .catch(function(){bt.disabled=false;bt.textContent='Entrar';er.textContent='Sem internet agora. Conecte e tente de novo, ou use o código que chegou no e-mail da compra.'});return}
+  if(!window.crypto||!crypto.subtle){er.textContent='Este navegador não consegue conferir o código. Abra pelo Chrome ou pelo Safari.';return}
+  crypto.subtle.digest('SHA-256',new TextEncoder().encode('jv-quanto-sobra:'+c)).then(function(b){var h=hex(b);
+    if(H.indexOf(h)>=0){try{localStorage.setItem(K,h)}catch(_){}P.hidden=true;window.scrollTo(0,0)}else er.textContent='Não confere. Digite o e-mail da compra ou o código igual ao que chegou no e-mail.'})});
+/* O link do e-mail de entrega já traz o código (?c=...): entra sozinho e tira o código do endereço. */
+try{var u=new URLSearchParams(location.search).get('c');if(u){document.getElementById('portao-cod').value=u;document.getElementById('portao-form').dispatchEvent(new Event('submit',{cancelable:true}));try{history.replaceState(null,'',location.pathname)}catch(_){}}}catch(_){}
+})();
+</script>
+
+</body>
+</html>

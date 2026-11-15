@@ -3,8 +3,8 @@
 // LGPD: o e-mail nunca é guardado. Fica só o resumo (SHA-256) dele, que não permite recuperar o endereço.
 
 // produto da Cakto → sistema que ele libera
-export const PRODUTOS = { 'cb9d7036-778e-441b-a04c-b7257e62cba9': 'trancista' };
-export const NICHOS = ['trancista'];
+export const PRODUTOS = { 'cb9d7036-778e-441b-a04c-b7257e62cba9': 'trancista', '2df01558-1d28-40e2-9bd5-db934f3933da': 'confeitaria' };
+export const NICHOS = ['trancista', 'confeitaria'];
 
 export const json = (obj, status = 200) => new Response(JSON.stringify(obj), { status, headers: { 'content-type': 'application/json; charset=utf-8', 'cache-control': 'no-store' } });
 
