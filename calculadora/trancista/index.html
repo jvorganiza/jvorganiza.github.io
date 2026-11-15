@@ -156,7 +156,7 @@ $('calc').addEventListener('submit',function(e){
   $('t-preco').textContent=brl(final);
   contas++;
   $('res').classList.add('on');if(window.__pauta)window.__pauta();$('res').scrollIntoView({behavior:'smooth',block:'start'});
-  try{fbq('trackCustom','Calculou',{n:contas,hora:Math.round(hora),origem:ORIGEM,pagina:'calculadora-trancista'});if(contas===1)fbq('track','Lead',{content_name:'calculadora-trancista'});}catch(_){}
+  try{fbq('trackCustom','Calculou',{n:contas,hora:Math.round(hora),origem:ORIGEM,pagina:'calculadora-trancista'});if(contas===1)fbq('track','Lead',{content_name:'calculadora-trancista',value:2.7,currency:'BRL'});}catch(_){}
 });
 })();
 /* Pauta do caderno (mesma regra do caderno/gerar.py): empurra cada texto solto na folha até a linha de base cair na pauta (linhas a cada 28 px). */

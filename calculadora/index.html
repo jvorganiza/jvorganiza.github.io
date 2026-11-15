@@ -131,7 +131,7 @@ $('calc').addEventListener('submit',function(e){
   var tr=document.createElement('tr');[nome,brl(preco),hora>0?brl(hora):'R$ 0',brl(sug)].forEach(function(t){var td=document.createElement('td');td.textContent=t;tr.appendChild(td)});$('hist-b').appendChild(tr);
   contas++;$('hist').classList.toggle('on',contas>1);
   $('res').classList.add('on');$('res').scrollIntoView({behavior:'smooth',block:'start'});
-  try{fbq('trackCustom','Calculou',{n:contas,hora:Math.round(hora),origem:ORIGEM});if(contas===1)fbq('track','Lead',{content_name:'calculadora'});}catch(_){}
+  try{fbq('trackCustom','Calculou',{n:contas,hora:Math.round(hora),origem:ORIGEM});if(contas===1)fbq('track','Lead',{content_name:'calculadora',value:2.7,currency:'BRL'});}catch(_){}
 });
 $('outra').addEventListener('click',function(){['nome','preco','mat','h','m'].forEach(function(i){$(i).value=''});$('calc').scrollIntoView({behavior:'smooth'});$('nome').focus()});
 })();
