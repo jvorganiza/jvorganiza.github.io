@@ -61,6 +61,7 @@ document.addEventListener('click',function(e){var a=e.target.closest&&e.target.c
 .previa .ver{justify-self:center;color:var(--tinta);font-weight:600}
 .miudo{font-size:13px;color:var(--tinta2);margin:0}
 @media (max-width:480px){.linha2{grid-template-columns:1fr}}
+.res>p{line-height:28px;margin:0}
 </style>
 <script src="/cookies.js" defer></script>
 </head>
@@ -154,9 +155,21 @@ $('calc').addEventListener('submit',function(e){
   var tn=$('t-nome');tn.textContent=cap(nome);var sm=document.createElement('small');sm.textContent='leva cerca de '+tempo;tn.appendChild(sm);
   $('t-preco').textContent=brl(final);
   contas++;
-  $('res').classList.add('on');$('res').scrollIntoView({behavior:'smooth',block:'start'});
+  $('res').classList.add('on');if(window.__pauta)window.__pauta();$('res').scrollIntoView({behavior:'smooth',block:'start'});
   try{fbq('trackCustom','Calculou',{n:contas,hora:Math.round(hora),origem:ORIGEM,pagina:'calculadora-trancista'});if(contas===1)fbq('track','Lead',{content_name:'calculadora-trancista'});}catch(_){}
 });
+})();
+/* Pauta do caderno (mesma regra do caderno/gerar.py): empurra cada texto solto na folha até a linha de base cair na pauta (linhas a cada 28 px). */
+(function(){
+  var SEL='.artigo>.tag,.artigo>h1,.res>p';
+  var PASSO=28,LINHA=26;
+  function base(el){var m=document.createElement('span');m.style.cssText='display:inline-block;width:0;height:0;vertical-align:baseline';el.insertBefore(m,el.firstChild);var y=m.getBoundingClientRect().bottom+window.scrollY;m.remove();return y;}
+  function alinhar(){var els=[].slice.call(document.querySelectorAll(SEL)).filter(function(el){return el.offsetParent});els.forEach(function(el){el.style.paddingTop='';});
+    els.forEach(function(el){var d=((LINHA-base(el))%PASSO+PASSO)%PASSO;if(d>.5)el.style.paddingTop=(parseFloat(getComputedStyle(el).paddingTop)+d)+'px';});}
+  var t;function agenda(){clearTimeout(t);t=setTimeout(alinhar,80);}
+  window.__pauta=alinhar;alinhar();
+  if(document.fonts&&document.fonts.ready)document.fonts.ready.then(alinhar);
+  window.addEventListener('load',alinhar);window.addEventListener('resize',agenda);
 })();
 </script>
 </body>

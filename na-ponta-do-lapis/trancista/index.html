@@ -48,7 +48,7 @@ fbq('consent',(function(){try{return localStorage.getItem('jv-cookies')==='sim'}
 .tela .txt{display:grid;gap:4px}
 .tela .txt b{font-size:21px;line-height:1.2}
 .tela .txt span{color:var(--tinta2);font-size:16px}
-.tela .num{font-family:Anton,Impact,sans-serif;font-size:15px;letter-spacing:.06em;background:var(--tinta);color:#fff;justify-self:start;padding:3px 10px;border-radius:4px}
+.tela .txt .num{font-family:Anton,Impact,sans-serif;font-size:15px;letter-spacing:.06em;background:var(--tinta);color:#fff;justify-self:start;padding:3px 10px;border-radius:4px}
 .tela .fone{border:3px solid var(--tinta);border-radius:20px;overflow:hidden;box-shadow:5px 5px 0 var(--tinta);background:#fff;max-height:430px}
 .kit .tela .fone img{margin:0;border:0;box-shadow:none;max-width:100%;display:block;width:100%;height:auto}
 .carrossel{display:grid;grid-auto-flow:column;grid-auto-columns:46%;gap:12px;overflow-x:auto;padding-bottom:8px;scroll-snap-type:x mandatory}
@@ -68,6 +68,11 @@ fbq('consent',(function(){try{return localStorage.getItem('jv-cookies')==='sim'}
 .fixo .btn{background:var(--amarelo);color:var(--tinta);font-size:17px;padding:12px 16px;white-space:nowrap}
 @media (min-width:820px){.heroi{grid-template-columns:1.1fr .9fr;align-items:center}.heroi .vitrine{grid-row:1/span 5;grid-column:2;height:440px}.tela{grid-template-columns:1fr 1fr;align-items:center}.carrossel{grid-auto-columns:23%}}
 @media (prefers-reduced-motion:reduce){.fixo{transition:none}}
+/* pauta do caderno: texto solto na folha com altura de linha múltipla de 28 px (o script no fim alinha a 1ª linha) */
+.kit h1{line-height:1.14;line-height:round(up,1.08em,28px)}
+.kit h2{line-height:round(up,1.1em,28px)}
+.heroi .sub,.video .miudo,.tela .txt b,.tela .txt span:not(.num),.passos li,.faq summary,.kit>p{line-height:28px}
+.tela .txt{gap:0}
 </style>
 </head>
 <body>
@@ -136,6 +141,10 @@ fbq('consent',(function(){try{return localStorage.getItem('jv-cookies')==='sim'}
 <p>Ficou com dúvida? <a href="https://wa.me/5521984942432?text=Oi%21%20Vi%20o%20Na%20Ponta%20do%20L%C3%A1pis%20para%20trancista%20no%20site%20e%20fiquei%20com%20uma%20d%C3%BAvida">Fala com a gente no WhatsApp</a>, a mensagem já vai pronta.</p>
 <p class="miudo">Na Ponta do Lápis é uma ferramenta de apoio. Os resultados dependem dos números que você coloca e a decisão de preço é sempre sua. Não prometemos faturamento nem lucro.</p>
 </main>
+<script>(function(){var SEL='.heroi>.tag,.heroi>h1,.heroi>.sub,.video>h2,.video>.miudo,.telas>h2,.tela .txt b,.tela .txt span:not(.num),.kit>section>h2,.passos>li,.faq summary,.kit>p';var PASSO=28,LINHA=26;
+function base(el){var m=document.createElement('span');m.style.cssText='display:inline-block;width:0;height:0;vertical-align:baseline';el.insertBefore(m,el.firstChild);var y=m.getBoundingClientRect().bottom+window.scrollY;m.remove();return y;}
+function alinhar(){var els=[].slice.call(document.querySelectorAll(SEL)).filter(function(el){return el.offsetParent});els.forEach(function(el){el.style.paddingTop='';});els.forEach(function(el){var d=((LINHA-base(el))%PASSO+PASSO)%PASSO;if(d>.5)el.style.paddingTop=(parseFloat(getComputedStyle(el).paddingTop)+d)+'px';});}
+var t;function agenda(){clearTimeout(t);t=setTimeout(alinhar,80);}alinhar();if(document.fonts&&document.fonts.ready)document.fonts.ready.then(alinhar);window.addEventListener('load',alinhar);window.addEventListener('resize',agenda);document.addEventListener('toggle',agenda,true);})();</script>
 <div class="fixo" id="fixo" aria-hidden="true"><div><b>R$ 27</b><small>uma vez só · garantia de 7 dias</small></div><a class="btn" href="https://pay.cakto.com.br/4dkmz5v?split=1" tabindex="-1">Quero o meu</a></div>
 <script>(function(){var f=document.getElementById('fixo'),a=document.getElementById('topo-compra'),b=document.getElementById('comprar');if(!('IntersectionObserver' in window))return;var vA=true,vB=false;function up(){var on=!vA&&!vB;f.classList.toggle('on',on);f.setAttribute('aria-hidden',on?'false':'true');f.querySelector('a').tabIndex=on?0:-1}new IntersectionObserver(function(e){vA=e[0].isIntersecting;up()}).observe(a);new IntersectionObserver(function(e){vB=e[0].isIntersecting;up()}).observe(b)})();</script>
 <footer class="rodape"><div class="wrap">
