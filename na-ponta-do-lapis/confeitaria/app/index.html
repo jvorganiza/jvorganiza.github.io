@@ -136,6 +136,49 @@ body.digitando .abas{display:none}
 <div class="app">
   <div class="topo"><svg class="lapis" width="40" height="40" viewBox="0 0 84 84" aria-hidden="true"><g transform="rotate(-18 42 42)"><rect x="30" y="12" width="24" height="44" fill="#FFC82E" stroke="#16130f" stroke-width="3"/><rect x="30" y="5" width="24" height="10" fill="#c8372c" stroke="#16130f" stroke-width="3"/><path d="M30 56 L42 78 L54 56 Z" fill="#fffdf7" stroke="#16130f" stroke-width="3"/><path d="M38.5 71 L42 78 L45.5 71 Z" fill="#16130f"/></g></svg><div class="marca-app"><i>na ponta do</i><b>LÁPIS</b></div><span>da Empresa JV</span></div>
 
+  <!-- RECEITAS (17/11/2026): quanto custa o seu quilo, a sua fatia e o seu cento -->
+  <section class="tela" id="t-receitas" hidden>
+    <div><h1>Minhas receitas</h1><p class="sub">Quanto custa o seu quilo, a sua fatia e o seu cento, e o preço certo de cada um.</p></div>
+    <div class="cartao amostra" id="rec-amostra"><p class="selo">AMOSTRA · é assim que fica</p><div class="serv-top"><b>Bolo de 2 kg de brigadeiro</b><span>custo R$ 41</span></div><div class="trio"><div><small>Custo do quilo</small><b>R$ 20,50</b></div><div><small>Preço certo do quilo</small><b class="bom">R$ 70</b></div><div><small>Fatia (20 no bolo)</small><b>R$ 7</b></div></div><p class="sub">Cadastre os seus ingredientes uma vez, pelo preço do pacote. Depois é só montar a receita.</p></div>
+    <div class="cartao">
+      <h2>1. Meus ingredientes</h2>
+      <p class="sub">O preço do pacote que você compra. Quando subir, mude aqui e todas as receitas se atualizam.</p>
+      <div class="lista" id="lista-ing"></div>
+      <button class="amar" id="novo-ing" type="button">+ Ingrediente</button>
+      <form id="form-ing" hidden novalidate>
+        <div><b style="font-size:14.5px">Toque num modelo ou escreva o seu</b><div class="toques chips" id="ing-modelos" style="margin-top:6px"></div></div>
+        <label for="i-nome">Ingrediente<input id="i-nome" maxlength="30" autocomplete="off" placeholder="Ex.: leite condensado"></label>
+        <div class="duas"><label for="i-preco">Preço do pacote (R$)<input id="i-preco" inputmode="decimal" placeholder="Ex.: 7,50"></label>
+        <label for="i-qtd">Tamanho do pacote<input id="i-qtd" inputmode="decimal" placeholder="Ex.: 395"></label></div>
+        <label for="i-un">Medida<select id="i-un"><option value="g">gramas (g)</option><option value="kg">quilos (kg)</option><option value="ml">mililitros (ml)</option><option value="l">litros (L)</option><option value="un">unidades</option></select></label>
+        <p class="erro" id="i-erro" role="alert"></p>
+        <div class="acoes"><button class="forte" type="submit">Salvar ingrediente</button><button type="button" id="i-cancelar">Cancelar</button><button type="button" class="perigo" id="i-apagar" hidden>Apagar</button></div>
+      </form>
+    </div>
+    <div class="cartao">
+      <h2>2. Minhas receitas</h2>
+      <div id="lista-rec" class="tela"></div>
+      <button class="forte" id="nova-rec" type="button">+ Nova receita</button>
+      <form id="form-rec" hidden novalidate>
+        <h2 id="form-rec-tit">Nova receita</h2>
+        <label for="r-nome">Nome<input id="r-nome" maxlength="40" autocomplete="off" placeholder="Ex.: bolo de 2 kg de brigadeiro"></label>
+        <b style="font-size:14.5px">Quanto a receita rende</b>
+        <p class="sub">Preencha o que fizer sentido: o peso pronto, as fatias ou as unidades (docinhos, bolos de pote).</p>
+        <div class="duas"><label for="r-kg">Peso pronto (kg)<input id="r-kg" inputmode="decimal" placeholder="Ex.: 2"></label><label for="r-fat">Fatias<input id="r-fat" inputmode="numeric" placeholder="Ex.: 20"></label></div>
+        <label for="r-un">Unidades<input id="r-un" inputmode="numeric" placeholder="Ex.: 50 brigadeiros"></label>
+        <b style="font-size:14.5px">Ingredientes usados nessa receita</b>
+        <div id="r-itens"></div>
+        <button type="button" id="r-mais" class="amar">+ Ingrediente na receita</button>
+        <div class="duas"><label for="r-emb">Embalagem: caixa, base, forminhas (R$)<input id="r-emb" inputmode="decimal" placeholder="Ex.: 6"></label><label for="r-gas">Gás e luz do forno (R$)<input id="r-gas" inputmode="decimal" placeholder="Ex.: 4"></label></div>
+        <div class="duas"><label for="r-dec">Topo, fita e decoração (R$)<input id="r-dec" inputmode="decimal" placeholder="Ex.: 5"></label><label for="r-out">Outros (R$)<input id="r-out" inputmode="decimal" placeholder="Ex.: 2"></label></div>
+        <div class="duas"><label for="r-h">Horas de trabalho<input id="r-h" inputmode="numeric" placeholder="Ex.: 3"></label><label for="r-m">Minutos<input id="r-m" inputmode="numeric" placeholder="Ex.: 0"></label></div>
+        <p class="total" id="r-total">Custo da receita: R$ 0</p>
+        <p class="erro" id="r-erro" role="alert"></p>
+        <div class="acoes"><button class="forte" type="submit">Salvar receita</button><button type="button" id="r-cancelar">Cancelar</button><button type="button" class="perigo" id="r-apagar" hidden>Apagar receita</button></div>
+      </form>
+    </div>
+  </section>
+
   <!-- SERVIÇOS -->
   <section class="tela" id="t-servicos">
     <div><h1>Meus serviços</h1><p class="sub">Quanto sobra em cada encomenda e o preço que paga a sua hora.</p></div>
@@ -341,9 +384,10 @@ body.digitando .abas{display:none}
 </div>
 
 <nav class="abas" role="tablist" aria-label="Telas">
-  <button role="tab" data-t="servicos" aria-selected="true">Serviços</button>
+  <button role="tab" data-t="receitas" aria-selected="true">Receitas</button>
+  <button role="tab" data-t="servicos" aria-selected="false">Preços</button>
   <button role="tab" data-t="mes" aria-selected="false">Meu mês</button>
-  <button role="tab" data-t="ajustes" aria-selected="false">Meu negócio</button>
+  <button role="tab" data-t="ajustes" aria-selected="false">Negócio</button>
   <button role="tab" data-t="tabela" aria-selected="false">Tabela</button>
 </nav>
 <div class="toast" id="toast" hidden role="status"></div>
@@ -356,7 +400,7 @@ var $=function(i){return document.getElementById(i)};
 /* (trancista:: nagô R$ 180 e fulani R$ 280 em cerca de 5 h (Superprof, tabelas de trancistas);
    boho braids R$ 330 em 8 h com R$ 80 de fibra e pomada (relato de trancistas no atendimento); jumbo de 400 g de R$ 22 a R$ 40 (Mercado Livre). */
 var PADRAO=function(){return {v:1,cfg:{nome:'',contato:'',hora:25,lucro:20,cartao:false,cor:'#16130f',cor2:'#d9b36a',modelo:'limpo',tb:'atual'},
-  serv:[],vendas:[],fixos:[]}};
+  serv:[],vendas:[],fixos:[],ing:[],rec:[]}};
 var MODELOS=['Bolo de festa (kg)', 'Bolo de 2 kg', 'Bolo de pote', 'Brigadeiro (cento)', 'Doce gourmet (cento)', 'Bolo caseiro', 'Bolo vulcão', 'Naked cake', 'Kit festa', 'Torta'];
 function modelosLivres(){var tem=D.serv.map(function(s){return s.nome.toLowerCase()});return MODELOS.filter(function(m){return tem.indexOf(m.toLowerCase())<0})}
 var D;
@@ -376,6 +420,11 @@ function limpa(o){var p=PADRAO();if(!o||typeof o!=='object')return p;
     if(s.g&&typeof s.g==='object'){r.g={pas:!!s.g.pas};['jp','jv','pp','pr','el','out','pv'].forEach(function(k){r.g[k]=n0(s.g[k])})}return r});
   p.vendas=(Array.isArray(o.vendas)?o.vendas:[]).slice(-6000).filter(function(v){return v&&/^\d{4}-\d{2}-\d{2}$/.test(v.dia)}).map(function(v){return {id:st(v.id,20)||novoId(),nome:st(v.nome,40)||'Encomenda',preco:n0(v.preco),gasto:n0(v.gasto),min:Math.round(n0(v.min)),dia:v.dia}});
   p.fixos=(Array.isArray(o.fixos)?o.fixos:[]).slice(-2000).filter(function(f){return f&&/^\d{4}-\d{2}$/.test(f.mes)&&n0(f.valor)}).map(function(f){return {id:st(f.id,20)||novoId(),mes:f.mes,nome:st(f.nome,30)||'Conta',valor:n0(f.valor)}});
+  var UNS=['g','ml','un'];
+  p.ing=(Array.isArray(o.ing)?o.ing:[]).slice(0,200).filter(function(i){return i&&typeof i==='object'&&n0(i.preco)&&n0(i.qtd)&&UNS.indexOf(i.un)>=0}).map(function(i){return {id:st(i.id,20)||novoId(),nome:st(i.nome,30)||'Ingrediente',preco:n0(i.preco),qtd:n0(i.qtd),un:i.un}});
+  p.rec=(Array.isArray(o.rec)?o.rec:[]).slice(0,120).filter(function(r){return r&&typeof r==='object'}).map(function(r){return {id:st(r.id,20)||novoId(),nome:st(r.nome,40)||'Receita',kg:n0(r.kg),fat:Math.round(n0(r.fat)),un:Math.round(n0(r.un)),emb:n0(r.emb),gas:n0(r.gas),dec:n0(r.dec),out:n0(r.out),min:Math.round(n0(r.min)),
+    itens:(Array.isArray(r.itens)?r.itens:[]).slice(0,40).filter(function(x){return x&&n0(x.q)}).map(function(x){return {ing:st(x.ing,20),q:n0(x.q)}})}});
+  p.serv.forEach(function(s){var orig=(o.serv||[]).filter(function(x){return x&&x.id===s.id})[0];if(orig&&orig.rec)s.rec=st(orig.rec,20)});
   return p}
 function ler(){try{var s=localStorage.getItem(CHAVE);if(s)return limpa(JSON.parse(s))}catch(e){}return PADRAO()}
 function gravar(){try{localStorage.setItem(CHAVE,JSON.stringify(D))}catch(e){}}
@@ -683,18 +732,83 @@ $('resumo-baixar').onclick=function(){var t=totaisMes(),p=mes.split('-'),W=1080,
   baixarCanvas(cv,'meu-mes-'+mes+'.png')};
 function pintaExtras(){pintaMsg();pintaMeta();pintaSim()}
 
+/* ---------- Receitas (17/11/2026): ingrediente pelo preço do pacote, custo da receita, quilo, fatia, unidade e cento ---------- */
+var ING_MODELOS=[['Leite condensado',395,'g'],['Creme de leite',200,'g'],['Chocolate em pó',200,'g'],['Chocolate nobre',1000,'g'],['Manteiga',200,'g'],['Farinha de trigo',1000,'g'],['Açúcar',1000,'g'],['Ovos',12,'un'],['Leite',1000,'ml'],['Granulado',500,'g'],['Leite em pó',200,'g'],['Óleo',900,'ml']];
+var UNOME={g:'g',ml:'ml',un:'un.'};
+function ingPor(id){return D.ing.filter(function(i){return i.id===id})[0]}
+function custoRec(r){var ing=0;r.itens.forEach(function(x){var i=ingPor(x.ing);if(i)ing+=i.preco/i.qtd*x.q});var tot=ing+r.emb+r.gas+r.dec+r.out;return {ing:ing,tot:tot}}
+function certoRec(r){var c=custoRec(r),t=taxa(),h=r.min/60;return (c.tot+h*D.cfg.hora)*(1+D.cfg.lucro/100)/(1-t)}
+function meio(n){return Math.ceil(n*2)/2}
+function sincServ(r){var c=custoRec(r),s=D.serv.filter(function(x){return x.rec===r.id})[0];if(!s)return;s.nome=r.nome;s.gasto=Math.round(c.tot*100)/100;s.min=r.min||s.min;s.g={pas:false,jp:Math.round(c.ing*100)/100,jv:r.emb,pp:0,pr:0,el:r.dec,out:r.out+r.gas,pv:0}}
+function pintaRec(){
+  $('rec-amostra').hidden=D.rec.length>0;
+  var LI=$('lista-ing');LI.textContent='';
+  if(!D.ing.length)LI.appendChild(el('p','sub','Nenhum ingrediente ainda. Comece pelos que você mais usa.'));
+  D.ing.slice().sort(function(a,b){return a.nome.localeCompare(b.nome)}).forEach(function(i){var d=el('div');d.appendChild(el('span',null,i.nome+' · '+i.qtd.toLocaleString('pt-BR')+' '+UNOME[i.un]));d.appendChild(el('b',null,brl(i.preco)));var b=el('button',null,'Mudar');b.type='button';b.onclick=function(){abreIng(i)};d.appendChild(b);LI.appendChild(d)});
+  var LR=$('lista-rec');LR.textContent='';
+  D.rec.forEach(function(r){var c=custoRec(r),certo=certoRec(r),cx=el('div','cartao');
+    var top=el('div','serv-top');top.appendChild(el('b',null,r.nome));top.appendChild(el('span',null,'custo '+brl(c.tot)));cx.appendChild(top);
+    var cn=el('div','conta'),lin=function(a,b,cl){var d=el('div');d.appendChild(el('span',null,a));d.appendChild(el('span',cl||null,b));cn.appendChild(d)};
+    lin('Ingredientes',brl(c.ing));if(r.emb+r.gas+r.dec+r.out)lin('Embalagem, gás, decoração e outros',brl(r.emb+r.gas+r.dec+r.out));
+    if(r.kg){lin('Custo do quilo',brl(c.tot/r.kg));lin('Preço certo do quilo',brl(meio(certo/r.kg)),'bom')}
+    if(r.fat){lin('Custo da fatia ('+r.fat+' fatias)',brl(c.tot/r.fat));lin('Preço certo da fatia',brl(meio(certo/r.fat)),'bom')}
+    if(r.un){lin('Custo de cada unidade',brl(c.tot/r.un));lin('Custo do cento',brl(c.tot/r.un*100));lin('Preço certo da unidade',brl(Math.ceil(certo/r.un*20)/20),'bom');lin('Preço certo do cento',brl(cima5(certo/r.un*100)),'bom')}
+    lin('Preço certo da receita inteira',brl(cima5(certo)),'bom');cx.appendChild(cn);
+    if(!r.itens.length)cx.appendChild(el('p','dica ruim','Falta pôr os ingredientes dessa receita.'));
+    var ac=el('div','acoes'),be=el('button',null,'Editar');be.type='button';be.onclick=function(){abreRec(r)};ac.appendChild(be);
+    var ligado=D.serv.some(function(x){return x.rec===r.id}),bs=el('button','amar',ligado?'Ver em Preços':'Levar para Preços');bs.type='button';
+    bs.onclick=function(){if(!ligado){D.serv.push({id:uid(),nome:r.nome,preco:cima5(certo),gasto:0,min:r.min||60,rec:r.id});sincServ(r);gravar();pintaTudo();toast('Pronto: '+r.nome+' está em Preços')}abre('servicos')};ac.appendChild(bs);
+    cx.appendChild(ac);LR.appendChild(cx)});
+}
+var ingEd=null;
+function abreIng(i){ingEd=i||null;$('form-ing').hidden=false;$('novo-ing').hidden=true;$('i-erro').textContent='';$('i-apagar').hidden=!i;
+  $('i-nome').value=i?i.nome:'';$('i-preco').value=i?String(i.preco).replace('.',','):'';$('i-qtd').value=i?String(i.qtd).replace('.',','):'';$('i-un').value=i?i.un:'g';
+  var M=$('ing-modelos');M.textContent='';M.parentNode.hidden=!!i;
+  ING_MODELOS.filter(function(m){return !D.ing.some(function(x){return x.nome.toLowerCase()===m[0].toLowerCase()})}).forEach(function(m){var b=el('button',null,m[0]);b.type='button';b.onclick=function(){$('i-nome').value=m[0];$('i-qtd').value=String(m[1]);$('i-un').value=m[2];$('i-preco').focus()};M.appendChild(b)});
+  (i?$('i-preco'):$('i-nome')).focus()}
+function fechaIng(){$('form-ing').hidden=true;$('novo-ing').hidden=false;ingEd=null}
+$('novo-ing').onclick=function(){abreIng(null)};$('i-cancelar').onclick=fechaIng;
+$('i-apagar').onclick=function(){if(!ingEd)return;var id=ingEd.id;D.ing=D.ing.filter(function(x){return x.id!==id});D.rec.forEach(function(r){r.itens=r.itens.filter(function(x){return x.ing!==id});sincServ(r)});gravar();fechaIng();pintaTudo();toast('Ingrediente apagado')};
+$('form-ing').addEventListener('submit',function(e){e.preventDefault();var nome=$('i-nome').value.trim(),pr=num($('i-preco').value),q=num($('i-qtd').value),un=$('i-un').value,era=!!ingEd;
+  if(!nome){$('i-erro').textContent='Escreva o nome do ingrediente.';return}if(!pr||pr<=0){$('i-erro').textContent='Ponha o preço do pacote.';return}if(!q||q<=0){$('i-erro').textContent='Ponha o tamanho do pacote.';return}
+  if(un==='kg'){q=q*1000;un='g'}if(un==='l'){q=q*1000;un='ml'}
+  if(ingEd){ingEd.nome=nome.slice(0,30);ingEd.preco=pr;ingEd.qtd=q;ingEd.un=un}else D.ing.push({id:uid(),nome:nome.slice(0,30),preco:pr,qtd:q,un:un});
+  D.rec.forEach(sincServ);gravar();fechaIng();pintaTudo();toast(era?'Preço atualizado em todas as receitas':'Ingrediente salvo')});
+var recEd=null;
+function linhaItem(x){var d=el('div','duas'),ls=el('label',null,'Ingrediente'),sel=document.createElement('select');sel.className='r-ing';
+  if(!D.ing.length){var o0=document.createElement('option');o0.textContent='Cadastre um ingrediente primeiro';o0.value='';sel.appendChild(o0)}
+  D.ing.slice().sort(function(a,b){return a.nome.localeCompare(b.nome)}).forEach(function(i){var o=document.createElement('option');o.value=i.id;o.textContent=i.nome;sel.appendChild(o)});if(x&&x.ing)sel.value=x.ing;ls.appendChild(sel);
+  var lq=el('label',null,'Quanto vai'),q=document.createElement('input');q.className='r-q';q.setAttribute('inputmode','decimal');q.placeholder='Ex.: 395';if(x&&x.q)q.value=String(x.q).replace('.',',');
+  var un=el('small','sub','');function u(){var i=ingPor(sel.value);un.textContent=i?'em '+(i.un==='un'?'unidades':i.un):''}u();sel.onchange=function(){u();totRec()};q.oninput=totRec;lq.appendChild(q);lq.appendChild(un);
+  var rm=el('button','leve','Tirar');rm.type='button';rm.onclick=function(){d.remove();totRec()};d.appendChild(ls);d.appendChild(lq);d.appendChild(rm);$('r-itens').appendChild(d)}
+function itensForm(){return [].map.call(document.querySelectorAll('#r-itens .duas'),function(d){return {ing:d.querySelector('.r-ing').value,q:num(d.querySelector('.r-q').value)||0}}).filter(function(x){return x.ing&&x.q>0})}
+function recForm(){var h=num($('r-h').value)||0,m=num($('r-m').value)||0;return {nome:$('r-nome').value.trim(),kg:num($('r-kg').value)||0,fat:Math.round(num($('r-fat').value)||0),un:Math.round(num($('r-un').value)||0),emb:num($('r-emb').value)||0,gas:num($('r-gas').value)||0,dec:num($('r-dec').value)||0,out:num($('r-out').value)||0,min:Math.round(h*60+m),itens:itensForm()}}
+function totRec(){var c=custoRec(recForm());$('r-total').textContent='Custo da receita: '+brl(c.tot)}
+function abreRec(r){recEd=r||null;$('form-rec').hidden=false;$('nova-rec').hidden=true;$('r-erro').textContent='';$('r-apagar').hidden=!r;$('form-rec-tit').textContent=r?'Editar receita':'Nova receita';
+  var v=function(id,n){$(id).value=n?String(n).replace('.',','):''};$('r-nome').value=r?r.nome:'';v('r-kg',r&&r.kg);v('r-fat',r&&r.fat);v('r-un',r&&r.un);v('r-emb',r&&r.emb);v('r-gas',r&&r.gas);v('r-dec',r&&r.dec);v('r-out',r&&r.out);
+  $('r-h').value=r&&r.min?String(Math.floor(r.min/60)):'';$('r-m').value=r&&r.min?String(r.min%60):'';
+  $('r-itens').textContent='';(r&&r.itens.length?r.itens:[null]).forEach(linhaItem);totRec();$('form-rec').scrollIntoView({behavior:'smooth',block:'start'});$('r-nome').focus()}
+function fechaRec(){$('form-rec').hidden=true;$('nova-rec').hidden=false;recEd=null}
+$('nova-rec').onclick=function(){abreRec(null)};$('r-cancelar').onclick=fechaRec;$('r-mais').onclick=function(){linhaItem(null)};
+['r-emb','r-gas','r-dec','r-out'].forEach(function(id){$(id).oninput=totRec});
+$('r-apagar').onclick=function(){if(!recEd)return;var id=recEd.id;D.rec=D.rec.filter(function(x){return x.id!==id});D.serv.forEach(function(s){if(s.rec===id)delete s.rec});gravar();fechaRec();pintaTudo();toast('Receita apagada')};
+$('form-rec').addEventListener('submit',function(e){e.preventDefault();var f=recForm();
+  if(!f.nome){$('r-erro').textContent='Escreva o nome da receita.';return}if(!f.kg&&!f.fat&&!f.un){$('r-erro').textContent='Diga quanto a receita rende: peso, fatias ou unidades.';return}
+  if(recEd){Object.keys(f).forEach(function(k){recEd[k]=k==='nome'?f.nome.slice(0,40):f[k]});sincServ(recEd)}else{f.id=uid();f.nome=f.nome.slice(0,40);D.rec.push(f)}
+  gravar();fechaRec();pintaTudo();toast('Receita salva')});
+
 /* ---------- Abas ---------- */
-function abre(t){['servicos','mes','tabela','ajustes'].forEach(function(k){$('t-'+k).hidden=k!==t});
+function abre(t){['receitas','servicos','mes','tabela','ajustes'].forEach(function(k){$('t-'+k).hidden=k!==t});
   [].forEach.call(document.querySelectorAll('.abas button'),function(b){b.setAttribute('aria-selected',String(b.dataset.t===t))});
-  if(t==='tabela')pintaTabela();if(t==='mes')pintaMes();if(t==='ajustes')pintaAjustes();window.scrollTo(0,0);try{sessionStorage.setItem(CHAVE+'-aba',t)}catch(e){}}
+  if(t==='tabela')pintaTabela();if(t==='mes')pintaMes();if(t==='receitas')pintaRec();if(t==='ajustes')pintaAjustes();window.scrollTo(0,0);try{sessionStorage.setItem(CHAVE+'-aba',t)}catch(e){}}
 [].forEach.call(document.querySelectorAll('.abas button'),function(b){b.onclick=function(){abre(b.dataset.t)}});
 /* Com o teclado aberto o menu de baixo some (no iPhone ele ficava flutuando no meio da tela) e volta quando o teclado fecha. */
 (function(){var espera;function digita(e){var x=e.target;if(!x||!x.tagName)return false;if(x.tagName==='TEXTAREA')return true;if(x.tagName!=='INPUT')return false;return ['checkbox','radio','color','file','button','submit','range'].indexOf(x.type)<0}
 document.addEventListener('focusin',function(e){if(digita(e)){clearTimeout(espera);document.body.classList.add('digitando')}});
 document.addEventListener('focusout',function(e){if(digita(e)){clearTimeout(espera);espera=setTimeout(function(){document.body.classList.remove('digitando')},150)}})})();
-function pintaTudo(){pintaServ();pintaMes();pintaAjustes();pintaExtras();if(!$('t-tabela').hidden)pintaTabela()}
+function pintaTudo(){pintaRec();pintaServ();pintaMes();pintaAjustes();pintaExtras();if(!$('t-tabela').hidden)pintaTabela()}
 pintaTudo();
-var ini='servicos';try{ini=sessionStorage.getItem(CHAVE+'-aba')||ini}catch(e){}abre(ini);
+var ini='receitas';try{ini=sessionStorage.getItem(CHAVE+'-aba')||ini}catch(e){}abre(ini);
 if(document.fonts&&document.fonts.ready)document.fonts.ready.then(function(){if(!$('t-tabela').hidden)pintaTabela()});
 })();
 </script>
