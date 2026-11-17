@@ -90,6 +90,7 @@ input[type=file]{font-size:14px;padding:8px}
 .mes-nav b{font-family:var(--display);font-weight:400;font-size:22px;text-transform:uppercase}
 .conta{display:flex;flex-direction:column}
 .conta div{display:flex;justify-content:space-between;gap:10px;padding:7px 0;border-bottom:1px dashed var(--linha);font-variant-numeric:tabular-nums}
+.conta div span:last-child{white-space:nowrap}
 .conta div:last-child{border-bottom:0}
 .conta .tot{font-weight:700;font-size:18px;border-top:2px solid var(--tinta);border-bottom:0;margin-top:4px;padding-top:10px}
 .toques{display:flex;flex-wrap:wrap;gap:8px}
@@ -749,7 +750,7 @@ function pintaRec(){
   D.rec.forEach(function(r){var c=custoRec(r),certo=certoRec(r),cx=el('div','cartao');
     var top=el('div','serv-top');top.appendChild(el('b',null,r.nome));top.appendChild(el('span',null,'custo '+brl(c.tot)));cx.appendChild(top);
     var cn=el('div','conta'),lin=function(a,b,cl){var d=el('div');d.appendChild(el('span',null,a));d.appendChild(el('span',cl||null,b));cn.appendChild(d)};
-    lin('Ingredientes',brl(c.ing));if(r.emb+r.gas+r.dec+r.out)lin('Embalagem, gás, decoração e outros',brl(r.emb+r.gas+r.dec+r.out));
+    lin('Ingredientes',brl(c.ing));if(r.emb+r.gas+r.dec+r.out)lin('Embalagem, gás e decoração',brl(r.emb+r.gas+r.dec+r.out));
     if(r.kg){lin('Custo do quilo',brl(c.tot/r.kg));lin('Preço certo do quilo',brl(meio(certo/r.kg)),'bom')}
     if(r.fat){lin('Custo da fatia ('+r.fat+' fatias)',brl(c.tot/r.fat));lin('Preço certo da fatia',brl(meio(certo/r.fat)),'bom')}
     if(r.un){lin('Custo de cada unidade',brl(c.tot/r.un));lin('Custo do cento',brl(c.tot/r.un*100));lin('Preço certo da unidade',brl(Math.ceil(certo/r.un*20)/20),'bom');lin('Preço certo do cento',brl(cima5(certo/r.un*100)),'bom')}
