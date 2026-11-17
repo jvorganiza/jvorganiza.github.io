@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Compra confirmada · Empresa JV</title>
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#0E3B2A">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&family=Caveat:wght@700&display=swap" rel="stylesheet">
+<script>if(!/jvorganiza/.test(location.hostname)){window.fbq=function(){console.log('[teste] fbq',[].slice.call(arguments))}}
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('consent',(function(){try{return localStorage.getItem('jv-cookies')==='sim'}catch(e){return false}})()?'grant':'revoke');fbq('init','1129384439673429');fbq('track','PageView');fbq('trackCustom','AbriuPagina',{pagina:'npl-obrigado'});</script>
+<script src="/cookies.js" defer></script>
+<style>
+:root{--papel:#efe7d6;--papel2:#f6f1e5;--tinta:#16130f;--tinta2:#4a443b;--verde:#0E3B2A;--verde2:#14794A;--amarelo:#FFC82E;--verm:#d64034}
+*{box-sizing:border-box}
+body{margin:0;background:var(--papel);color:var(--tinta);font:400 17px/1.6 Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+.wrap{max-width:620px;margin:0 auto;padding-left:max(18px,env(safe-area-inset-left,0px));padding-right:max(18px,env(safe-area-inset-right,0px))}
+header{background:var(--verde);color:var(--papel2);border-bottom:3px solid var(--tinta)}
+header .wrap{display:flex;align-items:center;gap:10px;padding-block:10px}
+.logo{width:38px;height:38px;border-radius:50%;border:2px solid var(--amarelo);display:grid;place-items:center;color:var(--amarelo);font:400 17px/1 Anton,sans-serif}
+header b{font-weight:800}
+.ok{background:var(--menta,#CFE3D6);border-bottom:2px solid var(--tinta);font-size:15px}
+.ok .wrap{padding-block:10px}
+main{display:grid;grid-template-columns:minmax(0,1fr);gap:26px;padding-block:24px 70px}
+.tag{justify-self:start;font:400 15px/1 Anton,sans-serif;letter-spacing:.06em;background:var(--tinta);color:var(--amarelo);padding:6px 10px 5px;transform:rotate(-1.5deg)}
+h1{font:400 clamp(32px,8vw,46px)/1.1 Anton,Impact,sans-serif;margin:0;text-wrap:balance}
+h1 em{font-style:normal;background:var(--amarelo);padding:0 .1em}
+h2{font:700 21px/1.25 Inter,sans-serif;margin:0 0 10px}
+.sub{font-size:18px;margin:0;color:var(--tinta2)}
+video{width:100%;max-width:320px;aspect-ratio:9/16;justify-self:center;border:3px solid var(--tinta);border-radius:18px;box-shadow:5px 5px 0 var(--tinta);background:#efe9dc}
+.lista{margin:0;padding:0;list-style:none;display:grid;gap:8px}
+.lista li{padding-left:28px;position:relative}
+.lista li:before{content:"✓";position:absolute;left:4px;color:var(--verde2);font-weight:800}
+.caixa{background:var(--papel2);border:2px solid var(--tinta);border-radius:14px;padding:18px}
+.oferta{background:var(--amarelo);border:2px solid var(--tinta);border-radius:14px;padding:20px;box-shadow:5px 5px 0 var(--tinta);display:grid;gap:12px}
+.de{text-decoration:line-through;color:var(--tinta2);font-weight:600}
+.valor{font:400 54px/1 Anton,Impact,sans-serif}
+.miudo{font-size:14px;color:var(--tinta2);margin:0}
+.oferta .miudo{color:var(--tinta)}
+cakto-upsell-buttons{display:grid;gap:12px}
+cakto-upsell-accept,cakto-upsell-reject{display:block;max-width:100%}
+cakto-upsell-accept::part(button){width:100%;white-space:normal;min-height:58px;border:3px solid var(--tinta);border-radius:12px;font:800 18px/1.2 Inter,sans-serif}
+cakto-upsell-reject::part(button){width:100%;white-space:normal;background:transparent;border:0;text-decoration:underline;color:var(--tinta2);font:500 15px/1.3 Inter,sans-serif}
+.reserva{display:none;gap:10px}
+.reserva.on{display:grid}
+.btn{display:flex;align-items:center;justify-content:center;text-align:center;min-height:56px;padding:10px 18px;border:3px solid var(--tinta);border-radius:12px;background:var(--verde);color:#fff;font:800 18px/1.2 Inter,sans-serif;text-decoration:none}
+.btn.claro{background:var(--papel2);color:var(--tinta)}
+.link-nao{text-align:center;color:var(--tinta2);font-size:15px}
+.passos{margin:0;padding-left:22px;display:grid;gap:8px}
+.exemplo{font-family:Caveat,cursive;font-size:24px;line-height:1.2;background:#fff;border:2px dashed var(--tinta2);border-radius:10px;padding:12px 14px;margin:0}
+footer{border-top:2px solid var(--tinta);padding-block:18px 36px;font-size:14px;color:var(--tinta2)}
+.esconde{display:none}
+</style>
+</head>
+<body>
+<header><div class="wrap"><span class="logo">JV</span><b>Empresa JV</b></div></header>
+<main class="wrap">
+<span class="tag">COMPRA CONFIRMADA</span>
+<h1>Tudo certo! <em>Agora é entrar.</em></h1>
+<p class="sub">O link para entrar no Na Ponta do Lápis chega no e-mail que você usou na compra. Leva só alguns minutos.</p>
+<section class="caixa"><h2>Como entrar no Na Ponta do Lápis</h2><ol class="passos">
+<li>Abra o e-mail com o link de acesso. Não achou? Olhe o spam e a aba Promoções.</li>
+<li>Toque no link: ele abre no navegador do celular, sem baixar nada.</li>
+<li>Digite o mesmo e-mail da compra e cadastre a primeira trança ou encomenda.</li></ol></section>
+<video id="vid" controls playsinline preload="metadata" src="/video/entrar-na-ponta-do-lapis.mp4"></video>
+<section class="caixa esconde" id="b-kit"><h2>E o seu Kit?</h2><ol class="passos">
+<li>Chega outro e-mail, da Cakto, com o acesso à área de membros.</li>
+<li>Entre com o mesmo e-mail da compra e assista ao Comece aqui: a aula 2 traz o link do seu sistema.</li></ol>
+<a class="btn" href="https://aluno.cakto.com.br/" target="_blank" rel="noopener">Entrar na área de membros</a></section>
+<section class="caixa esconde" id="b-rec"><h2>E os seus Recortes?</h2>
+<p style="margin:0">Chegam por e-mail, com o link da página das mensagens. É só copiar e mandar.</p></section>
+<section class="caixa"><h2>Travou em alguma parte?</h2>
+<p style="margin:0 0 12px">Chama a gente no WhatsApp da Empresa JV, a mensagem já vai pronta.</p>
+<a class="btn claro" href="https://wa.me/5521984942432?text=Oi!%20Acabei%20de%20comprar%20o%20Na%20Ponta%20do%20L%C3%A1pis%20e%20preciso%20de%20ajuda%20para%20entrar." target="_blank" rel="noopener">Chamar no WhatsApp</a></section>
+</main>
+<script>(function(){var q=new URLSearchParams(location.search),r=q.get('r')==='confeitaria'?'confeitaria':'trancista';
+var V={'trancista': '/video/entrar-na-ponta-do-lapis.mp4', 'confeitaria': '/video/entrar-na-ponta-do-lapis-confeitaria.mp4'};document.getElementById('vid').src=V[r];
+if(r==='confeitaria'){document.querySelector('.passos li:nth-child(3)').textContent='Digite o mesmo e-mail da compra e cadastre a primeira encomenda.'}
+else{document.querySelector('.passos li:nth-child(3)').textContent='Digite o mesmo e-mail da compra e cadastre a primeira trança.'}
+if(q.get('kit')==='1')document.getElementById('b-kit').classList.remove('esconde');
+if(q.get('rec')==='1')document.getElementById('b-rec').classList.remove('esconde');})();</script>
+<footer><div class="wrap">© 2026 Empresa JV · CNPJ 59.461.672/0001-47 · Sistema montado pela Empresa JV</div></footer>
+</body>
+</html>
