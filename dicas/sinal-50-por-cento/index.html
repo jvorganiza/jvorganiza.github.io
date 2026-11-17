@@ -21,8 +21,7 @@
 fbq('consent',(function(){try{return localStorage.getItem('jv-cookies')==='sim'}catch(e){return false}})()?'grant':'revoke');fbq('init','1129384439673429');fbq('track','PageView');fbq('trackCustom','AbriuPagina',{pagina:'dica-sinal-50-por-cento',origem:(new URLSearchParams(location.search).get('utm_source')||'direto')});
 document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a');if(!a)return;var h=a.getAttribute('href')||'';var d=/wa\.me|whatsapp|zap/i.test(h)?'whatsapp':/kiwify|pay\./i.test(h)?'checkout':/\/kits/.test(h)?'kits':/\/ir\//.test(h)?'isca':/instagram/.test(h)?'instagram':'outro';try{fbq('trackCustom','CliqueLink',{pagina:'dica-sinal-50-por-cento',destino:d,texto:(a.innerText||'').trim().slice(0,40)})}catch(_){}} ,true);</script>
 <script src="/cookies.js" defer></script>
-<style data-colagem="1">body{background:var(--papel) var(--ruido)!important}
-.topo{position:sticky}
+<style data-colagem="1">.topo{position:sticky}
 .topo .marca{color:var(--papel2)}
 main{padding-top:18px}
 .acoes{display:flex;gap:8px;align-items:center}

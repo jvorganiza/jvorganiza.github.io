@@ -2,13 +2,13 @@
    bilhete escrito à mão e borda de papel rasgado. Poucos elementos: cada recorte tem uma função. */
 :root{
   --papel:#efe7d6;--papel2:#f7f2e7;--branco:#fffdf7;--tinta:#16130f;--tinta2:#4a443b;
-  --verde:#0E3B2A;--verde2:#14794A;--amarelo:#FFC82E;--fita:rgba(255,200,46,.82);--verm:#d64034;--menta:#CFE3D6;
+  --verde:#0E3B2A;--verde2:#14794A;--amarelo:#FFC82E;--fita:rgba(255,200,46,.82);--verm:#d64034;--menta:#CFE3D6;--folha:#fbf8ef;--pauta:rgba(43,98,196,.16);
   --ruido:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .09 0 0 0 0 .07 0 0 0 0 .05 0 0 0 .08 0'/%3E%3C/filter%3E%3Crect width='220' height='220' filter='url(%23n)'/%3E%3C/svg%3E");
   --rasgo:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 24' preserveAspectRatio='none'%3E%3Cpath d='M0 24V9l38-6 27 9 41-8 33 7 46-10 29 9 52-5 31 8 44-9 38 7 27-6 49 9 35-8 41 6 30-9 48 10 33-7 39 6 44-9 31 8 47-6 29 7 42-10 36 9 40-5 28 8 45-9 33 6 39-7 34 9 52-8 37 6 41-5V24z' fill='%23000'/%3E%3C/svg%3E");
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{margin:0;background:var(--papel) var(--ruido);color:var(--tinta);font:400 17px/1.6 Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body{margin:0;background-color:var(--folha);background-image:var(--ruido),linear-gradient(90deg,transparent calc(max(18px,(100vw - 1080px)/2) - 12px),rgba(214,64,52,.4) calc(max(18px,(100vw - 1080px)/2) - 12px),rgba(214,64,52,.4) calc(max(18px,(100vw - 1080px)/2) - 10px),transparent calc(max(18px,(100vw - 1080px)/2) - 10px)),repeating-linear-gradient(transparent 0 27px,var(--pauta) 27px 28px);color:var(--tinta);font:400 17px/28px Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
 a{color:inherit}
 img{max-width:100%;height:auto;display:block}
 .wrap{width:min(1080px,100%);margin:0 auto;padding-left:max(18px,env(safe-area-inset-left,0px));padding-right:max(18px,env(safe-area-inset-right,0px))}
@@ -39,10 +39,10 @@ p{margin:0}
 .bilhete{font:700 clamp(22px,5vw,28px)/1.15 Caveat,cursive;color:var(--verm);transform:rotate(-2deg);display:inline-block;justify-self:start}
 .etiqueta{display:inline-block;justify-self:start;font:400 15px/1 Anton,Impact,sans-serif;letter-spacing:.07em;text-transform:uppercase;background:var(--tinta);color:var(--amarelo);padding:7px 11px 6px;transform:rotate(-1.5deg)}
 .etiqueta.verm{background:var(--verm);color:#fff}
-.grifo{background:linear-gradient(transparent 52%,var(--amarelo) 52%,var(--amarelo) 92%,transparent 92%);padding:0 .08em}
-.titulo{font:400 clamp(36px,8.5vw,66px)/1.02 Anton,Impact,sans-serif;text-transform:uppercase;letter-spacing:.005em}
-.titulo2{font:400 clamp(28px,6vw,42px)/1.08 Anton,Impact,sans-serif;text-transform:uppercase}
-.sub{font-size:clamp(17px,2.4vw,19px);color:var(--tinta2);max-width:54ch}
+.grifo{background:linear-gradient(transparent 55%,var(--amarelo) 55%,var(--amarelo) 90%,transparent 90%);padding:0 .08em;-webkit-box-decoration-break:clone;box-decoration-break:clone}
+.titulo{font:400 clamp(34px,8vw,52px)/56px Anton,Impact,sans-serif;text-transform:uppercase;letter-spacing:.005em}
+.titulo2{font:400 clamp(28px,6vw,40px)/42px Anton,Impact,sans-serif;text-transform:uppercase}
+.sub{font-size:clamp(17px,2.4vw,19px);line-height:28px;color:var(--tinta2);max-width:54ch}
 .faixa{background:var(--verde);color:var(--papel2);position:relative;margin-block:26px}
 .faixa::before,.faixa::after{content:"";position:absolute;left:0;right:0;height:12px;background:var(--verde);-webkit-mask:var(--rasgo) 0 0/100% 100% no-repeat;mask:var(--rasgo) 0 0/100% 100% no-repeat}
 .faixa::before{top:-11px}
