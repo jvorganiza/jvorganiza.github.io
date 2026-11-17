@@ -1,0 +1,55 @@
+/* Identidade colagem da Empresa JV (17/11/2026): papel creme, recortes com sombra dura, fita amarela,
+   bilhete escrito à mão e borda de papel rasgado. Poucos elementos: cada recorte tem uma função. */
+:root{
+  --papel:#efe7d6;--papel2:#f7f2e7;--branco:#fffdf7;--tinta:#16130f;--tinta2:#4a443b;
+  --verde:#0E3B2A;--verde2:#14794A;--amarelo:#FFC82E;--fita:rgba(255,200,46,.82);--verm:#d64034;--menta:#CFE3D6;
+  --ruido:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .09 0 0 0 0 .07 0 0 0 0 .05 0 0 0 .08 0'/%3E%3C/filter%3E%3Crect width='220' height='220' filter='url(%23n)'/%3E%3C/svg%3E");
+  --rasgo:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 24' preserveAspectRatio='none'%3E%3Cpath d='M0 24V9l38-6 27 9 41-8 33 7 46-10 29 9 52-5 31 8 44-9 38 7 27-6 49 9 35-8 41 6 30-9 48 10 33-7 39 6 44-9 31 8 47-6 29 7 42-10 36 9 40-5 28 8 45-9 33 6 39-7 34 9 52-8 37 6 41-5V24z' fill='%23000'/%3E%3C/svg%3E");
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--papel) var(--ruido);color:var(--tinta);font:400 17px/1.6 Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit}
+img{max-width:100%;height:auto;display:block}
+.wrap{width:min(1080px,100%);margin:0 auto;padding-left:max(18px,env(safe-area-inset-left,0px));padding-right:max(18px,env(safe-area-inset-right,0px))}
+h1,h2,h3{margin:0;text-wrap:balance}
+p{margin:0}
+
+/* topo */
+.topo{background:var(--verde);color:var(--papel2);position:sticky;top:0;z-index:20}
+.topo .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-block:8px}
+.marca{display:flex;align-items:center;gap:10px;text-decoration:none;font-weight:800;font-size:17px}
+.marca img{width:42px;height:42px}
+.marca small{display:block;font:700 20px/1 Caveat,cursive;color:var(--amarelo);font-weight:700;margin-top:1px}
+.topo::after{content:"";position:absolute;left:0;right:0;bottom:-10px;height:11px;background:var(--verde);-webkit-mask:var(--rasgo) 0 0/100% 100% no-repeat;mask:var(--rasgo) 0 0/100% 100% no-repeat;transform:scaleY(-1)}
+
+/* botões */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:52px;padding:12px 20px;border:2.5px solid var(--tinta);border-radius:12px;background:var(--amarelo);color:var(--tinta);font:800 17px/1.15 Inter,sans-serif;text-decoration:none;box-shadow:4px 4px 0 var(--tinta);transition:transform .12s,box-shadow .12s;text-align:center}
+.btn:hover{transform:translate(-1px,-1px);box-shadow:5px 5px 0 var(--tinta)}
+.btn:active{transform:translate(2px,2px);box-shadow:2px 2px 0 var(--tinta)}
+.btn.verde{background:var(--verde);color:#fff}
+.btn.papel{background:var(--branco)}
+.btn.mini{min-height:38px;padding:6px 14px;font-size:14px;box-shadow:3px 3px 0 var(--tinta);border-width:2px}
+.btn:focus-visible,a:focus-visible{outline:3px solid var(--verde2);outline-offset:3px}
+
+/* peças da colagem */
+.recorte{background:var(--branco);border:2.5px solid var(--tinta);border-radius:14px;box-shadow:6px 6px 0 var(--tinta);position:relative}
+.fita{position:absolute;width:96px;height:26px;background:var(--fita);top:-13px;left:50%;transform:translateX(-50%) rotate(-3deg);box-shadow:0 1px 0 rgba(0,0,0,.08);z-index:2}
+.fita.dir{left:auto;right:18px;transform:rotate(5deg)}
+.bilhete{font:700 clamp(22px,5vw,28px)/1.15 Caveat,cursive;color:var(--verm);transform:rotate(-2deg);display:inline-block;justify-self:start}
+.etiqueta{display:inline-block;justify-self:start;font:400 15px/1 Anton,Impact,sans-serif;letter-spacing:.07em;text-transform:uppercase;background:var(--tinta);color:var(--amarelo);padding:7px 11px 6px;transform:rotate(-1.5deg)}
+.etiqueta.verm{background:var(--verm);color:#fff}
+.grifo{background:linear-gradient(transparent 52%,var(--amarelo) 52%,var(--amarelo) 92%,transparent 92%);padding:0 .08em}
+.titulo{font:400 clamp(36px,8.5vw,66px)/1.02 Anton,Impact,sans-serif;text-transform:uppercase;letter-spacing:.005em}
+.titulo2{font:400 clamp(28px,6vw,42px)/1.08 Anton,Impact,sans-serif;text-transform:uppercase}
+.sub{font-size:clamp(17px,2.4vw,19px);color:var(--tinta2);max-width:54ch}
+.faixa{background:var(--verde);color:var(--papel2);position:relative;margin-block:26px}
+.faixa::before,.faixa::after{content:"";position:absolute;left:0;right:0;height:12px;background:var(--verde);-webkit-mask:var(--rasgo) 0 0/100% 100% no-repeat;mask:var(--rasgo) 0 0/100% 100% no-repeat}
+.faixa::before{top:-11px}
+.faixa::after{bottom:-11px;transform:scaleY(-1)}
+.miudo{font-size:14px;color:var(--tinta2)}
+.rodape{background:var(--tinta);color:#d9d2c3;font-size:14px;margin-top:60px;position:relative}
+.rodape::before{content:"";position:absolute;left:0;right:0;top:-11px;height:12px;background:var(--tinta);-webkit-mask:var(--rasgo) 0 0/100% 100% no-repeat;mask:var(--rasgo) 0 0/100% 100% no-repeat}
+.rodape .wrap{padding-block:30px 44px;display:grid;gap:8px}
+.rodape a{color:#fff}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
