@@ -3,72 +3,204 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Empresa JV · ferramentas simples para o seu negócio</title>
-<meta name="description" content="Ferramentas simples para quem atende, cobra e entrega sozinha: calculadora de preço grátis, mensagens prontas e sistemas de gestão.">
+<title>Empresa JV · sistemas simples para trancistas e confeiteiras</title>
+<meta name="description" content="Sistemas simples no celular para trancistas e confeiteiras: saiba quanto sobra de cada trabalho, cobre o preço certo e veja o seu mês. Pagamento único.">
 <link rel="canonical" href="https://jvorganiza.com.br/">
-<meta property="og:title" content="Empresa JV · ferramentas simples para o seu negócio">
-<meta property="og:description" content="Calculadora de preço grátis, mensagens prontas e sistemas de gestão para quem toca o negócio sozinha.">
+<meta property="og:title" content="Empresa JV · sistemas simples para trancistas e confeiteiras">
+<meta property="og:description" content="Sistemas simples no celular para trancistas e confeiteiras: saiba quanto sobra de cada trabalho, cobre o preço certo e veja o seu mês. Pagamento único.">
 <meta property="og:image" content="https://jvorganiza.com.br/img/og.jpg">
 <meta property="og:type" content="website">
 <meta name="theme-color" content="#0E3B2A">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='32' fill='%230E3B2A'/%3E%3Cg transform='rotate(-6 22 33)'%3E%3Crect x='12' y='17' width='20' height='32' fill='%23d64034'/%3E%3Ctext x='22' y='43' font-family='Impact,Arial' font-size='26' text-anchor='middle' fill='%23fff'%3EJ%3C/text%3E%3C/g%3E%3Cg transform='rotate(5 42 33)'%3E%3Crect x='32' y='18' width='21' height='32' fill='%23f6f1e5'/%3E%3Ctext x='42.5' y='44' font-family='Impact,Arial' font-size='26' text-anchor='middle' fill='%2316130f'%3EV%3C/text%3E%3C/g%3E%3Crect x='20' y='12' width='22' height='7' fill='%23FFC82E' transform='rotate(-8 31 15)'/%3E%3C/svg%3E">
+<link rel="icon" href="/img/logo-jv-64.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&family=Caveat:wght@700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/caderno.css">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700;800&family=Caveat:wght@700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/colagem.css">
 <script>if(!/jvorganiza/.test(location.hostname)){window.fbq=function(){console.log('[teste] fbq',[].slice.call(arguments))}}
 !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
 var ORIGEM=(new URLSearchParams(location.search).get('utm_source')||'direto');
-fbq('consent',(function(){try{return localStorage.getItem('jv-cookies')==='sim'}catch(e){return false}})()?'grant':'revoke');fbq('init','1129384439673429');fbq('track','PageView');fbq('trackCustom','AbriuPagina',{pagina:'home',origem:ORIGEM});var PAGINA='home';document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a');if(!a)return;var h=a.getAttribute('href')||'';var d=/wa\.me|\/ir\/zap|whatsapp/i.test(h)?'whatsapp':/pay\./i.test(h)?'checkout':/\/kits/.test(h)?'kits':/calculadora/.test(h)?'calculadora':/lapis/.test(h)?'lapis':'outro';try{fbq('trackCustom','CliqueLink',{pagina:PAGINA,destino:d,texto:(a.innerText||'').trim().slice(0,40)})}catch(_){}},true);</script>
+fbq('consent',(function(){try{return localStorage.getItem('jv-cookies')==='sim'}catch(e){return false}})()?'grant':'revoke');fbq('init','1129384439673429');fbq('track','PageView');fbq('trackCustom','AbriuPagina',{pagina:'home',origem:ORIGEM});
+document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a');if(!a)return;var h=a.getAttribute('href')||'';var d=/wa\.me/i.test(h)?'whatsapp':/pay\./i.test(h)?'checkout':/calculadora/.test(h)?'calculadora':/ir\/leona/.test(h)?'parceiro':/na-ponta/.test(h)?'produto':'outro';try{fbq('trackCustom','CliqueLink',{pagina:'home',destino:d,texto:(a.innerText||'').trim().slice(0,40)});}catch(_){}},true);</script>
 <script src="/cookies.js" defer></script>
-<style>
-body{background:var(--papel2)}
-.inicio{display:grid;gap:22px;padding-block:28px 48px;max-width:760px}
-.inicio h1{margin:0;font:400 clamp(34px,8vw,54px)/1.05 Anton,Impact,sans-serif;text-transform:uppercase}
-.inicio h1 em{font-style:normal;background:var(--amarelo);padding:0 .12em}
-.inicio .lead{margin:0;font-size:18px;color:var(--tinta2);max-width:54ch}
-.prods{display:grid;gap:14px}
-.prod{display:grid;gap:8px;background:var(--folha);border:2px solid var(--tinta);border-radius:14px;padding:18px 20px;text-decoration:none;color:inherit}
-a.prod:hover,a.prod:focus-visible{box-shadow:4px 4px 0 var(--tinta);outline:0}
-.prod h2{margin:0;font:400 28px/1.1 Anton,Impact,sans-serif;text-transform:uppercase}
-.prod p{margin:0;color:var(--tinta2)}
-.prod .tag{justify-self:start}
-.prod .preco{font:400 26px/1 Anton,Impact,sans-serif}
-.prod .preco small{font:500 14px Inter,sans-serif;color:var(--tinta2)}
-.prod .ir{font-weight:700;color:var(--verde)}
-.prod.destaque{border-width:3px}
-.prod.breve{border-style:dashed}
-.ramos{display:flex;flex-wrap:wrap;gap:8px}
-.ramos a{font-weight:600;text-decoration:none;color:var(--tinta);background:#fff;border:2px solid var(--tinta);border-radius:99px;padding:6px 14px}
-.ramos a:hover,.ramos a:focus-visible{background:var(--amarelo);outline:0}
+<style>.acoes{display:flex;gap:8px;align-items:center}
+.tracos{display:grid;gap:3px;width:16px}
+.tracos i{display:block;height:2.5px;background:var(--tinta);border-radius:2px}
+.fundo-menu{position:fixed;inset:0;background:rgba(22,19,15,.45);z-index:40}
+.gaveta{position:fixed;top:0;right:0;bottom:0;width:min(360px,88vw);background:var(--papel2) var(--ruido);border-left:3px solid var(--tinta);box-shadow:-8px 0 0 rgba(22,19,15,.18);z-index:50;transform:translateX(105%);transition:transform .25s ease;overflow-y:auto;padding:max(14px,env(safe-area-inset-top,0px)) max(18px,env(safe-area-inset-right,0px)) 30px 18px;display:flex;flex-direction:column;gap:6px}
+.gaveta.aberta{transform:none}
+.gaveta-topo{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px}
+.fecha{width:42px;height:42px;border:2.5px solid var(--tinta);border-radius:10px;background:var(--amarelo);font:800 24px/1 Inter,sans-serif;cursor:pointer;box-shadow:3px 3px 0 var(--tinta)}
+.gaveta details{border-bottom:2px dashed rgba(22,19,15,.25);padding-block:6px}
+.gaveta summary{cursor:pointer;list-style:none;display:flex;align-items:baseline;justify-content:space-between;gap:8px;font:400 22px/1.2 Anton,Impact,sans-serif;text-transform:uppercase;padding-block:8px}
+.gaveta summary::-webkit-details-marker{display:none}
+.gaveta summary::after{content:"+";font:800 22px/1 Inter,sans-serif;margin-left:auto}
+.gaveta details[open] summary::after{content:"–"}
+.gaveta summary small{font:600 13px/1 Inter,sans-serif;text-transform:none;color:var(--tinta2)}
+.gaveta details a{display:block;padding:9px 12px;margin:4px 0;background:var(--branco);border:2px solid var(--tinta);border-radius:10px;text-decoration:none;font-weight:600;font-size:16px}
+.gaveta details a:hover{background:var(--amarelo)}
+.nota-menu{font-size:14px;color:var(--tinta2);margin:2px 0 6px}
+.sub-menu{display:block;font:700 13px/1 Inter,sans-serif;letter-spacing:.06em;text-transform:uppercase;color:var(--tinta2);margin:12px 0 2px}
+.zap-menu{margin-top:16px}
+@media (max-width:420px){.acoes .cta-topo{display:none}}
+section.bloco{padding-block:40px 10px;display:grid;gap:12px}
+.faixa-calc{display:grid;gap:18px;padding-block:44px;align-items:center}
+.faixa-calc h2{color:var(--amarelo)}
+.faixa-calc p{color:#e7e1d2}
+@media (min-width:760px){.faixa-calc{grid-template-columns:1.4fr 1fr}}
+.passos{display:grid;gap:18px;counter-reset:p;margin-top:6px}
+@media (min-width:760px){.passos{grid-template-columns:repeat(3,1fr)}}
+.passo{padding:20px 18px;display:grid;gap:6px;align-content:start}
+.passo::before{counter-increment:p;content:counter(p);width:42px;height:42px;display:grid;place-items:center;background:var(--amarelo);border:2.5px solid var(--tinta);border-radius:50%;font:400 22px/1 Anton,sans-serif;margin-bottom:4px}
+.passo b{font-size:18px}
+.passo span{color:var(--tinta2);font-size:16px}
+.confia{display:grid;gap:12px;margin-top:6px}
+@media (min-width:760px){.confia{grid-template-columns:repeat(4,1fr)}}
+.confia div{background:var(--papel2);border:2px dashed var(--tinta2);border-radius:12px;padding:14px 16px;font-size:15.5px}
+.confia b{display:block;font-size:16.5px}
+.faq{display:grid;gap:0;margin-top:4px}
+.faq details{border-bottom:2px dashed rgba(22,19,15,.25);padding:12px 2px}
+.faq summary{cursor:pointer;font-weight:700;font-size:17px;list-style:none;display:flex;gap:10px;justify-content:space-between}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";font-weight:800}
+.faq details[open] summary::after{content:"–"}
+.faq p{margin-top:8px;color:var(--tinta2);max-width:64ch}
+.zap{margin-top:30px;padding:24px 22px;display:grid;gap:12px;justify-items:start}
+.heroi{padding-block:44px 30px;display:grid;gap:26px;align-items:center}
+.heroi .txt{display:grid;gap:16px;min-width:0}
+.heroi .bts{display:flex;flex-wrap:wrap;gap:12px;margin-top:4px}
+.mesa{position:relative;height:330px;max-width:420px;width:100%;justify-self:center}
+.mesa img{position:absolute;width:56%;border:2.5px solid var(--tinta);border-radius:12px;box-shadow:6px 6px 0 var(--tinta);background:#fff}
+.mesa .m1{left:2%;top:26px;transform:rotate(-6deg)}
+.mesa .m2{right:2%;top:0;transform:rotate(5deg)}
+.mesa .fita{top:8px;left:44%}
+.mesa .nota{position:absolute;left:4%;bottom:-6px;background:var(--branco);border:2px solid var(--tinta);padding:6px 12px;transform:rotate(-3deg);box-shadow:3px 3px 0 var(--tinta)}
+@media (min-width:860px){.heroi{grid-template-columns:1.1fr .9fr;padding-block:64px 40px}.mesa{height:400px}}
+.prods{display:grid;gap:30px;margin-top:10px}
+@media (min-width:760px){.prods{grid-template-columns:1fr 1fr}}
+.prod{padding:26px 22px 22px;display:grid;gap:12px;align-content:start}
+.prod:nth-child(1){transform:rotate(-.6deg)}
+.prod:nth-child(2){transform:rotate(.6deg)}
+.prod .foto{border:2px solid var(--tinta);border-radius:10px;overflow:hidden;background:#f2ede1;aspect-ratio:4/3}
+.prod .foto img{width:100%;height:100%;object-fit:cover;object-position:top}
+.prod h3{font:400 28px/1.05 Anton,Impact,sans-serif;text-transform:uppercase}
+.prod .preco{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
+.prod .preco b{font:400 38px/1 Anton,Impact,sans-serif}
 </style>
 </head>
-<body>
-<header class="topo-site"><div class="wrap"><a class="marca" href="/"><span class="logo">JV</span><b>Empresa JV</b></a>
-<nav><a class="btn mini" href="/ir/zap-site/" target="_blank" rel="noopener">WhatsApp</a></nav></div></header>
-<script>
-/* Links antigos (#confeitaria, #precos, #dicas...) e o "Ver o sistema" do Instagram vão para /kits/. */
-(function(){var h=location.hash.slice(1),q=location.search;
-var ancoras=['topo','nicho','historia','nichos','confeitaria','trancista','grafica','como-funciona','precos','implantacao','recortes','duvidas'];
-if(ancoras.indexOf(h)>=0||/utm_medium=(dm|comentario)/.test(q)){location.replace('/kits/'+q+location.hash);}})();
-</script>
-<main class="wrap inicio">
-<div style="display:grid;gap:12px">
-<h1>Seu negócio <em>na ponta do lápis</em>.</h1>
-<p class="lead">Ferramentas simples para quem atende, cobra e entrega sozinha. Escolha por onde começar.</p>
+<body data-pagina="home">
+<header class="topo"><div class="wrap"><a class="marca" href="/"><img src="/img/logo-jv-160.png" alt="" width="42" height="42"><span>Empresa JV<small>na ponta do lápis</small></span></a>
+<div class="acoes"><a class="btn mini cta-topo" href="https://wa.me/5521984942432?text=Oi!%20Vim%20pelo%20site%20e%20fiquei%20com%20uma%20d%C3%BAvida">WhatsApp</a>
+<button class="btn mini papel abre-menu" id="abre-menu" type="button" aria-controls="menu" aria-expanded="false"><span class="tracos" aria-hidden="true"><i></i><i></i><i></i></span>Menu</button></div></div></header>
+
+<div class="fundo-menu" id="fundo-menu" hidden></div>
+<nav class="gaveta" id="menu" aria-label="Menu do site" aria-hidden="true">
+  <div class="gaveta-topo"><span class="bilhete" style="color:var(--verde)">tudo da JV aqui</span><button class="fecha" id="fecha-menu" type="button" aria-label="Fechar menu">×</button></div>
+  <details open><summary>Na Ponta do Lápis <small>R$ 27</small></summary>
+    <a href="/na-ponta-do-lapis/trancista/">Para trancistas</a>
+    <a href="/na-ponta-do-lapis/confeitaria/">Para confeiteiras</a>
+  </details>
+  <details><summary>Mensagens prontas <small>R$ 27</small></summary>
+    <p class="nota-menu">Recortes de conversa: mensagens para responder preço, cobrar o sinal e chamar de volta quem sumiu.</p>
+    <a href="https://pay.cakto.com.br/3b59uga_1309945?split=1">Trancista</a>
+    <a href="https://pay.cakto.com.br/ahxpg6o_1309946?split=1">Confeitaria</a>
+    <a href="https://pay.cakto.com.br/ucev7ps_1309949?split=1">Gráfica</a>
+    <a href="https://pay.cakto.com.br/j4wazy7_1309951?split=1">Outros ramos</a>
+  </details>
+  <details><summary>Grátis <small>sem cadastro</small></summary>
+    <a href="/calculadora/trancista/">Calculadora de trança</a>
+    <a href="/calculadora/confeitaria/">Calculadora de confeitaria</a>
+    <a href="/calculadora/">Calculadora para outros serviços</a>
+    <span class="sub-menu">Dicas</span>
+    <a href="/dicas/preco-sem-chutar/">Como calcular o preço sem chutar</a>
+    <a href="/dicas/sinal-50-por-cento/">Sinal de 50% sem perder a cliente</a>
+    <a href="/dicas/orcamento-sumiu/">Pediu orçamento e sumiu: o que mandar</a>
+    <a href="/dicas/cliente-faltou-taxa-de-reserva/">Cliente faltou: pode cobrar taxa?</a>
+    <a href="/dicas/comprovante-pix-falso/">Comprovante de Pix falso</a>
+  </details>
+  <details><summary>Ferramentas extras <small>para o seu negócio</small></summary>
+    <p class="nota-menu">O que a gente usa e indica. São links de parceiro: se você assinar por eles, a JV ganha uma comissão e você não paga nada a mais.</p>
+    <a href="/ir/leona/" target="_blank" rel="sponsored noopener">Leona · atendimento automático no WhatsApp</a>
+  </details>
+  <a class="btn verde zap-menu" href="https://wa.me/5521984942432?text=Oi!%20Vim%20pelo%20site%20e%20fiquei%20com%20uma%20d%C3%BAvida">Falar no WhatsApp</a>
+</nav>
+
+<main>
+<div class="wrap heroi">
+  <div class="txt">
+    <span class="bilhete">feito pra quem trabalha sozinha ✎</span>
+    <h1 class="titulo">Você trabalha o dia todo. <span class="grifo">Quanto disso fica com você?</span></h1>
+    <p class="sub">A gente faz sistemas simples, no celular, pra trancista e confeiteira saberem quanto sobra de cada trabalho, cobrarem o preço certo e verem o mês inteiro sem caderno.</p>
+    <div class="bts">
+      <a class="btn verde" href="/na-ponta-do-lapis/trancista/">Sou trancista</a>
+      <a class="btn" href="/na-ponta-do-lapis/confeitaria/">Sou confeiteira</a>
+    </div>
+  </div>
+  <div class="mesa" aria-hidden="true">
+    <img class="m1" src="/img/na-ponta-do-lapis/telas/minhas-trancas.jpg" alt="">
+    <img class="m2" src="/img/na-ponta-do-lapis/confeitaria/tabela-colagem.jpg" alt="">
+    <span class="fita"></span>
+    <span class="nota bilhete" style="color:var(--verde)">telas de verdade</span>
+  </div>
 </div>
-<div class="prods">
-<a class="prod" href="/calculadora/"><span class="tag">GRÁTIS</span><h2>Calculadora de preço</h2><p>Em 1 minuto você vê quanto sobra no seu serviço e quanto vale a sua hora.</p><span class="ir">Calcular agora →</span></a>
-<a class="prod destaque" href="/na-ponta-do-lapis/trancista/"><span class="tag amarelo">NOVO · PARA TRANCISTAS</span><h2>Na Ponta do Lápis</h2><p>Quanto sobra em cada trança, a conta do mês e a sua tabela de preços com a sua logo. Abre no celular, sem baixar nada.</p><b class="preco">R$ 27 <small>uma vez só</small></b><span class="ir">Conhecer →</span></a><a class="prod destaque" href="/na-ponta-do-lapis/confeitaria/"><span class="tag amarelo">NOVO · PARA CONFEITARIA</span><h2>Na Ponta do Lápis</h2><p>Quanto sobra em cada bolo e doce, a conta do mês e o seu cardápio de preços com a sua logo. Abre no celular, sem baixar nada.</p><b class="preco">R$ 27 <small>uma vez só</small></b><span class="ir">Conhecer →</span></a>
-<div class="prod"><span class="tag">MENSAGENS PRONTAS</span><h2>Recortes de conversa</h2><p>22 mensagens para colar no WhatsApp: responder quem pede preço, cobrar o sinal, avisar que ficou pronto e chamar de volta quem sumiu.</p><b class="preco">R$ 27 <small>uma vez só</small></b><div class="ramos"><a href="https://pay.cakto.com.br/3b59uga_1309945?split=1">Trancista</a><a href="https://pay.cakto.com.br/ahxpg6o_1309946?split=1">Confeitaria</a><a href="https://pay.cakto.com.br/ucev7ps_1309949?split=1">Gráfica</a><a href="https://pay.cakto.com.br/j4wazy7_1309951?split=1">Outros ramos</a></div></div>
-<a class="prod" href="/kits/"><span class="tag">SISTEMA COMPLETO</span><h2>Kits no Notion</h2><p>Clientes, agenda, pedidos e dinheiro num lugar só, com videoaulas. Para trancista, confeitaria, gráfica e outros serviços.</p><b class="preco">a partir de R$ 97 <small>uma vez só</small></b><span class="ir">Ver os kits →</span></a>
-<a class="prod" href="/ir/zap-site/" target="_blank" rel="noopener"><span class="tag">FALE COM A GENTE</span><h2>WhatsApp</h2><p>Dúvida sobre qualquer produto: a mensagem já vai pronta. Atendimento de segunda a sexta, das 9h às 18h.</p><span class="ir">Abrir o WhatsApp →</span></a>
-</div>
+
+<section class="wrap bloco" id="produtos">
+  <span class="etiqueta">Na Ponta do Lápis</span>
+  <h2 class="titulo2">Escolha o seu</h2>
+  <p class="sub">O mesmo jeito simples de fazer a conta, com as palavras do seu trabalho.</p>
+  <div class="prods">
+    <article class="recorte prod"><span class="fita"></span>
+      <div class="foto"><img src="/img/na-ponta-do-lapis/telas/tabela-colagem.jpg" alt="Tabela de preços de tranças feita no sistema" loading="lazy"></div>
+      <h3>Para trancistas</h3>
+      <p>Põe o preço, o jumbo, a pomada e as horas. Ele mostra quanto sobra em cada trança e monta a sua tabela com a sua logo.</p>
+      <div class="preco"><b>R$ 27</b><span>uma vez só, sem mensalidade</span></div>
+      <a class="btn verde" href="/na-ponta-do-lapis/trancista/">Ver como funciona</a>
+    </article>
+    <article class="recorte prod"><span class="fita dir"></span>
+      <div class="foto"><img src="/img/na-ponta-do-lapis/confeitaria/tabela-colagem.jpg" alt="Cardápio de preços de doces feito no sistema" loading="lazy"></div>
+      <h3>Para confeiteiras</h3>
+      <p>Põe o preço, os ingredientes, a embalagem e as horas. Ele mostra quanto sobra em cada encomenda e monta o seu cardápio de preços.</p>
+      <div class="preco"><b>R$ 27</b><span>uma vez só, sem mensalidade</span></div>
+      <a class="btn verde" href="/na-ponta-do-lapis/confeitaria/">Ver como funciona</a>
+    </article>
+  </div>
+</section>
+
+<section class="wrap bloco">
+  <span class="bilhete">sem complicação</span>
+  <h2 class="titulo2">Como você recebe</h2>
+  <div class="passos">
+    <div class="recorte passo"><b>Paga no Pix ou no cartão</b><span>O pagamento é pela Cakto, uma plataforma de pagamento.</span></div>
+    <div class="recorte passo"><b>O link chega no seu e-mail</b><span>Na hora, no mesmo e-mail que você usou na compra.</span></div>
+    <div class="recorte passo"><b>Abre no celular e começa</b><span>Não precisa baixar nada. Se travar, chama a gente no WhatsApp.</span></div>
+  </div>
+  <div class="confia">
+    <div><b>Uma vez só</b>Sem mensalidade, sem surpresa.</div>
+    <div><b>Garantia de 7 dias</b>Não gostou, o dinheiro volta inteiro.</div>
+    <div><b>Seus dados são seus</b>Ficam só no seu celular.</div>
+    <div><b>Suporte de gente</b>No WhatsApp, de segunda a sexta.</div>
+  </div>
+  <div class="recorte zap"><span class="fita dir"></span>
+    <h3 class="titulo2" style="font-size:28px">Ficou com alguma dúvida?</h3>
+    <p class="sub">Manda no WhatsApp. A mensagem já vai pronta.</p>
+    <a class="btn verde" href="https://wa.me/5521984942432?text=Oi!%20Vim%20pelo%20site%20e%20fiquei%20com%20uma%20d%C3%BAvida">Chamar no WhatsApp</a>
+  </div>
+</section>
+
+<div class="faixa"><div class="wrap faixa-calc">
+  <div style="display:grid;gap:10px"><span class="etiqueta verm">Grátis</span><h2 class="titulo2">Ainda não quer comprar nada?</h2><p>Faz a conta de uma trança ou de uma encomenda na calculadora grátis. Leva 1 minuto e não precisa de cadastro.</p></div>
+  <div style="display:grid;gap:12px"><a class="btn" href="/calculadora/trancista/">Calculadora de trança</a><a class="btn papel" href="/calculadora/confeitaria/">Calculadora de confeitaria</a></div>
+</div></div>
+
 </main>
 <footer class="rodape"><div class="wrap">
-<p><b>Empresa JV</b> · sistemas simples para quem toca o negócio sozinha.</p>
-<p><a href="/calculadora/">Calculadora de preço</a> · <a href="/kits/">Kits</a> · <a href="/">Caderno de dicas</a></p>
-<p>© 2026 Empresa JV · CNPJ 59.461.672/0001-47 · Sistema montado pela Empresa JV</p>
+  <p><b>Empresa JV</b> · sistemas simples para quem toca o negócio sozinha.</p>
+  <p><a href="/na-ponta-do-lapis/trancista/">Na Ponta do Lápis · trancista</a> · <a href="/na-ponta-do-lapis/confeitaria/">Na Ponta do Lápis · confeitaria</a> · <a href="/calculadora/">Calculadora grátis</a></p>
+  <p><a href="/privacidade/">Privacidade</a> · <a href="/termos/">Termos de uso</a></p>
+  <p>© 2026 Empresa JV · CNPJ 59.461.672/0001-47 · Sistema montado pela Empresa JV</p>
 </div></footer>
+<script>(function(){var g=document.getElementById('menu'),f=document.getElementById('fundo-menu'),b=document.getElementById('abre-menu'),x=document.getElementById('fecha-menu');
+function abre(){g.classList.add('aberta');g.setAttribute('aria-hidden','false');f.hidden=false;b.setAttribute('aria-expanded','true');document.body.style.overflow='hidden';x.focus();try{fbq('trackCustom','AbriuMenu',{pagina:document.body.dataset.pagina})}catch(_){}}
+function fecha(){g.classList.remove('aberta');g.setAttribute('aria-hidden','true');f.hidden=true;b.setAttribute('aria-expanded','false');document.body.style.overflow='';b.focus();}
+b.addEventListener('click',abre);x.addEventListener('click',fecha);f.addEventListener('click',fecha);document.addEventListener('keydown',function(e){if(e.key==='Escape'&&g.classList.contains('aberta'))fecha();});})();</script>
 </body>
 </html>
