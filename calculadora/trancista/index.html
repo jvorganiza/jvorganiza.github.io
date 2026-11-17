@@ -16,6 +16,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&family=Caveat:wght@700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/caderno.css">
+<link rel="stylesheet" href="/colagem.css">
 <script>if(!/jvorganiza/.test(location.hostname)){window.fbq=function(){console.log('[teste] fbq',[].slice.call(arguments))}}
 !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
 var ORIGEM=(new URLSearchParams(location.search).get('utm_source')||'direto');
@@ -64,9 +65,93 @@ document.addEventListener('click',function(e){var a=e.target.closest&&e.target.c
 .res>p{line-height:28px;margin:0}
 </style>
 <script src="/cookies.js" defer></script>
+<style data-colagem="1">body{background:var(--papel) var(--ruido)!important}
+.topo{position:sticky}
+.topo .marca{color:var(--papel2)}
+main{padding-top:18px}
+.acoes{display:flex;gap:8px;align-items:center}
+.tracos{display:grid;gap:3px;width:16px}
+.tracos i{display:block;height:2.5px;background:var(--tinta);border-radius:2px}
+.fundo-menu{position:fixed;inset:0;background:rgba(22,19,15,.45);z-index:40}
+.gaveta{position:fixed;top:0;right:0;bottom:0;width:min(360px,88vw);background:var(--papel2) var(--ruido);border-left:3px solid var(--tinta);box-shadow:-8px 0 0 rgba(22,19,15,.18);z-index:50;transform:translateX(105%);transition:transform .25s ease;overflow-y:auto;padding:max(14px,env(safe-area-inset-top,0px)) max(18px,env(safe-area-inset-right,0px)) 30px 18px;display:flex;flex-direction:column;gap:6px}
+.gaveta.aberta{transform:none}
+.gaveta-topo{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px}
+.fecha{width:42px;height:42px;border:2.5px solid var(--tinta);border-radius:10px;background:var(--amarelo);font:800 24px/1 Inter,sans-serif;cursor:pointer;box-shadow:3px 3px 0 var(--tinta)}
+.gaveta details{border-bottom:2px dashed rgba(22,19,15,.25);padding-block:6px}
+.gaveta summary{cursor:pointer;list-style:none;display:flex;align-items:baseline;justify-content:space-between;gap:8px;font:400 22px/1.2 Anton,Impact,sans-serif;text-transform:uppercase;padding-block:8px}
+.gaveta summary::-webkit-details-marker{display:none}
+.gaveta summary::after{content:"+";font:800 22px/1 Inter,sans-serif;margin-left:auto}
+.gaveta details[open] summary::after{content:"–"}
+.gaveta summary small{font:600 13px/1 Inter,sans-serif;text-transform:none;color:var(--tinta2)}
+.gaveta details a{display:block;padding:9px 12px;margin:4px 0;background:var(--branco);border:2px solid var(--tinta);border-radius:10px;text-decoration:none;font-weight:600;font-size:16px}
+.gaveta details a:hover{background:var(--amarelo)}
+.nota-menu{font-size:14px;color:var(--tinta2);margin:2px 0 6px}
+.sub-menu{display:block;font:700 13px/1 Inter,sans-serif;letter-spacing:.06em;text-transform:uppercase;color:var(--tinta2);margin:12px 0 2px}
+.zap-menu{margin-top:16px}
+@media (max-width:420px){.acoes .cta-topo{display:none}}
+section.bloco{padding-block:40px 10px;display:grid;gap:12px}
+.faixa-calc{display:grid;gap:18px;padding-block:44px;align-items:center}
+.faixa-calc h2{color:var(--amarelo)}
+.faixa-calc p{color:#e7e1d2}
+@media (min-width:760px){.faixa-calc{grid-template-columns:1.4fr 1fr}}
+.passos{display:grid;gap:18px;counter-reset:p;margin-top:6px}
+@media (min-width:760px){.passos{grid-template-columns:repeat(3,1fr)}}
+.passo{padding:20px 18px;display:grid;gap:6px;align-content:start}
+.passo::before{counter-increment:p;content:counter(p);width:42px;height:42px;display:grid;place-items:center;background:var(--amarelo);border:2.5px solid var(--tinta);border-radius:50%;font:400 22px/1 Anton,sans-serif;margin-bottom:4px}
+.passo b{font-size:18px}
+.passo span{color:var(--tinta2);font-size:16px}
+.confia{display:grid;gap:12px;margin-top:6px}
+@media (min-width:760px){.confia{grid-template-columns:repeat(4,1fr)}}
+.confia div{background:var(--papel2);border:2px dashed var(--tinta2);border-radius:12px;padding:14px 16px;font-size:15.5px}
+.confia b{display:block;font-size:16.5px}
+.faq{display:grid;gap:0;margin-top:4px}
+.faq details{border-bottom:2px dashed rgba(22,19,15,.25);padding:12px 2px}
+.faq summary{cursor:pointer;font-weight:700;font-size:17px;list-style:none;display:flex;gap:10px;justify-content:space-between}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";font-weight:800}
+.faq details[open] summary::after{content:"–"}
+.faq p{margin-top:8px;color:var(--tinta2);max-width:64ch}
+.zap{margin-top:30px;padding:24px 22px;display:grid;gap:12px;justify-items:start}
+</style>
 </head>
-<body>
-<header class="topo-site"><div class="wrap"><a class="marca" href="/"><span class="logo">JV</span><b>Empresa JV</b><i>Calculadora para trancistas</i></a></div></header>
+<body data-pagina="calculadora/trancista">
+<!--colagem-topo-->
+<header class="topo"><div class="wrap"><a class="marca" href="/"><img src="/img/logo-jv-160.png" alt="" width="42" height="42"><span>Empresa JV<small>na ponta do lápis</small></span></a>
+<div class="acoes"><a class="btn mini cta-topo" href="/na-ponta-do-lapis/trancista/?utm_source=calculadora-trancista">Conhecer</a>
+<button class="btn mini papel abre-menu" id="abre-menu" type="button" aria-controls="menu" aria-expanded="false"><span class="tracos" aria-hidden="true"><i></i><i></i><i></i></span>Menu</button></div></div></header>
+
+<div class="fundo-menu" id="fundo-menu" hidden></div>
+<nav class="gaveta" id="menu" aria-label="Menu do site" aria-hidden="true">
+  <div class="gaveta-topo"><span class="bilhete" style="color:var(--verde)">tudo da JV aqui</span><button class="fecha" id="fecha-menu" type="button" aria-label="Fechar menu">×</button></div>
+  <details open><summary>Na Ponta do Lápis <small>R$ 27</small></summary>
+    <a href="/na-ponta-do-lapis/trancista/">Para trancistas</a>
+    <a href="/na-ponta-do-lapis/confeitaria/">Para confeiteiras</a>
+  </details>
+  <details><summary>Mensagens prontas <small>R$ 27</small></summary>
+    <p class="nota-menu">Recortes de conversa: mensagens para responder preço, cobrar o sinal e chamar de volta quem sumiu.</p>
+    <a href="https://pay.cakto.com.br/3b59uga_1309945?split=1">Trancista</a>
+    <a href="https://pay.cakto.com.br/ahxpg6o_1309946?split=1">Confeitaria</a>
+    <a href="https://pay.cakto.com.br/ucev7ps_1309949?split=1">Gráfica</a>
+    <a href="https://pay.cakto.com.br/j4wazy7_1309951?split=1">Outros ramos</a>
+  </details>
+  <details><summary>Grátis <small>sem cadastro</small></summary>
+    <a href="/calculadora/trancista/">Calculadora de trança</a>
+    <a href="/calculadora/confeitaria/">Calculadora de confeitaria</a>
+    <a href="/calculadora/">Calculadora para outros serviços</a>
+    <span class="sub-menu">Dicas</span>
+    <a href="/dicas/preco-sem-chutar/">Como calcular o preço sem chutar</a>
+    <a href="/dicas/sinal-50-por-cento/">Sinal de 50% sem perder a cliente</a>
+    <a href="/dicas/orcamento-sumiu/">Pediu orçamento e sumiu: o que mandar</a>
+    <a href="/dicas/cliente-faltou-taxa-de-reserva/">Cliente faltou: pode cobrar taxa?</a>
+    <a href="/dicas/comprovante-pix-falso/">Comprovante de Pix falso</a>
+  </details>
+  <details><summary>Ferramentas extras <small>para o seu negócio</small></summary>
+    <p class="nota-menu">O que a gente usa e indica. São links de parceiro: se você assinar por eles, a JV ganha uma comissão e você não paga nada a mais.</p>
+    <a href="/ir/leona/" target="_blank" rel="sponsored noopener">Leona · atendimento automático no WhatsApp</a>
+  </details>
+  <a class="btn verde zap-menu" href="https://wa.me/5521984942432?text=Oi!%20Usei%20a%20calculadora%20de%20tran%C3%A7a%20do%20site%20e%20fiquei%20com%20uma%20d%C3%BAvida">Falar no WhatsApp</a>
+</nav>
+<!--/colagem-topo-->
 <main class="wrap artigo">
 <span class="tag amarelo">GRÁTIS · PARA TRANCISTAS</span>
 <h1>Quanto sobra da sua trança?</h1>
@@ -118,12 +203,14 @@ document.addEventListener('click',function(e){var a=e.target.closest&&e.target.c
 <p>Ficou alguma dúvida? <a href="https://wa.me/5521984942432?text=Oi%21%20Usei%20a%20calculadora%20de%20tran%C3%A7a%20do%20site%20e%20fiquei%20com%20uma%20d%C3%BAvida">Fala com a gente no WhatsApp</a>, a mensagem já vai pronta.</p>
 </section>
 </main>
+<p class="wrap miudo" style="margin-top:24px">A calculadora é uma ferramenta de apoio. O resultado depende dos números que você coloca e a decisão de preço é sempre sua.</p>
+<!--colagem-rodape-->
 <footer class="rodape"><div class="wrap">
-<p><b>Empresa JV</b> · sistemas simples para quem toca o negócio sozinha.</p>
-<p><a href="/na-ponta-do-lapis/trancista/">Na Ponta do Lápis</a> · <a href="/calculadora/">Calculadora para outros ramos</a> · <a href="/">Caderno de dicas</a></p>
-<p>A calculadora é uma ferramenta de apoio. O resultado depende dos números que você coloca e a decisão de preço é sempre sua.</p>
-<p>© 2026 Empresa JV · CNPJ 59.461.672/0001-47 · Sistema montado pela Empresa JV</p>
+  <p><b>Empresa JV</b> · sistemas simples para quem toca o negócio sozinha.</p>
+  <p><a href="/na-ponta-do-lapis/trancista/">Na Ponta do Lápis · trancista</a> · <a href="/na-ponta-do-lapis/confeitaria/">Na Ponta do Lápis · confeitaria</a> · <a href="/calculadora/">Calculadora grátis</a></p>
+  <p>© 2026 Empresa JV · CNPJ 59.461.672/0001-47 · Sistema montado pela Empresa JV</p>
 </div></footer>
+<!--/colagem-rodape-->
 <script>
 (function(){
 var $=function(i){return document.getElementById(i)};
@@ -172,5 +259,11 @@ $('calc').addEventListener('submit',function(e){
   window.addEventListener('load',alinhar);window.addEventListener('resize',agenda);
 })();
 </script>
+<!--colagem-js-->
+<script>(function(){var g=document.getElementById('menu'),f=document.getElementById('fundo-menu'),b=document.getElementById('abre-menu'),x=document.getElementById('fecha-menu');
+function abre(){g.classList.add('aberta');g.setAttribute('aria-hidden','false');f.hidden=false;b.setAttribute('aria-expanded','true');document.body.style.overflow='hidden';x.focus();try{fbq('trackCustom','AbriuMenu',{pagina:document.body.dataset.pagina})}catch(_){}}
+function fecha(){g.classList.remove('aberta');g.setAttribute('aria-hidden','true');f.hidden=true;b.setAttribute('aria-expanded','false');document.body.style.overflow='';b.focus();}
+b.addEventListener('click',abre);x.addEventListener('click',fecha);f.addEventListener('click',fecha);document.addEventListener('keydown',function(e){if(e.key==='Escape'&&g.classList.contains('aberta'))fecha();});})();</script>
+<!--/colagem-js-->
 </body>
 </html>
