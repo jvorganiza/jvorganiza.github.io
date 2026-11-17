@@ -20,6 +20,7 @@
 var ORIGEM=(new URLSearchParams(location.search).get('utm_source')||'direto');
 fbq('consent',(function(){try{return localStorage.getItem('jv-cookies')==='sim'}catch(e){return false}})()?'grant':'revoke');fbq('init','1129384439673429');fbq('track','PageView');fbq('trackCustom','AbriuPagina',{pagina:'links-tt',origem:ORIGEM});var PAGINA='links-tt';document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a');if(!a)return;var h=a.getAttribute('href')||'';var d=/wa\.me|\/ir\/zap|whatsapp/i.test(h)?'whatsapp':/pay\./i.test(h)?'checkout':/\/kits/.test(h)?'kits':/calculadora/.test(h)?'calculadora':/lapis/.test(h)?'lapis':'outro';try{fbq('trackCustom','CliqueLink',{pagina:PAGINA,destino:d,texto:(a.innerText||'').trim().slice(0,40)})}catch(_){}},true);</script>
 <script src="/cookies.js" defer></script>
+<style data-links="1">.linkbio .logo-bio{width:96px;height:96px;margin:6px auto 0;display:block}.lb.grupo{display:grid;gap:10px;text-align:center}.chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}.chips a{border:2px solid var(--tinta);border-radius:999px;padding:7px 14px;background:var(--amarelo);color:var(--tinta);font-weight:700;font-size:15px;text-decoration:none}</style>
 <style data-colagem="1">body{background:var(--papel) var(--ruido)!important}
 .topo{position:sticky}
 .topo .marca{color:var(--papel2)}
@@ -68,7 +69,6 @@ section.bloco{padding-block:40px 10px;display:grid;gap:12px}
 .faq p{margin-top:8px;color:var(--tinta2);max-width:64ch}
 .zap{margin-top:30px;padding:24px 22px;display:grid;gap:12px;justify-items:start}
 </style>
-<style data-links="1">.linkbio .logo-bio{width:96px;height:96px;margin:6px auto 0;display:block}.lb.grupo{display:grid;gap:10px;text-align:center}.chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}.chips a{border:2px solid var(--tinta);border-radius:999px;padding:7px 14px;background:var(--amarelo);color:var(--tinta);font-weight:700;font-size:15px;text-decoration:none}</style>
 </head>
 <body data-pagina="links/tiktok">
 <!--colagem-topo-->
@@ -102,8 +102,8 @@ section.bloco{padding-block:40px 10px;display:grid;gap:12px}
     <a href="/dicas/comprovante-pix-falso/">Comprovante de Pix falso</a>
   </details>
   <details><summary>Ferramentas extras <small>para o seu negócio</small></summary>
-    <p class="nota-menu">O que a gente usa e indica. São links de parceiro: se você assinar por eles, a JV ganha uma comissão e você não paga nada a mais.</p>
-    <a href="/ir/leona/" target="_blank" rel="sponsored noopener">Leona · atendimento automático no WhatsApp</a>
+    <p class="nota-menu">O que a gente usa e indica para quem atende e cobra sozinha.</p>
+    <a href="/ferramentas/">Ver as ferramentas</a>
   </details>
   <a class="btn verde zap-menu" href="https://wa.me/5521984942432?text=Oi!%20Vim%20pelo%20site%20e%20fiquei%20com%20uma%20d%C3%BAvida">Falar no WhatsApp</a>
 </nav>
@@ -119,8 +119,7 @@ section.bloco{padding-block:40px 10px;display:grid;gap:12px}
   <a class="lb" href="/ir/zap-tiktok/" target="_blank" rel="noopener">Falar no WhatsApp</a>
   <div class="lb grupo"><small>GRÁTIS · SEM CADASTRO</small>Calculadora de preço
     <span class="chips"><a href="/calculadora/trancista/?utm_source=tt&utm_medium=bio">Trança</a><a href="/calculadora/confeitaria/?utm_source=tt&utm_medium=bio">Confeitaria</a><a href="/calculadora/?utm_source=tt&utm_medium=bio">Outros serviços</a></span></div>
-  <a class="lb" href="/ir/leona/" target="_blank" rel="sponsored noopener"><small>FERRAMENTAS EXTRAS</small>Leona: atendimento automático no WhatsApp <span class="selo-parceiro">link de parceiro</span></a>
-  <p style="font-size:13px">O último link é de parceiro: se você assinar por ele, a Empresa JV recebe comissão, sem custo a mais para você.</p>
+  <a class="lb" href="/ferramentas/"><small>FERRAMENTAS EXTRAS</small>Para receber no cartão e atender no WhatsApp</a>
 </main>
 <!--colagem-rodape-->
 <footer class="rodape"><div class="wrap">
