@@ -1,6 +1,7 @@
 // POST /api/entrar — a tela de entrada do sistema pergunta se o e-mail (ou o resumo dele) tem compra ativa.
 // Corpo: { produto: "trancista", email: "..." }  ou  { produto, h: "<resumo já guardado no aparelho>" }
 import { NICHOS, json, resumoEmail, sha256 } from './_comum.js';
+import { registra } from './uso.js';
 
 const LIMITE = 30; // tentativas por hora, por endereço de rede
 
@@ -27,5 +28,6 @@ export async function onRequestPost({ request, env }) {
   const reg = await env.ACESSOS.get('a:' + nicho + ':' + h, 'json');
   if (!reg) return json({ ok: false, motivo: 'nao_achou' });
   if (reg.s !== 'ok') return json({ ok: false, motivo: 'reembolso' });
+  try { await registra(env, nicho, h, 'entrou'); } catch (e) {}
   return json({ ok: true, h });
 }
