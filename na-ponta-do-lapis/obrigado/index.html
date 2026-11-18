@@ -70,6 +70,8 @@ footer{border-top:2px solid var(--tinta);padding-block:18px 36px;font-size:14px;
 <li>Chega outro e-mail, da Cakto, com o acesso à área de membros.</li>
 <li>Entre com o mesmo e-mail da compra e assista ao Comece aqui: a aula 2 traz o link do seu sistema.</li></ol>
 <a class="btn" href="https://aluno.cakto.com.br/" target="_blank" rel="noopener">Entrar na área de membros</a></section>
+<section class="caixa esconde" id="b-completo"><h2>E o seu Completo?</h2>
+<p style="margin:0">As telas novas (Clientes, Agenda e Mensagens) aparecem no mesmo Na Ponta do Lápis. Entre com o mesmo e-mail da compra. Se já estava dentro e elas ainda estiverem com cadeado, toque em "Já comprei o Completo" e digite o e-mail da compra.</p></section>
 <section class="caixa esconde" id="b-rec"><h2>E os seus Recortes?</h2>
 <p style="margin:0">Chegam por e-mail, com o link da página das mensagens. É só copiar e mandar.</p></section>
 <section class="caixa"><h2>Travou em alguma parte?</h2>
@@ -81,7 +83,8 @@ var V={'trancista': '/video/entrar-na-ponta-do-lapis.mp4', 'confeitaria': '/vide
 if(r==='confeitaria'){document.querySelector('.passos li:nth-child(3)').textContent='Digite o mesmo e-mail da compra e cadastre a primeira encomenda.'}
 else{document.querySelector('.passos li:nth-child(3)').textContent='Digite o mesmo e-mail da compra e cadastre a primeira trança.'}
 if(q.get('kit')==='1')document.getElementById('b-kit').classList.remove('esconde');
-if(q.get('rec')==='1')document.getElementById('b-rec').classList.remove('esconde');})();</script>
+if(q.get('rec')==='1')document.getElementById('b-rec').classList.remove('esconde');
+if(q.get('completo')==='1')document.getElementById('b-completo').classList.remove('esconde');})();</script>
 <footer><div class="wrap">© 2026 Empresa JV · CNPJ 59.461.672/0001-47 · Sistema montado pela Empresa JV</div></footer>
 </body>
 </html>
