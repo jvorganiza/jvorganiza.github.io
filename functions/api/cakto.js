@@ -1,6 +1,6 @@
 // POST /api/cakto — recebe o aviso (webhook) da Cakto a cada compra, reembolso ou contestação.
 // Compra aprovada libera o e-mail; reembolso e contestação bloqueiam.
-import { PRODUTOS, json, resumoEmail, hmac, igual } from './_comum.js';
+import { PRODUTOS, COMPLETOS, json, resumoEmail, hmac, igual } from './_comum.js';
 
 const LIBERA = ['purchase_approved'];
 const BLOQUEIA = ['refund', 'chargeback'];
@@ -19,12 +19,20 @@ export async function onRequestPost({ request, env }) {
   if (!confere) return json({ ok: false, erro: 'origem' }, 401);
 
   const ev = String(corpo.event || ''), d = corpo.data || {};
-  const nicho = PRODUTOS[(d.product || {}).id];
+  const pid = (d.product || {}).id;
+  const nicho = PRODUTOS[pid] || COMPLETOS[pid];
   const email = ((d.customer || {}).email || '').trim().toLowerCase();
   if (!nicho || !email || !(LIBERA.includes(ev) || BLOQUEIA.includes(ev))) return json({ ok: true, ignorado: true });
 
-  const chave = 'a:' + nicho + ':' + await resumoEmail(email);
-  await env.ACESSOS.put(chave, JSON.stringify({ s: LIBERA.includes(ev) ? 'ok' : 'x', ev, pedido: String(d.id || '').slice(0, 40), em: new Date().toISOString() }));
+  const h = await resumoEmail(email);
+  const reg = JSON.stringify({ s: LIBERA.includes(ev) ? 'ok' : 'x', ev, pedido: String(d.id || '').slice(0, 40), em: new Date().toISOString() });
+  if (COMPLETOS[pid]) {
+    await env.ACESSOS.put('c:' + nicho + ':' + h, reg);
+    // quem compra o Completo direto também ganha o sistema básico (sem derrubar uma compra anterior do básico)
+    if (LIBERA.includes(ev) && !(await env.ACESSOS.get('a:' + nicho + ':' + h))) await env.ACESSOS.put('a:' + nicho + ':' + h, reg);
+  } else {
+    await env.ACESSOS.put('a:' + nicho + ':' + h, reg);
+  }
   return json({ ok: true });
 }
 

@@ -5,6 +5,8 @@
 // produto da Cakto → sistema que ele libera
 export const PRODUTOS = { 'cb9d7036-778e-441b-a04c-b7257e62cba9': 'trancista', '2df01558-1d28-40e2-9bd5-db934f3933da': 'confeitaria' };
 export const NICHOS = ['trancista', 'confeitaria'];
+// produtos do Na Ponta do Lápis Completo (e do upgrade para ele): liberam o sistema E as telas do Completo
+export const COMPLETOS = { 'b4c0b291-577d-42e4-b7e7-389493ef2d61': 'trancista', '504b20b8-a154-481e-9e2c-7d3054e19d4d': 'trancista' }; // Completo R$ 67 e Upgrade R$ 40
 
 export const json = (obj, status = 200) => new Response(JSON.stringify(obj), { status, headers: { 'content-type': 'application/json; charset=utf-8', 'cache-control': 'no-store' } });
 

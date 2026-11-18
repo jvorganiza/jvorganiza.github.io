@@ -29,5 +29,6 @@ export async function onRequestPost({ request, env }) {
   if (!reg) return json({ ok: false, motivo: 'nao_achou' });
   if (reg.s !== 'ok') return json({ ok: false, motivo: 'reembolso' });
   try { await registra(env, nicho, h, 'entrou'); } catch (e) {}
-  return json({ ok: true, h });
+  const comp = await env.ACESSOS.get('c:' + nicho + ':' + h, 'json');
+  return json({ ok: true, h, completo: !!(comp && comp.s === 'ok') });
 }
