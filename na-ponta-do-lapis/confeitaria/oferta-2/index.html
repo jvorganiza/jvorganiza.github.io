@@ -26,7 +26,7 @@ header b{font-weight:800}
 .ok .wrap{padding-block:10px}
 main{display:grid;grid-template-columns:minmax(0,1fr);gap:26px;padding-block:24px 70px}
 .tag{justify-self:start;font:400 15px/1 Anton,sans-serif;letter-spacing:.06em;background:var(--tinta);color:var(--amarelo);padding:6px 10px 5px;transform:rotate(-1.5deg)}
-h1{font:400 clamp(32px,8vw,46px)/1.24 Anton,Impact,sans-serif;margin:0;text-wrap:balance}
+h1{font:400 clamp(32px,8vw,46px)/1.32 Anton,Impact,sans-serif;margin:0;text-wrap:balance}
 h1 em{font-style:normal;background:var(--amarelo);padding:.02em .12em;-webkit-box-decoration-break:clone;box-decoration-break:clone}
 h2{font:700 21px/1.25 Inter,sans-serif;margin:0 0 10px}
 .sub{font-size:18px;margin:0;color:var(--tinta2)}
@@ -71,11 +71,11 @@ footer{border-top:2px solid var(--tinta);padding-block:18px 36px;font-size:14px;
 <div class="valor">R$ 9,90</div>
 <p class="miudo">Pagamento único. No cartão, 1 toque no mesmo cartão. No Pix, aparece um Pix novo na tela.</p>
 <cakto-upsell-buttons id="cakto">
-  <cakto-upsell-accept bg-color="#0E3B2A" text-color="#ffffff" upsell-accept-url="https://jvorganiza.com.br/na-ponta-do-lapis/obrigado/?r=confeitaria&rec=1" offer-id="n4ig37o" app-base-url="https://app.cakto.com.br" offer-type="downsell" upsell-reject-url="https://jvorganiza.com.br/na-ponta-do-lapis/obrigado/?r=confeitaria">Sim, quero os Recortes por R$ 9,90</cakto-upsell-accept>
+  <cakto-upsell-accept bg-color="#0E3B2A" text-color="#ffffff" upsell-accept-url="https://jvorganiza.com.br/na-ponta-do-lapis/obrigado/?r=confeitaria&rec=1" offer-id="n4ig37o" app-base-url="https://app.cakto.com.br" offer-type="downsell" upsell-reject-url="https://jvorganiza.com.br/na-ponta-do-lapis/obrigado/?r=confeitaria">Sim, quero por R$ 9,90</cakto-upsell-accept>
   <cakto-upsell-reject upsell-reject-url="https://jvorganiza.com.br/na-ponta-do-lapis/obrigado/?r=confeitaria">Não, obrigada. Quero ir para o meu acesso</cakto-upsell-reject>
 </cakto-upsell-buttons>
 <div class="reserva" id="reserva">
-  <a class="btn" href="https://pay.cakto.com.br/n4ig37o">Sim, quero os Recortes por R$ 9,90</a>
+  <a class="btn" href="https://pay.cakto.com.br/n4ig37o">Sim, quero por R$ 9,90</a>
   <a class="link-nao" href="https://jvorganiza.com.br/na-ponta-do-lapis/obrigado/?r=confeitaria">Não, obrigada. Quero ir para o meu acesso</a>
 </div>
 <script src="https://caktoscripts.nyc3.cdn.digitaloceanspaces.com/upsell.js" async onerror="document.getElementById('reserva').classList.add('on');document.getElementById('cakto').style.display='none'"></script>

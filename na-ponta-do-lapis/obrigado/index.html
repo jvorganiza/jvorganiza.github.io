@@ -26,7 +26,7 @@ header b{font-weight:800}
 .ok .wrap{padding-block:10px}
 main{display:grid;grid-template-columns:minmax(0,1fr);gap:26px;padding-block:24px 70px}
 .tag{justify-self:start;font:400 15px/1 Anton,sans-serif;letter-spacing:.06em;background:var(--tinta);color:var(--amarelo);padding:6px 10px 5px;transform:rotate(-1.5deg)}
-h1{font:400 clamp(32px,8vw,46px)/1.24 Anton,Impact,sans-serif;margin:0;text-wrap:balance}
+h1{font:400 clamp(32px,8vw,46px)/1.32 Anton,Impact,sans-serif;margin:0;text-wrap:balance}
 h1 em{font-style:normal;background:var(--amarelo);padding:.02em .12em;-webkit-box-decoration-break:clone;box-decoration-break:clone}
 h2{font:700 21px/1.25 Inter,sans-serif;margin:0 0 10px}
 .sub{font-size:18px;margin:0;color:var(--tinta2)}
@@ -65,13 +65,13 @@ footer{border-top:2px solid var(--tinta);padding-block:18px 36px;font-size:14px;
 <li>Abra o e-mail com o link de acesso. Não achou? Olhe o spam e a aba Promoções.</li>
 <li>Toque no link: ele abre no navegador do celular, sem baixar nada.</li>
 <li>Digite o mesmo e-mail da compra e cadastre a primeira trança ou encomenda.</li></ol></section>
-<video id="vid" controls playsinline preload="metadata" src="/video/entrar-na-ponta-do-lapis.mp4"></video>
+<video id="vid" controls playsinline preload="metadata" poster="/img/entrar-npl-tran.jpg" src="/video/entrar-na-ponta-do-lapis.mp4"></video>
 <section class="caixa esconde" id="b-kit"><h2>E o seu Kit?</h2><ol class="passos">
 <li>Chega outro e-mail, da Cakto, com o acesso à área de membros.</li>
 <li>Entre com o mesmo e-mail da compra e assista ao Comece aqui: a aula 2 traz o link do seu sistema.</li></ol>
 <a class="btn" href="https://aluno.cakto.com.br/" target="_blank" rel="noopener">Entrar na área de membros</a></section>
 <section class="caixa esconde" id="b-completo"><h2>E o seu Completo?</h2>
-<p style="margin:0">As telas novas (Clientes, Agenda e Mensagens) aparecem no mesmo Na Ponta do Lápis. Entre com o mesmo e-mail da compra. Se já estava dentro e elas ainda estiverem com cadeado, toque em "Já comprei o Completo" e digite o e-mail da compra.</p></section>
+<p style="margin:0" id="txt-completo">As telas novas (Clientes, Agenda e Mensagens) aparecem no mesmo Na Ponta do Lápis. Entre com o mesmo e-mail da compra. Se já estava dentro e elas ainda estiverem com cadeado, toque em "Já comprei o Completo" e digite o e-mail da compra.</p></section>
 <section class="caixa esconde" id="b-rec"><h2>E os seus Recortes?</h2>
 <p style="margin:0">Chegam por e-mail, com o link da página das mensagens. É só copiar e mandar.</p></section>
 <section class="caixa"><h2>Travou em alguma parte?</h2>
@@ -80,7 +80,7 @@ footer{border-top:2px solid var(--tinta);padding-block:18px 36px;font-size:14px;
 </main>
 <script>(function(){var q=new URLSearchParams(location.search),r=q.get('r')==='confeitaria'?'confeitaria':'trancista';
 var V={'trancista': '/video/entrar-na-ponta-do-lapis.mp4', 'confeitaria': '/video/entrar-na-ponta-do-lapis-confeitaria.mp4'};document.getElementById('vid').src=V[r];
-if(r==='confeitaria'){document.querySelector('.passos li:nth-child(3)').textContent='Digite o mesmo e-mail da compra e cadastre a primeira encomenda.'}
+if(r==='confeitaria'){document.querySelector('.passos li:nth-child(3)').textContent='Digite o mesmo e-mail da compra e cadastre a primeira encomenda.';document.getElementById('vid').poster='/img/entrar-npl-conf.jpg';var t=document.getElementById('txt-completo');t.textContent=t.textContent.replace('(Clientes, Agenda e Mensagens)','(Encomendas, Quem falta pagar, Lista de compras, Clientes e Mensagens)')}
 else{document.querySelector('.passos li:nth-child(3)').textContent='Digite o mesmo e-mail da compra e cadastre a primeira trança.'}
 if(q.get('kit')==='1')document.getElementById('b-kit').classList.remove('esconde');
 if(q.get('rec')==='1')document.getElementById('b-rec').classList.remove('esconde');
