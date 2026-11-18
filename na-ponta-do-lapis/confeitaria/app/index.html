@@ -105,13 +105,57 @@ input[type=file]{font-size:14px;padding:8px}
 .cores button{width:40px;height:40px;border-radius:50%;padding:0;border:3px solid var(--folha);box-shadow:0 0 0 2px var(--linha)}
 .cores button[aria-pressed="true"]{box-shadow:0 0 0 3px var(--tinta)}
 #tabela-img{width:100%;border:2px solid var(--tinta);border-radius:10px;display:block}
-.abas{position:fixed;left:0;right:0;bottom:0;background:var(--tinta);display:flex;justify-content:center;
-  padding-bottom:env(safe-area-inset-bottom,0px);padding-left:max(8px,env(safe-area-inset-left,0px));padding-right:max(8px,env(safe-area-inset-right,0px));z-index:5}
+.abas{position:fixed;left:0;right:0;bottom:0;background:var(--tinta);display:flex;flex-wrap:wrap;justify-content:center;
+  padding-bottom:env(safe-area-inset-bottom,0px);padding-left:max(4px,env(safe-area-inset-left,0px));padding-right:max(4px,env(safe-area-inset-right,0px));z-index:5}
 body.digitando .abas{display:none}
-.abas button{flex:1;max-width:140px;background:none;border:0;border-radius:0;color:#cfc8b8;padding:13px 4px 12px;font-size:13.5px;font-weight:600;border-top:4px solid transparent}
+.abas button{flex:1 1 25%;max-width:150px;min-width:0;background:none;border:0;border-radius:0;color:#cfc8b8;padding:9px 2px 8px;font-size:13px;font-weight:600;border-top:3px solid transparent;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+/* Completo (18/11/2026): encomendas, clientes, mensagens. [hidden] também vem do gerador do site; aqui para o arquivo abrir sozinho igual. */
+[hidden]{display:none!important}
+.app{padding-block:16px 128px}
+.trava{background:var(--folha);border:2px dashed var(--tinta);border-radius:14px;padding:16px;display:flex;flex-direction:column;gap:10px;align-items:flex-start}
+.trava .cad{font-size:34px;line-height:1}
+.trava ul{margin:0;padding-left:20px;font-size:14.5px;display:flex;flex-direction:column;gap:4px}
+.linha-cli{display:flex;flex-direction:column;gap:8px;padding:10px 0;border-bottom:1px dashed var(--linha)}
+.linha-cli:last-child{border-bottom:0}
+.linha-cli .nm{display:flex;justify-content:space-between;gap:8px;align-items:baseline}
+.linha-cli .nm b{font-size:16.5px;min-width:0;overflow-wrap:anywhere}
+.linha-cli .nm span{font-size:13px;white-space:nowrap}
+.tag{display:inline-block;font-size:12px;font-weight:700;border-radius:999px;padding:2px 9px;border:2px solid var(--tinta)}
+.tag.ruim{background:var(--verm-claro);color:var(--verm);border-color:var(--verm)}
+.tag.bom{background:var(--verde-claro);color:var(--verde);border-color:var(--verde)}
+.tag.amar{background:var(--amarelo);color:var(--tinta)}
+a.zap{display:inline-block;font-weight:700;text-decoration:none;color:#fff;background:#1f8f4e;border:2px solid #1f8f4e;border-radius:10px;padding:11px 14px;text-align:center}
+a.zap:focus-visible{outline:3px solid var(--amarelo);outline-offset:2px}
+.acoes.cheia>*{flex:1 1 auto}
+details summary{cursor:pointer;font-weight:600;font-size:14px;color:var(--tinta2);padding:4px 0}
+.dia-ag{font-family:var(--display);font-weight:400;font-size:18px;text-transform:uppercase;margin-top:4px}
+.ag-item{background:var(--papel);border-radius:12px;padding:10px;display:flex;flex-direction:column;gap:8px}
+.ag-item .serv-top b{font-size:16px}
+.ag-item .serv-top span{font-size:19px}
+.ag-item .itens{font-size:14.5px;font-weight:600;overflow-wrap:anywhere}
+.msg{background:var(--papel);border-radius:12px;padding:10px;display:flex;flex-direction:column;gap:8px}
+.msg p{white-space:pre-wrap;font-size:14.5px;overflow-wrap:anywhere}
+.msg button{align-self:flex-start}
+.rank{display:flex;flex-direction:column;gap:6px}
+.rank div{display:flex;justify-content:space-between;gap:8px;font-size:14.5px;padding:6px 0;border-bottom:1px dashed var(--linha)}
+.rank div span:first-child{min-width:0;overflow-wrap:anywhere}
+.rank div b{white-space:nowrap;font-variant-numeric:tabular-nums}
+.hist{display:flex;flex-direction:column}
+.hist div{display:flex;gap:8px;align-items:center;font-size:14px;padding:6px 0;border-bottom:1px dashed var(--linha)}
+.hist div span:first-child{flex:1;min-width:0;overflow-wrap:anywhere}
+.hist div b{white-space:nowrap;font-variant-numeric:tabular-nums}
+.item-enc{display:flex;flex-direction:column;gap:8px;background:var(--folha);border:2px solid var(--linha);border-radius:12px;padding:10px}
+.item-enc .duas{align-items:end}
+.item-enc .sub b{color:var(--tinta)}
+.compra{display:flex;flex-direction:column}
+.compra div{display:flex;gap:8px;align-items:baseline;padding:7px 0;border-bottom:1px dashed var(--linha);font-size:14.5px}
+.compra div span:first-child{flex:1;min-width:0;overflow-wrap:anywhere}
+.compra div b{white-space:nowrap;font-variant-numeric:tabular-nums}
+.compra small{display:block;color:var(--tinta2);font-size:12.5px}
+input[type=time]{-webkit-appearance:none;appearance:none;display:block;max-width:100%;min-height:46px;text-align:left}
 .abas button[aria-selected="true"]{color:var(--tinta);background:var(--amarelo);border-top-color:var(--verm)}
 .rodape{margin-top:22px;color:var(--tinta2);font-size:12px;text-align:center}
-.toast{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(76px + env(safe-area-inset-bottom,0px));background:var(--tinta);color:#fff;padding:10px 16px;border-radius:999px;font-size:14px;z-index:9;max-width:90%}
+.toast{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(104px + env(safe-area-inset-bottom,0px));background:var(--tinta);color:#fff;padding:10px 16px;border-radius:999px;font-size:14px;z-index:9;max-width:90%}
 @media (max-width:360px){.trio{grid-template-columns:1fr 1fr}.duas{grid-template-columns:1fr}}
 @media (prefers-reduced-motion:no-preference){.toast{animation:sobe .2s ease-out}@keyframes sobe{from{opacity:0;transform:translate(-50%,8px)}}}
 
@@ -139,6 +183,7 @@ body.digitando .abas{display:none}
 
   <!-- RECEITAS (17/11/2026): quanto custa o seu quilo, a sua fatia e o seu cento -->
   <section class="tela" id="t-receitas" hidden>
+    <div class="aviso" id="aviso-entrega" hidden><p id="aviso-entrega-txt"></p><div class="acoes"><button class="forte" id="aviso-entrega-ir" type="button">Ver as encomendas</button></div></div>
     <div><h1>Minhas receitas</h1><p class="sub">Quanto custa o seu quilo, a sua fatia e o seu cento, e o preço certo de cada um.</p></div>
     <div class="cartao amostra" id="rec-amostra"><p class="selo">AMOSTRA · é assim que fica</p><div class="serv-top"><b>Bolo de 2 kg de brigadeiro</b><span>custo R$ 41</span></div><div class="trio"><div><small>Custo do quilo</small><b>R$ 20,50</b></div><div><small>Preço certo do quilo</small><b class="bom">R$ 70</b></div><div><small>Fatia (20 no bolo)</small><b>R$ 7</b></div></div><p class="sub">Cadastre os seus ingredientes uma vez, pelo preço do pacote. Depois é só montar a receita.</p></div>
     <div class="cartao">
@@ -263,6 +308,118 @@ body.digitando .abas{display:none}
       <p class="dica" id="meta-txt" hidden></p>
       <button id="resumo-baixar" type="button">Baixar o resumo do mês</button>
     </div>
+    <div class="cartao" id="rank-box">
+      <h2>5. Quem e o que mais rendeu</h2>
+      <p class="sub">Pelo que sobrou pra você depois do custo de cada bolo e doce.</p>
+      <div id="rank-conteudo"></div>
+    </div>
+  </section>
+
+  <!-- ENCOMENDAS (Completo) -->
+  <section class="tela" id="t-encomendas" hidden>
+    <div><h1>Minhas encomendas</h1><p class="sub">O que sai em cada dia, o sinal que já caiu, o que falta receber e o que comprar.</p></div>
+    <div id="enc-trava"></div>
+    <div id="enc-tudo" class="tela">
+      <div class="mes-nav"><button class="leve" id="sem-ant" type="button" aria-label="Semana anterior">◀</button><b id="sem-nome" style="font-size:19px;text-align:center"></b><button class="leve" id="sem-prox" type="button" aria-label="Próxima semana">▶</button></div>
+      <div class="cartao">
+        <h2>Entregas da semana</h2>
+        <div class="conta" id="sem-conta"></div>
+      </div>
+      <div id="sem-lista" class="tela" style="gap:10px"></div>
+      <button class="forte" id="enc-nova" type="button">+ Nova encomenda</button>
+      <form class="cartao" id="form-enc" hidden novalidate>
+        <h2 id="form-enc-tit">Nova encomenda</h2>
+        <label for="e-cli">Cliente<select id="e-cli"></select></label>
+        <label for="e-cli-nova" id="e-cli-nova-box" hidden>Nome da cliente nova<input id="e-cli-nova" maxlength="60" autocomplete="off" placeholder="Ex.: Juliana"></label>
+        <label for="e-zap" id="e-zap-box" hidden>WhatsApp dela com DDD<small>Só os números. Pode deixar em branco.</small><input id="e-zap" inputmode="tel" maxlength="20" autocomplete="off" placeholder="21987654321"></label>
+        <b style="font-size:14.5px">O que ela encomendou</b>
+        <p class="sub">Escolha do seu cardápio (aba Preços) ou das suas receitas e diga a quantidade.</p>
+        <div id="e-itens" class="tela" style="gap:8px"></div>
+        <button type="button" class="amar" id="e-mais">+ Outro item</button>
+        <div class="duas"><label for="e-dia">Dia<input id="e-dia" type="date"></label><label for="e-hora">Hora<input id="e-hora" type="time"></label></div>
+        <div class="duas">
+          <label class="opcao" for="e-ret"><input type="radio" name="emodo" id="e-ret" value="retirada" checked><span><b>Retirada</b><small>Ela vem buscar.</small></span></label>
+          <label class="opcao" for="e-ent"><input type="radio" name="emodo" id="e-ent" value="entrega"><span><b>Entrega</b><small>Você leva.</small></span></label>
+        </div>
+        <label for="e-total">Valor total (R$)<small id="e-sug">Preço certo × quantidade: R$ 0</small><input id="e-total" inputmode="decimal" placeholder="Ex.: 250"></label>
+        <button type="button" class="leve" id="e-usar-sug" hidden>Usar o valor sugerido</button>
+        <label for="e-sinal">Sinal já pago (R$)<small>Costume: 50% para garantir a data.</small><input id="e-sinal" inputmode="decimal" placeholder="Ex.: 125"></label>
+        <p class="dica bom" id="e-falta"></p>
+        <label for="e-obs">Observação<small>Sabor, recheio, tema, cor, nome no topo.</small><textarea id="e-obs" rows="2" maxlength="300" placeholder="Ex.: massa branca, recheio de ninho com morango, tema Moana"></textarea></label>
+        <p class="erro" id="e-erro" role="alert"></p>
+        <div class="acoes"><button class="forte" type="submit">Salvar encomenda</button><button type="button" id="e-cancelar">Cancelar</button></div>
+      </form>
+      <div class="cartao" id="enc-atras-box" hidden>
+        <h2>Ficou para trás</h2>
+        <p class="sub">Encomendas de dias que já passaram. Marque como entregue ou tire da lista.</p>
+        <div id="enc-atras" class="tela" style="gap:10px"></div>
+      </div>
+      <div class="cartao">
+        <h2>Quem falta pagar</h2>
+        <p class="sub">Encomendas com dinheiro para receber. Cobre com um toque e marque quando cair.</p>
+        <div id="pagar-lista"></div>
+        <details><summary>Mudar o texto da cobrança</summary>
+          <div style="display:flex;flex-direction:column;gap:8px;margin-top:8px">
+            <p class="sub">Use {nome}, {data} e {valor}: o sistema troca pelo nome da cliente, o dia da encomenda e o valor que falta.</p>
+            <textarea id="cobrar-modelo" rows="3" aria-label="Texto da cobrança"></textarea>
+            <button class="leve" id="cobrar-modelo-volta" type="button">Voltar ao texto original</button>
+          </div>
+        </details>
+      </div>
+      <div class="cartao">
+        <h2>Lista de compras da semana</h2>
+        <p class="sub" id="compra-sub">Soma os ingredientes das encomendas desta semana pelas suas receitas.</p>
+        <div class="compra" id="compra-lista"></div>
+        <p class="total" id="compra-total" style="font-weight:700"></p>
+        <p class="dica ruim" id="compra-fora" hidden></p>
+        <button class="amar" id="compra-copiar" type="button">Copiar a lista</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- CLIENTES (Completo) -->
+  <section class="tela" id="t-clientes" hidden>
+    <div><h1>Minhas clientes</h1><p class="sub">Quem é cada uma, o que ela já encomendou e quem está sumida.</p></div>
+    <div id="cli-trava"></div>
+    <div id="cli-tudo" class="tela">
+      <div class="cartao" id="volta-box">
+        <h2>Quem chamar de novo</h2>
+        <p class="sub">Clientes que não encomendam há mais de 60 dias.</p>
+        <div id="volta-lista"></div>
+        <details><summary>Mudar o texto da mensagem</summary>
+          <div style="display:flex;flex-direction:column;gap:8px;margin-top:8px">
+            <p class="sub">Use {nome} e {produto}: o sistema troca pelo nome da cliente e pelo que ela encomendou da última vez.</p>
+            <textarea id="volta-modelo" rows="4" aria-label="Texto para chamar de novo"></textarea>
+            <button class="leve" id="volta-modelo-volta" type="button">Voltar ao texto original</button>
+          </div>
+        </details>
+      </div>
+      <button class="forte" id="cli-nova" type="button">+ Nova cliente</button>
+      <form class="cartao" id="form-cli" hidden novalidate>
+        <h2 id="form-cli-tit">Nova cliente</h2>
+        <label for="c-nome">Nome<input id="c-nome" maxlength="60" autocomplete="off" placeholder="Ex.: Juliana"></label>
+        <label for="c-zap">WhatsApp com DDD<small>Só os números. Ex.: 21987654321</small><input id="c-zap" inputmode="tel" maxlength="20" autocomplete="off" placeholder="21987654321"></label>
+        <label for="c-obs">Observação<small>Ex.: não come lactose, filho faz aniversário em março.</small><textarea id="c-obs" rows="2" maxlength="300"></textarea></label>
+        <p class="erro" id="c-erro" role="alert"></p>
+        <div class="acoes"><button class="forte" type="submit">Salvar</button><button type="button" id="c-cancelar">Cancelar</button></div>
+      </form>
+      <div class="cartao">
+        <h2>Todas as clientes</h2>
+        <label for="cli-busca" id="cli-busca-box" hidden>Procurar<input id="cli-busca" type="search" autocomplete="off" placeholder="Nome da cliente"></label>
+        <div id="cli-lista"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MENSAGENS (Completo) -->
+  <section class="tela" id="t-mensagens" hidden>
+    <div><h1>Mensagens prontas</h1><p class="sub">22 mensagens de confeitaria para o WhatsApp. Copie, troque o que está entre [colchetes] e mande.</p></div>
+    <div id="msgs-trava"></div>
+    <div id="msgs-tudo" class="tela">
+      <div class="toques chips" id="msgs-assuntos"></div>
+      <div id="msgs-lista" class="tela" style="gap:10px"></div>
+      <p class="sub">Dica: salve as que mais usa como "Respostas rápidas" no WhatsApp Business (Ferramentas comerciais → Respostas rápidas).</p>
+    </div>
   </section>
 
   <!-- TABELA -->
@@ -337,7 +494,7 @@ body.digitando .abas{display:none}
       <label for="msg-texto">Mensagem<textarea id="msg-texto" rows="8"></textarea></label>
       <div class="acoes"><button class="amar" id="msg-copiar" type="button">Copiar mensagem</button><button class="leve" id="msg-refazer" type="button">Voltar ao texto original</button></div>
     </div>
-    <div class="cartao oferta">
+    <div class="cartao oferta" id="oferta-recortes">
       <span class="selo">DA EMPRESA JV</span>
       <h2>Quer responder mais rápido?</h2>
       <p>Os <b>Recortes de conversa</b> são mensagens prontas para confeitaria: responder quem pede preço, cobrar o sinal, confirmar a encomenda e lembrar a retirada.</p>
@@ -366,14 +523,14 @@ body.digitando .abas{display:none}
     </div>
     <div class="cartao">
       <h2>Começar do zero</h2>
-      <p class="sub">Apaga serviços, meses e ajustes deste celular.</p>
+      <p class="sub">Apaga ingredientes, receitas, preços, meses, encomendas, clientes e ajustes deste celular.</p>
       <button class="perigo" id="zerar" type="button">Apagar tudo</button>
       <div class="aviso" id="zerar-conf" hidden><p><b>Tem certeza?</b> Não dá para desfazer.</p><div class="acoes"><button class="perigo" id="zerar-sim" type="button">Sim, apagar tudo</button><button id="zerar-nao" type="button">Não</button></div></div>
     </div>
     <div class="cartao oferta">
       <span class="selo">PARA IR ALÉM</span>
       <h2>Quando o preço estiver em dia</h2>
-      <div class="extra"><b>Recortes de conversa</b><p class="sub">Mensagens prontas para o WhatsApp: preço, sinal, confirmação da encomenda e retirada.</p><a class="botao leve" href="https://pay.cakto.com.br/ahxpg6o_1309946?split=1" target="_blank" rel="noopener">Ver os Recortes · R$ 27</a></div>
+      <div class="extra" id="extra-recortes"><b>Recortes de conversa</b><p class="sub">Mensagens prontas para o WhatsApp: preço, sinal, confirmação da encomenda e retirada.</p><a class="botao leve" href="https://pay.cakto.com.br/ahxpg6o_1309946?split=1" target="_blank" rel="noopener">Ver os Recortes · R$ 27</a></div>
       <div class="extra" id="kit-cliente" hidden><b>Kit Confeitaria completo</b><p class="sub">Clientes, encomendas por data, receitas e financeiro num sistema só, com videoaulas. Pra você que já usa o Na Ponta do Lápis: R$ 120 em vez de R$ 147, e a gente ajuda a instalar pelo WhatsApp.</p><a class="botao leve" href="https://pay.cakto.com.br/qc8sv4g?split=1" target="_blank" rel="noopener">Quero o Kit por R$ 120</a> <a class="botao leve" href="https://jvorganiza.com.br/kits/confeitaria/" target="_blank" rel="noopener">Ver como funciona</a></div>
     </div>
     <div class="cartao"><h2>Deixe na tela inicial</h2><p class="sub">No menu do navegador (os três pontinhos ou o botão de compartilhar), toque em "Adicionar à tela inicial". O Na Ponta do Lápis vira um atalho, como um aplicativo.</p><p class="sub">Use sempre o mesmo navegador. Na janela anônima e no navegador de dentro do Instagram os dados podem não ficar guardados.</p></div>
@@ -387,7 +544,10 @@ body.digitando .abas{display:none}
 <nav class="abas" role="tablist" aria-label="Telas">
   <button role="tab" data-t="receitas" aria-selected="true">Receitas</button>
   <button role="tab" data-t="servicos" aria-selected="false">Preços</button>
+  <button role="tab" data-t="encomendas" aria-selected="false">Encomendas</button>
   <button role="tab" data-t="mes" aria-selected="false">Meu mês</button>
+  <button role="tab" data-t="clientes" aria-selected="false">Clientes</button>
+  <button role="tab" data-t="mensagens" aria-selected="false">Mensagens</button>
   <button role="tab" data-t="ajustes" aria-selected="false">Negócio</button>
   <button role="tab" data-t="tabela" aria-selected="false">Tabela</button>
 </nav>
@@ -396,12 +556,13 @@ body.digitando .abas{display:none}
 <script>
 (function(){
 var CHAVE='jv-quanto-sobra-confeitaria-v2';
+var CHECKOUT_COMPLETO='https://pay.cakto.com.br/5go5u6x'; /* upgrade R$ 40 (o Completo cheio, R$ 67, é pay.cakto.com.br/yqbm6tv) */
 var $=function(i){return document.getElementById(i)};
 /* Exemplos da confeitaria: pesquisa de 15/11/2026. Bolo de festa R$ 70-120/kg, 2 kg decorado R$ 140-250 (patroa.ai, tabela 2025); bolo de 2 kg de brigadeiro: R$ 30 de ingredientes e 3 h (reidodelivery.com.br); caixa R$ 4-8 e cake board R$ 3,41 (reidodelivery, Magalu); botijão R$ 110-115 (ANP 2026) e cerca de R$ 2 de gás por hora de forno; cento de brigadeiro R$ 85-110, gourmet 30-60% acima (cidesp.com.br, mai/2026), R$ 45-65 de material e preço sugerido R$ 120-160 (Catraca Livre, jan/2026); 2 h para o cento é estimativa; bolo de pote R$ 8-15, R$ 4,50-6 de material (Serasa, Nuvemshop); sinal de 50% é o costume; entrega R$ 20-50 (patroa.ai). */
 /* (trancista:: nagô R$ 180 e fulani R$ 280 em cerca de 5 h (Superprof, tabelas de trancistas);
    boho braids R$ 330 em 8 h com R$ 80 de fibra e pomada (relato de trancistas no atendimento); jumbo de 400 g de R$ 22 a R$ 40 (Mercado Livre). */
 var PADRAO=function(){return {v:1,cfg:{nome:'',contato:'',hora:25,lucro:20,cartao:false,cor:'#16130f',cor2:'#d9b36a',modelo:'limpo',tb:'atual'},
-  serv:[],vendas:[],fixos:[],ing:[],rec:[]}};
+  serv:[],vendas:[],fixos:[],ing:[],rec:[],cli:[],enc:[]}};
 var MODELOS=['Bolo de festa (kg)', 'Bolo de 2 kg', 'Bolo de pote', 'Brigadeiro (cento)', 'Doce gourmet (cento)', 'Bolo caseiro', 'Bolo vulcão', 'Naked cake', 'Kit festa', 'Torta'];
 function modelosLivres(){var tem=D.serv.map(function(s){return s.nome.toLowerCase()});return MODELOS.filter(function(m){return tem.indexOf(m.toLowerCase())<0})}
 var D;
@@ -419,17 +580,50 @@ function limpa(o){var p=PADRAO();if(!o||typeof o!=='object')return p;
   if(c.metas&&typeof c.metas==='object'){p.cfg.metas={};Object.keys(c.metas).slice(0,120).forEach(function(k){if(/^\d{4}-\d{2}$/.test(k)&&n0(c.metas[k]))p.cfg.metas[k]=n0(c.metas[k])})}
   p.serv=(Array.isArray(o.serv)?o.serv:[]).slice(0,80).filter(function(s){return s&&typeof s==='object'&&n0(s.preco)}).map(function(s){var r={id:st(s.id,20)||novoId(),nome:st(s.nome,40)||'Encomenda',preco:n0(s.preco),gasto:n0(s.gasto),min:Math.round(n0(s.min))||60};
     if(s.g&&typeof s.g==='object'){r.g={pas:!!s.g.pas};['jp','jv','pp','pr','el','out','pv'].forEach(function(k){r.g[k]=n0(s.g[k])})}return r});
-  p.vendas=(Array.isArray(o.vendas)?o.vendas:[]).slice(-6000).filter(function(v){return v&&/^\d{4}-\d{2}-\d{2}$/.test(v.dia)}).map(function(v){return {id:st(v.id,20)||novoId(),nome:st(v.nome,40)||'Encomenda',preco:n0(v.preco),gasto:n0(v.gasto),min:Math.round(n0(v.min)),dia:v.dia}});
+  p.vendas=(Array.isArray(o.vendas)?o.vendas:[]).slice(-6000).filter(function(v){return v&&/^\d{4}-\d{2}-\d{2}$/.test(v.dia)}).map(function(v){var r={id:st(v.id,20)||novoId(),nome:st(v.nome,40)||'Encomenda',preco:n0(v.preco),gasto:n0(v.gasto),min:Math.round(n0(v.min)),dia:v.dia};
+    if(v.cli)r.cli=st(v.cli,20);if(v.enc)r.enc=st(v.enc,20);
+    if(Array.isArray(v.itens))r.itens=v.itens.slice(0,30).filter(function(x){return x&&typeof x==='object'}).map(function(x){return {nome:st(x.nome,40)||'Item',preco:n0(x.preco),gasto:n0(x.gasto)}});return r});
   p.fixos=(Array.isArray(o.fixos)?o.fixos:[]).slice(-2000).filter(function(f){return f&&/^\d{4}-\d{2}$/.test(f.mes)&&n0(f.valor)}).map(function(f){return {id:st(f.id,20)||novoId(),mes:f.mes,nome:st(f.nome,30)||'Conta',valor:n0(f.valor)}});
   var UNS=['g','ml','un'];
   p.ing=(Array.isArray(o.ing)?o.ing:[]).slice(0,200).filter(function(i){return i&&typeof i==='object'&&n0(i.preco)&&n0(i.qtd)&&UNS.indexOf(i.un)>=0}).map(function(i){return {id:st(i.id,20)||novoId(),nome:st(i.nome,30)||'Ingrediente',preco:n0(i.preco),qtd:n0(i.qtd),un:i.un}});
   p.rec=(Array.isArray(o.rec)?o.rec:[]).slice(0,120).filter(function(r){return r&&typeof r==='object'}).map(function(r){return {id:st(r.id,20)||novoId(),nome:st(r.nome,40)||'Receita',kg:n0(r.kg),fat:Math.round(n0(r.fat)),un:Math.round(n0(r.un)),emb:n0(r.emb),gas:n0(r.gas),dec:n0(r.dec),out:n0(r.out),min:Math.round(n0(r.min)),
     itens:(Array.isArray(r.itens)?r.itens:[]).slice(0,40).filter(function(x){return x&&n0(x.q)}).map(function(x){return {ing:st(x.ing,20),q:n0(x.q)}})}});
   p.serv.forEach(function(s){var orig=(o.serv||[]).filter(function(x){return x&&x.id===s.id})[0];if(orig&&orig.rec)s.rec=st(orig.rec,20)});
+  /* Completo (18/11/2026): clientes e encomendas. Dados e cópias antigas chegam sem esses campos e ficam com listas vazias. */
+  var dt=function(v){return (typeof v==='string'&&/^\d{4}-\d{2}-\d{2}$/.test(v))?v:''};
+  if(typeof c.msgCobrar==='string'&&c.msgCobrar.trim())p.cfg.msgCobrar=c.msgCobrar.slice(0,600);
+  if(typeof c.msgVolta==='string'&&c.msgVolta.trim())p.cfg.msgVolta=c.msgVolta.slice(0,600);
+  p.cli=(Array.isArray(o.cli)?o.cli:[]).slice(0,3000).filter(function(x){return x&&typeof x==='object'&&String(x.nome||'').trim()}).map(function(x){
+    return {id:st(x.id,20)||novoId(),nome:st(x.nome,60),zap:String(x.zap||'').replace(/\D/g,'').slice(0,15),obs:st(x.obs,300),chamei:dt(x.chamei)}});
+  var UE=['x','kg','fat','un','cento'];
+  p.enc=(Array.isArray(o.enc)?o.enc:[]).slice(-5000).filter(function(e){return e&&typeof e==='object'&&dt(e.dia)}).map(function(e){
+    var r={id:st(e.id,20)||novoId(),cli:st(e.cli,20),dia:e.dia,hora:/^\d{2}:\d{2}$/.test(e.hora||'')?e.hora:'',modo:e.modo==='entrega'?'entrega':'retirada',
+      itens:(Array.isArray(e.itens)?e.itens:[]).slice(0,30).filter(function(x){return x&&typeof x==='object'&&n0(x.q)}).map(function(x){return {t:x.t==='r'?'r':'s',ref:st(x.ref,20),nome:st(x.nome,40)||'Item',q:n0(x.q),u:UE.indexOf(x.u)>=0?x.u:'x',pu:n0(x.pu)}}),
+      total:n0(e.total),sinal:n0(e.sinal),pago:n0(e.pago),obs:st(e.obs,300),entregue:dt(e.entregue)};
+    if(e.venda)r.venda=st(e.venda,20);return r});
   return p}
 function ler(){try{var s=localStorage.getItem(CHAVE);if(s)return limpa(JSON.parse(s))}catch(e){}return PADRAO()}
 function gravar(){try{localStorage.setItem(CHAVE,JSON.stringify(D))}catch(e){}}
 D=ler();
+/* ---------- Completo: quem pode usar as telas novas (mesmo mecanismo da trancista) ----------
+   A entrada (POST /api/entrar) devolve {ok,h,completo}. O portão guarda o h em jv-qs-acesso-confeitaria ("e:"+h);
+   o app pergunta de novo com esse h e guarda a resposta em jv-qs-acesso-confeitaria-completo = {v,h,t}.
+   Só vale se o h guardado for o mesmo da entrada. Ao abrir, se a última conferência tiver mais de 6 h, confere de novo em silêncio (sem rede, segue com o que já sabia).
+   Quem entrou pelo link com código (sem h) usa "Já comprei o Completo" na tela com cadeado: manda o e-mail e guarda h + completo.
+   Teste: ?completo=1 (ou 0) na URL e o interruptor escondido (5 toques no rodapé) só funcionam em file:// ou localhost. */
+var ACESSO='jv-qs-acesso-confeitaria',KC=ACESSO+'-completo';
+var LOCAL=location.protocol==='file:'||/^(localhost|127\.0\.0\.1|\[::1\])$/.test(location.hostname);
+function hAcesso(){try{var v=localStorage.getItem(ACESSO)||'';return v.indexOf('e:')===0?v.slice(2):''}catch(e){return ''}}
+function lerFlag(){try{var o=JSON.parse(localStorage.getItem(KC)||'null');return o&&typeof o==='object'?o:null}catch(e){return null}}
+function gravaFlag(o){try{localStorage.setItem(KC,JSON.stringify(o))}catch(e){}}
+function lerCompleto(){var o=lerFlag();if(!o)return false;if(o.teste)return LOCAL&&o.v===true;return o.v===true&&!!o.h&&o.h===hAcesso()}
+if(LOCAL){try{var qc=new URLSearchParams(location.search).get('completo');if(qc==='1'||qc==='0')gravaFlag({v:qc==='1',teste:true,t:Date.now()})}catch(e){}}
+var COMPLETO=lerCompleto();
+function confereCompleto(forca){var h=hAcesso();if(!h||!/^https?:$/.test(location.protocol))return Promise.resolve(false);var o=lerFlag();
+  if(!forca&&o&&!o.teste&&o.h===h&&Date.now()-(o.t||0)<216e5)return Promise.resolve(false);
+  return fetch('/api/entrar',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({produto:'confeitaria',h:h})}).then(function(r){return r.json()}).then(function(j){
+    if(j&&j.ok)gravaFlag({v:j.completo===true,h:h,t:Date.now()});else if(j&&j.motivo==='reembolso')gravaFlag({v:false,h:h,t:Date.now()});else return false;
+    var antes=COMPLETO;COMPLETO=lerCompleto();if(antes!==COMPLETO)pintaTudo();return true}).catch(function(){return false})}
 var num=function(v){v=(v||'').toString().replace(/[R$\s%]/g,'');if(v.indexOf(',')>=0)v=v.replace(/\./g,'').replace(',','.');var n=parseFloat(v);return isNaN(n)?null:n};
 var brl=function(n){var neg=n<0;n=Math.abs(n);var s=(Math.round(n*100)%100===0)?Math.round(n).toLocaleString('pt-BR'):n.toLocaleString('pt-BR',{minimumFractionDigits:2,maximumFractionDigits:2});return (neg?'− ':'')+'R$ '+s};
 var cima5=function(n){return Math.ceil(n/5)*5};
@@ -527,7 +721,11 @@ function pintaMes(){
   fx.forEach(function(f){var d=el('div');d.appendChild(el('span',null,f.nome));d.appendChild(el('b',null,brl(f.valor)));var b=el('button',null,'Tirar');b.type='button';b.onclick=function(){D.fixos=D.fixos.filter(function(x){return x!==f});gravar();pintaMes()};d.appendChild(b);LF.appendChild(d)});
   var LV=$('lista-vendas');LV.textContent='';
   if(!vs.length)LV.appendChild(el('p','vazio','Nada por aqui ainda.'));
-  vs.slice().reverse().forEach(function(v){var d=el('div');d.appendChild(el('span',null,v.dia.slice(8)+'/'+v.dia.slice(5,7)+' · '+v.nome));d.appendChild(el('b',null,brl(v.preco)));var b=el('button',null,'Tirar');b.type='button';b.onclick=function(){D.vendas=D.vendas.filter(function(x){return x!==v});gravar();pintaMes()};d.appendChild(b);LV.appendChild(d)});
+  vs.slice().reverse().forEach(function(v){var d=el('div');d.appendChild(el('span',null,v.dia.slice(8)+'/'+v.dia.slice(5,7)+' · '+v.nome));d.appendChild(el('b',null,brl(v.preco)));var b=el('button',null,'Tirar');b.type='button';b.onclick=function(){D.vendas=D.vendas.filter(function(x){return x!==v});
+    /* Completo: se a venda veio de uma encomenda entregue, a encomenda volta para a lista. */
+    var en=v.enc&&D.enc.filter(function(e){return e.id===v.enc})[0];if(en){en.entregue='';delete en.venda}
+    gravar();pintaMes();if(en){pintaCompleto();toast('Tirado do mês. A encomenda voltou para a lista.')}};d.appendChild(b);LV.appendChild(d)});
+  if(typeof pintaRank==='function'&&$('rank-conteudo'))pintaRank();
 }
 $('f-add').onclick=function(){var n=$('f-nome').value.trim(),v=num($('f-valor').value);if(!n||!v||v<=0){toast('Ponha o nome e o valor da conta');return}
   D.fixos.push({id:uid(),mes:mes,nome:n,valor:v});gravar();$('f-nome').value='';$('f-valor').value='';pintaMes();toast('Conta anotada')};
@@ -798,18 +996,354 @@ $('form-rec').addEventListener('submit',function(e){e.preventDefault();var f=rec
   if(recEd){Object.keys(f).forEach(function(k){recEd[k]=k==='nome'?f.nome.slice(0,40):f[k]});sincServ(recEd)}else{f.id=uid();f.nome=f.nome.slice(0,40);D.rec.push(f)}
   gravar();fechaRec();pintaTudo();toast('Receita salva')});
 
+/* ---------- Completo: datas, WhatsApp e cadeado ---------- */
+var pad2=function(n){return String(n).padStart(2,'0')};
+function isoDe(d){return d.getFullYear()+'-'+pad2(d.getMonth()+1)+'-'+pad2(d.getDate())}
+function dataDe(iso){var p=iso.split('-');return new Date(+p[0],+p[1]-1,+p[2])}
+function somaDias(iso,n){var d=dataDe(iso);d.setDate(d.getDate()+n);return isoDe(d)}
+function difDias(a,b){return Math.round((dataDe(b)-dataDe(a))/864e5)}
+function hojeISO(){return isoDe(new Date())}
+var SEMANA=['dom','seg','ter','qua','qui','sex','sáb'];
+function diaTxt(iso){return SEMANA[dataDe(iso).getDay()]+' '+dataBR(iso)}
+function limpaZap(v){v=String(v||'').replace(/\D/g,'');if(v.length>=12&&v.indexOf('55')===0)v=v.slice(2);if(v.charAt(0)==='0')v=v.slice(1);return v}
+function zapOk(v){return /^\d{10,11}$/.test(v)}
+function aZap(z,texto,rot){var a=el('a','zap',rot);a.href='https://wa.me/55'+z+(texto?'?text='+encodeURIComponent(texto):'');a.target='_blank';a.rel='noopener';return a}
+function primeiro(n){return String(n||'').trim().split(/\s+/)[0]||''}
+function copia(texto,msgOk){var ok=function(){toast(msgOk||'Copiada. Agora é só colar no WhatsApp.')},falha=function(){try{var t=el('textarea');t.value=texto;t.style.position='fixed';t.style.opacity='0';document.body.appendChild(t);t.select();var r=document.execCommand('copy');t.remove();if(r){ok();return}}catch(e){}toast('Não consegui copiar. Segure o dedo no texto.')};
+  try{navigator.clipboard.writeText(texto).then(ok,falha)}catch(e){falha()}}
+function trava(box,titulo,itens){box.textContent='';box.hidden=COMPLETO;if(COMPLETO)return;
+  var t=el('div','trava');t.appendChild(el('span','cad','🔒'));t.appendChild(el('h2',null,titulo));
+  var ul=el('ul');itens.forEach(function(i){ul.appendChild(el('li',null,i))});t.appendChild(ul);
+  var a=el('a','botao','Destravar o Completo · R$ 40');a.href=CHECKOUT_COMPLETO;a.target='_blank';a.rel='noopener';t.appendChild(a);
+  /* Quem entrou pelo link com código não tem o h guardado: pede o e-mail da compra e pergunta ao /api/entrar. */
+  var lk=el('button','leve','Já comprei o Completo');lk.type='button';t.appendChild(lk);
+  var fm=el('form');fm.noValidate=true;fm.hidden=true;fm.style.cssText='display:flex;flex-direction:column;gap:8px;width:100%';
+  var idE=box.id+'-email',lb=el('label',null,'E-mail da compra');lb.htmlFor=idE;var ie=el('input');ie.id=idE;ie.type='email';ie.inputMode='email';ie.autocomplete='email';ie.autocapitalize='none';ie.spellcheck=false;ie.placeholder='voce@email.com';lb.appendChild(ie);fm.appendChild(lb);
+  var er=el('p','erro');er.setAttribute('role','alert');fm.appendChild(er);
+  var ok=el('button','forte','Conferir e liberar');ok.type='submit';fm.appendChild(ok);t.appendChild(fm);
+  lk.onclick=function(){fm.hidden=!fm.hidden;if(!fm.hidden)ie.focus()};
+  fm.addEventListener('submit',function(e){e.preventDefault();er.textContent='';var em=ie.value.replace(/\s+/g,'').toLowerCase();
+    if(em.indexOf('@')<1||em.indexOf('.')<0){er.textContent='Digite o e-mail que você usou para pagar.';ie.focus();return}
+    ok.disabled=true;ok.textContent='Conferindo...';
+    liberaPorEmail(em).then(function(r){ok.disabled=false;ok.textContent='Conferir e liberar';
+      if(r==='sim'){toast('Completo liberado!');return}
+      if(r==='nao'){er.textContent='';er.appendChild(document.createTextNode('Ainda não achei o Completo neste e-mail. Use o mesmo e-mail da compra ou '));var w=el('a',null,'fale com a gente no WhatsApp');w.href='https://jvorganiza.com.br/ir/whatsapp/';w.target='_blank';w.rel='noopener';er.appendChild(w);er.appendChild(document.createTextNode('.'));return}
+      er.textContent=r==='nao_achou'?'Não achei compra com esse e-mail. Confira se é o mesmo que você usou para pagar.':r==='reembolso'?'Essa compra foi reembolsada.':r==='muitas_tentativas'?'Muitas tentativas seguidas. Espere um pouco e tente de novo.':'Sem internet agora. Conecte e tente de novo.'})});
+  box.appendChild(t)}
+function liberaPorEmail(em){return fetch('/api/entrar',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({produto:'confeitaria',email:em})}).then(function(r){return r.json()}).then(function(j){
+    if(!j||!j.ok)return (j&&j.motivo)||'erro';
+    if(j.h){try{localStorage.setItem(ACESSO,'e:'+j.h);localStorage.setItem(ACESSO+'-v',String(Date.now()))}catch(e){}gravaFlag({v:j.completo===true,h:j.h,t:Date.now()})}
+    if(j.completo===true){COMPLETO=lerCompleto()||true;pintaTudo();return 'sim'}return 'nao'}).catch(function(){return 'rede'})}
+function cliPorId(id){return D.cli.filter(function(c){return c.id===id})[0]}
+function recPor(id){return D.rec.filter(function(r){return r.id===id})[0]}
+function servPor(id){return D.serv.filter(function(s){return s.id===id})[0]}
+var r2=function(n){return Math.round(n*100)/100};
+
+/* ---------- Completo: itens da encomenda (cardápio ou receita, com medida) ----------
+   Item {t:'s' (cardápio, aba Preços) ou 'r' (receita), ref:id, nome, q:quantidade, u:medida, pu:preço sugerido de 1 medida}.
+   Medida da receita: x = receita inteira, kg = quilo, fat = fatia, un = unidade, cento = 100 unidades.
+   Um item do cardápio ligado a uma receita ("Levar para Preços") vale uma receita inteira. */
+var UNID={x:['receita','receitas'],kg:['quilo','quilos'],fat:['fatia','fatias'],un:['unidade','unidades'],cento:['cento','centos']};
+function unidadesRec(r){var u=[['x','Receita inteira']];if(r.kg)u.push(['kg','Quilo']);if(r.fat)u.push(['fat','Fatia']);if(r.un){u.push(['cento','Cento']);u.push(['un','Unidade'])}return u}
+function fracao(r,u){if(u==='kg'&&r.kg)return 1/r.kg;if(u==='fat'&&r.fat)return 1/r.fat;if(u==='un'&&r.un)return 1/r.un;if(u==='cento'&&r.un)return 100/r.un;return 1}
+function fonte(x){if(x.t==='s'){var s=servPor(x.ref);return {s:s,r:s&&s.rec?recPor(s.rec):null,f:1}}var r=recPor(x.ref);return {s:null,r:r,f:r?fracao(r,x.u):1}}
+function precoUnit(x){var f=fonte(x);
+  if(x.t==='s')return f.s?Math.max(conta(f.s).certo,f.s.preco):(x.pu||0);
+  if(!f.r)return x.pu||0;var c=certoRec(f.r);
+  if(x.u==='kg'&&f.r.kg)return meio(c/f.r.kg);if(x.u==='fat'&&f.r.fat)return meio(c/f.r.fat);if(x.u==='un'&&f.r.un)return Math.ceil(c/f.r.un*20)/20;if(x.u==='cento'&&f.r.un)return cima5(c/f.r.un*100);return cima5(c)}
+function custoItem(x){var f=fonte(x);if(f.r){var k=x.q*f.f;return {gasto:custoRec(f.r).tot*k,min:(f.r.min||(f.s?f.s.min:0))*k}}if(f.s)return {gasto:f.s.gasto*x.q,min:f.s.min*x.q};return {gasto:0,min:0}}
+function qtdTxt(q){return (Math.round(q*100)/100).toLocaleString('pt-BR')}
+function itemTxt(x){if(x.t==='r'&&x.u!=='x')return qtdTxt(x.q)+' '+UNID[x.u][x.q===1?0:1]+' de '+x.nome.toLowerCase();return qtdTxt(x.q)+'× '+x.nome}
+function itensTxt(e){return e.itens.map(itemTxt).join(' + ')||'Sem itens'}
+function faltaEnc(e){return Math.max(0,r2(e.total-e.sinal-e.pago))}
+function ordEnc(a,b){return (a.dia+a.hora)<(b.dia+b.hora)?-1:1}
+function pendentes(){return D.enc.filter(function(e){return !e.entregue})}
+
+/* ---------- Completo: semana, entregar, lembrar ---------- */
+var semOff=0;
+function inicioSemana(){var d=new Date();d.setDate(d.getDate()-((d.getDay()+6)%7)+7*semOff);return isoDe(d)}
+function encSemana(){var ini=inicioSemana(),fim=somaDias(ini,6),h=hojeISO();return pendentes().filter(function(e){return e.dia>=ini&&e.dia<=fim&&e.dia>=h}).sort(ordEnc)}
+$('sem-ant').onclick=function(){semOff--;pintaEncomendas()};$('sem-prox').onclick=function(){semOff++;pintaEncomendas()};
+function msgLembrar(e,c){var d=difDias(hojeISO(),e.dia),f=faltaEnc(e),ent=e.modo==='entrega';
+  return 'Oi, '+primeiro(c.nome)+'! '+(d===1?'Amanhã é o dia 🎉':d===0?'Hoje é o dia 🎉':'Passando pra lembrar da sua encomenda de '+diaTxt(e.dia)+' 🎂')+
+    (ent?(e.hora?' Chego aí por volta das '+e.hora+'.':' Te aviso quando sair pra entrega.'):(e.hora?' Seu pedido fica pronto às '+e.hora+'.':''))+
+    (f>0?' O restante ('+brl(f)+') pode ser no Pix ou na hora da '+(ent?'entrega.':'retirada.'):'')}
+function entregar(e){var h=hojeISO(),dia=e.dia>h?h:e.dia,c=cliPorId(e.cli);
+  var sug=e.itens.map(function(x){return precoUnit(x)*x.q}),soma=sug.reduce(function(a,b){return a+b},0),gasto=0,min=0;
+  var its=e.itens.map(function(x,i){var k=custoItem(x);gasto+=k.gasto;min+=k.min;return {nome:x.nome,preco:r2(soma>0?e.total*sug[i]/soma:e.total/e.itens.length),gasto:r2(k.gasto)}});
+  var vd={id:uid(),nome:((c?primeiro(c.nome)+' · ':'')+itensTxt(e)).slice(0,40),preco:e.total,gasto:r2(gasto),min:Math.round(min),dia:dia,enc:e.id,itens:its};if(c)vd.cli=c.id;
+  D.vendas.push(vd);e.entregue=dia;e.venda=vd.id;if(c)c.chamei='';gravar();pintaCompleto();pintaMes();
+  var f=faltaEnc(e);toast('Entregue! Entrou no Meu mês'+(f>0?'. Falta receber '+brl(f):''))}
+function itemEnc(e){var c=cliPorId(e.cli),d=el('div','ag-item'),top=el('div','serv-top'),f=faltaEnc(e);
+  top.appendChild(el('b',null,(e.hora?e.hora+' · ':'')+(c?c.nome:'Cliente')));top.appendChild(el('span',null,brl(e.total)));d.appendChild(top);
+  d.appendChild(el('p','itens',itensTxt(e)));
+  d.appendChild(el('p','sub',(e.modo==='entrega'?'Entrega':'Retirada')+' · já pagou '+brl(e.sinal+e.pago)+' · '+(f>0?'falta receber '+brl(f):'tudo pago')));
+  if(e.obs)d.appendChild(el('p','dica bom',e.obs));
+  var ac=el('div','acoes cheia'),bt=el('button','forte','Entregue ✓');bt.type='button';bt.onclick=function(){entregar(e)};ac.appendChild(bt);
+  if(c&&zapOk(c.zap))ac.appendChild(aZap(c.zap,msgLembrar(e,c),'Lembrar'));
+  var bm=el('button','leve','Mudar');bm.type='button';bm.onclick=function(){abreFormEnc(e)};ac.appendChild(bm);
+  var t=el('button','leve','Tirar');t.type='button';t.onclick=function(){if(t.dataset.c){D.enc=D.enc.filter(function(x){return x!==e});gravar();pintaCompleto();toast('Encomenda tirada')}else{t.dataset.c='1';t.textContent='Tirar mesmo?';t.className='perigo'}};ac.appendChild(t);
+  d.appendChild(ac);return d}
+function pintaEncomendas(){var h=hojeISO(),ini=inicioSemana(),fim=somaDias(ini,6);
+  var atras=pendentes().filter(function(e){return e.dia<h}).sort(ordEnc),A=$('enc-atras');A.textContent='';$('enc-atras-box').hidden=!atras.length;
+  atras.forEach(function(e){A.appendChild(el('p','dia-ag',diaTxt(e.dia)));A.appendChild(itemEnc(e))});
+  $('sem-nome').textContent=(semOff===0?'Esta semana · ':'')+dataBR(ini)+' a '+dataBR(fim);
+  var vs=encSemana(),tot=0,pg=0;vs.forEach(function(e){tot+=e.total;pg+=Math.min(e.sinal+e.pago,e.total)});
+  var C=$('sem-conta');C.textContent='';
+  [['Encomendas',String(vs.length)],['Vai entrar',brl(tot)],['Sinal já pago',brl(pg)]].forEach(function(x){var d=el('div');d.appendChild(el('span',null,x[0]));d.appendChild(el('span',null,x[1]));C.appendChild(d)});
+  var t=el('div','tot');t.appendChild(el('span',null,'Falta receber'));t.appendChild(el('span',null,brl(tot-pg)));C.appendChild(t);
+  var L=$('sem-lista');L.textContent='';if(!vs.length)L.appendChild(el('p','vazio',semOff<0?'Semana que já passou: o que foi entregue está no Meu mês e na ficha das clientes.':'Nenhuma encomenda para esta semana.'));
+  var ult='';vs.forEach(function(e){if(e.dia!==ult){ult=e.dia;L.appendChild(el('p','dia-ag',(e.dia===h?'hoje · ':e.dia===somaDias(h,1)?'amanhã · ':'')+diaTxt(e.dia)))}L.appendChild(itemEnc(e))});
+  pintaPagar();pintaCompras();
+  if(document.activeElement!==$('cobrar-modelo'))$('cobrar-modelo').value=D.cfg.msgCobrar||MSG_COBRAR}
+function pintaAvisoEntrega(){var h=hojeISO(),am=somaDias(h,1),q=COMPLETO?pendentes().filter(function(e){return e.dia===h||e.dia===am}).sort(ordEnc):[];
+  $('aviso-entrega').hidden=!q.length;if(!q.length)return;
+  var parte=function(dia,rot){var l=q.filter(function(e){return e.dia===dia});if(!l.length)return '';
+    return rot+': '+l.map(function(e){var c=cliPorId(e.cli);return (c?primeiro(c.nome):'cliente')+(e.hora?' às '+e.hora:'')}).join(', ')+'.'};
+  $('aviso-entrega-txt').textContent='🎂 Tem entrega chegando! '+[parte(h,'Hoje'),parte(am,'Amanhã')].filter(Boolean).join(' ')}
+$('aviso-entrega-ir').onclick=function(){semOff=0;abre('encomendas')};
+
+/* ---------- Completo: formulário da encomenda ---------- */
+var encEd=null,totMexido=false;
+function opcoesItem(sel,x){sel.textContent='';
+  if(!D.serv.length&&!D.rec.length){var o0=el('option',null,'Cadastre um bolo ou doce em Preços ou Receitas');o0.value='';sel.appendChild(o0);return}
+  if(D.serv.length){var g=document.createElement('optgroup');g.label='Meu cardápio (Preços)';D.serv.forEach(function(s){var o=el('option',null,s.nome);o.value='s:'+s.id;g.appendChild(o)});sel.appendChild(g)}
+  if(D.rec.length){var g2=document.createElement('optgroup');g2.label='Minhas receitas';D.rec.forEach(function(r){var o=el('option',null,r.nome);o.value='r:'+r.id;g2.appendChild(o)});sel.appendChild(g2)}
+  if(x){var v=x.t+':'+x.ref;if(![].some.call(sel.options,function(o){return o.value===v})){var oa=el('option',null,x.nome+' (apagado)');oa.value=v;sel.appendChild(oa)}sel.value=v}}
+function lerLinha(b){var v=b.querySelector('.e-item').value,q=num(b.querySelector('.e-q').value)||0;if(!v||q<=0)return null;
+  var t=v.charAt(0),ref=v.slice(2),src=t==='s'?servPor(ref):recPor(ref),u=t==='r'?(b.querySelector('.e-un').value||'x'):'x';
+  var old=encEd&&encEd.itens.filter(function(i){return i.t===t&&i.ref===ref})[0];
+  var x={t:t,ref:ref,nome:src?src.nome:(old?old.nome:'Item'),q:q,u:u,pu:old?old.pu:0};x.pu=r2(precoUnit(x));return x}
+function linhaEnc(x){var box=el('div','item-enc'),ls=el('label',null,'Bolo ou doce'),sel=document.createElement('select');sel.className='e-item';opcoesItem(sel,x);ls.appendChild(sel);box.appendChild(ls);
+  var dd=el('div','duas'),lq=el('label',null,'Quantidade'),q=el('input');q.className='e-q';q.inputMode='decimal';q.placeholder='Ex.: 2';q.value=x?qtdTxt(x.q):'1';lq.appendChild(q);
+  var lu=el('label',null,'Medida'),su=document.createElement('select');su.className='e-un';lu.appendChild(su);dd.appendChild(lq);dd.appendChild(lu);box.appendChild(dd);
+  var info=el('p','sub info');box.appendChild(info);
+  var rm=el('button','leve','Tirar item');rm.type='button';rm.style.alignSelf='flex-start';rm.onclick=function(){box.remove();if(!document.querySelector('#e-itens .item-enc'))linhaEnc(null);totEnc()};box.appendChild(rm);
+  var primeiraVez=true;
+  function medidas(){var v=sel.value,r=v.indexOf('r:')===0?recPor(v.slice(2)):null,antes=primeiraVez&&x?x.u:'';primeiraVez=false;su.textContent='';lu.hidden=!r;
+    if(!r){var o=el('option',null,'Do cardápio');o.value='x';su.appendChild(o);return}
+    var lista=unidadesRec(r);lista.forEach(function(m){var o=el('option',null,m[1]);o.value=m[0];su.appendChild(o)});
+    su.value=lista.some(function(m){return m[0]===antes})?antes:(r.un?'cento':'x')}
+  sel.onchange=function(){medidas();totEnc()};su.onchange=totEnc;q.oninput=totEnc;medidas();$('e-itens').appendChild(box)}
+function itensForm(){return [].map.call(document.querySelectorAll('#e-itens .item-enc'),lerLinha).filter(Boolean)}
+function sugeridoForm(){var s=0;[].forEach.call(document.querySelectorAll('#e-itens .item-enc'),function(b){var x=lerLinha(b),info=b.querySelector('.info');info.textContent='';if(!x)return;
+    var p=x.pu,med=x.t==='r'&&x.u!=='x'?UNID[x.u][0]:(x.t==='r'?'receita':'unidade');
+    info.textContent='Preço certo: '+brl(p)+' por '+med+(x.q!==1?' · '+brl(p*x.q)+' no total':'');s+=p*x.q});return r2(s)}
+function totEnc(){var s=sugeridoForm();$('e-sug').textContent='Preço certo × quantidade: '+brl(s);
+  if(!totMexido)$('e-total').value=s?(s%1?s.toFixed(2):String(s)).replace('.',','):'';var v=num($('e-total').value)||0;$('e-usar-sug').hidden=!(totMexido&&s&&Math.abs(v-s)>=0.01);
+  var si=num($('e-sinal').value)||0,pg=encEd?encEd.pago:0;$('e-falta').textContent='Falta receber: '+brl(Math.max(0,v-si-pg))}
+$('e-total').oninput=function(){totMexido=true;totEnc()};$('e-sinal').oninput=totEnc;
+$('e-usar-sug').onclick=function(){totMexido=false;totEnc()};
+$('e-mais').onclick=function(){linhaEnc(null);totEnc()};
+function pintaFormEnc(cliSel){var sc=$('e-cli');sc.textContent='';
+  var o=el('option',null,D.cli.length?'Escolha a cliente':'+ Cliente nova');o.value=D.cli.length?'':'__nova';sc.appendChild(o);
+  if(D.cli.length){var n=el('option',null,'+ Cliente nova');n.value='__nova';sc.appendChild(n)}
+  D.cli.slice().sort(function(a,b){return a.nome.localeCompare(b.nome,'pt-BR')}).forEach(function(c){var x=el('option',null,c.nome);x.value=c.id;sc.appendChild(x)});
+  if(cliSel&&[].some.call(sc.options,function(x){return x.value===cliSel}))sc.value=cliSel;novaCli()}
+function novaCli(){var nova=$('e-cli').value==='__nova';$('e-cli-nova-box').hidden=!nova;$('e-zap-box').hidden=!nova}
+$('e-cli').onchange=novaCli;
+function abreFormEnc(e,cliId){if($('t-encomendas').hidden)abre('encomendas');encEd=e||null;totMexido=!!e;
+  $('form-enc').hidden=false;$('enc-nova').hidden=true;$('e-erro').textContent='';$('form-enc-tit').textContent=e?'Mudar encomenda':'Nova encomenda';
+  pintaFormEnc(e?e.cli:(cliId||''));$('e-cli-nova').value='';$('e-zap').value='';
+  $('e-itens').textContent='';(e&&e.itens.length?e.itens:[null]).forEach(linhaEnc);
+  $('e-dia').value=e?e.dia:(semOff>0?inicioSemana():hojeISO());$('e-hora').value=e?e.hora:'';$(e&&e.modo==='entrega'?'e-ent':'e-ret').checked=true;
+  $('e-total').value=e?txt(e.total):'';$('e-sinal').value=e?txt(e.sinal):'';$('e-obs').value=e?e.obs:'';
+  totEnc();$('form-enc').scrollIntoView({behavior:'smooth',block:'start'})}
+function fechaFormEnc(){$('form-enc').hidden=true;$('enc-nova').hidden=false;encEd=null}
+$('enc-nova').onclick=function(){abreFormEnc(null)};$('e-cancelar').onclick=fechaFormEnc;
+$('form-enc').addEventListener('submit',function(ev){ev.preventDefault();var E=$('e-erro'),cv=$('e-cli').value,itens=itensForm(),dia=$('e-dia').value,c=null;E.textContent='';
+  var tot=num($('e-total').value),si=Math.max(0,num($('e-sinal').value)||0);
+  if(cv==='__nova'){var nm=$('e-cli-nova').value.trim(),z=limpaZap($('e-zap').value);if(!nm){E.textContent='Ponha o nome da cliente.';$('e-cli-nova').focus();return}
+    if(z&&!zapOk(z)){E.textContent='O WhatsApp precisa ter o DDD e o número. Ex.: 21987654321';$('e-zap').focus();return}c={id:uid(),nome:nm.slice(0,60),zap:z,obs:'',chamei:''}}
+  else{c=cliPorId(cv);if(!c){E.textContent='Escolha a cliente.';$('e-cli').focus();return}}
+  if(!itens.length){E.textContent='Escolha o bolo ou doce e a quantidade. Se não tiver nenhum, cadastre em Preços ou Receitas.';return}
+  if(!/^\d{4}-\d{2}-\d{2}$/.test(dia)){E.textContent='Escolha o dia da entrega ou retirada.';$('e-dia').focus();return}
+  if(!tot||tot<=0){E.textContent='Ponha o valor total.';$('e-total').focus();return}
+  if(cv==='__nova')D.cli.push(c);
+  var dados={cli:c.id,dia:dia,hora:/^\d{2}:\d{2}$/.test($('e-hora').value)?$('e-hora').value:'',modo:$('e-ent').checked?'entrega':'retirada',itens:itens,total:tot,sinal:Math.min(si,tot),obs:$('e-obs').value.trim().slice(0,300)};
+  if(encEd){Object.keys(dados).forEach(function(k){encEd[k]=dados[k]});encEd.pago=Math.min(encEd.pago,Math.max(0,tot-encEd.sinal))}
+  else{dados.id=uid();dados.pago=0;dados.entregue='';D.enc.push(dados)}
+  var era=!!encEd;semOff=dia<hojeISO()?0:Math.floor(difDias(somaDias(hojeISO(),-((new Date().getDay()+6)%7)),dia)/7);
+  gravar();fechaFormEnc();pintaCompleto();toast(era?'Encomenda mudada':'Encomenda de '+primeiro(c.nome)+' para '+dataBR(dia)+' anotada')});
+
+/* ---------- Completo: quem falta pagar ---------- */
+var MSG_COBRAR='Oi, {nome}! 🙂 Passando pra lembrar do restante da sua encomenda de {data}: R$ {valor}. Pode ser no Pix?';
+function msgCobrar(e,c){return (D.cfg.msgCobrar||MSG_COBRAR).replace(/\{nome\}/g,primeiro(c.nome)).replace(/\{data\}/g,dataBR(e.dia)).replace(/\{valor\}/g,brl(faltaEnc(e)).replace(/^R\$ /,''))}
+function pintaPagar(){var L=$('pagar-lista'),lista=D.enc.filter(function(e){return faltaEnc(e)>0}).sort(ordEnc);L.textContent='';
+  if(!lista.length)L.appendChild(el('p','vazio','Ninguém com dinheiro para receber. Quando uma encomenda tiver saldo, ela aparece aqui.'));
+  var tot=0;lista.forEach(function(e){var c=cliPorId(e.cli),f=faltaEnc(e);tot+=f;var d=el('div','linha-cli'),nm=el('div','nm');
+    nm.appendChild(el('b',null,(c?c.nome:'Cliente')+' · '+brl(f)));nm.appendChild(el('span','tag '+(e.entregue?'ruim':'amar'),e.entregue?'entregue '+dataBR(e.entregue):'entrega '+dataBR(e.dia)));d.appendChild(nm);
+    d.appendChild(el('p','sub',itensTxt(e)+' · total '+brl(e.total)+' · já pagou '+brl(e.sinal+e.pago)));
+    var ac=el('div','acoes cheia'),link=null;
+    if(c&&zapOk(c.zap)){link=aZap(c.zap,msgCobrar(e,c),'Cobrar no WhatsApp');ac.appendChild(link)}
+    else if(c){var pz=el('button','amar','Pôr o WhatsApp dela');pz.type='button';pz.onclick=function(){abreFormCli(c)};ac.appendChild(pz)}
+    var rb=el('button',null,'Recebi');rb.type='button';rb.onclick=function(){e.pago=r2(Math.max(0,e.total-e.sinal));gravar();pintaCompleto();toast('Anotado: '+(c?primeiro(c.nome):'a cliente')+' pagou tudo')};ac.appendChild(rb);d.appendChild(ac);
+    if(link){var det=el('details');det.appendChild(el('summary',null,'Ver ou mudar a mensagem'));var ta=el('textarea');ta.rows=3;ta.value=msgCobrar(e,c);ta.setAttribute('aria-label','Mensagem de cobrança para '+c.nome);
+      ta.oninput=function(){link.href='https://wa.me/55'+c.zap+'?text='+encodeURIComponent(ta.value)};det.appendChild(ta);d.insertBefore(det,ac)}
+    L.appendChild(d)});
+  if(lista.length>1){var t=el('p','total','Falta receber no total: '+brl(tot));t.style.fontWeight='700';L.appendChild(t)}}
+$('cobrar-modelo').oninput=function(){var v=this.value;if(v.trim()&&v!==MSG_COBRAR)D.cfg.msgCobrar=v.slice(0,600);else delete D.cfg.msgCobrar;gravar();pintaPagar()};
+$('cobrar-modelo-volta').onclick=function(){delete D.cfg.msgCobrar;gravar();$('cobrar-modelo').value=MSG_COBRAR;pintaPagar();toast('Texto original de volta')};
+
+/* ---------- Completo: lista de compras da semana ----------
+   Para cada item: receitas inteiras = quantidade × medida / rendimento; ingrediente = quantidade na receita × receitas inteiras.
+   Embalagens = arredonda para cima pelo tamanho do pacote; custo estimado = embalagens × preço do pacote. */
+function fmtQ(n,un){return (Math.round(n*10)/10).toLocaleString('pt-BR')+' '+(un==='un'?'unid.':un)}
+function listaCompras(){var tot={},fora=[];
+  encSemana().forEach(function(e){e.itens.forEach(function(x){var f=fonte(x);if(!f.r){if(fora.indexOf(x.nome)<0)fora.push(x.nome);return}var k=x.q*f.f;
+    f.r.itens.forEach(function(it){var i=ingPor(it.ing);if(i)tot[i.id]=(tot[i.id]||0)+it.q*k})})});
+  var linhas=Object.keys(tot).map(function(id){var i=ingPor(id),pac=Math.max(1,Math.ceil(tot[id]/i.qtd-1e-9));return {i:i,usa:tot[id],pac:pac,custo:pac*i.preco}}).sort(function(a,b){return a.i.nome.localeCompare(b.i.nome,'pt-BR')});
+  return {linhas:linhas,fora:fora,custo:linhas.reduce(function(a,l){return a+l.custo},0)}}
+function pintaCompras(){var lc=listaCompras(),L=$('compra-lista'),ini=inicioSemana();L.textContent='';
+  $('compra-sub').textContent='Soma os ingredientes das encomendas de '+dataBR(ini)+' a '+dataBR(somaDias(ini,6))+(semOff===0?' (de hoje em diante)':'')+' pelas suas receitas.';
+  if(!lc.linhas.length)L.appendChild(el('p','vazio',encSemana().length?'As encomendas desta semana ainda não estão ligadas a receitas com ingredientes.':'Nenhuma encomenda nesta semana.'));
+  lc.linhas.forEach(function(l){var d=el('div'),s=el('span',null,l.i.nome);s.appendChild(el('small',null,'Vai usar '+fmtQ(l.usa,l.i.un)+' · pacote de '+fmtQ(l.i.qtd,l.i.un)+' a '+brl(l.i.preco)));d.appendChild(s);
+    d.appendChild(el('b',null,l.pac+(l.pac===1?' pacote':' pacotes')+' · '+brl(l.custo)));L.appendChild(d)});
+  $('compra-total').hidden=!lc.linhas.length;$('compra-total').textContent='Custo estimado da compra: '+brl(lc.custo);
+  $('compra-fora').hidden=!lc.fora.length;$('compra-fora').textContent='Ficou fora da lista (sem receita com ingredientes): '+lc.fora.join(', ')+'. Para entrar, faça a receita em Receitas e toque em "Levar para Preços".';
+  $('compra-copiar').hidden=!lc.linhas.length}
+$('compra-copiar').onclick=function(){var lc=listaCompras(),ini=inicioSemana();if(!lc.linhas.length)return;
+  var t='🛒 Lista de compras · '+dataBR(ini)+' a '+dataBR(somaDias(ini,6))+'\n'+lc.linhas.map(function(l){return '• '+l.i.nome+': '+l.pac+(l.pac===1?' pacote':' pacotes')+' de '+fmtQ(l.i.qtd,l.i.un)+' (vai usar '+fmtQ(l.usa,l.i.un)+')'}).join('\n')+'\nCusto estimado: '+brl(lc.custo);
+  copia(t,'Lista copiada. Cole no WhatsApp ou nas notas.')};
+
+/* ---------- Completo: clientes e quem chamar de novo ---------- */
+function encDe(c){return D.enc.filter(function(e){return e.cli===c.id})}
+function ultimaEnc(c){var u=null;encDe(c).forEach(function(e){if(!u||e.dia>=u.dia)u=e});return u}
+function quemVolta(){var h=hojeISO();return D.cli.map(function(c){var u=ultimaEnc(c);if(!u)return null;var dias=difDias(u.dia,h);if(dias<=60)return null;
+    if(c.chamei&&difDias(c.chamei,h)<15)return null;return {c:c,u:u,dias:dias}}).filter(Boolean).sort(function(a,b){return b.dias-a.dias})}
+function haTxt(d){return d>=60?'há '+Math.floor(d/30)+' meses':'há '+d+' dias'}
+var MSG_VOLTA='Oi, {nome}! 🙂 Faz um tempinho desde a sua última encomenda ({produto}). Tem alguma festa ou data especial chegando? Se quiser, já separo o dia pra você.';
+function msgVolta(x){return (D.cfg.msgVolta||MSG_VOLTA).replace(/\{nome\}/g,primeiro(x.c.nome)).replace(/\{produto\}/g,(x.u.itens[0]?x.u.itens[0].nome:'encomenda').toLowerCase())}
+function pintaVolta(){var L=$('volta-lista'),q=quemVolta();L.textContent='';
+  if(!q.length)L.appendChild(el('p','vazio',D.cli.length?'Ninguém sumido. Quem passar de 60 dias sem encomendar aparece aqui.':'Cadastre suas clientes e as encomendas. O sistema avisa aqui quem está sumida.'));
+  q.forEach(function(x){var d=el('div','linha-cli'),nm=el('div','nm');nm.appendChild(el('b',null,x.c.nome));nm.appendChild(el('span','tag amar','última '+haTxt(x.dias)));d.appendChild(nm);
+    d.appendChild(el('p','sub','Última encomenda: '+itensTxt(x.u)+' em '+dataBR(x.u.dia)+'/'+x.u.dia.slice(2,4)));
+    var texto=msgVolta(x),ac=el('div','acoes cheia'),link=null;
+    if(zapOk(x.c.zap)){link=aZap(x.c.zap,texto,'Chamar no WhatsApp');ac.appendChild(link)}
+    else{var pz=el('button','amar','Pôr o WhatsApp dela');pz.type='button';pz.onclick=function(){abreFormCli(x.c)};ac.appendChild(pz)}
+    var ja=el('button',null,'Já chamei');ja.type='button';ja.onclick=function(){x.c.chamei=hojeISO();gravar();pintaCompleto();toast(primeiro(x.c.nome)+' sai da lista por 15 dias')};ac.appendChild(ja);d.appendChild(ac);
+    if(link){var det=el('details');det.appendChild(el('summary',null,'Ver ou mudar a mensagem'));var ta=el('textarea');ta.rows=4;ta.value=texto;ta.setAttribute('aria-label','Mensagem para '+x.c.nome);
+      ta.oninput=function(){link.href='https://wa.me/55'+x.c.zap+'?text='+encodeURIComponent(ta.value)};det.appendChild(ta);d.insertBefore(det,ac)}
+    L.appendChild(d)});
+  if(document.activeElement!==$('volta-modelo'))$('volta-modelo').value=D.cfg.msgVolta||MSG_VOLTA}
+$('volta-modelo').oninput=function(){var v=this.value;if(v.trim()&&v!==MSG_VOLTA)D.cfg.msgVolta=v.slice(0,600);else delete D.cfg.msgVolta;gravar();pintaVolta()};
+$('volta-modelo-volta').onclick=function(){delete D.cfg.msgVolta;gravar();$('volta-modelo').value=MSG_VOLTA;pintaVolta();toast('Texto original de volta')};
+var cliEdit=null,cliAberta=null;
+function abreFormCli(c){if($('t-clientes').hidden)abre('clientes');cliEdit=c||null;$('form-cli').hidden=false;$('cli-nova').hidden=true;$('c-erro').textContent='';
+  $('form-cli-tit').textContent=c?'Mudar dados da cliente':'Nova cliente';$('c-nome').value=c?c.nome:'';$('c-zap').value=c?c.zap:'';$('c-obs').value=c?c.obs:'';
+  $('form-cli').scrollIntoView({behavior:'smooth',block:'start'});(c&&!zapOk(c.zap)?$('c-zap'):$('c-nome')).focus()}
+function fechaFormCli(){$('form-cli').hidden=true;$('cli-nova').hidden=false;cliEdit=null}
+$('cli-nova').onclick=function(){abreFormCli(null)};$('c-cancelar').onclick=fechaFormCli;
+$('form-cli').addEventListener('submit',function(e){e.preventDefault();var nome=$('c-nome').value.trim(),zap=limpaZap($('c-zap').value),obs=$('c-obs').value.trim();
+  if(!nome){$('c-erro').textContent='Ponha o nome da cliente.';$('c-nome').focus();return}
+  if(zap&&!zapOk(zap)){$('c-erro').textContent='O WhatsApp precisa ter o DDD e o número, só os números. Ex.: 21987654321';$('c-zap').focus();return}
+  if(cliEdit){cliEdit.nome=nome.slice(0,60);cliEdit.zap=zap;cliEdit.obs=obs.slice(0,300)}else{var c={id:uid(),nome:nome.slice(0,60),zap:zap,obs:obs.slice(0,300),chamei:''};D.cli.push(c);cliAberta=c.id}
+  gravar();fechaFormCli();pintaCompleto();toast('Cliente salva')});
+$('cli-busca').oninput=function(){pintaClientes()};
+function pintaClientes(){var L=$('cli-lista');L.textContent='';$('cli-busca-box').hidden=D.cli.length<=5;
+  var busca=D.cli.length>5?$('cli-busca').value.trim().toLowerCase():'',h=hojeISO();
+  var lista=D.cli.filter(function(c){return !busca||c.nome.toLowerCase().indexOf(busca)>=0}).sort(function(a,b){return a.nome.localeCompare(b.nome,'pt-BR')});
+  if(!D.cli.length)L.appendChild(el('p','vazio','Nenhuma cliente ainda. Toque em "+ Nova cliente".'));else if(!lista.length)L.appendChild(el('p','vazio','Nenhuma cliente com esse nome.'));
+  lista.forEach(function(c){var d=el('div','linha-cli'),nm=el('div','nm'),es=encDe(c),u=ultimaEnc(c),deve=es.reduce(function(a,e){return a+faltaEnc(e)},0),
+      prox=es.filter(function(e){return !e.entregue&&e.dia>=h}).sort(ordEnc)[0];
+    nm.appendChild(el('b',null,c.nome));
+    if(deve>0)nm.appendChild(el('span','tag ruim','falta '+brl(deve)));else if(prox)nm.appendChild(el('span','tag bom','encomenda '+dataBR(prox.dia)));
+    d.appendChild(nm);
+    var gastou=es.reduce(function(a,e){return a+e.total},0);
+    d.appendChild(el('p','sub',u?(es.length+(es.length===1?' encomenda':' encomendas')+' · '+brl(gastou)+' · última '+dataBR(u.dia)+'/'+u.dia.slice(2,4)):'Nenhuma encomenda ainda.'));
+    var ac=el('div','acoes cheia');if(zapOk(c.zap))ac.appendChild(aZap(c.zap,'','WhatsApp'));
+    var ab=el('button',cliAberta===c.id?'':'leve',cliAberta===c.id?'Fechar':'Abrir');ab.type='button';ab.onclick=function(){cliAberta=cliAberta===c.id?null:c.id;pintaClientes()};ac.appendChild(ab);d.appendChild(ac);
+    if(cliAberta===c.id)d.appendChild(fichaCli(c));
+    L.appendChild(d)})}
+function fichaCli(c){var f=el('div','tela');f.style.gap='10px';
+  if(c.obs)f.appendChild(el('p','dica bom',c.obs));
+  if(!zapOk(c.zap))f.appendChild(el('p','sub','Sem WhatsApp salvo. Toque em "Mudar dados" para pôr o número.'));
+  f.appendChild(el('b',null,'Encomendas dela'));var H=el('div','hist');
+  var es=encDe(c).slice().sort(function(a,b){return a.dia<b.dia?1:-1});
+  if(!es.length)H.appendChild(el('p','vazio','Nenhuma encomenda ainda.'));
+  es.forEach(function(e){var d=el('div'),fl=faltaEnc(e);
+    d.appendChild(el('span',null,dataBR(e.dia)+'/'+e.dia.slice(2,4)+' · '+itensTxt(e)+(e.entregue?' · entregue':' · marcada')+(fl>0?' · falta '+brl(fl):'')));d.appendChild(el('b',null,brl(e.total)));H.appendChild(d)});
+  f.appendChild(H);
+  var ac=el('div','acoes cheia'),bn=el('button','amar','+ Encomenda para ela');bn.type='button';bn.onclick=function(){abreFormEnc(null,c.id)};ac.appendChild(bn);
+  var bm=el('button',null,'Mudar dados');bm.type='button';bm.onclick=function(){abreFormCli(c)};ac.appendChild(bm);
+  var ap=el('button','perigo','Apagar cliente');ap.type='button';ac.appendChild(ap);f.appendChild(ac);
+  var cf=el('div','aviso');cf.hidden=true;cf.appendChild(el('p',null,'Apagar '+c.nome+'? As encomendas dela somem desta lista. O que já entrou no Meu mês continua.'));
+  var ca=el('div','acoes'),sim=el('button','perigo','Sim, apagar');sim.type='button';sim.onclick=function(){D.cli=D.cli.filter(function(x){return x!==c});D.enc=D.enc.filter(function(e){return e.cli!==c.id});D.vendas.forEach(function(v){if(v.cli===c.id)delete v.cli});cliAberta=null;gravar();pintaCompleto();pintaMes();toast('Cliente apagada')};
+  var nao=el('button',null,'Não');nao.type='button';nao.onclick=function(){cf.hidden=true};ca.appendChild(sim);ca.appendChild(nao);cf.appendChild(ca);ap.onclick=function(){cf.hidden=false};f.appendChild(cf);
+  return f}
+
+/* ---------- Completo: mensagens prontas (textos do produto Recortes de conversa · Confeitaria, mensagens-prontas.md de 01/11/2026) ---------- */
+var ASSUNTOS=[['todas','Todas'],['preco','Preço'],['orcamento','Orçamento'],['sinal','Sinal e confirmação'],['lembrete','Lembretes'],['depois','Depois da venda'],['volta','Chamar de volta'],['dificil','Situações difíceis']];
+var RECORTES=[
+['preco','Primeira resposta','Oi, [nome]! Que bom que você chamou 😊 Para eu te passar o valor certinho, me conta: qual a data, quantas pessoas e qual sabor você imagina?'],
+['preco','Fora do horário','Oi, [nome]! Vi sua mensagem agora. Amanhã cedo te respondo com calma, combinado? Se já souber a data e o número de pessoas, pode me mandar que eu adianto o orçamento 💛'],
+['preco','Cardápio','Aqui está o meu cardápio com os sabores e tamanhos: [link ou foto]. Me diz o que te chamou atenção que eu monto o orçamento.'],
+['orcamento','Orçamento enviado','[nome], segue o orçamento: [produto] para [nº] pessoas, sabor [sabor], para o dia [data]. Valor: R$ [valor]. Para garantir a data, peço um sinal de [50]% (R$ [valor do sinal]) por Pix. O restante você paga na retirada.'],
+['orcamento','Seguimento (2 dias depois)','Oi, [nome]! Passando para saber se o orçamento do dia [data] ficou bom para você. Minha agenda dessa semana está enchendo, então se quiser garantir é só me avisar 😊'],
+['orcamento','Pediram desconto','Entendo, [nome]! Esse valor já inclui [ingredientes/acabamento]. Uma opção mais em conta é [alternativa: tamanho menor, sabor tradicional], que fica R$ [valor]. Quer que eu faça assim?'],
+['sinal','Dados do Pix','Perfeito! Para garantir sua data, o Pix do sinal é: [chave]. Valor: R$ [valor]. Assim que cair, te mando a confirmação 🎂'],
+['sinal','Sinal recebido','Sinal recebido, [nome]! Sua encomenda está confirmada para [data], às [hora]. Qualquer mudança no pedido, me avise até [prazo].'],
+['sinal','Data lotada','Poxa, [nome], o dia [data] já está lotado 😕 Consigo para [data alternativa] ou, se quiser, te coloco na lista de espera caso alguém desista.'],
+['lembrete','Véspera','Oi, [nome]! Amanhã é o dia 🎉 Seu [produto] fica pronto às [hora]. O restante do pagamento (R$ [valor]) pode ser no Pix ou na hora da retirada.'],
+['lembrete','Endereço e horário','Endereço para retirada: [endereço]. Horário: [hora]. Se outra pessoa for buscar, me passa o nome dela, tá?'],
+['lembrete','Cuidados com o bolo','Para o bolo chegar lindo: leve no colo ou no chão do carro, longe do sol, e guarde na geladeira até [x] minutos antes de servir 💛'],
+['depois','Agradecimento','[nome], muito obrigada pela confiança! Espero que todo mundo tenha amado 🥰 Me conta depois como foi a festa?'],
+['depois','Pedido de avaliação','Se puder, me ajuda muito uma avaliação aqui: [link do Google]. E se tiver foto da festa, adoraria repostar (com a sua autorização) 📸'],
+['depois','Indicação','Se alguém te perguntar quem fez, pode passar meu contato 😊 Para quem vier por indicação sua, dou [brinde/desconto].'],
+['volta','Aniversário chegando','Oi, [nome]! Faz um ano da festa do(a) [aniversariante] 🎂 Já está pensando no bolo deste ano? Se quiser, separo a data para você.'],
+['volta','Datas comemorativas','Oi, [nome]! Abri as encomendas de [Páscoa/Natal/Dia das Mães]. As vagas são limitadas. Quer que eu te mande o cardápio da data?'],
+['volta','Quem sumiu','Oi, [nome], tudo bem? Faz um tempinho que não te vejo por aqui! Lancei [novidade]. Quer conhecer?'],
+['dificil','Atraso na entrega','[nome], peço desculpas: tive um imprevisto e seu pedido vai atrasar [x minutos]. Já está quase pronto e te aviso assim que sair.'],
+['dificil','Cancelamento','Entendo, [nome]. Como combinamos, o sinal [não é devolvido / vira crédito para outra data]. Quer remarcar para outro dia?'],
+['dificil','Cobrança do restante','Oi, [nome]! Ficou em aberto o restante do pedido do dia [data] (R$ [valor]). Pode me mandar no Pix: [chave]. Obrigada!'],
+['dificil','Reclamação','[nome], sinto muito que não saiu como você esperava. Me conta o que aconteceu? Quero entender e resolver da melhor forma.']];
+var assunto='todas';
+function pintaMensagens(){var A=$('msgs-assuntos');A.textContent='';
+  ASSUNTOS.forEach(function(x){var b=el('button',null,x[1]);b.type='button';b.setAttribute('aria-pressed',String(x[0]===assunto));b.onclick=function(){assunto=x[0];pintaMensagens()};A.appendChild(b)});
+  var L=$('msgs-lista');L.textContent='';
+  RECORTES.forEach(function(r,i){if(assunto!=='todas'&&r[0]!==assunto)return;var d=el('div','msg');d.appendChild(el('b',null,(i+1)+'. '+r[1]));d.appendChild(el('p',null,r[2]));
+    var b=el('button','amar','Copiar');b.type='button';b.onclick=function(){copia(r[2])};d.appendChild(b);L.appendChild(d)})}
+
+/* ---------- Completo: quem e o que mais rendeu (Meu mês) ---------- */
+function pintaRank(){var R=$('rank-conteudo');R.textContent='';
+  if(!COMPLETO){var t=el('div','trava');t.appendChild(el('p',null,'🔒 No Completo, aqui aparecem os bolos, os doces e as clientes que mais deixaram dinheiro pra você no mês.'));
+    var a=el('a','botao','Destravar o Completo · R$ 40');a.href=CHECKOUT_COMPLETO;a.target='_blank';a.rel='noopener';t.appendChild(a);R.appendChild(t);return}
+  var vs=D.vendas.filter(function(v){return v.dia.slice(0,7)===mes}),tr={},cl={},sob=function(p,g){return p*(1-taxa())-g};
+  vs.forEach(function(v){(v.itens&&v.itens.length?v.itens:[{nome:v.nome,preco:v.preco,gasto:v.gasto}]).forEach(function(x){var k=x.nome;tr[k]=tr[k]||{n:0,s:0};tr[k].n++;tr[k].s+=sob(x.preco,x.gasto)});
+    var c=v.cli&&cliPorId(v.cli);if(c){cl[c.id]=cl[c.id]||{nome:c.nome,n:0,s:0};cl[c.id].n++;cl[c.id].s+=sob(v.preco,v.gasto)}});
+  var bloco=function(tit,obj,rot,vazio){R.appendChild(el('b',null,tit));var lista=Object.keys(obj).map(function(k){return {nome:rot(k,obj[k]),n:obj[k].n,s:obj[k].s}}).sort(function(a,b){return b.s-a.s}).slice(0,3),box=el('div','rank');
+    if(!lista.length)box.appendChild(el('p','vazio',vazio));
+    lista.forEach(function(x,i){var d=el('div');d.appendChild(el('span',null,(i+1)+'º '+x.nome+' ('+x.n+'×)'));d.appendChild(el('b',x.s>=0?'bom':'ruim',brl(x.s)));box.appendChild(d)});R.appendChild(box)};
+  bloco('Bolos e doces',tr,function(k){return k},'Nenhuma encomenda anotada neste mês.');
+  bloco('Clientes',cl,function(k,o){return o.nome},'Quando você marca "Entregue ✓" numa encomenda, a cliente entra aqui.')}
+
+/* ---------- Completo: pintura geral e interruptor de teste ---------- */
+function pintaCompleto(){
+  trava($('enc-trava'),'Encomendas, cobrança e lista de compras',['As entregas da semana: cliente, o que ela pediu, dia e hora.','Sinal pago, quanto falta receber e a cobrança pronta no WhatsApp.','A lista de compras da semana, somada pelas suas receitas.','Marcou "Entregue ✓", entra no Meu mês com o custo certo.']);
+  trava($('cli-trava'),'Clientes e quem chamar de novo',['A ficha de cada cliente, com o WhatsApp e tudo o que ela já encomendou.','Quem não encomenda há mais de 60 dias, com a mensagem pronta para chamar.']);
+  trava($('msgs-trava'),'22 mensagens prontas de confeitaria',['Preço, orçamento, sinal, lembretes, depois da venda, chamar de volta e situações difíceis.','Tudo dentro do app, com um botão para copiar.']);
+  $('enc-tudo').hidden=!COMPLETO;$('cli-tudo').hidden=!COMPLETO;$('msgs-tudo').hidden=!COMPLETO;
+  $('oferta-recortes').hidden=COMPLETO;$('extra-recortes').hidden=COMPLETO;
+  if(COMPLETO){pintaEncomendas();pintaVolta();pintaClientes();pintaMensagens();if(!$('form-enc').hidden)totEnc()}
+  pintaAvisoEntrega();pintaRank()}
+(function(){var n=0,t0=0;document.querySelector('.rodape').addEventListener('click',function(){if(!LOCAL)return;var t=Date.now();if(t-t0>4000)n=0;t0=t;n++;
+  if(n>=5){n=0;gravaFlag({v:!COMPLETO,teste:true,t:t});COMPLETO=lerCompleto();pintaTudo();toast('Teste: Completo '+(COMPLETO?'ligado':'desligado'))}})})();
+if(/^https?:$/.test(location.protocol)){confereCompleto(false);var ultH=hAcesso();setInterval(function(){var h=hAcesso();if(h!==ultH){ultH=h;confereCompleto(true)}},2000)}
+
 /* ---------- Abas ---------- */
-function abre(t){['receitas','servicos','mes','tabela','ajustes'].forEach(function(k){$('t-'+k).hidden=k!==t});
+var ABAS=['receitas','servicos','encomendas','mes','clientes','mensagens','tabela','ajustes'];
+function abre(t){if(ABAS.indexOf(t)<0)t='receitas';ABAS.forEach(function(k){$('t-'+k).hidden=k!==t});
   [].forEach.call(document.querySelectorAll('.abas button'),function(b){b.setAttribute('aria-selected',String(b.dataset.t===t))});
-  if(t==='tabela')pintaTabela();if(t==='mes')pintaMes();if(t==='receitas')pintaRec();if(t==='ajustes')pintaAjustes();window.scrollTo(0,0);try{sessionStorage.setItem(CHAVE+'-aba',t)}catch(e){}}
+  if(t==='tabela')pintaTabela();if(t==='mes')pintaMes();if(t==='receitas')pintaRec();if(t==='ajustes')pintaAjustes();if(t==='encomendas'||t==='clientes'||t==='mensagens')pintaCompleto();
+  window.scrollTo(0,0);try{sessionStorage.setItem(CHAVE+'-aba',t)}catch(e){}}
 [].forEach.call(document.querySelectorAll('.abas button'),function(b){b.onclick=function(){abre(b.dataset.t)}});
 /* Com o teclado aberto o menu de baixo some (no iPhone ele ficava flutuando no meio da tela) e volta quando o teclado fecha. */
 (function(){var espera;function digita(e){var x=e.target;if(!x||!x.tagName)return false;if(x.tagName==='TEXTAREA')return true;if(x.tagName!=='INPUT')return false;return ['checkbox','radio','color','file','button','submit','range'].indexOf(x.type)<0}
 document.addEventListener('focusin',function(e){if(digita(e)){clearTimeout(espera);document.body.classList.add('digitando')}});
 document.addEventListener('focusout',function(e){if(digita(e)){clearTimeout(espera);espera=setTimeout(function(){document.body.classList.remove('digitando')},150)}})})();
-function pintaTudo(){pintaRec();pintaServ();pintaMes();pintaAjustes();pintaExtras();if(!$('t-tabela').hidden)pintaTabela()}
+function pintaTudo(){pintaRec();pintaServ();pintaMes();pintaAjustes();pintaExtras();pintaCompleto();if(!$('t-tabela').hidden)pintaTabela()}
 pintaTudo();
-var ini='receitas';try{ini=sessionStorage.getItem(CHAVE+'-aba')||ini}catch(e){}abre(ini);
+var ini='receitas';try{ini=sessionStorage.getItem(CHAVE+'-aba')||ini}catch(e){}if(ABAS.indexOf(location.hash.slice(1))>=0)ini=location.hash.slice(1);abre(ini);
 if(document.fonts&&document.fonts.ready)document.fonts.ready.then(function(){if(!$('t-tabela').hidden)pintaTabela()});
 })();
 </script>
