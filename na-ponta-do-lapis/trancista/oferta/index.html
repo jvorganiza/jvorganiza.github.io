@@ -26,8 +26,8 @@ header b{font-weight:800}
 .ok .wrap{padding-block:10px}
 main{display:grid;grid-template-columns:minmax(0,1fr);gap:26px;padding-block:24px 70px}
 .tag{justify-self:start;font:400 15px/1 Anton,sans-serif;letter-spacing:.06em;background:var(--tinta);color:var(--amarelo);padding:6px 10px 5px;transform:rotate(-1.5deg)}
-h1{font:400 clamp(32px,8vw,46px)/1.1 Anton,Impact,sans-serif;margin:0;text-wrap:balance}
-h1 em{font-style:normal;background:var(--amarelo);padding:0 .1em}
+h1{font:400 clamp(32px,8vw,46px)/1.24 Anton,Impact,sans-serif;margin:0;text-wrap:balance}
+h1 em{font-style:normal;background:var(--amarelo);padding:.02em .12em;-webkit-box-decoration-break:clone;box-decoration-break:clone}
 h2{font:700 21px/1.25 Inter,sans-serif;margin:0 0 10px}
 .sub{font-size:18px;margin:0;color:var(--tinta2)}
 video{width:100%;max-width:320px;aspect-ratio:9/16;justify-self:center;border:3px solid var(--tinta);border-radius:18px;box-shadow:5px 5px 0 var(--tinta);background:#efe9dc}
@@ -62,7 +62,7 @@ footer{border-top:2px solid var(--tinta);padding-block:18px 36px;font-size:14px;
 <span class="tag">SÓ PARA QUEM ACABOU DE COMPRAR</span>
 <h1>Agora que você sabe quanto cobrar, <em>não deixe a cliente sumir.</em></h1>
 <p class="sub">Destrave o Completo no mesmo app que você acabou de comprar: a ficha de cada cliente, a próxima manutenção calculada pelo tipo de trança, a lista de quem chamar hoje com a mensagem pronta, a agenda com o sinal e as 22 mensagens prontas de trancista.</p>
-<img src="/img/npl-completo-tran-clientes.png" alt="Tela de clientes do Na Ponta do Lápis Completo" style="width:100%;max-width:420px;display:block;margin:0 auto 18px;border-radius:14px;border:2px solid #1a1410">
+<img src="/img/npl-completo-tran-clientes.png" alt="Tela do Na Ponta do Lápis Completo" style="width:100%;max-width:420px;display:block;margin:0 auto 18px;border-radius:14px;border:2px solid #1a1410">
 <section class="caixa"><h2>O que o Completo resolve</h2><ul class="lista"><li>Quem chamar hoje, com a mensagem pronta e o WhatsApp dela a 1 toque</li><li>Próxima manutenção calculada pelo tipo de trança</li><li>Agenda da semana com sinal pago e quanto falta receber</li><li>As 22 mensagens prontas de trancista dentro do app</li></ul></section>
 <section class="caixa"><h2>Como funciona</h2><ul class="lista">
 <li>As telas novas aparecem no mesmo Na Ponta do Lápis, sem baixar nada</li>
@@ -73,11 +73,11 @@ footer{border-top:2px solid var(--tinta);padding-block:18px 36px;font-size:14px;
 <div class="valor">+ R$ 40</div>
 <p class="miudo">Pagamento único, sem mensalidade. No cartão, a cobrança vai no mesmo cartão da compra, com 1 toque. No Pix, aparece um Pix novo na tela.</p>
 <cakto-upsell-buttons id="cakto">
-  <cakto-upsell-accept bg-color="#0E3B2A" text-color="#ffffff" upsell-accept-url="https://jvorganiza.com.br/na-ponta-do-lapis/obrigado/?r=trancista&completo=1" offer-id="zh3wc2j" app-base-url="https://app.cakto.com.br" offer-type="upsell" upsell-reject-url="https://jvorganiza.com.br/na-ponta-do-lapis/trancista/oferta-2/">Sim, quero o Completo por + R$ 40</cakto-upsell-accept>
+  <cakto-upsell-accept bg-color="#0E3B2A" text-color="#ffffff" upsell-accept-url="https://jvorganiza.com.br/na-ponta-do-lapis/obrigado/?r=trancista&completo=1" offer-id="zh3wc2j" app-base-url="https://app.cakto.com.br" offer-type="upsell" upsell-reject-url="https://jvorganiza.com.br/na-ponta-do-lapis/trancista/oferta-2/">Sim, quero por + R$ 40</cakto-upsell-accept>
   <cakto-upsell-reject upsell-reject-url="https://jvorganiza.com.br/na-ponta-do-lapis/trancista/oferta-2/">Não, obrigada. Fico só com o Na Ponta do Lápis</cakto-upsell-reject>
 </cakto-upsell-buttons>
 <div class="reserva" id="reserva">
-  <a class="btn" href="https://pay.cakto.com.br/zh3wc2j">Sim, quero o Completo por + R$ 40</a>
+  <a class="btn" href="https://pay.cakto.com.br/zh3wc2j">Sim, quero por + R$ 40</a>
   <a class="link-nao" href="https://jvorganiza.com.br/na-ponta-do-lapis/trancista/oferta-2/">Não, obrigada. Fico só com o Na Ponta do Lápis</a>
 </div>
 <script src="https://caktoscripts.nyc3.cdn.digitaloceanspaces.com/upsell.js" async onerror="document.getElementById('reserva').classList.add('on');document.getElementById('cakto').style.display='none'"></script>
