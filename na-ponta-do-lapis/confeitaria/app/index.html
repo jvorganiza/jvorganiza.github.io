@@ -825,7 +825,7 @@ document.getElementById('portao-form').addEventListener('submit',function(e){e.p
   if(!c){er.textContent='Digite o e-mail da compra.';return}
   if(bruto.indexOf('@')>0){bt.disabled=true;bt.textContent='Conferindo...';
     api({email:bruto.toLowerCase()}).then(function(j){bt.disabled=false;bt.textContent='Entrar';
-      if(j.ok&&j.h){try{localStorage.setItem(K,'e:'+j.h);localStorage.setItem(K+'-v',String(Date.now()))}catch(_){}P.hidden=true;window.scrollTo(0,0);return}
+      if(j.ok&&j.h){try{localStorage.setItem(K,'e:'+j.h);localStorage.setItem(K+'-v',String(Date.now()));localStorage.setItem(K+'-completo',JSON.stringify({v:j.completo===true,h:j.h,t:Date.now()}))}catch(_){}P.hidden=true;window.scrollTo(0,0);return}
       er.textContent=j.motivo==='nao_achou'?'Não achei compra com esse e-mail. Confira se é o mesmo que você usou para pagar.':j.motivo==='reembolso'?'Essa compra foi reembolsada, por isso o acesso foi encerrado.':j.motivo==='muitas_tentativas'?'Muitas tentativas seguidas. Espere um pouco e tente de novo.':j.motivo==='email'?'Esse e-mail parece incompleto. Confira e tente de novo.':'A entrada por e-mail não respondeu agora. Use o código que chegou no e-mail da compra.'})
     .catch(function(){bt.disabled=false;bt.textContent='Entrar';er.textContent='Sem internet agora. Conecte e tente de novo, ou use o código que chegou no e-mail da compra.'});return}
   if(!window.crypto||!crypto.subtle){er.textContent='Este navegador não consegue conferir o código. Abra pelo Chrome ou pelo Safari.';return}

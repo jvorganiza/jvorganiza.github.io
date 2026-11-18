@@ -104,10 +104,47 @@ input[type=file]{font-size:14px;padding:8px}
 .cores button{width:40px;height:40px;border-radius:50%;padding:0;border:3px solid var(--folha);box-shadow:0 0 0 2px var(--linha)}
 .cores button[aria-pressed="true"]{box-shadow:0 0 0 3px var(--tinta)}
 #tabela-img{width:100%;border:2px solid var(--tinta);border-radius:10px;display:block}
-.abas{position:fixed;left:0;right:0;bottom:0;background:var(--tinta);display:flex;justify-content:center;
-  padding-bottom:env(safe-area-inset-bottom,0px);padding-left:max(8px,env(safe-area-inset-left,0px));padding-right:max(8px,env(safe-area-inset-right,0px));z-index:5}
+.abas{position:fixed;left:0;right:0;bottom:0;background:var(--tinta);display:flex;flex-wrap:wrap;justify-content:center;
+  padding-bottom:env(safe-area-inset-bottom,0px);padding-left:max(4px,env(safe-area-inset-left,0px));padding-right:max(4px,env(safe-area-inset-right,0px));z-index:5}
 body.digitando .abas{display:none}
-.abas button{flex:1;max-width:140px;background:none;border:0;border-radius:0;color:#cfc8b8;padding:13px 4px 12px;font-size:13.5px;font-weight:600;border-top:4px solid transparent}
+.abas button{flex:1 1 25%;max-width:150px;min-width:0;background:none;border:0;border-radius:0;color:#cfc8b8;padding:9px 2px 8px;font-size:13px;font-weight:600;border-top:3px solid transparent;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+/* Completo: telas novas (clientes, agenda, mensagens). [hidden] também vem do gerador do site; aqui para o arquivo abrir sozinho igual. */
+[hidden]{display:none!important}
+.app{padding-block:16px 128px}
+.toast{bottom:calc(104px + env(safe-area-inset-bottom,0px))}
+.trava{background:var(--folha);border:2px dashed var(--tinta);border-radius:14px;padding:16px;display:flex;flex-direction:column;gap:10px;align-items:flex-start}
+.trava .cad{font-size:34px;line-height:1}
+.trava ul{margin:0;padding-left:20px;font-size:14.5px;display:flex;flex-direction:column;gap:4px}
+.linha-cli{display:flex;flex-direction:column;gap:8px;padding:10px 0;border-bottom:1px dashed var(--linha)}
+.linha-cli:last-child{border-bottom:0}
+.linha-cli .nm{display:flex;justify-content:space-between;gap:8px;align-items:baseline}
+.linha-cli .nm b{font-size:16.5px;min-width:0;overflow-wrap:anywhere}
+.linha-cli .nm span{font-size:13px;color:var(--tinta2);white-space:nowrap}
+.tag{display:inline-block;font-size:12px;font-weight:700;border-radius:999px;padding:2px 9px;border:2px solid var(--tinta)}
+.tag.ruim{background:var(--verm-claro);color:var(--verm);border-color:var(--verm)}
+.tag.bom{background:var(--verde-claro);color:var(--verde);border-color:var(--verde)}
+.tag.amar{background:var(--amarelo);color:var(--tinta)}
+a.zap{display:inline-block;font-weight:700;text-decoration:none;color:#fff;background:#1f8f4e;border:2px solid #1f8f4e;border-radius:10px;padding:11px 14px;text-align:center}
+a.zap:focus-visible{outline:3px solid var(--amarelo);outline-offset:2px}
+.acoes.cheia>*{flex:1 1 auto}
+details summary{cursor:pointer;font-weight:600;font-size:14px;color:var(--tinta2);padding:4px 0}
+.dia-ag{font-family:var(--display);font-weight:400;font-size:18px;text-transform:uppercase;margin-top:4px}
+.ag-item{background:var(--papel);border-radius:12px;padding:10px;display:flex;flex-direction:column;gap:8px}
+.ag-item .serv-top b{font-size:16px}
+.ag-item .serv-top span{font-size:19px}
+.msg{background:var(--papel);border-radius:12px;padding:10px;display:flex;flex-direction:column;gap:8px}
+.msg p{white-space:pre-wrap;font-size:14.5px;overflow-wrap:anywhere}
+.msg button{align-self:flex-start}
+.rank{display:flex;flex-direction:column;gap:6px}
+.rank div{display:flex;justify-content:space-between;gap:8px;font-size:14.5px;padding:6px 0;border-bottom:1px dashed var(--linha)}
+.rank div span:first-child{min-width:0;overflow-wrap:anywhere}
+.rank div b{white-space:nowrap;font-variant-numeric:tabular-nums}
+.hist{display:flex;flex-direction:column}
+.hist div{display:flex;gap:8px;align-items:center;font-size:14px;padding:6px 0;border-bottom:1px dashed var(--linha)}
+.hist div span:first-child{flex:1;min-width:0;overflow-wrap:anywhere}
+.hist div b{white-space:nowrap;font-variant-numeric:tabular-nums}
+.hist button{padding:4px 9px;font-size:13px;border-color:var(--linha)}
+input[type=time]{-webkit-appearance:none;appearance:none;display:block;max-width:100%;min-height:46px;text-align:left}
 .abas button[aria-selected="true"]{color:var(--tinta);background:var(--amarelo);border-top-color:var(--verm)}
 .rodape{margin-top:22px;color:var(--tinta2);font-size:12px;text-align:center}
 .toast{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(76px + env(safe-area-inset-bottom,0px));background:var(--tinta);color:#fff;padding:10px 16px;border-radius:999px;font-size:14px;z-index:9;max-width:90%}
@@ -138,6 +175,7 @@ body.digitando .abas{display:none}
 
   <!-- SERVIÇOS -->
   <section class="tela" id="t-servicos">
+    <div class="aviso" id="aviso-chamar" hidden><p id="aviso-chamar-txt"></p><div class="acoes"><button class="forte" id="aviso-chamar-ir" type="button">Ver quem chamar hoje</button></div></div>
     <div><h1>Meus serviços</h1><p class="sub">Quanto sobra em cada trança e o preço que paga a sua hora.</p></div>
     <div class="cartao amostra" id="amostra"><p class="selo">AMOSTRA · é assim que fica</p><div class="serv-top"><b>Nagô</b><span>R$ 180</span></div><div class="trio"><div><small>Sobra pra você</small><b class="bom">R$ 120</b></div><div><small>Sua hora (5 h)</small><b class="ruim">R$ 24</b></div><div><small>Preço certo</small><b>R$ 225</b></div></div><p class="sub">Cadastre a sua primeira trança para ver a sua conta.</p></div>
     <div id="lista-serv" class="tela"></div>
@@ -171,6 +209,7 @@ body.digitando .abas{display:none}
         <label for="s-h">Horas<input id="s-h" inputmode="numeric" placeholder="Ex.: 5"></label>
         <label for="s-m">Minutos<input id="s-m" inputmode="numeric" placeholder="Ex.: 0"></label>
       </div>
+      <label for="s-manut" id="s-manut-box">Dias até a manutenção<small>Box braids, nagô e twist costumam pedir manutenção entre 30 e 45 dias. Se não souber, deixe 30.</small><input id="s-manut" inputmode="numeric" placeholder="30"></label>
       <p class="erro" id="s-erro" role="alert"></p>
       <div class="acoes"><button class="forte" type="submit">Salvar</button><button type="button" id="s-cancelar">Cancelar</button><button type="button" class="perigo" id="s-apagar" hidden>Apagar serviço</button></div>
     </form>
@@ -218,6 +257,87 @@ body.digitando .abas{display:none}
       <label for="meta-valor">Quanto você quer que sobre neste mês (R$)<small>É a sua meta. O sistema mostra quanto falta.</small><input id="meta-valor" inputmode="decimal" placeholder="Ex.: 2000"></label>
       <p class="dica" id="meta-txt" hidden></p>
       <button id="resumo-baixar" type="button">Baixar o resumo do mês</button>
+    </div>
+    <div class="cartao" id="rank-box">
+      <h2>5. Quem e o que mais rendeu</h2>
+      <p class="sub">Pelo que sobrou pra você depois do gasto de cada trança.</p>
+      <div id="rank-conteudo"></div>
+    </div>
+  </section>
+
+  <!-- CLIENTES (Completo) -->
+  <section class="tela" id="t-clientes" hidden>
+    <div><h1>Minhas clientes</h1><p class="sub">Quem é cada uma, o que ela fez e quando volta para a manutenção.</p></div>
+    <div id="cli-trava"></div>
+    <div id="cli-tudo" class="tela">
+      <div class="cartao" id="chamar-box">
+        <h2>Quem chamar hoje</h2>
+        <p class="sub">Clientes com a manutenção vencida ou vencendo nos próximos 3 dias.</p>
+        <div id="chamar-lista"></div>
+        <details id="chamar-modelo-box"><summary>Mudar o texto da mensagem</summary>
+          <div style="display:flex;flex-direction:column;gap:8px;margin-top:8px">
+            <p class="sub">Use {nome}, {tempo} e {tranca}: o sistema troca pelo nome da cliente, há quanto tempo foi e a trança.</p>
+            <textarea id="chamar-modelo" rows="4"></textarea>
+            <button class="leve" id="chamar-modelo-volta" type="button">Voltar ao texto original</button>
+          </div>
+        </details>
+      </div>
+      <button class="forte" id="cli-nova" type="button">+ Nova cliente</button>
+      <form class="cartao" id="form-cli" hidden novalidate>
+        <h2 id="form-cli-tit">Nova cliente</h2>
+        <label for="c-nome">Nome<input id="c-nome" maxlength="60" autocomplete="off" placeholder="Ex.: Juliana"></label>
+        <label for="c-zap">WhatsApp com DDD<small>Só os números. Ex.: 21987654321</small><input id="c-zap" inputmode="tel" maxlength="20" autocomplete="off" placeholder="21987654321"></label>
+        <label for="c-obs">Observação<small>Ex.: couro cabeludo sensível, gosta de trança fina.</small><textarea id="c-obs" rows="2" maxlength="300"></textarea></label>
+        <p class="erro" id="c-erro" role="alert"></p>
+        <div class="acoes"><button class="forte" type="submit">Salvar</button><button type="button" id="c-cancelar">Cancelar</button></div>
+      </form>
+      <div class="cartao">
+        <h2>Todas as clientes</h2>
+        <label for="cli-busca" id="cli-busca-box" hidden>Procurar<input id="cli-busca" type="search" autocomplete="off" placeholder="Nome da cliente"></label>
+        <div id="cli-lista"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- AGENDA (Completo) -->
+  <section class="tela" id="t-agenda" hidden>
+    <div><h1>Minha agenda</h1><p class="sub">Os horários marcados, o sinal que já caiu e o que falta receber.</p></div>
+    <div id="ag-trava"></div>
+    <div id="ag-tudo" class="tela">
+      <div class="cartao" id="ag-atras-box" hidden>
+        <h2>Ficou para trás</h2>
+        <p class="sub">Horários de dias que já passaram. Marque como feito ou tire da agenda.</p>
+        <div id="ag-atras" class="tela" style="gap:10px"></div>
+      </div>
+      <div class="mes-nav"><button class="leve" id="sem-ant" type="button" aria-label="Semana anterior">◀</button><b id="sem-nome" style="font-size:19px;text-align:center"></b><button class="leve" id="sem-prox" type="button" aria-label="Próxima semana">▶</button></div>
+      <div class="cartao">
+        <div class="conta" id="sem-conta"></div>
+      </div>
+      <div id="sem-lista" class="tela" style="gap:10px"></div>
+      <button class="forte" id="ag-novo" type="button">+ Marcar horário</button>
+      <form class="cartao" id="form-ag" hidden novalidate>
+        <h2>Marcar horário</h2>
+        <label for="ag-cli">Cliente<select id="ag-cli"></select></label>
+        <label for="ag-cli-nova" id="ag-cli-nova-box" hidden>Nome da cliente nova<input id="ag-cli-nova" maxlength="60" autocomplete="off" placeholder="Ex.: Juliana"></label>
+        <label for="ag-zap" id="ag-zap-box" hidden>WhatsApp dela com DDD<small>Só os números. Pode deixar em branco.</small><input id="ag-zap" inputmode="tel" maxlength="20" autocomplete="off" placeholder="21987654321"></label>
+        <label for="ag-serv">Trança<select id="ag-serv"></select></label>
+        <div class="duas"><label for="ag-dia">Dia<input id="ag-dia" type="date"></label><label for="ag-hora">Hora<input id="ag-hora" type="time"></label></div>
+        <div class="duas"><label for="ag-valor">Valor (R$)<input id="ag-valor" inputmode="decimal" placeholder="Ex.: 180"></label><label for="ag-sinal">Sinal já pago (R$)<input id="ag-sinal" inputmode="decimal" placeholder="Ex.: 50"></label></div>
+        <p class="dica bom" id="ag-falta"></p>
+        <p class="erro" id="ag-erro" role="alert"></p>
+        <div class="acoes"><button class="forte" type="submit">Marcar</button><button type="button" id="ag-cancelar">Cancelar</button></div>
+      </form>
+    </div>
+  </section>
+
+  <!-- MENSAGENS (Completo) -->
+  <section class="tela" id="t-mensagens" hidden>
+    <div><h1>Mensagens prontas</h1><p class="sub">22 mensagens para o WhatsApp. Copie, troque o que está entre [colchetes] e mande.</p></div>
+    <div id="msgs-trava"></div>
+    <div id="msgs-tudo" class="tela">
+      <div class="toques chips" id="msgs-assuntos"></div>
+      <div id="msgs-lista" class="tela" style="gap:10px"></div>
+      <p class="sub">Dica: salve as que mais usa como "Respostas rápidas" no WhatsApp Business (Ferramentas comerciais → Respostas rápidas).</p>
     </div>
   </section>
 
@@ -293,7 +413,7 @@ body.digitando .abas{display:none}
       <label for="msg-texto">Mensagem<textarea id="msg-texto" rows="8"></textarea></label>
       <div class="acoes"><button class="amar" id="msg-copiar" type="button">Copiar mensagem</button><button class="leve" id="msg-refazer" type="button">Voltar ao texto original</button></div>
     </div>
-    <div class="cartao oferta">
+    <div class="cartao oferta" id="oferta-recortes">
       <span class="selo">DA EMPRESA JV</span>
       <h2>Quer responder mais rápido?</h2>
       <p>Os <b>Recortes de conversa</b> são 22 mensagens prontas para trancista: responder quem pede preço, cobrar o sinal, lembrar a manutenção e chamar de volta quem sumiu.</p>
@@ -322,14 +442,14 @@ body.digitando .abas{display:none}
     </div>
     <div class="cartao">
       <h2>Começar do zero</h2>
-      <p class="sub">Apaga serviços, meses e ajustes deste celular.</p>
+      <p class="sub">Apaga serviços, meses, clientes, agenda e ajustes deste celular.</p>
       <button class="perigo" id="zerar" type="button">Apagar tudo</button>
       <div class="aviso" id="zerar-conf" hidden><p><b>Tem certeza?</b> Não dá para desfazer.</p><div class="acoes"><button class="perigo" id="zerar-sim" type="button">Sim, apagar tudo</button><button id="zerar-nao" type="button">Não</button></div></div>
     </div>
     <div class="cartao oferta">
       <span class="selo">PARA IR ALÉM</span>
       <h2>Quando o preço estiver em dia</h2>
-      <div class="extra"><b>Recortes de conversa</b><p class="sub">22 mensagens prontas para o WhatsApp: preço, sinal, manutenção e cliente que sumiu.</p><a class="botao leve" href="https://pay.cakto.com.br/3b59uga_1309945?split=1" target="_blank" rel="noopener">Ver os Recortes · R$ 27</a></div>
+      <div class="extra" id="extra-recortes"><b>Recortes de conversa</b><p class="sub">22 mensagens prontas para o WhatsApp: preço, sinal, manutenção e cliente que sumiu.</p><a class="botao leve" href="https://pay.cakto.com.br/3b59uga_1309945?split=1" target="_blank" rel="noopener">Ver os Recortes · R$ 27</a></div>
       <div class="extra" id="kit-cliente" hidden><b>Kit Trancista completo</b><p class="sub">Clientes, lembrete de manutenção, agenda e financeiro num sistema só, com videoaulas. Pra você que já usa o Na Ponta do Lápis: R$ 120 em vez de R$ 147, e a gente ajuda a instalar pelo WhatsApp.</p><a class="botao leve" href="https://pay.cakto.com.br/389y6h2?split=1" target="_blank" rel="noopener">Quero o Kit por R$ 120</a> <a class="botao leve" href="https://jvorganiza.com.br/kits/trancista/" target="_blank" rel="noopener">Ver como funciona</a></div>
     </div>
     <div class="cartao"><h2>Deixe na tela inicial</h2><p class="sub">No menu do navegador (os três pontinhos ou o botão de compartilhar), toque em "Adicionar à tela inicial". O Na Ponta do Lápis vira um atalho, como um aplicativo.</p><p class="sub">Use sempre o mesmo navegador. Na janela anônima e no navegador de dentro do Instagram os dados podem não ficar guardados.</p></div>
@@ -343,6 +463,9 @@ body.digitando .abas{display:none}
 <nav class="abas" role="tablist" aria-label="Telas">
   <button role="tab" data-t="servicos" aria-selected="true">Serviços</button>
   <button role="tab" data-t="mes" aria-selected="false">Meu mês</button>
+  <button role="tab" data-t="clientes" aria-selected="false">Clientes</button>
+  <button role="tab" data-t="agenda" aria-selected="false">Agenda</button>
+  <button role="tab" data-t="mensagens" aria-selected="false">Mensagens</button>
   <button role="tab" data-t="ajustes" aria-selected="false">Meu negócio</button>
   <button role="tab" data-t="tabela" aria-selected="false">Tabela</button>
 </nav>
@@ -351,11 +474,12 @@ body.digitando .abas{display:none}
 <script>
 (function(){
 var CHAVE='jv-quanto-sobra-trancista-v2';
+var CHECKOUT_COMPLETO='https://pay.cakto.com.br/zh3wc2j'; /* upgrade R$ 40 para quem já tem o app (o Completo cheio, R$ 67, é pay.cakto.com.br/45d5bqg) */
 var $=function(i){return document.getElementById(i)};
 /* Exemplos (valores pesquisados em 11 e 12/11/2026): nagô R$ 180 e fulani R$ 280 em cerca de 5 h (Superprof, tabelas de trancistas);
    boho braids R$ 330 em 8 h com R$ 80 de fibra e pomada (relato de trancistas no atendimento); jumbo de 400 g de R$ 22 a R$ 40 (Mercado Livre). */
 var PADRAO=function(){return {v:1,cfg:{nome:'',contato:'',hora:25,lucro:20,cartao:false,cor:'#16130f',cor2:'#d9b36a',modelo:'limpo',tb:'atual'},
-  serv:[],vendas:[],fixos:[]}};
+  serv:[],vendas:[],fixos:[],cli:[],ag:[]}};
 var MODELOS=['Nagô','Box braids','Knotless braids','Fulani braids','Boho braids','Gypsy braids','Twist','Ghana braids','Entrelace','Manutenção'];
 function modelosLivres(){var tem=D.serv.map(function(s){return s.nome.toLowerCase()});return MODELOS.filter(function(m){return tem.indexOf(m.toLowerCase())<0})}
 var D;
@@ -371,14 +495,41 @@ function limpa(o){var p=PADRAO();if(!o||typeof o!=='object')return p;
   if(c.msgs&&typeof c.msgs==='object'){p.cfg.msgs={};['preco','promo','horario','sinal'].forEach(function(k){if(typeof c.msgs[k]==='string'&&c.msgs[k])p.cfg.msgs[k]=c.msgs[k].slice(0,1500)})}
   p.cfg.msgTipo=['preco','promo','horario','sinal'].indexOf(c.msgTipo)>=0?c.msgTipo:'preco';
   if(c.metas&&typeof c.metas==='object'){p.cfg.metas={};Object.keys(c.metas).slice(0,120).forEach(function(k){if(/^\d{4}-\d{2}$/.test(k)&&n0(c.metas[k]))p.cfg.metas[k]=n0(c.metas[k])})}
-  p.serv=(Array.isArray(o.serv)?o.serv:[]).slice(0,80).filter(function(s){return s&&typeof s==='object'&&n0(s.preco)}).map(function(s){var r={id:st(s.id,20)||novoId(),nome:st(s.nome,40)||'Trança',preco:n0(s.preco),gasto:n0(s.gasto),min:Math.round(n0(s.min))||60};
+  p.serv=(Array.isArray(o.serv)?o.serv:[]).slice(0,80).filter(function(s){return s&&typeof s==='object'&&n0(s.preco)}).map(function(s){var r={id:st(s.id,20)||novoId(),nome:st(s.nome,40)||'Trança',preco:n0(s.preco),gasto:n0(s.gasto),min:Math.round(n0(s.min))||60,manut:Math.min(365,Math.round(n0(s.manut)))||30};
     if(s.g&&typeof s.g==='object'){r.g={pas:!!s.g.pas};['jp','jv','pp','pr','el','out','pv'].forEach(function(k){r.g[k]=n0(s.g[k])})}return r});
-  p.vendas=(Array.isArray(o.vendas)?o.vendas:[]).slice(-6000).filter(function(v){return v&&/^\d{4}-\d{2}-\d{2}$/.test(v.dia)}).map(function(v){return {id:st(v.id,20)||novoId(),nome:st(v.nome,40)||'Trança',preco:n0(v.preco),gasto:n0(v.gasto),min:Math.round(n0(v.min)),dia:v.dia}});
+  p.vendas=(Array.isArray(o.vendas)?o.vendas:[]).slice(-6000).filter(function(v){return v&&/^\d{4}-\d{2}-\d{2}$/.test(v.dia)}).map(function(v){var r={id:st(v.id,20)||novoId(),nome:st(v.nome,40)||'Trança',preco:n0(v.preco),gasto:n0(v.gasto),min:Math.round(n0(v.min)),dia:v.dia};if(v.cli)r.cli=st(v.cli,20);return r});
   p.fixos=(Array.isArray(o.fixos)?o.fixos:[]).slice(-2000).filter(function(f){return f&&/^\d{4}-\d{2}$/.test(f.mes)&&n0(f.valor)}).map(function(f){return {id:st(f.id,20)||novoId(),mes:f.mes,nome:st(f.nome,30)||'Conta',valor:n0(f.valor)}});
+  /* Completo (18/11/2026): clientes com histórico e agenda. Cópias antigas chegam sem esses campos e ficam com listas vazias. */
+  var dt=function(v){return (typeof v==='string'&&/^\d{4}-\d{2}-\d{2}$/.test(v))?v:''};
+  if(typeof c.msgManut==='string'&&c.msgManut.trim())p.cfg.msgManut=c.msgManut.slice(0,600);
+  p.cli=(Array.isArray(o.cli)?o.cli:[]).slice(0,3000).filter(function(x){return x&&typeof x==='object'&&String(x.nome||'').trim()}).map(function(x){
+    return {id:st(x.id,20)||novoId(),nome:st(x.nome,60),zap:String(x.zap||'').replace(/\D/g,'').slice(0,15),obs:st(x.obs,300),chamei:dt(x.chamei),
+      hist:(Array.isArray(x.hist)?x.hist:[]).slice(-500).filter(function(h){return h&&dt(h.dia)}).map(function(h){var r={id:st(h.id,20)||novoId(),dia:h.dia,serv:st(h.serv,20),nome:st(h.nome,40)||'Trança',preco:n0(h.preco),sinal:n0(h.sinal)};if(h.venda)r.venda=st(h.venda,20);return r})}});
+  p.ag=(Array.isArray(o.ag)?o.ag:[]).slice(-3000).filter(function(a){return a&&dt(a.dia)}).map(function(a){
+    return {id:st(a.id,20)||novoId(),cli:st(a.cli,20),serv:st(a.serv,20),nome:st(a.nome,40)||'Trança',dia:a.dia,hora:/^\d{2}:\d{2}$/.test(a.hora||'')?a.hora:'',preco:n0(a.preco),sinal:n0(a.sinal)}});
   return p}
 function ler(){try{var s=localStorage.getItem(CHAVE);if(s)return limpa(JSON.parse(s))}catch(e){}return PADRAO()}
 function gravar(){try{localStorage.setItem(CHAVE,JSON.stringify(D))}catch(e){}}
 D=ler();
+/* ---------- Completo: quem pode usar as telas novas ----------
+   A entrada (POST /api/entrar) devolve {ok,h,completo}. O portão guarda o h em jv-qs-acesso-trancista ("e:"+h);
+   o app pergunta de novo com esse h e guarda a resposta em jv-qs-acesso-trancista-completo = {v,h,t}.
+   Só vale se o h guardado for o mesmo da entrada. Ao abrir, se a última conferência tiver mais de 6 h, confere de novo em silêncio (sem rede, segue com o que já sabia).
+   Quem entrou pelo link com código (sem h) usa "Já comprei o Completo" na tela com cadeado: manda o e-mail e guarda h + completo.
+   Teste: ?completo=1 (ou 0) na URL e o interruptor escondido (5 toques no rodapé) só funcionam em file:// ou localhost. */
+var ACESSO='jv-qs-acesso-trancista',KC=ACESSO+'-completo';
+var LOCAL=location.protocol==='file:'||/^(localhost|127\.0\.0\.1|\[::1\])$/.test(location.hostname);
+function hAcesso(){try{var v=localStorage.getItem(ACESSO)||'';return v.indexOf('e:')===0?v.slice(2):''}catch(e){return ''}}
+function lerFlag(){try{var o=JSON.parse(localStorage.getItem(KC)||'null');return o&&typeof o==='object'?o:null}catch(e){return null}}
+function gravaFlag(o){try{localStorage.setItem(KC,JSON.stringify(o))}catch(e){}}
+function lerCompleto(){var o=lerFlag();if(!o)return false;if(o.teste)return LOCAL&&o.v===true;return o.v===true&&!!o.h&&o.h===hAcesso()}
+if(LOCAL){try{var qc=new URLSearchParams(location.search).get('completo');if(qc==='1'||qc==='0')gravaFlag({v:qc==='1',teste:true,t:Date.now()})}catch(e){}}
+var COMPLETO=lerCompleto();
+function confereCompleto(forca){var h=hAcesso();if(!h||!/^https?:$/.test(location.protocol))return Promise.resolve(false);var o=lerFlag();
+  if(!forca&&o&&!o.teste&&o.h===h&&Date.now()-(o.t||0)<216e5)return Promise.resolve(false);
+  return fetch('/api/entrar',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({produto:'trancista',h:h})}).then(function(r){return r.json()}).then(function(j){
+    if(j&&j.ok)gravaFlag({v:j.completo===true,h:h,t:Date.now()});else if(j&&j.motivo==='reembolso')gravaFlag({v:false,h:h,t:Date.now()});else return false;
+    var antes=COMPLETO;COMPLETO=lerCompleto();if(antes!==COMPLETO)pintaTudo();return true}).catch(function(){return false})}
 var num=function(v){v=(v||'').toString().replace(/[R$\s%]/g,'');if(v.indexOf(',')>=0)v=v.replace(/\./g,'').replace(',','.');var n=parseFloat(v);return isNaN(n)?null:n};
 var brl=function(n){var neg=n<0;n=Math.abs(n);var s=(Math.round(n*100)%100===0)?Math.round(n).toLocaleString('pt-BR'):n.toLocaleString('pt-BR',{minimumFractionDigits:2,maximumFractionDigits:2});return (neg?'− ':'')+'R$ '+s};
 var cima5=function(n){return Math.ceil(n/5)*5};
@@ -407,6 +558,7 @@ function pintaServ(){
     else if(c.certo>s.preco)dica=el('p','dica ruim','Para ganhar '+brl(D.cfg.hora)+' por hora com '+D.cfg.lucro+'% de lucro, essa trança sai a '+brl(c.certo)+'. São '+brl(c.certo-s.preco)+' a mais.');
     else dica=el('p','dica bom','Esse preço já paga a sua hora e o lucro que você quer.');
     card.appendChild(dica);
+    if(COMPLETO)card.appendChild(el('p','sub','Manutenção a cada '+(s.manut||30)+' dias.'));
     var ac=el('div','acoes'),b=el('button','leve','Mudar');b.type='button';b.onclick=function(){abreForm(s)};ac.appendChild(b);card.appendChild(ac);
     L.appendChild(card)});
 }
@@ -421,7 +573,7 @@ function abreForm(s,nomeIni){
   $('form-serv-tit').textContent=s?'Mudar serviço':'Novo serviço';$('s-apagar').hidden=!s;
   $('s-nome').value=s?s.nome:(nomeIni||'');$('s-preco').value=s?txt(s.preco):'';
   var g=s?(s.g||{out:s.gasto}):{};GC.forEach(function(k){$('s-'+k).value=txt(g[k])});$('s-pas').checked=!!g.pas;pintaGasto();
-  $('s-h').value=s?Math.floor(s.min/60)||'':'';$('s-m').value=s?(s.min%60)||'':'';
+  $('s-h').value=s?Math.floor(s.min/60)||'':'';$('s-m').value=s?(s.min%60)||'':'';$('s-manut').value=s?String(s.manut||30):'30';$('s-manut-box').hidden=!COMPLETO;
   var livres=s?[]:modelosLivres(),box=$('s-modelos');box.textContent='';$('s-modelos-box').hidden=!livres.length;
   livres.forEach(function(m){var b=el('button',null,m);b.type='button';b.onclick=function(){$('s-nome').value=m;$('s-preco').focus()};box.appendChild(b)});
   $('form-serv').scrollIntoView({behavior:'smooth',block:'start'});
@@ -431,12 +583,12 @@ $('novo-serv').onclick=function(){voltarMes=false;abreForm(null)};
 $('s-cancelar').onclick=fechaForm;
 $('s-apagar').onclick=function(){if(!editando)return;D.serv=D.serv.filter(function(x){return x!==editando});gravar();fechaForm();pintaTudo();toast('Serviço apagado')};
 $('form-serv').addEventListener('submit',function(e){
-  e.preventDefault();var nome=$('s-nome').value.trim(),preco=num($('s-preco').value),gd=lerGasto(),gasto=gd.total,min=Math.round((num($('s-h').value)||0)*60+(num($('s-m').value)||0));
+  e.preventDefault();var nome=$('s-nome').value.trim(),preco=num($('s-preco').value),gd=lerGasto(),gasto=gd.total,min=Math.round((num($('s-h').value)||0)*60+(num($('s-m').value)||0)),manut=Math.min(365,Math.round(num($('s-manut').value)||0))||30;
   if(!nome){$('s-erro').textContent='Ponha o nome da trança.';$('s-nome').focus();return}
   if(!preco||preco<=0){$('s-erro').textContent='Ponha quanto você cobra.';$('s-preco').focus();return}
   if(min<=0){$('s-erro').textContent='Ponha quanto tempo leva.';$('s-h').focus();return}
-  if(editando){editando.nome=nome;editando.preco=preco;editando.gasto=gasto;editando.g=gd.g;editando.min=min;delete editando.ex}
-  else D.serv.push({id:uid(),nome:nome,preco:preco,gasto:gasto,g:gd.g,min:min});
+  if(editando){editando.nome=nome;editando.preco=preco;editando.gasto=gasto;editando.g=gd.g;editando.min=min;editando.manut=manut;delete editando.ex}
+  else D.serv.push({id:uid(),nome:nome,preco:preco,gasto:gasto,g:gd.g,min:min,manut:manut});
   gravar();fechaForm();pintaTudo();
   if(voltarMes){voltarMes=false;abre('mes');toast(nome+' salva. Agora é só tocar nela em "Fiz hoje".')}else toast('Salvo')});
 function cadastrarDoMes(nome){voltarMes=true;abre('servicos');abreForm(null,nome);$('s-preco').focus()}
@@ -471,6 +623,7 @@ function pintaMes(){
   else{var hr=min>0?sobrou/(min/60):0;dm.className='dica '+(hr>=D.cfg.hora?'bom':'ruim');
     dm.textContent='Foram '+tempo(min)+' de trabalho. Cada hora rendeu '+brl(hr)+(hr>=D.cfg.hora?', acima dos ':', abaixo dos ')+brl(D.cfg.hora)+' que você quer.'}
   if(typeof pintaMeta==='function')pintaMeta();
+  if(typeof pintaRank==='function'&&$('rank-conteudo'))pintaRank();
   var LF=$('lista-fixos');LF.textContent='';
   if(!fx.length)LF.appendChild(el('p','vazio','Nenhuma conta fixa anotada neste mês.'));
   fx.forEach(function(f){var d=el('div');d.appendChild(el('span',null,f.nome));d.appendChild(el('b',null,brl(f.valor)));var b=el('button',null,'Tirar');b.type='button';b.onclick=function(){D.fixos=D.fixos.filter(function(x){return x!==f});gravar();pintaMes()};d.appendChild(b);LF.appendChild(d)});
@@ -682,18 +835,263 @@ $('resumo-baixar').onclick=function(){var t=totaisMes(),p=mes.split('-'),W=1080,
   baixarCanvas(cv,'meu-mes-'+mes+'.png')};
 function pintaExtras(){pintaMsg();pintaMeta();pintaSim()}
 
+/* ---------- Completo: datas, WhatsApp e cadeado ---------- */
+var pad2=function(n){return String(n).padStart(2,'0')};
+function isoDe(d){return d.getFullYear()+'-'+pad2(d.getMonth()+1)+'-'+pad2(d.getDate())}
+function dataDe(iso){var p=iso.split('-');return new Date(+p[0],+p[1]-1,+p[2])}
+function somaDias(iso,n){var d=dataDe(iso);d.setDate(d.getDate()+n);return isoDe(d)}
+function difDias(a,b){return Math.round((dataDe(b)-dataDe(a))/864e5)}
+function hojeISO(){return isoDe(new Date())}
+var SEMANA=['dom','seg','ter','qua','qui','sex','sáb'];
+function diaTxt(iso){return SEMANA[dataDe(iso).getDay()]+' '+dataBR(iso)}
+function limpaZap(v){v=String(v||'').replace(/\D/g,'');if(v.length>=12&&v.indexOf('55')===0)v=v.slice(2);if(v.charAt(0)==='0')v=v.slice(1);return v}
+function zapOk(v){return /^\d{10,11}$/.test(v)}
+function aZap(z,texto,rot){var a=el('a','zap',rot);a.href='https://wa.me/55'+z+(texto?'?text='+encodeURIComponent(texto):'');a.target='_blank';a.rel='noopener';return a}
+function primeiro(n){return String(n||'').trim().split(/\s+/)[0]||''}
+function copia(texto){var ok=function(){toast('Copiada. Agora é só colar no WhatsApp.')},falha=function(){try{var t=el('textarea');t.value=texto;t.style.position='fixed';t.style.opacity='0';document.body.appendChild(t);t.select();var r=document.execCommand('copy');t.remove();if(r){ok();return}}catch(e){}toast('Não consegui copiar. Segure o dedo no texto.')};
+  try{navigator.clipboard.writeText(texto).then(ok,falha)}catch(e){falha()}}
+function trava(box,titulo,itens){box.textContent='';box.hidden=COMPLETO;if(COMPLETO)return;
+  var t=el('div','trava');t.appendChild(el('span','cad','🔒'));t.appendChild(el('h2',null,titulo));
+  var ul=el('ul');itens.forEach(function(i){ul.appendChild(el('li',null,i))});t.appendChild(ul);
+  var a=el('a','botao','Destravar o Completo · R$ 40');a.href=CHECKOUT_COMPLETO;a.target='_blank';a.rel='noopener';t.appendChild(a);
+  /* Quem entrou pelo link com código não tem o h guardado: pede o e-mail da compra e pergunta ao /api/entrar. */
+  var lk=el('button','leve','Já comprei o Completo');lk.type='button';t.appendChild(lk);
+  var fm=el('form');fm.noValidate=true;fm.hidden=true;fm.style.cssText='display:flex;flex-direction:column;gap:8px;width:100%';
+  var idE=box.id+'-email',lb=el('label',null,'E-mail da compra');lb.htmlFor=idE;var ie=el('input');ie.id=idE;ie.type='email';ie.inputMode='email';ie.autocomplete='email';ie.autocapitalize='none';ie.spellcheck=false;ie.placeholder='voce@email.com';lb.appendChild(ie);fm.appendChild(lb);
+  var er=el('p','erro');er.setAttribute('role','alert');fm.appendChild(er);
+  var ok=el('button','forte','Conferir e liberar');ok.type='submit';fm.appendChild(ok);t.appendChild(fm);
+  lk.onclick=function(){fm.hidden=!fm.hidden;if(!fm.hidden)ie.focus()};
+  fm.addEventListener('submit',function(e){e.preventDefault();er.textContent='';var em=ie.value.replace(/\s+/g,'').toLowerCase();
+    if(em.indexOf('@')<1||em.indexOf('.')<0){er.textContent='Digite o e-mail que você usou para pagar.';ie.focus();return}
+    ok.disabled=true;ok.textContent='Conferindo...';
+    liberaPorEmail(em).then(function(r){ok.disabled=false;ok.textContent='Conferir e liberar';
+      if(r==='sim'){toast('Completo liberado!');return}
+      if(r==='nao'){er.textContent='';er.appendChild(document.createTextNode('Ainda não achei o Completo neste e-mail. Use o mesmo e-mail da compra ou '));var w=el('a',null,'fale com a gente no WhatsApp');w.href='https://jvorganiza.com.br/ir/whatsapp/';w.target='_blank';w.rel='noopener';er.appendChild(w);er.appendChild(document.createTextNode('.'));return}
+      er.textContent=r==='nao_achou'?'Não achei compra com esse e-mail. Confira se é o mesmo que você usou para pagar.':r==='reembolso'?'Essa compra foi reembolsada.':r==='muitas_tentativas'?'Muitas tentativas seguidas. Espere um pouco e tente de novo.':'Sem internet agora. Conecte e tente de novo.'})});
+  box.appendChild(t)}
+function liberaPorEmail(em){return fetch('/api/entrar',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({produto:'trancista',email:em})}).then(function(r){return r.json()}).then(function(j){
+    if(!j||!j.ok)return (j&&j.motivo)||'erro';
+    if(j.h){try{localStorage.setItem(ACESSO,'e:'+j.h);localStorage.setItem(ACESSO+'-v',String(Date.now()))}catch(e){}gravaFlag({v:j.completo===true,h:j.h,t:Date.now()})}
+    if(j.completo===true){COMPLETO=lerCompleto()||true;pintaTudo();return 'sim'}return 'nao'}).catch(function(){return 'rede'})}
+function cliPorId(id){return D.cli.filter(function(c){return c.id===id})[0]}
+function servDe(x){return D.serv.filter(function(s){return s.id===x.serv})[0]||D.serv.filter(function(s){return s.nome.toLowerCase()===String(x.nome||'').toLowerCase()})[0]}
+
+/* ---------- Completo: próxima manutenção e quem chamar ---------- */
+function ultimo(c){var u=null;c.hist.forEach(function(h){if(!u||h.dia>=u.dia)u=h});return u}
+function proxManut(c){var u=ultimo(c);if(!u)return null;var s=servDe(u),m=s?(s.manut||30):30;return {dia:somaDias(u.dia,m),ult:u,manut:m}}
+function temHorario(c){var h=hojeISO();return D.ag.some(function(a){return a.cli===c.id&&a.dia>=h})}
+function quemChamar(){var h=hojeISO(),r=[];
+  D.cli.forEach(function(c){var p=proxManut(c);if(!p)return;var dias=difDias(h,p.dia);if(dias>3)return;
+    if(c.chamei&&difDias(c.chamei,h)<7)return;if(temHorario(c))return;r.push({c:c,p:p,dias:dias})});
+  return r.sort(function(a,b){return a.p.dia<b.p.dia?-1:1})}
+function venceTxt(d){return d<0?'venceu há '+(-d)+(d===-1?' dia':' dias'):(d===0?'vence hoje':'vence em '+d+(d===1?' dia':' dias'))}
+function tempoTxt(dias){return dias>=14?Math.floor(dias/7)+' semanas':dias+(dias===1?' dia':' dias')}
+var MSG_MANUT='Oi, {nome}! 🙂 Já faz {tempo} da sua {tranca}. Quer que eu reserve um horário pra manutenção essa semana?';
+function msgChamar(x){return (D.cfg.msgManut||MSG_MANUT).replace(/\{nome\}/g,primeiro(x.c.nome)).replace(/\{tempo\}/g,tempoTxt(difDias(x.p.ult.dia,hojeISO()))).replace(/\{tranca\}/g,x.p.ult.nome.toLowerCase())}
+function pintaAvisoChamar(){var q=COMPLETO?quemChamar():[];$('aviso-chamar').hidden=!q.length;if(!q.length)return;
+  var nomes=q.slice(0,3).map(function(x){return primeiro(x.c.nome)}).join(', ')+(q.length>3?' e mais '+(q.length-3):'');
+  $('aviso-chamar-txt').textContent=(q.length===1?'Hoje tem 1 cliente para chamar para a manutenção: ':'Hoje tem '+q.length+' clientes para chamar para a manutenção: ')+nomes+'.'}
+$('aviso-chamar-ir').onclick=function(){abre('clientes')};
+function pintaChamar(){var L=$('chamar-lista'),q=quemChamar();L.textContent='';
+  if(!q.length)L.appendChild(el('p','vazio',D.cli.length?'Ninguém para chamar hoje. Quando a manutenção de alguém chegar perto, ela aparece aqui.':'Cadastre suas clientes e o que cada uma fez. O sistema avisa aqui quem chamar para a manutenção.'));
+  q.forEach(function(x){var d=el('div','linha-cli'),nm=el('div','nm');nm.appendChild(el('b',null,x.c.nome));nm.appendChild(el('span','tag '+(x.dias<0?'ruim':'amar'),venceTxt(x.dias)));d.appendChild(nm);
+    d.appendChild(el('p','sub','Última: '+x.p.ult.nome+' em '+dataBR(x.p.ult.dia)+' · manutenção a cada '+x.p.manut+' dias'));
+    var texto=msgChamar(x),ac=el('div','acoes cheia'),link=null;
+    if(zapOk(x.c.zap)){link=aZap(x.c.zap,texto,'Chamar no WhatsApp');ac.appendChild(link)}
+    else{var pz=el('button','amar','Pôr o WhatsApp dela');pz.type='button';pz.onclick=function(){abreFormCli(x.c)};ac.appendChild(pz)}
+    var ja=el('button',null,'Já chamei');ja.type='button';ja.onclick=function(){x.c.chamei=hojeISO();gravar();pintaCompleto();toast(primeiro(x.c.nome)+' sai da lista por 7 dias')};ac.appendChild(ja);d.appendChild(ac);
+    if(link){var det=el('details');det.appendChild(el('summary',null,'Ver ou mudar a mensagem'));var ta=el('textarea');ta.rows=4;ta.value=texto;ta.setAttribute('aria-label','Mensagem para '+x.c.nome);
+      ta.oninput=function(){link.href='https://wa.me/55'+x.c.zap+'?text='+encodeURIComponent(ta.value)};det.appendChild(ta);d.insertBefore(det,ac)}
+    L.appendChild(d)});
+  if(document.activeElement!==$('chamar-modelo'))$('chamar-modelo').value=D.cfg.msgManut||MSG_MANUT}
+$('chamar-modelo').oninput=function(){var v=this.value;if(v.trim()&&v!==MSG_MANUT)D.cfg.msgManut=v.slice(0,600);else delete D.cfg.msgManut;gravar();pintaChamar();pintaAvisoChamar()};
+$('chamar-modelo-volta').onclick=function(){delete D.cfg.msgManut;gravar();$('chamar-modelo').value=MSG_MANUT;pintaChamar();toast('Texto original de volta')};
+
+/* ---------- Completo: clientes ---------- */
+var cliEdit=null,cliAberta=null;
+function abreFormCli(c){if($('t-clientes').hidden)abre('clientes');cliEdit=c||null;$('form-cli').hidden=false;$('cli-nova').hidden=true;$('c-erro').textContent='';
+  $('form-cli-tit').textContent=c?'Mudar dados da cliente':'Nova cliente';$('c-nome').value=c?c.nome:'';$('c-zap').value=c?c.zap:'';$('c-obs').value=c?c.obs:'';
+  $('form-cli').scrollIntoView({behavior:'smooth',block:'start'});(c&&!zapOk(c.zap)?$('c-zap'):$('c-nome')).focus()}
+function fechaFormCli(){$('form-cli').hidden=true;$('cli-nova').hidden=false;cliEdit=null}
+$('cli-nova').onclick=function(){abreFormCli(null)};$('c-cancelar').onclick=fechaFormCli;
+$('form-cli').addEventListener('submit',function(e){e.preventDefault();var nome=$('c-nome').value.trim(),zap=limpaZap($('c-zap').value),obs=$('c-obs').value.trim();
+  if(!nome){$('c-erro').textContent='Ponha o nome da cliente.';$('c-nome').focus();return}
+  if(zap&&!zapOk(zap)){$('c-erro').textContent='O WhatsApp precisa ter o DDD e o número, só os números. Ex.: 21987654321';$('c-zap').focus();return}
+  if(cliEdit){cliEdit.nome=nome;cliEdit.zap=zap;cliEdit.obs=obs}else{var c={id:uid(),nome:nome,zap:zap,obs:obs,chamei:'',hist:[]};D.cli.push(c);cliAberta=c.id}
+  gravar();fechaFormCli();pintaCompleto();toast('Cliente salva')});
+$('cli-busca').oninput=function(){pintaClientes()};
+function pintaClientes(){var L=$('cli-lista');L.textContent='';$('cli-busca-box').hidden=D.cli.length<=5;
+  var busca=D.cli.length>5?$('cli-busca').value.trim().toLowerCase():'',h=hojeISO();
+  var lista=D.cli.filter(function(c){return !busca||c.nome.toLowerCase().indexOf(busca)>=0}).sort(function(a,b){return a.nome.localeCompare(b.nome,'pt-BR')});
+  if(!D.cli.length)L.appendChild(el('p','vazio','Nenhuma cliente ainda. Toque em "+ Nova cliente".'));else if(!lista.length)L.appendChild(el('p','vazio','Nenhuma cliente com esse nome.'));
+  lista.forEach(function(c){var d=el('div','linha-cli'),nm=el('div','nm'),p=proxManut(c),marc=D.ag.filter(function(a){return a.cli===c.id&&a.dia>=h}).sort(function(a,b){return (a.dia+a.hora)<(b.dia+b.hora)?-1:1})[0];
+    nm.appendChild(el('b',null,c.nome));
+    if(marc)nm.appendChild(el('span','tag bom','marcada '+dataBR(marc.dia)));else if(p){var dd=difDias(h,p.dia);if(dd<=3)nm.appendChild(el('span','tag '+(dd<0?'ruim':'amar'),venceTxt(dd)))}
+    d.appendChild(nm);
+    d.appendChild(el('p','sub',p?'Última: '+p.ult.nome+' em '+dataBR(p.ult.dia)+' · próxima manutenção '+dataBR(p.dia):'Ainda sem atendimento anotado.'));
+    var ac=el('div','acoes cheia');if(zapOk(c.zap))ac.appendChild(aZap(c.zap,'','WhatsApp'));
+    var ab=el('button',cliAberta===c.id?'':'leve',cliAberta===c.id?'Fechar':'Abrir');ab.type='button';ab.onclick=function(){cliAberta=cliAberta===c.id?null:c.id;pintaClientes()};ac.appendChild(ab);d.appendChild(ac);
+    if(cliAberta===c.id)d.appendChild(fichaCli(c));
+    L.appendChild(d)})}
+function fichaCli(c){var f=el('div','tela');f.style.gap='10px';
+  if(c.obs)f.appendChild(el('p','dica bom',c.obs));
+  if(!zapOk(c.zap))f.appendChild(el('p','sub','Sem WhatsApp salvo. Toque em "Mudar dados" para pôr o número.'));
+  f.appendChild(el('b',null,'Atendimentos'));var H=el('div','hist');
+  if(!c.hist.length)H.appendChild(el('p','vazio','Nenhum atendimento anotado.'));
+  c.hist.slice().sort(function(a,b){return a.dia<b.dia?1:-1}).forEach(function(x){var d=el('div');
+    d.appendChild(el('span',null,dataBR(x.dia)+'/'+x.dia.slice(2,4)+' · '+x.nome+(x.sinal?' · sinal '+brl(x.sinal):'')));d.appendChild(el('b',null,brl(x.preco)));
+    var t=el('button',null,'Tirar');t.type='button';t.onclick=function(){c.hist=c.hist.filter(function(y){return y!==x});if(x.venda)D.vendas=D.vendas.filter(function(v){return v.id!==x.venda});gravar();pintaCompleto();pintaMes();toast(x.venda?'Tirado do histórico e do Meu mês':'Tirado do histórico')};d.appendChild(t);H.appendChild(d)});
+  f.appendChild(H);
+  /* novo atendimento */
+  var box=el('div','gasto');box.appendChild(el('b',null,'Anotar um atendimento'));
+  var mk=function(id,rot,inp){var l=el('label',null,rot);l.htmlFor=id;inp.id=id;l.appendChild(inp);return l};
+  var iDia=el('input');iDia.type='date';iDia.value=hojeISO();var iServ=el('select');
+  if(!D.serv.length){var o0=el('option',null,'Cadastre a trança na aba Serviços');o0.value='';iServ.appendChild(o0)}
+  D.serv.forEach(function(s){var o=el('option',null,s.nome);o.value=s.id;iServ.appendChild(o)});
+  var iVal=el('input');iVal.inputMode='decimal';iVal.placeholder='Ex.: 180';var iSin=el('input');iSin.inputMode='decimal';iSin.placeholder='Ex.: 50';
+  var preVal=function(){var s=D.serv.filter(function(x){return x.id===iServ.value})[0];iVal.value=s?txt(s.preco):''};iServ.onchange=preVal;preVal();
+  var dd=el('div','duas');dd.appendChild(mk('h-dia','Dia',iDia));dd.appendChild(mk('h-serv','Trança',iServ));box.appendChild(dd);
+  var dv=el('div','duas');dv.appendChild(mk('h-valor','Valor cobrado (R$)',iVal));dv.appendChild(mk('h-sinal','Sinal pago (R$)',iSin));box.appendChild(dv);
+  var lc=el('label','chk');lc.htmlFor='h-mes';var ck=el('input');ck.type='checkbox';ck.id='h-mes';lc.appendChild(ck);lc.appendChild(document.createTextNode(' Anotar também no Meu mês (se ainda não tocou em "Fiz hoje")'));box.appendChild(lc);
+  var er=el('p','erro');er.setAttribute('role','alert');box.appendChild(er);
+  var bs=el('button','amar','Anotar atendimento');bs.type='button';bs.onclick=function(){var s=D.serv.filter(function(x){return x.id===iServ.value})[0],v=num(iVal.value),si=Math.max(0,num(iSin.value)||0);er.textContent='';
+    if(!/^\d{4}-\d{2}-\d{2}$/.test(iDia.value)){er.textContent='Escolha o dia.';return}if(!s){er.textContent='Escolha a trança. Se não tiver nenhuma, cadastre na aba Serviços.';return}
+    if(!v||v<=0){er.textContent='Ponha o valor cobrado.';iVal.focus();return}
+    var hi={id:uid(),dia:iDia.value,serv:s.id,nome:s.nome,preco:v,sinal:Math.min(si,v)};
+    if(ck.checked){var vd={id:uid(),nome:s.nome,preco:v,gasto:s.gasto,min:s.min,dia:iDia.value,cli:c.id};D.vendas.push(vd);hi.venda=vd.id}
+    c.hist.push(hi);c.chamei='';gravar();pintaCompleto();pintaMes();toast('Atendimento anotado')};box.appendChild(bs);f.appendChild(box);
+  var ac=el('div','acoes cheia'),bm=el('button',null,'Mudar dados');bm.type='button';bm.onclick=function(){abreFormCli(c)};ac.appendChild(bm);
+  var ap=el('button','perigo','Apagar cliente');ap.type='button';ac.appendChild(ap);f.appendChild(ac);
+  var cf=el('div','aviso');cf.hidden=true;cf.appendChild(el('p',null,'Apagar '+c.nome+'? O histórico e os horários dela somem. As tranças já anotadas no Meu mês continuam.'));
+  var ca=el('div','acoes'),sim=el('button','perigo','Sim, apagar');sim.type='button';sim.onclick=function(){D.cli=D.cli.filter(function(x){return x!==c});D.ag=D.ag.filter(function(a){return a.cli!==c.id});D.vendas.forEach(function(v){if(v.cli===c.id)delete v.cli});cliAberta=null;gravar();pintaCompleto();toast('Cliente apagada')};
+  var nao=el('button',null,'Não');nao.type='button';nao.onclick=function(){cf.hidden=true};ca.appendChild(sim);ca.appendChild(nao);cf.appendChild(ca);ap.onclick=function(){cf.hidden=false};f.appendChild(cf);
+  return f}
+
+/* ---------- Completo: agenda ---------- */
+var semOff=0;
+function inicioSemana(){var d=new Date();d.setDate(d.getDate()-((d.getDay()+6)%7)+7*semOff);return isoDe(d)}
+$('sem-ant').onclick=function(){semOff--;pintaAgenda()};$('sem-prox').onclick=function(){semOff++;pintaAgenda()};
+function falta(a){return Math.max(0,a.preco-a.sinal)}
+function msgLembrar(a,c){var d=difDias(hojeISO(),a.dia),f=falta(a);
+  return 'Oi, '+primeiro(c.nome)+'! '+(d===1?'Amanhã é o seu dia 💛':d===0?'Hoje é o seu dia 💛':'Passando para lembrar do seu horário: '+diaTxt(a.dia)+' 💛')+(a.hora?' Te espero às '+a.hora+'.':'')+(f>0?' O restante ('+brl(f)+') pode ser no Pix ou na hora.':'')}
+function itemAg(a){var c=cliPorId(a.cli),d=el('div','ag-item'),top=el('div','serv-top');
+  top.appendChild(el('b',null,(a.hora?a.hora+' · ':'')+(c?c.nome:'Cliente')));top.appendChild(el('span',null,brl(a.preco)));d.appendChild(top);
+  d.appendChild(el('p','sub',a.nome+' · sinal '+brl(a.sinal)+' · falta receber '+brl(falta(a))));
+  var ac=el('div','acoes cheia'),fz=el('button','forte','Feito ✓');fz.type='button';fz.onclick=function(){feito(a)};ac.appendChild(fz);
+  if(c&&zapOk(c.zap))ac.appendChild(aZap(c.zap,msgLembrar(a,c),'Lembrar'));
+  var t=el('button','leve','Tirar');t.type='button';t.onclick=function(){if(t.dataset.c){D.ag=D.ag.filter(function(x){return x!==a});gravar();pintaCompleto();toast('Horário tirado')}else{t.dataset.c='1';t.textContent='Tirar mesmo?';t.className='perigo'}};ac.appendChild(t);
+  d.appendChild(ac);return d}
+function feito(a){var h=hojeISO(),c=cliPorId(a.cli),s=servDe(a),dia=a.dia>h?h:a.dia;
+  var vd={id:uid(),nome:a.nome,preco:a.preco,gasto:s?s.gasto:0,min:s?s.min:0,dia:dia};if(c)vd.cli=c.id;D.vendas.push(vd);
+  if(c){c.hist.push({id:uid(),dia:dia,serv:s?s.id:a.serv,nome:a.nome,preco:a.preco,sinal:a.sinal,venda:vd.id});c.chamei=''}
+  D.ag=D.ag.filter(function(x){return x!==a});gravar();pintaCompleto();pintaMes();toast((c?'Anotado no histórico da '+primeiro(c.nome)+' e':'Anotado')+' no Meu mês')}
+function pintaAgenda(){var h=hojeISO(),ini=inicioSemana(),fim=somaDias(ini,6),ord=function(a,b){return (a.dia+a.hora)<(b.dia+b.hora)?-1:1};
+  var atras=D.ag.filter(function(a){return a.dia<h}).sort(ord),A=$('ag-atras');A.textContent='';$('ag-atras-box').hidden=!atras.length;
+  atras.forEach(function(a){A.appendChild(el('p','dia-ag',diaTxt(a.dia)));A.appendChild(itemAg(a))});
+  $('sem-nome').textContent=(semOff===0?'Esta semana · ':'')+dataBR(ini)+' a '+dataBR(fim);
+  var vs=D.ag.filter(function(a){return a.dia>=ini&&a.dia<=fim&&a.dia>=h}).sort(ord),tot=0,sin=0;vs.forEach(function(a){tot+=a.preco;sin+=Math.min(a.sinal,a.preco)});
+  var C=$('sem-conta');C.textContent='';
+  [['Horários marcados',String(vs.length)],['Vai entrar',brl(tot)],['Sinal já pago',brl(sin)]].forEach(function(x){var d=el('div');d.appendChild(el('span',null,x[0]));d.appendChild(el('span',null,x[1]));C.appendChild(d)});
+  var t=el('div','tot');t.appendChild(el('span',null,'Falta receber'));t.appendChild(el('span',null,brl(tot-sin)));C.appendChild(t);
+  var L=$('sem-lista');L.textContent='';if(!vs.length)L.appendChild(el('p','vazio',semOff<0?'Semana que já passou: o que foi feito está no histórico das clientes.':'Nenhum horário marcado nesta semana.'));
+  var ult='';vs.forEach(function(a){if(a.dia!==ult){ult=a.dia;L.appendChild(el('p','dia-ag',(a.dia===h?'hoje · ':'')+diaTxt(a.dia)))}L.appendChild(itemAg(a))})}
+function pintaFormAg(){var sc=$('ag-cli'),atual=sc.value;sc.textContent='';
+  var o=el('option',null,D.cli.length?'Escolha a cliente':'+ Cliente nova');o.value=D.cli.length?'':'__nova';sc.appendChild(o);
+  if(D.cli.length){var n=el('option',null,'+ Cliente nova');n.value='__nova';sc.appendChild(n)}
+  D.cli.slice().sort(function(a,b){return a.nome.localeCompare(b.nome,'pt-BR')}).forEach(function(c){var x=el('option',null,c.nome);x.value=c.id;sc.appendChild(x)});
+  if([].some.call(sc.options,function(x){return x.value===atual}))sc.value=atual;
+  var ss=$('ag-serv'),sa=ss.value;ss.textContent='';if(!D.serv.length){var z=el('option',null,'Cadastre a trança na aba Serviços');z.value='';ss.appendChild(z)}
+  D.serv.forEach(function(s){var x=el('option',null,s.nome);x.value=s.id;ss.appendChild(x)});if(D.serv.some(function(s){return s.id===sa}))ss.value=sa;
+  var nova=sc.value==='__nova';$('ag-cli-nova-box').hidden=!nova;$('ag-zap-box').hidden=!nova;agFalta()}
+function agFalta(){var v=num($('ag-valor').value)||0,s=num($('ag-sinal').value)||0;$('ag-falta').textContent='Falta receber no dia: '+brl(Math.max(0,v-s))}
+$('ag-cli').onchange=pintaFormAg;$('ag-valor').oninput=agFalta;$('ag-sinal').oninput=agFalta;
+$('ag-serv').onchange=function(){var s=D.serv.filter(function(x){return x.id===$('ag-serv').value})[0];if(s)$('ag-valor').value=txt(s.preco);agFalta()};
+$('ag-novo').onclick=function(){$('form-ag').hidden=false;$('ag-novo').hidden=true;$('ag-erro').textContent='';$('ag-cli').value='';$('ag-cli-nova').value='';$('ag-zap').value='';$('ag-sinal').value='';$('ag-hora').value='';
+  $('ag-dia').value=semOff>0?inicioSemana():hojeISO();pintaFormAg();var s=D.serv.filter(function(x){return x.id===$('ag-serv').value})[0];$('ag-valor').value=s?txt(s.preco):'';agFalta();$('form-ag').scrollIntoView({behavior:'smooth',block:'start'})};
+$('ag-cancelar').onclick=function(){$('form-ag').hidden=true;$('ag-novo').hidden=false};
+$('form-ag').addEventListener('submit',function(e){e.preventDefault();var E=$('ag-erro'),cv=$('ag-cli').value,s=D.serv.filter(function(x){return x.id===$('ag-serv').value})[0],dia=$('ag-dia').value,v=num($('ag-valor').value),si=Math.max(0,num($('ag-sinal').value)||0),c=null;E.textContent='';
+  if(cv==='__nova'){var nm=$('ag-cli-nova').value.trim(),z=limpaZap($('ag-zap').value);if(!nm){E.textContent='Ponha o nome da cliente.';$('ag-cli-nova').focus();return}
+    if(z&&!zapOk(z)){E.textContent='O WhatsApp precisa ter o DDD e o número. Ex.: 21987654321';$('ag-zap').focus();return}c={id:uid(),nome:nm,zap:z,obs:'',chamei:'',hist:[]}}
+  else{c=cliPorId(cv);if(!c){E.textContent='Escolha a cliente.';$('ag-cli').focus();return}}
+  if(!s){E.textContent='Escolha a trança. Se não tiver nenhuma, cadastre na aba Serviços.';return}
+  if(!/^\d{4}-\d{2}-\d{2}$/.test(dia)){E.textContent='Escolha o dia.';$('ag-dia').focus();return}
+  if(!v||v<=0){E.textContent='Ponha o valor.';$('ag-valor').focus();return}
+  if(cv==='__nova')D.cli.push(c);
+  D.ag.push({id:uid(),cli:c.id,serv:s.id,nome:s.nome,dia:dia,hora:/^\d{2}:\d{2}$/.test($('ag-hora').value)?$('ag-hora').value:'',preco:v,sinal:Math.min(si,v)});
+  semOff=dia<hojeISO()?0:Math.floor(difDias(somaDias(hojeISO(),-((new Date().getDay()+6)%7)),dia)/7);
+  gravar();$('form-ag').hidden=true;$('ag-novo').hidden=false;pintaCompleto();toast('Horário marcado para '+primeiro(c.nome))});
+
+/* ---------- Completo: mensagens prontas (textos do produto Recortes de conversa · Trancista) ---------- */
+var ASSUNTOS=[['todas','Todas'],['preco','Preço'],['orcamento','Orçamento'],['sinal','Sinal e horário'],['lembrete','Lembrete e cobrança'],['avaliacao','Avaliação'],['manutencao','Manutenção'],['dificil','Situações difíceis']];
+var RECORTES=[
+['preco','Primeira resposta','Oi, [nome]! Que bom que você chamou 💛 Me conta: qual trança você quer, de que tamanho e espessura? Se tiver uma foto de referência, manda aqui!'],
+['preco','Fora do horário','Oi, [nome]! Estou atendendo agora e vi sua mensagem. Assim que terminar te respondo, tá? Pode ir mandando a foto da trança que você quer 😊'],
+['preco','Catálogo','Aqui estão os modelos que eu faço, com os valores: [link ou fotos]. O jumbo [está/não está] incluso. Me diz qual te chamou atenção!'],
+['orcamento','Orçamento enviado','[nome], fica assim: [modelo], tamanho [tamanho], espessura [espessura]. Valor: R$ [valor] ([com/sem] jumbo). Tempo médio: [x] horas. Para reservar o horário, peço um sinal de R$ [valor] por Pix.'],
+['orcamento','Seguimento (2 dias depois)','Oi, [nome]! Ainda quer fazer a [modelo]? Minha agenda do mês está fechando, então se quiser garantir o horário é só me avisar 💛'],
+['orcamento','Pediram desconto','Entendo, [nome]! Uma opção mais em conta é [tamanho menor / espessura mais grossa / outro modelo], que fica R$ [valor]. Quer assim?'],
+['sinal','Dados do Pix','Perfeito! Para reservar seu horário, o Pix do sinal é: [chave]. Valor: R$ [valor]. Assim que cair, te mando a confirmação.'],
+['sinal','Horário confirmado','Sinal recebido! Seu horário está confirmado: [data], às [hora], em [endereço]. Remarcação só até [x] horas antes, tá?'],
+['sinal','Preparação','Para o dia: venha com o cabelo lavado, seco e desembaraçado, sem creme pesado. Se for trazer o jumbo, a cor é [cor] e são [x] pacotes. Traga um lanchinho, que a sessão é longa 😉'],
+['lembrete','Véspera (e o restante)','Oi, [nome]! Amanhã é o seu dia 💛 Te espero às [hora]. O restante (R$ [valor]) pode ser no Pix ou na hora.'],
+['lembrete','Endereço','Endereço: [endereço]. [Ponto de referência]. Quando chegar, me chama aqui!'],
+['lembrete','Cuidados pós-trança','Para sua trança durar: lave o couro cabeludo com shampoo diluído, seque bem, durma com touca de cetim e evite prender muito apertado nos primeiros dias. Dura em média [x] semanas 💛'],
+['avaliacao','Agradecimento','[nome], obrigada pela confiança! Ficou linda em você 😍 Me manda uma foto depois que assentar?'],
+['avaliacao','Avaliação e foto','Se puder, deixa uma avaliação aqui: [link do Google]. E posso postar a foto da sua trança no meu Instagram? Marco você! 📸'],
+['avaliacao','Indicação','Indicou uma amiga e ela fez a trança? Você ganha [desconto/brinde] na próxima manutenção 💛'],
+['manutencao','Lembrete de manutenção','Oi, [nome]! Já faz [x] semanas da sua trança 💛 Está na hora da manutenção para não forçar o fio. Quer que eu reserve um horário?'],
+['manutencao','Hora de tirar','Oi, [nome]! Sua trança já está com [x] semanas. O ideal é tirar até [prazo] para cuidar do cabelo. Quer marcar a remoção ou já a próxima trança?'],
+['manutencao','Quem sumiu','Oi, [nome], que saudade! Faz um tempo que você não vem. Abri horários para [mês]. Quer garantir o seu?'],
+['dificil','Atraso','[nome], estou atrasando uns [x] minutos com a cliente anterior. Peço desculpas! Já te aviso quando estiver livre.'],
+['dificil','Faltou sem avisar','Oi, [nome], senti sua falta hoje às [hora]. Está tudo bem? Como combinamos, o sinal [vale para remarcar até (prazo) / não é devolvido]. Quer remarcar?'],
+['dificil','Remarcação','Sem problema, [nome]! Tenho estes horários: [opções]. Qual fica melhor para você?'],
+['dificil','Reclamação','[nome], sinto muito que não ficou como você queria. Me manda uma foto? Se for algo que dá para ajustar, faço sem custo.']];
+var assunto='todas';
+function pintaMensagens(){var A=$('msgs-assuntos');A.textContent='';
+  ASSUNTOS.forEach(function(x){var b=el('button',null,x[1]);b.type='button';b.setAttribute('aria-pressed',String(x[0]===assunto));b.onclick=function(){assunto=x[0];pintaMensagens()};A.appendChild(b)});
+  var L=$('msgs-lista');L.textContent='';
+  RECORTES.forEach(function(r,i){if(assunto!=='todas'&&r[0]!==assunto)return;var d=el('div','msg');d.appendChild(el('b',null,(i+1)+'. '+r[1]));d.appendChild(el('p',null,r[2]));
+    var b=el('button','amar','Copiar');b.type='button';b.onclick=function(){copia(r[2])};d.appendChild(b);L.appendChild(d)})}
+
+/* ---------- Completo: quem e o que mais rendeu (Meu mês) ---------- */
+function pintaRank(){var R=$('rank-conteudo');R.textContent='';
+  if(!COMPLETO){var t=el('div','trava');t.appendChild(el('p',null,'🔒 No Completo, aqui aparecem as clientes e as tranças que mais deixaram dinheiro pra você no mês.'));
+    var a=el('a','botao','Destravar o Completo · R$ 40');a.href=CHECKOUT_COMPLETO;a.target='_blank';a.rel='noopener';t.appendChild(a);R.appendChild(t);return}
+  var vs=D.vendas.filter(function(v){return v.dia.slice(0,7)===mes}),tr={},cl={},sob=function(v){return v.preco*(1-taxa())-v.gasto};
+  vs.forEach(function(v){var k=v.nome;tr[k]=tr[k]||{n:0,s:0};tr[k].n++;tr[k].s+=sob(v);
+    var c=v.cli&&cliPorId(v.cli);if(c){cl[c.id]=cl[c.id]||{nome:c.nome,n:0,s:0};cl[c.id].n++;cl[c.id].s+=sob(v)}});
+  var bloco=function(tit,obj,rot,vazio){R.appendChild(el('b',null,tit));var lista=Object.keys(obj).map(function(k){return {nome:rot(k,obj[k]),n:obj[k].n,s:obj[k].s}}).sort(function(a,b){return b.s-a.s}).slice(0,3),box=el('div','rank');
+    if(!lista.length)box.appendChild(el('p','vazio',vazio));
+    lista.forEach(function(x,i){var d=el('div');d.appendChild(el('span',null,(i+1)+'º '+x.nome+' ('+x.n+'×)'));d.appendChild(el('b',x.s>=0?'bom':'ruim',brl(x.s)));box.appendChild(d)});R.appendChild(box)};
+  bloco('Tranças',tr,function(k){return k},'Nenhuma trança anotada neste mês.');
+  bloco('Clientes',cl,function(k,o){return o.nome},'Quando você marca "Feito" na Agenda ou anota o atendimento na ficha da cliente, ela entra aqui.')}
+
+/* ---------- Completo: pintura geral e interruptor de teste ---------- */
+function pintaCompleto(){
+  trava($('cli-trava'),'Clientes e lembrete de manutenção',['A ficha de cada cliente, com o WhatsApp e o que ela já fez.','A data da próxima manutenção de cada uma.','"Quem chamar hoje": a mensagem pronta para mandar com um toque.']);
+  trava($('ag-trava'),'Agenda com sinal e falta receber',['Os horários da semana com cliente, trança e valor.','Quanto de sinal já caiu e quanto falta receber.','Marcou como feito, entra no histórico e no Meu mês.']);
+  trava($('msgs-trava'),'22 mensagens prontas',['Preço, orçamento, sinal, lembrete, avaliação, manutenção e situações difíceis.','Tudo dentro do app, com um botão para copiar.']);
+  $('cli-tudo').hidden=!COMPLETO;$('ag-tudo').hidden=!COMPLETO;$('msgs-tudo').hidden=!COMPLETO;
+  $('oferta-recortes').hidden=COMPLETO;$('extra-recortes').hidden=COMPLETO;
+  if(COMPLETO){pintaChamar();pintaClientes();pintaAgenda();pintaMensagens();if(!$('form-ag').hidden)pintaFormAg()}
+  pintaAvisoChamar();pintaRank()}
+(function(){var n=0,t0=0;document.querySelector('.rodape').addEventListener('click',function(){if(!LOCAL)return;var t=Date.now();if(t-t0>4000)n=0;t0=t;n++;
+  if(n>=5){n=0;gravaFlag({v:!COMPLETO,teste:true,t:t});COMPLETO=lerCompleto();pintaTudo();toast('Teste: Completo '+(COMPLETO?'ligado':'desligado'))}})})();
+if(/^https?:$/.test(location.protocol)){confereCompleto(false);var ultH=hAcesso();setInterval(function(){var h=hAcesso();if(h!==ultH){ultH=h;confereCompleto(true)}},2000)}
+
 /* ---------- Abas ---------- */
-function abre(t){['servicos','mes','tabela','ajustes'].forEach(function(k){$('t-'+k).hidden=k!==t});
+var ABAS=['servicos','mes','clientes','agenda','mensagens','tabela','ajustes'];
+function abre(t){if(ABAS.indexOf(t)<0)t='servicos';ABAS.forEach(function(k){$('t-'+k).hidden=k!==t});
   [].forEach.call(document.querySelectorAll('.abas button'),function(b){b.setAttribute('aria-selected',String(b.dataset.t===t))});
-  if(t==='tabela')pintaTabela();if(t==='mes')pintaMes();if(t==='ajustes')pintaAjustes();window.scrollTo(0,0);try{sessionStorage.setItem(CHAVE+'-aba',t)}catch(e){}}
+  if(t==='tabela')pintaTabela();if(t==='mes')pintaMes();if(t==='ajustes')pintaAjustes();if(t==='clientes'||t==='agenda'||t==='mensagens')pintaCompleto();window.scrollTo(0,0);try{sessionStorage.setItem(CHAVE+'-aba',t)}catch(e){}}
 [].forEach.call(document.querySelectorAll('.abas button'),function(b){b.onclick=function(){abre(b.dataset.t)}});
 /* Com o teclado aberto o menu de baixo some (no iPhone ele ficava flutuando no meio da tela) e volta quando o teclado fecha. */
 (function(){var espera;function digita(e){var x=e.target;if(!x||!x.tagName)return false;if(x.tagName==='TEXTAREA')return true;if(x.tagName!=='INPUT')return false;return ['checkbox','radio','color','file','button','submit','range'].indexOf(x.type)<0}
 document.addEventListener('focusin',function(e){if(digita(e)){clearTimeout(espera);document.body.classList.add('digitando')}});
 document.addEventListener('focusout',function(e){if(digita(e)){clearTimeout(espera);espera=setTimeout(function(){document.body.classList.remove('digitando')},150)}})})();
-function pintaTudo(){pintaServ();pintaMes();pintaAjustes();pintaExtras();if(!$('t-tabela').hidden)pintaTabela()}
+function pintaTudo(){pintaServ();pintaMes();pintaAjustes();pintaExtras();pintaCompleto();if(!$('t-tabela').hidden)pintaTabela()}
 pintaTudo();
-var ini='servicos';try{ini=sessionStorage.getItem(CHAVE+'-aba')||ini}catch(e){}abre(ini);
+var ini='servicos';try{ini=sessionStorage.getItem(CHAVE+'-aba')||ini}catch(e){}if(ABAS.indexOf(location.hash.slice(1))>=0)ini=location.hash.slice(1);abre(ini);
 if(document.fonts&&document.fonts.ready)document.fonts.ready.then(function(){if(!$('t-tabela').hidden)pintaTabela()});
 })();
 </script>
@@ -709,7 +1107,7 @@ document.getElementById('portao-form').addEventListener('submit',function(e){e.p
   if(!c){er.textContent='Digite o e-mail da compra.';return}
   if(bruto.indexOf('@')>0){bt.disabled=true;bt.textContent='Conferindo...';
     api({email:bruto.toLowerCase()}).then(function(j){bt.disabled=false;bt.textContent='Entrar';
-      if(j.ok&&j.h){try{localStorage.setItem(K,'e:'+j.h);localStorage.setItem(K+'-v',String(Date.now()))}catch(_){}P.hidden=true;window.scrollTo(0,0);return}
+      if(j.ok&&j.h){try{localStorage.setItem(K,'e:'+j.h);localStorage.setItem(K+'-v',String(Date.now()));localStorage.setItem(K+'-completo',JSON.stringify({v:j.completo===true,h:j.h,t:Date.now()}))}catch(_){}P.hidden=true;window.scrollTo(0,0);return}
       er.textContent=j.motivo==='nao_achou'?'Não achei compra com esse e-mail. Confira se é o mesmo que você usou para pagar.':j.motivo==='reembolso'?'Essa compra foi reembolsada, por isso o acesso foi encerrado.':j.motivo==='muitas_tentativas'?'Muitas tentativas seguidas. Espere um pouco e tente de novo.':j.motivo==='email'?'Esse e-mail parece incompleto. Confira e tente de novo.':'A entrada por e-mail não respondeu agora. Use o código que chegou no e-mail da compra.'})
     .catch(function(){bt.disabled=false;bt.textContent='Entrar';er.textContent='Sem internet agora. Conecte e tente de novo, ou use o código que chegou no e-mail da compra.'});return}
   if(!window.crypto||!crypto.subtle){er.textContent='Este navegador não consegue conferir o código. Abra pelo Chrome ou pelo Safari.';return}
