@@ -5,7 +5,11 @@
 // A venda continua na Cakto (mesmo produto, mesma área de membros, mesmo aviso de compra em /api/cakto).
 // Variáveis secretas na Cloudflare: CAKTO_CLIENT_ID, CAKTO_CLIENT_SECRET (chave da Cakto API, escopo payments) e PIX_LEONA_CHAVE.
 // LGPD: e-mail e telefone só passam por aqui a caminho da Cakto; não são guardados.
-import { json, sha256, igual } from './_comum.js';
+import { json as jsonBase, sha256, igual } from './_comum.js';
+
+// toda resposta traz os mesmos campos (vazios no erro), para o Leona poder mapear todos no teste
+const VAZIO = { ok: false, erro: '', codigo: '', valor: '', expira: '', pedido: '', link: '' };
+const json = (obj, status) => jsonBase({ ...VAZIO, ...obj }, status);
 
 // oferta principal de R$ 27 de cada ramo (short_id da Cakto)
 const OFERTAS = { trancista: '4dkmz5v', confeitaria: 'p2rxiny' };
