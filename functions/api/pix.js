@@ -1,6 +1,7 @@
 // POST /api/pix — gera o Pix do Na Ponta do Lápis dentro da conversa do WhatsApp (caminho B, 19/11/2026).
 // Quem chama é o bloco "Integração HTTP" do Leona, com o cabeçalho X-JV-Chave = PIX_LEONA_CHAVE.
-// Corpo: { ramo, nome, email, telefone, chat, cpf? }  →  { ok, codigo, valor, expira, pedido, link }
+// Corpo: { ramo, nome, email, telefone, chat, cpf? }  →  { ok, erro, codigo, valor, expira, pedido, link }
+// Sempre 200 quando a chamada é legítima: o fluxo decide pelo campo "erro" (nenhum | email | ramo | telefone | cakto_*).
 // A venda continua na Cakto (mesmo produto, mesma área de membros, mesmo aviso de compra em /api/cakto).
 // Variáveis secretas na Cloudflare: CAKTO_CLIENT_ID, CAKTO_CLIENT_SECRET (chave da Cakto API, escopo payments) e PIX_LEONA_CHAVE.
 // LGPD: e-mail e telefone só passam por aqui a caminho da Cakto; não são guardados.
@@ -48,9 +49,9 @@ export async function onRequestPost({ request, env }) {
   let tel = soDigitos(c.telefone);
   if (tel.length === 10 || tel.length === 11) tel = '55' + tel;
   const nome = String(c.nome || '').trim().slice(0, 80) || 'Cliente';
-  if (!oferta) return json({ ok: false, erro: 'ramo' }, 422);
-  if (!email) return json({ ok: false, erro: 'email' }, 422);
-  if (tel.length < 12) return json({ ok: false, erro: 'telefone' }, 422);
+  if (!oferta) return json({ ok: false, erro: 'ramo' });
+  if (!email) return json({ ok: false, erro: 'email' });
+  if (tel.length < 12) return json({ ok: false, erro: 'telefone' });
 
   const cliente = { name: nome, email, phone: tel, fingerprint: 'jvwa_' + (await sha256('jv-fp:' + tel)).slice(0, 32) };
   const cpf = soDigitos(c.cpf);
@@ -77,14 +78,15 @@ export async function onRequestPost({ request, env }) {
     if (r.status === 401 && env.ACESSOS) { await env.ACESSOS.delete('cakto:token'); r = await pede(await token(env)); }
     j = await r.json().catch(() => ({}));
   } catch (e) {
-    return json({ ok: false, erro: 'cakto_fora' }, 502);
+    return json({ ok: false, erro: 'cakto_fora' });
   }
   if (!r.ok || !j.pix || !j.pix.qrCode) {
     const motivo = JSON.stringify(j).slice(0, 300);
-    return json({ ok: false, erro: 'cakto_' + r.status, motivo }, 502);
+    return json({ ok: false, erro: 'cakto_' + r.status, motivo });
   }
   return json({
     ok: true,
+    erro: 'nenhum',
     codigo: j.pix.qrCode,
     valor: reais(j.amount),
     expira: horaBrasilia(j.pix.expirationDate),
