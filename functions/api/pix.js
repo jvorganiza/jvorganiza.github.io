@@ -1,7 +1,7 @@
 // POST /api/pix — gera o Pix do Na Ponta do Lápis dentro da conversa do WhatsApp (caminho B, 19/11/2026).
 // Quem chama é o bloco "Integração HTTP" do Leona, com o cabeçalho X-JV-Chave = PIX_LEONA_CHAVE.
 // Corpo: { ramo, nome, email, telefone, chat, cpf? }  →  { ok, erro, codigo, valor, expira, pedido, link }
-// Sempre 200 quando a chamada é legítima: o fluxo decide pelo campo "erro" (nenhum | email | ramo | telefone | cakto_*).
+// Sempre 200 quando a chamada é legítima: o fluxo decide pelo campo "erro" (nenhum | email | cpf | ramo | telefone | cakto_*).
 // A venda continua na Cakto (mesmo produto, mesma área de membros, mesmo aviso de compra em /api/cakto).
 // Variáveis secretas na Cloudflare: CAKTO_CLIENT_ID, CAKTO_CLIENT_SECRET (chave da Cakto API, escopo payments) e PIX_LEONA_CHAVE.
 // LGPD: e-mail e telefone só passam por aqui a caminho da Cakto; não são guardados.
@@ -36,6 +36,16 @@ const horaBrasilia = iso => {
   const d = new Date(String(iso).replace(' ', 'T'));
   return isNaN(d) ? '' : d.toLocaleTimeString('pt-BR', { timeZone: 'America/Sao_Paulo', hour: '2-digit', minute: '2-digit' });
 };
+// CPF com dígitos verificadores certos
+const cpfValido = c => {
+  if (!/^\d{11}$/.test(c) || /^(\d){10}$/.test(c)) return false;
+  for (const n of [9, 10]) {
+    let soma = 0;
+    for (let i = 0; i < n; i++) soma += Number(c[i]) * (n + 1 - i);
+    if (((soma * 10) % 11) % 10 !== Number(c[n])) return false;
+  }
+  return true;
+};
 const reais = v => Number(v).toFixed(2).replace('.', ',');
 
 export async function onRequestPost({ request, env }) {
@@ -64,8 +74,10 @@ export async function onRequestPost({ request, env }) {
   if (tel.length < 12) return json({ ok: false, erro: 'telefone' });
 
   const cliente = { name: nome, email, phone: tel, fingerprint: 'jvwa_' + (await sha256('jv-fp:' + tel)).slice(0, 32) };
+  // a Cakto exige CPF para Pix no Brasil (testado em 19/11)
   const cpf = soDigitos(c.cpf);
-  if (cpf.length === 11) { cliente.docType = 'cpf'; cliente.docNumber = cpf; }
+  if (!cpfValido(cpf)) return json({ ok: false, erro: 'cpf' });
+  cliente.docType = 'cpf'; cliente.docNumber = cpf;
 
   const janela = Math.floor(Date.now() / (JANELA_MIN * 60000));
   // "Manda um código novo" soma 1 em tentativa no Leona → chave nova → Pix novo
