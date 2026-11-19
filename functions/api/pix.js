@@ -69,7 +69,8 @@ export async function onRequestPost({ request, env }) {
   const email = ((String(c.email || '').match(/[^\s@<>()"',;:]+@[^\s@<>()"',;:]+\.[a-z]{2,}/i) || [])[0] || '').toLowerCase();
   let tel = soDigitos(c.telefone);
   if (tel.length === 10 || tel.length === 11) tel = '55' + tel;
-  const nome = String(c.nome || '').trim().slice(0, 80) || 'Cliente';
+  // o Leona manda o nome em mais de uma variável; vale a primeira que veio preenchida (sem "{...}")
+  const nome = [c.nome, c.nome2, c.nome3].map(v => String(v || '').trim()).find(v => v && !/[{}]/.test(v))?.slice(0, 80) || 'Cliente';
   if (!oferta) return json({ ok: false, erro: 'ramo' });
   if (!email) return json({ ok: false, erro: 'email' });
   if (tel.length < 12) return json({ ok: false, erro: 'telefone' });
