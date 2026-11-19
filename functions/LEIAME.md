@@ -11,3 +11,8 @@ Configuração no painel da Cloudflare (projeto jvorganiza → Configurações �
 O e-mail da compradora não é guardado; fica só um resumo (SHA-256) dele.
 
 Segredo CAKTO_SECRET colado pelo João em 13/11/2026 (noite).
+
+## Pix na conversa (19/11/2026)
+- `api/pix.js`: o bloco "Integração HTTP" do Leona chama este endereço e recebe o Pix copia e cola da Cakto, para mandar na conversa.
+- Variáveis secretas necessárias: `CAKTO_CLIENT_ID` e `CAKTO_CLIENT_SECRET` (chave da Cakto API com escopo payments, criada pelo João) e `PIX_LEONA_CHAVE` (senha que o Leona manda no cabeçalho X-JV-Chave).
+- Sem essas variáveis, o endereço responde "nao_configurado" e não cobra nada.
