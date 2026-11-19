@@ -24,7 +24,7 @@ async function token(env) {
     headers: { 'content-type': 'application/x-www-form-urlencoded' },
     body: new URLSearchParams({ client_id: env.CAKTO_CLIENT_ID, client_secret: env.CAKTO_CLIENT_SECRET }),
   });
-  if (!r.ok) throw new Error('token ' + r.status);
+  if (!r.ok) throw new Error('token ' + r.status + ' ' + (await r.text()).slice(0, 200));
   const j = await r.json();
   const ttl = Math.max(300, (Number(j.expires_in) || 3600) - 600);
   if (env.ACESSOS) await env.ACESSOS.put('cakto:token', j.access_token, { expirationTtl: ttl });
@@ -45,6 +45,12 @@ export async function onRequestPost({ request, env }) {
   const cru = await request.text();
   if (cru.length > 2000) return json({ ok: false }, 413);
   let c; try { c = JSON.parse(cru); } catch (e) { return json({ ok: false, erro: 'json' }, 400); }
+
+  // diagnóstico: só confere o token da Cakto, sem criar pedido
+  if (c.diagnostico === true) {
+    try { await env.ACESSOS.delete('cakto:token'); await token(env); return json({ ok: true, erro: 'nenhum', motivo: 'token_ok' }); }
+    catch (e) { return json({ ok: false, erro: 'cakto_token', motivo: String(e.message).slice(0, 300) }); }
+  }
 
   const ramo = String(c.ramo || '').toLowerCase().trim();
   const oferta = OFERTAS[ramo];
@@ -84,7 +90,7 @@ export async function onRequestPost({ request, env }) {
     if (r.status === 401 && env.ACESSOS) { await env.ACESSOS.delete('cakto:token'); r = await pede(await token(env)); }
     j = await r.json().catch(() => ({}));
   } catch (e) {
-    return json({ ok: false, erro: 'cakto_fora' });
+    return json({ ok: false, erro: 'cakto_fora', motivo: String(e.message).slice(0, 300) });
   }
   if (!r.ok || !j.pix || !j.pix.qrCode) {
     const motivo = JSON.stringify(j).slice(0, 300);
