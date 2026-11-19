@@ -1,6 +1,6 @@
 // POST /api/pix — gera o Pix do Na Ponta do Lápis dentro da conversa do WhatsApp (caminho B, 19/11/2026).
 // Quem chama é o bloco "Integração HTTP" do Leona, com o cabeçalho X-JV-Chave = PIX_LEONA_CHAVE.
-// Corpo: { ramo, nome, email, telefone, chat, cpf? }  →  { ok, erro, codigo, valor, expira, pedido, link }
+// Corpo: { ramo, nome, email, cpf, telefone, chat, tentativa }  →  { ok, erro, codigo, valor, expira, pedido, link }
 // Sempre 200 quando a chamada é legítima: o fluxo decide pelo campo "erro" (nenhum | email | cpf | ramo | telefone | cakto_*).
 // A venda continua na Cakto (mesmo produto, mesma área de membros, mesmo aviso de compra em /api/cakto).
 // Variáveis secretas na Cloudflare: CAKTO_CLIENT_ID, CAKTO_CLIENT_SECRET (chave da Cakto API, escopo payments) e PIX_LEONA_CHAVE.
@@ -38,7 +38,8 @@ const horaBrasilia = iso => {
 };
 // CPF com dígitos verificadores certos
 const cpfValido = c => {
-  if (!/^\d{11}$/.test(c) || /^(\d){10}$/.test(c)) return false;
+  if (!/^\d{11}$/.test(c) || new Set(c).size === 1) return false;
+  if (false &&/^(\d){10}$/.test(c)) return false;
   for (const n of [9, 10]) {
     let soma = 0;
     for (let i = 0; i < n; i++) soma += Number(c[i]) * (n + 1 - i);
@@ -119,4 +120,4 @@ export async function onRequestPost({ request, env }) {
   });
 }
 
-export const onRequestGet = () => json({ ok: true, servico: 'pix na conversa' });
+export const onRequestGet = () => json({ ok: true, servico: 'pix na conversa' });
