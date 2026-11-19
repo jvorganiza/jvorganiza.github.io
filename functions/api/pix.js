@@ -58,7 +58,9 @@ export async function onRequestPost({ request, env }) {
   if (cpf.length === 11) { cliente.docType = 'cpf'; cliente.docNumber = cpf; }
 
   const janela = Math.floor(Date.now() / (JANELA_MIN * 60000));
-  const idem = await sha256(['jv-pix', tel, email, oferta, janela].join('|'));
+  // "Manda um código novo" soma 1 em tentativa no Leona → chave nova → Pix novo
+  const tentativa = soDigitos(c.tentativa).slice(0, 4) || '0';
+  const idem = await sha256(['jv-pix', tel, email, oferta, janela, tentativa].join('|'));
   const corpo = {
     paymentMethod: 'pix',
     customer: cliente,
