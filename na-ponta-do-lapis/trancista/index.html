@@ -236,8 +236,10 @@ section.bloco{padding-block:40px 10px;display:grid;gap:12px}
 function abre(){g.classList.add('aberta');g.setAttribute('aria-hidden','false');f.hidden=false;b.setAttribute('aria-expanded','true');document.body.style.overflow='hidden';x.focus();try{fbq('trackCustom','AbriuMenu',{pagina:document.body.dataset.pagina})}catch(_){}}
 function fecha(){g.classList.remove('aberta');g.setAttribute('aria-hidden','true');f.hidden=true;b.setAttribute('aria-expanded','false');document.body.style.overflow='';b.focus();}
 b.addEventListener('click',abre);x.addEventListener('click',fecha);f.addEventListener('click',fecha);document.addEventListener('keydown',function(e){if(e.key==='Escape'&&g.classList.contains('aberta'))fecha();});})();</script>
-<script>/* 20/11: repassa os utm_* da página para o checkout da Cakto, para saber de qual anúncio veio a venda */
-(function(){try{var q=new URLSearchParams(location.search),u=[];q.forEach(function(v,k){if(/^utm_/.test(k))u.push([k,v])});if(!u.length)return;
+<script>/* 20/11: repassa os utm_*, o fbclid e os cookies _fbp/_fbc para o checkout da Cakto (origem da venda e qualidade da API de Conversões) */
+(function(){try{var q=new URLSearchParams(location.search),u=[];q.forEach(function(v,k){if(/^utm_/.test(k)||k==='fbclid')u.push([k,v])});
+var ck=function(n){var m=document.cookie.match(new RegExp('(?:^|; )'+n+'=([^;]*)'));return m?decodeURIComponent(m[1]):''};
+var fbp=ck('_fbp'),fbc=ck('_fbc');if(!fbc&&q.get('fbclid'))fbc='fb.1.'+Date.now()+'.'+q.get('fbclid');if(fbp)u.push(['fbp',fbp]);if(fbc)u.push(['fbc',fbc]);if(!u.length)return;
 document.querySelectorAll('a[href*="pay.cakto.com.br"]').forEach(function(a){try{var x=new URL(a.href);u.forEach(function(p){x.searchParams.set(p[0],p[1])});a.href=x.toString()}catch(e){}})}catch(e){}})();</script>
 </body>
 </html>
