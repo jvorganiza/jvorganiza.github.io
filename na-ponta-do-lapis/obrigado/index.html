@@ -6,9 +6,15 @@
 <title>Compra confirmada · Empresa JV</title>
 <meta name="robots" content="noindex">
 <meta name="theme-color" content="#0E3B2A">
+<link rel="icon" href="/img/logo-jv-64.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&family=Caveat:wght@700&display=swap" rel="stylesheet">
+<!-- 20/11/2026 (noite): a mesma página serve a trancista e a confeitaria (?r=confeitaria). Para a trancista (padrão), o visual é o estilo C,
+     editorial da trancista (manual .claude/skills/designer-site-jv/SKILL.md): as regras ficam todas sob html.tc, e a confeitaria continua exatamente como era.
+     O script abaixo só escolhe a classe e as fontes; textos, vídeos, links e o pixel não mudaram. -->
+<script>(function(){var tc=new URLSearchParams(location.search).get('r')!=='confeitaria';if(tc)document.documentElement.classList.add('tc');
+var l=document.createElement('link');l.rel='stylesheet';l.href=tc?'https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Manrope:wght@500;700;800&display=swap':'https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&family=Caveat:wght@700&display=swap';document.head.appendChild(l)})();</script>
+<noscript><link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&family=Caveat:wght@700&display=swap" rel="stylesheet"></noscript>
 <script>if(!/jvorganiza/.test(location.hostname)){window.fbq=function(){console.log('[teste] fbq',[].slice.call(arguments))}}
 !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
 fbq('consent',(function(){try{return localStorage.getItem('jv-cookies')==='sim'}catch(e){return false}})()?'grant':'revoke');fbq('init','1129384439673429');fbq('track','PageView');fbq('trackCustom','AbriuPagina',{pagina:'npl-obrigado'});</script>
@@ -54,9 +60,54 @@ cakto-upsell-reject::part(button){width:100%;white-space:normal;background:trans
 footer{border-top:2px solid var(--tinta);padding-block:18px 36px;font-size:14px;color:var(--tinta2)}
 .esconde{display:none}
 </style>
+<style>
+/* Estilo C · editorial da trancista, só com html.tc (tokens do manual designer-site-jv, seção 5) */
+html.tc{--bg:#2a1c14;--bg2:#3a281c;--linha:#5a3f2c;--borda:#6b4a33;--ouro:#e6b980;--cobre:#c98a4b;--creme:#f3e7d3;--creme2:#d8c6aa;--areia:#b9a07e;--m:18px;--serif:'DM Serif Display',Georgia,'Times New Roman',serif;--sans:Manrope,system-ui,-apple-system,'Segoe UI',sans-serif;color-scheme:dark}
+.faixa{display:none}
+html.tc body{background:var(--bg);color:var(--creme);font:500 16px/1.55 var(--sans)}
+.tc .wrap{max-width:620px;padding-left:max(var(--m),env(safe-area-inset-left,0px));padding-right:max(var(--m),env(safe-area-inset-right,0px))}
+.tc header{background:var(--bg);color:var(--creme);border-bottom:0}
+.tc header .wrap{min-height:64px;padding-block:0;justify-content:space-between}
+.tc header img{display:none}
+.tc header b{font:400 22px/1 var(--serif)}
+.tc header b::after{content:"Trancistas";margin-left:14px;font:800 12px/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--ouro);vertical-align:middle}
+.tc .faixa{display:block;width:100%;height:110px}
+.tc .faixa use{fill:none;stroke-linecap:round}
+.tc main{gap:22px;padding-block:18px 56px}
+.tc .tag{transform:none;background:none;padding:0;font:800 12px/1.3 var(--sans);letter-spacing:.14em;color:var(--ouro)}
+.tc h1{font:400 clamp(40px,11.2vw,64px)/1.04 var(--serif);letter-spacing:-.01em;text-wrap:balance;max-width:14ch}
+.tc h1 em{background:none;padding:0;color:var(--ouro)}
+.tc .sub{font-size:16.5px;color:var(--creme2);max-width:44ch}
+.tc h2{font:400 26px/1.15 var(--serif);margin:0 0 12px}
+.tc .caixa{background:none;border:0;border-top:1px solid var(--linha);border-radius:0;padding:22px 0 0}
+.tc .caixa p{color:var(--creme2)}
+.tc .passos{list-style:none;padding:0;counter-reset:p;gap:0;border-top:1px solid var(--linha)}
+.tc .passos li{counter-increment:p;display:grid;grid-template-columns:40px minmax(0,1fr);column-gap:12px;align-items:baseline;padding:12px 0;border-bottom:1px solid var(--linha);color:var(--creme2)}
+.tc .passos li::before{content:"0" counter(p);font:400 26px/1 var(--serif);color:var(--cobre)}
+.tc video{justify-self:start;max-width:300px;border:1px solid var(--linha);border-radius:4px;box-shadow:none;background:var(--bg2)}
+.tc .btn{min-height:56px;border:0;border-radius:2px;background:var(--ouro);color:var(--bg);font:800 17px/1 var(--sans);white-space:nowrap;margin-top:6px}
+.tc .btn:hover{background:#efc996}
+.tc .btn.claro{background:transparent;border:1.5px solid var(--borda);color:var(--creme);font-size:15.5px}
+.tc .btn.claro:hover{border-color:var(--ouro)}
+.tc :focus-visible{outline:2px solid var(--ouro);outline-offset:3px}
+.tc footer{border-top:1px solid var(--linha);color:var(--areia);font-size:13px;padding-block:24px 32px}
+.tc #jv-cookies{background:#3a281c!important;color:#f3e7d3!important;border:1px solid #6b4a33!important;box-shadow:0 10px 30px rgba(0,0,0,.45)!important}
+.tc #jv-cookies *{color:#f3e7d3!important;font-family:Manrope,system-ui,sans-serif!important}
+.tc #jv-cookies a{color:#e6b980!important}
+.tc #jv-cookies button{min-height:44px!important;border-radius:4px!important;background:transparent!important;border:1.5px solid #6b4a33!important;color:#f3e7d3!important;font-weight:700!important}
+.tc #jv-cookies button:first-of-type{background:#e6b980!important;border-color:#e6b980!important;color:#2a1c14!important}
+@media (prefers-reduced-motion:no-preference){.tc .faixa .fio{stroke-dasharray:1;stroke-dashoffset:1;animation:desenha 1.7s cubic-bezier(.45,0,.2,1) forwards}.tc .fio.f2{animation-delay:.18s}.tc .fio.f3{animation-delay:.36s}}
+@keyframes desenha{to{stroke-dashoffset:0}}
+</style>
 </head>
 <body>
 <header><div class="wrap"><img src="/img/logo-jv-160.png" alt="" width="40" height="40"><b>Empresa JV</b></div></header>
+  <svg class="faixa" viewBox="0 0 1456 110" preserveAspectRatio="xMinYMid slice" aria-hidden="true">
+    <defs><path id="t1" pathLength="1" d="M-104.0 55.0C-95.5 41.7 -87.4 29.0 -78.0 29.0C-68.6 29.0 -60.5 41.7 -52.0 55.0C-43.5 68.3 -35.4 81.0 -26.0 81.0C-16.6 81.0 -8.5 68.3 0.0 55.0C8.5 41.7 16.6 29.0 26.0 29.0C35.4 29.0 43.5 41.7 52.0 55.0C60.5 68.3 68.6 81.0 78.0 81.0C87.4 81.0 95.5 68.3 104.0 55.0C112.5 41.7 120.6 29.0 130.0 29.0C139.4 29.0 147.5 41.7 156.0 55.0C164.5 68.3 172.6 81.0 182.0 81.0C191.4 81.0 199.5 68.3 208.0 55.0C216.5 41.7 224.6 29.0 234.0 29.0C243.4 29.0 251.5 41.7 260.0 55.0C268.5 68.3 276.6 81.0 286.0 81.0C295.4 81.0 303.5 68.3 312.0 55.0C320.5 41.7 328.6 29.0 338.0 29.0C347.4 29.0 355.5 41.7 364.0 55.0C372.5 68.3 380.6 81.0 390.0 81.0C399.4 81.0 407.5 68.3 416.0 55.0C424.5 41.7 432.6 29.0 442.0 29.0C451.4 29.0 459.5 41.7 468.0 55.0C476.5 68.3 484.6 81.0 494.0 81.0C503.4 81.0 511.5 68.3 520.0 55.0C528.5 41.7 536.6 29.0 546.0 29.0C555.4 29.0 563.5 41.7 572.0 55.0C580.5 68.3 588.6 81.0 598.0 81.0C607.4 81.0 615.5 68.3 624.0 55.0C632.5 41.7 640.6 29.0 650.0 29.0C659.4 29.0 667.5 41.7 676.0 55.0C684.5 68.3 692.6 81.0 702.0 81.0C711.4 81.0 719.5 68.3 728.0 55.0C736.5 41.7 744.6 29.0 754.0 29.0C763.4 29.0 771.5 41.7 780.0 55.0C788.5 68.3 796.6 81.0 806.0 81.0C815.4 81.0 823.5 68.3 832.0 55.0C840.5 41.7 848.6 29.0 858.0 29.0C867.4 29.0 875.5 41.7 884.0 55.0C892.5 68.3 900.6 81.0 910.0 81.0C919.4 81.0 927.5 68.3 936.0 55.0C944.5 41.7 952.6 29.0 962.0 29.0C971.4 29.0 979.5 41.7 988.0 55.0C996.5 68.3 1004.6 81.0 1014.0 81.0C1023.4 81.0 1031.5 68.3 1040.0 55.0C1048.5 41.7 1056.6 29.0 1066.0 29.0C1075.4 29.0 1083.5 41.7 1092.0 55.0C1100.5 68.3 1108.6 81.0 1118.0 81.0C1127.4 81.0 1135.5 68.3 1144.0 55.0C1152.5 41.7 1160.6 29.0 1170.0 29.0C1179.4 29.0 1187.5 41.7 1196.0 55.0C1204.5 68.3 1212.6 81.0 1222.0 81.0C1231.4 81.0 1239.5 68.3 1248.0 55.0C1256.5 41.7 1264.6 29.0 1274.0 29.0C1283.4 29.0 1291.5 41.7 1300.0 55.0C1308.5 68.3 1316.6 81.0 1326.0 81.0C1335.4 81.0 1343.5 68.3 1352.0 55.0C1360.5 41.7 1368.6 29.0 1378.0 29.0C1387.4 29.0 1395.5 41.7 1404.0 55.0C1412.5 68.3 1420.6 81.0 1430.0 81.0C1439.4 81.0 1447.5 68.3 1456.0 55.0C1464.5 41.7 1472.6 29.0 1482.0 29.0C1491.4 29.0 1499.5 41.7 1508.0 55.0"/><path id="t2" pathLength="1" d="M-138.7 55.0C-130.2 41.7 -122.1 29.0 -112.7 29.0C-103.3 29.0 -95.1 41.7 -86.7 55.0C-78.2 68.3 -70.1 81.0 -60.7 81.0C-51.3 81.0 -43.1 68.3 -34.7 55.0C-26.2 41.7 -18.1 29.0 -8.7 29.0C0.7 29.0 8.9 41.7 17.3 55.0C25.8 68.3 33.9 81.0 43.3 81.0C52.7 81.0 60.9 68.3 69.3 55.0C77.8 41.7 85.9 29.0 95.3 29.0C104.7 29.0 112.9 41.7 121.3 55.0C129.8 68.3 137.9 81.0 147.3 81.0C156.7 81.0 164.9 68.3 173.3 55.0C181.8 41.7 189.9 29.0 199.3 29.0C208.7 29.0 216.9 41.7 225.3 55.0C233.8 68.3 241.9 81.0 251.3 81.0C260.7 81.0 268.9 68.3 277.3 55.0C285.8 41.7 293.9 29.0 303.3 29.0C312.7 29.0 320.9 41.7 329.3 55.0C337.8 68.3 345.9 81.0 355.3 81.0C364.7 81.0 372.9 68.3 381.3 55.0C389.8 41.7 397.9 29.0 407.3 29.0C416.7 29.0 424.9 41.7 433.3 55.0C441.8 68.3 449.9 81.0 459.3 81.0C468.7 81.0 476.9 68.3 485.3 55.0C493.8 41.7 501.9 29.0 511.3 29.0C520.7 29.0 528.9 41.7 537.3 55.0C545.8 68.3 553.9 81.0 563.3 81.0C572.7 81.0 580.9 68.3 589.3 55.0C597.8 41.7 605.9 29.0 615.3 29.0C624.7 29.0 632.9 41.7 641.3 55.0C649.8 68.3 657.9 81.0 667.3 81.0C676.7 81.0 684.9 68.3 693.3 55.0C701.8 41.7 709.9 29.0 719.3 29.0C728.7 29.0 736.9 41.7 745.3 55.0C753.8 68.3 761.9 81.0 771.3 81.0C780.7 81.0 788.9 68.3 797.3 55.0C805.8 41.7 813.9 29.0 823.3 29.0C832.7 29.0 840.9 41.7 849.3 55.0C857.8 68.3 865.9 81.0 875.3 81.0C884.7 81.0 892.9 68.3 901.3 55.0C909.8 41.7 917.9 29.0 927.3 29.0C936.7 29.0 944.9 41.7 953.3 55.0C961.8 68.3 969.9 81.0 979.3 81.0C988.7 81.0 996.9 68.3 1005.3 55.0C1013.8 41.7 1021.9 29.0 1031.3 29.0C1040.7 29.0 1048.9 41.7 1057.3 55.0C1065.8 68.3 1073.9 81.0 1083.3 81.0C1092.7 81.0 1100.9 68.3 1109.3 55.0C1117.8 41.7 1125.9 29.0 1135.3 29.0C1144.7 29.0 1152.9 41.7 1161.3 55.0C1169.8 68.3 1177.9 81.0 1187.3 81.0C1196.7 81.0 1204.9 68.3 1213.3 55.0C1221.8 41.7 1229.9 29.0 1239.3 29.0C1248.7 29.0 1256.9 41.7 1265.3 55.0C1273.8 68.3 1281.9 81.0 1291.3 81.0C1300.7 81.0 1308.9 68.3 1317.3 55.0C1325.8 41.7 1333.9 29.0 1343.3 29.0C1352.7 29.0 1360.9 41.7 1369.3 55.0C1377.8 68.3 1385.9 81.0 1395.3 81.0C1404.7 81.0 1412.9 68.3 1421.3 55.0C1429.8 41.7 1437.9 29.0 1447.3 29.0C1456.7 29.0 1464.9 41.7 1473.3 55.0C1481.8 68.3 1489.9 81.0 1499.3 81.0"/><path id="t3" pathLength="1" d="M-173.3 55.0C-164.9 41.7 -156.7 29.0 -147.3 29.0C-137.9 29.0 -129.8 41.7 -121.3 55.0C-112.9 68.3 -104.7 81.0 -95.3 81.0C-85.9 81.0 -77.8 68.3 -69.3 55.0C-60.9 41.7 -52.7 29.0 -43.3 29.0C-33.9 29.0 -25.8 41.7 -17.3 55.0C-8.9 68.3 -0.7 81.0 8.7 81.0C18.1 81.0 26.2 68.3 34.7 55.0C43.1 41.7 51.3 29.0 60.7 29.0C70.1 29.0 78.2 41.7 86.7 55.0C95.1 68.3 103.3 81.0 112.7 81.0C122.1 81.0 130.2 68.3 138.7 55.0C147.1 41.7 155.3 29.0 164.7 29.0C174.1 29.0 182.2 41.7 190.7 55.0C199.1 68.3 207.3 81.0 216.7 81.0C226.1 81.0 234.2 68.3 242.7 55.0C251.1 41.7 259.3 29.0 268.7 29.0C278.1 29.0 286.2 41.7 294.7 55.0C303.1 68.3 311.3 81.0 320.7 81.0C330.1 81.0 338.2 68.3 346.7 55.0C355.1 41.7 363.3 29.0 372.7 29.0C382.1 29.0 390.2 41.7 398.7 55.0C407.1 68.3 415.3 81.0 424.7 81.0C434.1 81.0 442.2 68.3 450.7 55.0C459.1 41.7 467.3 29.0 476.7 29.0C486.1 29.0 494.2 41.7 502.7 55.0C511.1 68.3 519.3 81.0 528.7 81.0C538.1 81.0 546.2 68.3 554.7 55.0C563.1 41.7 571.3 29.0 580.7 29.0C590.1 29.0 598.2 41.7 606.7 55.0C615.1 68.3 623.3 81.0 632.7 81.0C642.1 81.0 650.2 68.3 658.7 55.0C667.1 41.7 675.3 29.0 684.7 29.0C694.1 29.0 702.2 41.7 710.7 55.0C719.1 68.3 727.3 81.0 736.7 81.0C746.1 81.0 754.2 68.3 762.7 55.0C771.1 41.7 779.3 29.0 788.7 29.0C798.1 29.0 806.2 41.7 814.7 55.0C823.1 68.3 831.3 81.0 840.7 81.0C850.1 81.0 858.2 68.3 866.7 55.0C875.1 41.7 883.3 29.0 892.7 29.0C902.1 29.0 910.2 41.7 918.7 55.0C927.1 68.3 935.3 81.0 944.7 81.0C954.1 81.0 962.2 68.3 970.7 55.0C979.1 41.7 987.3 29.0 996.7 29.0C1006.1 29.0 1014.2 41.7 1022.7 55.0C1031.1 68.3 1039.3 81.0 1048.7 81.0C1058.1 81.0 1066.2 68.3 1074.7 55.0C1083.1 41.7 1091.3 29.0 1100.7 29.0C1110.1 29.0 1118.2 41.7 1126.7 55.0C1135.1 68.3 1143.3 81.0 1152.7 81.0C1162.1 81.0 1170.2 68.3 1178.7 55.0C1187.1 41.7 1195.3 29.0 1204.7 29.0C1214.1 29.0 1222.2 41.7 1230.7 55.0C1239.1 68.3 1247.3 81.0 1256.7 81.0C1266.1 81.0 1274.2 68.3 1282.7 55.0C1291.1 41.7 1299.3 29.0 1308.7 29.0C1318.1 29.0 1326.2 41.7 1334.7 55.0C1343.1 68.3 1351.3 81.0 1360.7 81.0C1370.1 81.0 1378.2 68.3 1386.7 55.0C1395.1 41.7 1403.3 29.0 1412.7 29.0C1422.1 29.0 1430.2 41.7 1438.7 55.0C1447.1 68.3 1455.3 81.0 1464.7 81.0C1474.1 81.0 1482.2 68.3 1490.7 55.0"/></defs>
+    <use href="#t1" class="fio" stroke="#2a1c14" stroke-width="16"/><use href="#t1" class="fio" stroke="#c98a4b" stroke-width="9"/>
+    <use href="#t2" class="fio f2" stroke="#2a1c14" stroke-width="16"/><use href="#t2" class="fio f2" stroke="#e6b980" stroke-width="9"/>
+    <use href="#t3" class="fio f3" stroke="#2a1c14" stroke-width="16"/><use href="#t3" class="fio f3" stroke="#8a5a34" stroke-width="9"/>
+  </svg>
 <main class="wrap">
 <span class="tag">COMPRA CONFIRMADA</span>
 <h1>Tudo certo! <em>Agora é entrar.</em></h1>
@@ -65,7 +116,7 @@ footer{border-top:2px solid var(--tinta);padding-block:18px 36px;font-size:14px;
 <li>Abra o e-mail com o link de acesso. Não achou? Olhe o spam e a aba Promoções.</li>
 <li>Toque no link: ele abre no navegador do celular, sem baixar nada.</li>
 <li>Digite o mesmo e-mail da compra e cadastre a primeira trança ou encomenda.</li></ol></section>
-<video id="vid" controls playsinline preload="metadata" poster="/img/entrar-npl-tran.jpg" src="/video/entrar-na-ponta-do-lapis.mp4"></video>
+<video id="vid" controls playsinline preload="none" poster="/img/entrar-npl-tran.jpg" src="/video/entrar-na-ponta-do-lapis.mp4"></video>
 <section class="caixa esconde" id="b-kit"><h2>E o seu Kit?</h2><ol class="passos">
 <li>Chega outro e-mail, da Cakto, com o acesso à área de membros.</li>
 <li>Entre com o mesmo e-mail da compra e assista ao Comece aqui: a aula 2 traz o link do seu sistema.</li></ol>

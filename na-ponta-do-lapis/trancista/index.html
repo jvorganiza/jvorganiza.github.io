@@ -10,124 +10,199 @@
 <meta property="og:description" content="Na Ponta do Lápis para trancistas: veja quanto fica com você em cada trança, acompanhe o mês e monte a sua tabela de preços. Abre no celular, sem baixar nada. R$ 27, pagamento único.">
 <meta property="og:image" content="https://jvorganiza.com.br/img/na-ponta-do-lapis/tabela-trancista-colagem.png">
 <meta property="og:type" content="website">
-<meta name="theme-color" content="#0E3B2A">
+<meta name="theme-color" content="#2a1c14">
 <link rel="icon" href="/img/logo-jv-64.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700;800&family=Caveat:wght@700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/colagem.css">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Manrope:wght@500;700;800&display=swap" rel="stylesheet">
+<!-- 20/11/2026 (noite): página principal da trancista refeita no estilo C, editorial da trancista (manual .claude/skills/designer-site-jv/SKILL.md; referência: /na-ponta-do-lapis/trancista/a-conta/).
+     Saíram as cenas geradas por IA (vídeo da trancista trabalhando e a foto da trancista com o celular) e a "mesa" de tabelas tortas. Ficaram só desenho em código e prints/vídeos reais do app.
+     Textos, links, checkout (?split=1), pixel e o repasse de utm/fbclid/fbp/fbc são os mesmos de antes. O botão de teste grátis agora vai para o WhatsApp (data-teste, fbq Contact); a demonstração virou link pequeno. -->
 <script>if(!/jvorganiza/.test(location.hostname)){window.fbq=function(){console.log('[teste] fbq',[].slice.call(arguments))}}
 !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
 var ORIGEM=(new URLSearchParams(location.search).get('utm_source')||'direto');
 fbq('consent',(function(){try{return localStorage.getItem('jv-cookies')==='sim'}catch(e){return false}})()?'grant':'revoke');fbq('init','1129384439673429');fbq('track','PageView');fbq('trackCustom','AbriuPagina',{pagina:'quanto-sobra-trancista',origem:ORIGEM});var PROD={content_name:'Na Ponta do Lapis trancista',content_ids:['quanto-sobra-trancista'],content_type:'product',value:27,currency:'BRL'};fbq('track','ViewContent',PROD);
-document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a');if(!a)return;var h=a.getAttribute('href')||'';var d=/wa\.me/i.test(h)?'whatsapp':/pay\./i.test(h)?'checkout':/calculadora/.test(h)?'calculadora':/ir\/leona/.test(h)?'parceiro':/na-ponta/.test(h)?'produto':'outro';try{fbq('trackCustom','CliqueLink',{pagina:'quanto-sobra-trancista',destino:d,texto:(a.innerText||'').trim().slice(0,40)});if(d==='checkout')fbq('track','InitiateCheckout',PROD)}catch(_){}},true);</script>
+document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a');if(!a)return;var h=a.getAttribute('href')||'';var d=/wa\.me/i.test(h)?'whatsapp':/pay\./i.test(h)?'checkout':/calculadora/.test(h)?'calculadora':/ir\/leona/.test(h)?'parceiro':/\/demo\//.test(h)?'demonstracao':/na-ponta/.test(h)?'produto':'outro';try{fbq('trackCustom','CliqueLink',{pagina:'quanto-sobra-trancista',destino:d,texto:(a.innerText||'').trim().slice(0,40)});if(d==='checkout')fbq('track','InitiateCheckout',PROD);if(a.hasAttribute('data-teste'))fbq('track','Contact')}catch(_){}},true);</script>
 <script src="/cookies.js" defer></script>
 <script>try{if('IntersectionObserver' in window&&!matchMedia('(prefers-reduced-motion: reduce)').matches)document.documentElement.classList.add('mexe')}catch(e){}</script>
-<style>.acoes{display:flex;gap:8px;align-items:center}
+<style>
+/* Estilo C · editorial da trancista. Tokens da paleta do nicho (manual designer-site-jv, seção 5). */
+:root{--bg:#2a1c14;--bg2:#3a281c;--linha:#5a3f2c;--borda:#6b4a33;--ouro:#e6b980;--cobre:#c98a4b;--tinta:#8a5a34;--creme:#f3e7d3;--creme2:#d8c6aa;--areia:#b9a07e;--m:18px;--serif:'DM Serif Display',Georgia,'Times New Roman',serif;--sans:Manrope,system-ui,-apple-system,'Segoe UI',sans-serif;color-scheme:dark}
+@media (min-width:760px){:root{--m:32px}}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--creme);font:500 16px/1.55 var(--sans);-webkit-font-smoothing:antialiased}
+h1,h2,h3,p,figure,ul,ol{margin:0}
+img,video,svg{display:block;max-width:100%}
+img{height:auto}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--ouro);outline-offset:3px}
+.wrap{max-width:1184px;margin-inline:auto;padding-inline:var(--m)}
+.nw{white-space:nowrap}
+
+/* tipografia */
+.rot{display:block;font:800 12px/1.3 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--ouro)}
+h1{font:400 clamp(40px,11.2vw,80px)/1.02 var(--serif);letter-spacing:-.01em;max-width:15ch}
+h1 em{font-style:normal;color:var(--ouro)}
+h2{font:400 clamp(32px,8.6vw,54px)/1.06 var(--serif);margin-top:10px;max-width:18ch}
+h3{font:400 26px/1.15 var(--serif)}
+.frase{color:var(--creme2);font-size:16.5px;margin-top:12px;max-width:44ch}
+.leg{color:var(--areia);font-size:13.5px;margin-top:10px}
+
+/* botões: dourado e retangular, cantos retos */
+.btn{display:flex;align-items:center;justify-content:center;gap:10px;min-height:56px;padding:0 22px;width:100%;font:800 17px/1 var(--sans);text-decoration:none;border-radius:2px;white-space:nowrap;transition:background-color .15s,transform .12s;cursor:pointer}
+.btn:active{transform:scale(.98)}
+.btn.ouro{background:var(--ouro);color:var(--bg);border:0}
+.btn.ouro:hover{background:#efc996}
+.btn.contorno{background:transparent;border:1.5px solid var(--borda);color:var(--creme);min-height:52px;font-size:15.5px}
+.btn.contorno:hover{border-color:var(--ouro)}
+.btn svg{width:20px;height:20px;flex:none}
+@media (min-width:760px){.btn{width:auto;min-width:320px;justify-self:start}}
+
+/* topo (o menu do site fica, no visual da página) */
+.topo .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:64px}
+.marca{font:400 22px/1 var(--serif);text-decoration:none}
+.topo .lado{display:flex;align-items:center;gap:14px}
+.cta-topo{display:none}
+@media (min-width:760px){.cta-topo{display:flex;min-height:44px;min-width:0;font-size:14.5px;padding:0 16px}}
+.abre-menu{width:auto;min-width:0;min-height:44px;padding:0 14px;font-size:14.5px;gap:8px}
 .tracos{display:grid;gap:3px;width:16px}
-.tracos i{display:block;height:2.5px;background:var(--tinta);border-radius:2px}
-.fundo-menu{position:fixed;inset:0;background:rgba(22,19,15,.45);z-index:40}
-.gaveta{position:fixed;top:0;right:0;bottom:0;width:min(360px,88vw);background:var(--papel2) var(--ruido);border-left:3px solid var(--tinta);box-shadow:-8px 0 0 rgba(22,19,15,.18);z-index:50;transform:translateX(105%);transition:transform .25s ease;overflow-y:auto;padding:max(14px,env(safe-area-inset-top,0px)) max(18px,env(safe-area-inset-right,0px)) 30px 18px;display:flex;flex-direction:column;gap:6px}
+.tracos i{display:block;height:2px;background:var(--ouro)}
+.fundo-menu{position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:40}
+.gaveta{position:fixed;top:0;right:0;bottom:0;width:min(360px,88vw);background:var(--bg2);border-left:1px solid var(--borda);z-index:50;transform:translateX(105%);transition:transform .25s ease;overflow-y:auto;padding:max(14px,env(safe-area-inset-top,0px)) max(18px,env(safe-area-inset-right,0px)) 30px 18px;display:flex;flex-direction:column;gap:4px}
 .gaveta.aberta{transform:none}
 .gaveta-topo{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px}
-.fecha{width:42px;height:42px;border:2.5px solid var(--tinta);border-radius:10px;background:var(--amarelo);font:800 24px/1 Inter,sans-serif;cursor:pointer;box-shadow:3px 3px 0 var(--tinta)}
-.gaveta details{border-bottom:2px dashed rgba(22,19,15,.25);padding-block:6px}
-.gaveta summary{cursor:pointer;list-style:none;display:flex;align-items:baseline;justify-content:space-between;gap:8px;font:400 22px/1.2 Anton,Impact,sans-serif;text-transform:uppercase;padding-block:8px}
+.fecha{width:44px;height:44px;border:1.5px solid var(--borda);border-radius:2px;background:transparent;color:var(--creme);font:500 26px/1 var(--sans);cursor:pointer}
+.gaveta details{border-bottom:1px solid var(--linha);padding-block:4px}
+.gaveta summary{cursor:pointer;list-style:none;display:flex;align-items:baseline;justify-content:space-between;gap:8px;min-height:44px;padding-block:10px;font:400 22px/1.2 var(--serif)}
 .gaveta summary::-webkit-details-marker{display:none}
-.gaveta summary::after{content:"+";font:800 22px/1 Inter,sans-serif;margin-left:auto}
+.gaveta summary::after{content:"+";font:700 20px/1 var(--sans);color:var(--ouro);margin-left:auto}
 .gaveta details[open] summary::after{content:"–"}
-.gaveta summary small{font:600 13px/1 Inter,sans-serif;text-transform:none;color:var(--tinta2)}
-.gaveta details a{display:block;padding:9px 12px;margin:4px 0;background:var(--branco);border:2px solid var(--tinta);border-radius:10px;text-decoration:none;font-weight:600;font-size:16px}
-.gaveta details a:hover{background:var(--amarelo)}
-.nota-menu{font-size:14px;color:var(--tinta2);margin:2px 0 6px}
-.sub-menu{display:block;font:700 13px/1 Inter,sans-serif;letter-spacing:.06em;text-transform:uppercase;color:var(--tinta2);margin:12px 0 2px}
-.zap-menu{margin-top:16px}
-@media (max-width:420px){.acoes .cta-topo{display:none}}
-section.bloco{padding-block:40px 10px;display:grid;gap:12px}
-.faixa-calc{display:grid;gap:18px;padding-block:44px;align-items:center}
-.faixa-calc h2{color:var(--amarelo)}
-.faixa-calc p{color:#e7e1d2}
-@media (min-width:760px){.faixa-calc{grid-template-columns:1.4fr 1fr}}
-.passos{display:grid;gap:18px;counter-reset:p;margin-top:6px}
-@media (min-width:760px){.passos{grid-template-columns:repeat(3,1fr)}}
-.passos{gap:12px}
-.passo{padding:12px 16px;display:grid;grid-template-columns:44px minmax(0,1fr);gap:2px 12px;align-items:center}
-.passo svg{grid-row:span 2;width:44px;height:44px;background:var(--amarelo);border:2.5px solid var(--tinta);border-radius:50%;padding:8px}
-.passo b{font-size:18px}
-.passo span{color:var(--tinta2);font-size:15px}
-.cena-confia{margin:0}
-.cena-confia img{display:block;width:100%;height:auto;aspect-ratio:4/3;object-fit:cover;border:2.5px solid var(--tinta);border-radius:14px;box-shadow:6px 6px 0 var(--tinta);background:#1d2230}
-@media (min-width:760px){.cena-confia img{max-width:520px}}
-.confia{display:grid;gap:12px;margin-top:6px}
-@media (min-width:760px){.confia{grid-template-columns:repeat(4,1fr)}}
-.confia div{background:var(--papel2);border:2px dashed var(--tinta2);border-radius:12px;padding:14px 16px;font-size:15.5px}
-.confia b{display:block;font-size:16.5px}
-.faq{display:grid;gap:0;margin-top:4px}
-.faq details{border-bottom:2px dashed rgba(22,19,15,.25);padding:12px 2px}
-.faq summary{cursor:pointer;font-weight:700;font-size:17px;list-style:none;display:flex;gap:10px;justify-content:space-between}
+.gaveta summary small{font:700 12px/1 var(--sans);letter-spacing:.1em;text-transform:uppercase;color:var(--ouro)}
+.gaveta details a{display:flex;align-items:center;min-height:44px;padding:8px 0;border-top:1px solid var(--linha);text-decoration:none;font-weight:700;font-size:15.5px;color:var(--creme2)}
+.gaveta details a:hover{color:var(--ouro)}
+.nota-menu{font-size:14px;color:var(--areia);margin:0 0 8px}
+.sub-menu{display:block;font:800 12px/1 var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--ouro);margin:14px 0 4px}
+.zap-menu{margin-top:18px}
+
+/* abertura */
+.faixa{width:100%;height:110px}
+.faixa use{fill:none;stroke-linecap:round}
+.heroi .wrap{display:grid;gap:14px;padding-top:18px}
+.kicker{font-size:11.5px;letter-spacing:.08em;line-height:1.45;max-width:40ch;margin-bottom:-2px}
+.heroi .acoes{display:grid;gap:10px;margin-top:8px}
+.heroi .pix{color:var(--areia);font-size:13.5px}
+.heroi .btn.contorno{font-size:15px;padding:0 12px}
+@media (min-width:760px){.heroi .btn.contorno{font-size:15.5px;padding:0 22px}}
+@media (min-width:880px){.heroi .kicker{grid-column:1/-1;align-self:start}.heroi .wrap{grid-template-columns:1.25fr 1fr;column-gap:64px;align-items:end;padding-top:28px}.heroi .lado-b{display:grid;gap:14px}.heroi .acoes{justify-items:start}}
+
+section.bloco{padding-top:72px}
+@media (min-width:880px){section.bloco{padding-top:112px}}
+
+/* tela viva: time-lapse sem som numa moldura de celular desenhada em CSS */
+.viva{display:grid;gap:30px}
+.celular{position:relative;width:min(100%,300px);padding:26px 10px 14px;background:#140d09;border:1.5px solid var(--borda);border-radius:30px;box-shadow:0 0 0 1px #000 inset,0 18px 40px rgba(0,0,0,.35)}
+.tela-cel{position:relative;border-radius:21px;overflow:hidden;background:var(--bg2);aspect-ratio:9/16}
+.celular::before{content:"";position:absolute;top:10px;left:50%;width:56px;height:6px;margin-left:-28px;border-radius:3px;background:#3a281c}
+.tela-cel video{width:100%;height:100%;object-fit:cover}
+@media (min-width:880px){.viva{grid-template-columns:1fr 1fr;column-gap:64px;align-items:center}.celular{width:320px}}
+.video video{width:100%;max-width:380px;aspect-ratio:9/16;border:1px solid var(--linha);border-radius:4px;background:var(--bg2)}
+
+/* o que faz */
+.itens{display:grid;margin-top:26px;border-top:1px solid var(--linha)}
+.item{display:grid;gap:14px;padding:26px 0;border-bottom:1px solid var(--linha);min-width:0}
+.item .num{font:400 44px/1 var(--serif);color:var(--cobre)}
+.item b{display:block;font-weight:700;font-size:18px;line-height:1.35;margin-top:8px;max-width:34ch}
+.item .apoio{display:block;color:var(--areia);font-size:14.5px;margin-top:6px}
+.item .fone{max-height:360px;overflow:hidden;border:1px solid var(--linha);border-radius:4px;background:#fff;max-width:420px}
+.item .fone img{width:100%}
+.carrossel{display:grid;grid-auto-flow:column;grid-auto-columns:46%;gap:12px;overflow-x:auto;padding-bottom:8px;scroll-snap-type:x mandatory;scrollbar-width:thin}
+.carrossel img{border:1px solid var(--linha);border-radius:4px;scroll-snap-align:start;background:#fff}
+@media (min-width:880px){.item{grid-template-columns:120px minmax(0,1fr) minmax(0,1.2fr);column-gap:40px;align-items:start}}
+
+/* teste grátis */
+.teste .acoes{display:grid;gap:4px;margin-top:20px;justify-items:stretch}
+.teste .btn{font-size:15px;padding:0 12px;gap:8px}
+@media (min-width:760px){.teste .acoes{justify-items:start}.teste .btn{font-size:16px;padding:0 22px;gap:10px}}
+.link-demo{display:inline-flex;align-items:center;min-height:44px;color:var(--creme2);font-size:14.5px;text-decoration:underline;text-decoration-color:var(--borda);text-underline-offset:4px}
+.link-demo:hover{color:var(--ouro)}
+
+/* como você recebe: os 3 passos ao lado do vídeo da jornada */
+.confia-grid{display:grid;gap:28px;margin-top:22px}
+.confia{list-style:none;padding:0;border-top:1px solid var(--linha)}
+.confia li{display:grid;grid-template-columns:24px minmax(0,1fr);column-gap:14px;padding:14px 0;border-bottom:1px solid var(--linha);align-items:start}
+.confia svg{width:24px;height:24px;color:var(--ouro);margin-top:2px}
+.confia b{display:block;font-weight:700}
+.confia span{color:var(--areia);font-size:14.5px}
+@media (min-width:880px){.confia-grid{grid-template-columns:380px minmax(0,1fr);column-gap:64px;align-items:start}}
+
+/* preço */
+.compra{margin-top:72px;background:var(--bg2);padding-block:44px 48px}
+@media (min-width:880px){.compra{margin-top:112px;padding-block:64px}}
+.compra .wrap{display:grid;gap:10px}
+.compra .valor{color:var(--creme);font:400 clamp(96px,30vw,160px)/.9 var(--serif);letter-spacing:-.02em;margin-top:6px}
+.compra .valor small{font-size:.32em;letter-spacing:0;margin-right:.08em;vertical-align:.95em}
+.compra p{color:var(--creme2);font-size:16.5px}
+.compra p b{color:var(--creme)}
+.compra .btn{margin-top:12px}
+.compra .selos{display:flex;flex-wrap:wrap;gap:6px 18px;list-style:none;padding:0;margin-top:6px;color:var(--areia);font-size:13.5px}
+.compra .selos li{display:flex;align-items:center;gap:6px}
+.compra .selos svg{width:16px;height:16px;color:var(--ouro)}
+
+/* dúvidas */
+.faq{margin-top:22px;border-top:1px solid var(--linha);max-width:760px}
+.faq details{border-bottom:1px solid var(--linha)}
+.faq summary{cursor:pointer;list-style:none;display:flex;align-items:center;justify-content:space-between;gap:14px;min-height:56px;padding:12px 0;font-weight:700;font-size:16.5px;line-height:1.35}
 .faq summary::-webkit-details-marker{display:none}
-.faq summary::after{content:"+";font-weight:800}
-.faq details[open] summary::after{content:"–"}
-.faq p{margin-top:8px;color:var(--tinta2);max-width:64ch}
-.zap{margin-top:30px;padding:24px 18px;display:grid;gap:12px;justify-items:start}
-.zap .btn{width:100%;justify-self:stretch}
-.heroi{padding-block:22px 20px;display:grid;gap:20px;align-items:center;grid-template-areas:"cena" "txt"}
-.heroi .txt{display:grid;gap:14px;min-width:0;grid-area:txt}
-.cena{margin:0;grid-area:cena;min-width:0}
-.cena video{display:block;width:100%;height:auto;aspect-ratio:16/10;object-fit:cover;border:2.5px solid var(--tinta);border-radius:14px;box-shadow:6px 6px 0 var(--tinta);background:#3a2c20}
-@media (min-width:880px){.heroi{grid-template-columns:1.1fr .9fr;grid-template-areas:"txt cena" "txt mesa";padding-block:48px 30px}}
-.preco{background:var(--amarelo);border:2.5px solid var(--tinta);border-radius:14px;box-shadow:6px 6px 0 var(--tinta);padding:18px;display:grid;gap:12px;position:relative}
-.preco .lin{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
-.preco .valor{font:400 54px/1 Anton,Impact,sans-serif}
-.preco .vez{font-weight:700}
-.selos{display:flex;flex-wrap:wrap;gap:6px 14px;margin:0;padding:0;list-style:none;font-size:14px;font-weight:700}
-.selos li::before{content:"✓ ";color:var(--verde2)}
-.mesa{position:relative;height:380px;max-width:420px;width:100%;justify-self:start;grid-area:mesa}
-@media (max-width:879px){.mesa{display:none}}
-.mesa img{position:absolute;width:54%;border:2.5px solid var(--tinta);border-radius:12px;box-shadow:6px 6px 0 var(--tinta);background:#fff}
-.mesa .m1{left:2%;top:24px;transform:rotate(-6deg)}
-.mesa .m2{right:2%;top:0;transform:rotate(5deg)}
-.mesa .fita{top:6px;left:44%}
-.mesa .nota{position:absolute;left:2%;bottom:0;background:var(--branco);border:2px solid var(--tinta);padding:6px 12px;transform:rotate(-3deg);box-shadow:3px 3px 0 var(--tinta)}
-.video{display:grid;gap:12px}
-.video video{width:100%;aspect-ratio:9/16;border:3px solid var(--tinta);border-radius:18px;box-shadow:6px 6px 0 var(--tinta);background:#efe9dc}
-@media (min-width:760px){.video video{max-width:380px}}
-.telas{display:grid;gap:34px;margin-top:6px}
-.tela{display:grid;gap:14px;align-items:center}
-@media (min-width:860px){.tela{grid-template-columns:1fr 1fr}.tela:nth-child(even) .txt{order:2}}
-.tela .txt{display:grid;gap:6px;min-width:0}
-.tela .txt b{font-size:21px;line-height:1.25}
-.tela .txt span{color:var(--tinta2)}
-.tela .fone{padding:10px;max-height:460px;overflow:hidden}
-.tela .fone img{border-radius:8px;width:100%}
-.carrossel{display:grid;grid-auto-flow:column;grid-auto-columns:46%;gap:12px;overflow-x:auto;padding:4px 4px 10px;scroll-snap-type:x mandatory}
-.carrossel img{border:2px solid var(--tinta);border-radius:10px;scroll-snap-align:start;background:#fff}
-@media (min-width:860px){.carrossel{grid-auto-columns:23%}}
-.compra{padding:24px 18px;display:grid;gap:12px;background:var(--amarelo)}
-.compra .valor{font:400 58px/1 Anton,Impact,sans-serif}
-.dep{display:grid;gap:16px}
-@media (min-width:760px){.dep{grid-template-columns:repeat(3,1fr)}}
-.dep blockquote{margin:0;padding:18px;font-size:16.5px}
-.dep cite{display:block;margin-top:8px;font:700 20px/1 Caveat,cursive;font-style:normal;color:var(--verm)}
-.miudo-final{font-size:13.5px;color:var(--tinta2);max-width:70ch}
-@media (prefers-reduced-motion:no-preference){
-.mexe .rv{opacity:0;translate:0 12px;transition:opacity .5s ease,translate .5s ease}
-.mexe .rv.on{opacity:1;translate:none}
-}
-.fixo{position:fixed;left:0;right:0;bottom:0;z-index:30;background:var(--verde);color:#fff;padding:10px max(16px,env(safe-area-inset-right,0px)) calc(10px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px));display:flex;align-items:center;justify-content:space-between;gap:12px;transform:translateY(110%);transition:transform .2s}
+.faq summary::after{content:"";flex:none;width:12px;height:12px;background:linear-gradient(var(--ouro),var(--ouro)) center/12px 2px no-repeat,linear-gradient(var(--ouro),var(--ouro)) center/2px 12px no-repeat;transition:transform .2s}
+.faq details[open] summary::after{transform:rotate(45deg)}
+.faq p{color:var(--creme2);padding-bottom:16px;max-width:62ch}
+.faq p a{color:var(--ouro)}
+.zap{margin-top:48px;border-top:1px solid var(--linha);padding-top:28px;display:grid;gap:4px}
+.zap .btn{margin-top:16px}
+.miudo-final{font-size:13px;color:var(--areia);margin-top:44px;max-width:70ch}
+
+/* rodapé (o cookies.js põe aqui os links de Privacidade, Termos e Cookies) */
+.rodape{margin-top:40px;border-top:1px solid var(--linha);padding-block:24px 32px;color:var(--areia);font-size:13px}
+.rodape .wrap{display:grid;gap:6px}
+.rodape b{color:var(--creme2)}
+.rodape a{color:var(--creme2);display:inline-block;padding-block:6px}
+
+/* barra fixa de compra (só no celular) */
+.fixo{position:fixed;left:0;right:0;bottom:0;z-index:30;background:var(--bg2);border-top:1px solid var(--linha);padding:10px max(var(--m),env(safe-area-inset-right,0px)) calc(10px + env(safe-area-inset-bottom,0px)) max(var(--m),env(safe-area-inset-left,0px));display:flex;align-items:center;justify-content:space-between;gap:14px;transform:translateY(110%);transition:transform .2s,bottom .2s}
 .fixo.on{transform:none}
-.fixo b{font:400 26px/1 Anton,sans-serif}
-.fixo small{display:block;font-size:12.5px;opacity:.85}
+.fixo b{font:400 28px/1 var(--serif)}
+.fixo small{display:block;font-size:12px;color:var(--areia);white-space:nowrap;margin-top:2px}
+.fixo .btn{width:auto;min-height:48px;font-size:15.5px;padding:0 18px}
+@media (max-width:759px){body{padding-bottom:78px}html.jv-ck body{padding-bottom:calc(var(--jv-ck-h,0px) + 78px)}}
+@media (min-width:760px){.fixo{display:none}}
+
+/* movimento: só para quem não pediu menos movimento (a classe "mexe" vem do script do topo) */
+@media (prefers-reduced-motion:no-preference){
+.mexe .rv{opacity:0;transform:translateY(12px);transition:opacity .5s ease,transform .5s ease}
+.mexe .rv.on{opacity:1;transform:none}
+.mexe .faixa .fio{stroke-dasharray:1;stroke-dashoffset:1;animation:desenha 1.7s cubic-bezier(.45,0,.2,1) forwards}
+.mexe .fio.f2{animation-delay:.18s}.mexe .fio.f3{animation-delay:.36s}
+}
+@media (prefers-reduced-motion:reduce){.gaveta,.fixo{transition:none}}
+@keyframes desenha{to{stroke-dashoffset:0}}
+</style>
+<style>/* 20/11: aviso de cookies no visual da página (estilo C) */
+#jv-cookies{background:#3a281c!important;color:#f3e7d3!important;border:1px solid #6b4a33!important;box-shadow:0 10px 30px rgba(0,0,0,.45)!important}
+#jv-cookies *{color:#f3e7d3!important;font-family:Manrope,system-ui,sans-serif!important}
+#jv-cookies a{color:#e6b980!important}
+#jv-cookies button{min-height:44px!important;border-radius:4px!important;background:transparent!important;border:1.5px solid #6b4a33!important;color:#f3e7d3!important;font-weight:700!important}
+#jv-cookies button:first-of-type{background:#e6b980!important;border-color:#e6b980!important;color:#2a1c14!important}
 </style>
 </head>
 <body data-pagina="quanto-sobra-trancista">
-<header class="topo"><div class="wrap"><a class="marca" href="/"><img src="/img/logo-jv-160.png" alt="" width="42" height="42"><span>Empresa JV<small>na ponta do lápis</small></span></a>
-<div class="acoes"><a class="btn mini cta-topo" href="https://pay.cakto.com.br/4dkmz5v?split=1">Comprar</a>
-<button class="btn mini papel abre-menu" id="abre-menu" type="button" aria-controls="menu" aria-expanded="false"><span class="tracos" aria-hidden="true"><i></i><i></i><i></i></span>Menu</button></div></div></header>
+<header class="topo"><div class="wrap"><a class="marca" href="/">Na Ponta do Lápis</a>
+<div class="lado"><a class="btn ouro cta-topo" href="https://pay.cakto.com.br/4dkmz5v?split=1">Quero o meu · R$ 27</a>
+<button class="btn contorno abre-menu" id="abre-menu" type="button" aria-controls="menu" aria-expanded="false"><span class="tracos" aria-hidden="true"><i></i><i></i><i></i></span>Menu</button></div></div></header>
 
 <div class="fundo-menu" id="fundo-menu" hidden></div>
 <nav class="gaveta" id="menu" aria-label="Menu do site" aria-hidden="true">
-  <div class="gaveta-topo"><span class="bilhete" style="color:var(--verde)">tudo da JV aqui</span><button class="fecha" id="fecha-menu" type="button" aria-label="Fechar menu">×</button></div>
+  <div class="gaveta-topo"><span class="rot">Tudo da JV aqui</span><button class="fecha" id="fecha-menu" type="button" aria-label="Fechar menu">×</button></div>
   <details open><summary>Na Ponta do Lápis <small>R$ 27</small></summary>
     <a href="/na-ponta-do-lapis/trancista/">Para trancistas</a>
     <a href="/na-ponta-do-lapis/confeitaria/">Para confeiteiras</a>
@@ -154,101 +229,120 @@ section.bloco{padding-block:40px 10px;display:grid;gap:12px}
     <p class="nota-menu">O que a gente usa e indica para quem atende e cobra sozinha.</p>
     <a href="/ferramentas/">Ver as ferramentas</a>
   </details>
-  <a class="btn verde zap-menu" href="https://wa.me/5521977190618?text=Oi!%20Vi%20o%20Na%20Ponta%20do%20L%C3%A1pis%20de%20R%24%2027%20para%20tran%C3%A7a%20no%20site%20e%20fiquei%20com%20uma%20d%C3%BAvida">Falar no WhatsApp</a>
+  <a class="btn ouro zap-menu" href="https://wa.me/5521977190618?text=Oi!%20Vi%20o%20Na%20Ponta%20do%20L%C3%A1pis%20de%20R%24%2027%20para%20tran%C3%A7a%20no%20site%20e%20fiquei%20com%20uma%20d%C3%BAvida">Falar no WhatsApp</a>
 </nav>
 
 <main>
-<div class="wrap heroi">
-  <figure class="cena"><video autoplay muted loop playsinline preload="metadata" width="480" height="360" poster="/img/na-ponta-do-lapis/cenas/trancista-trabalhando.webp" src="/img/na-ponta-do-lapis/cenas/trancista-trabalhando.mp4" aria-label="Trancista fazendo uma trança na cliente"></video></figure>
-  <div class="txt">
-    <span class="etiqueta">Para trancistas</span>
-    <span class="bilhete">a conta que ninguém te ensinou</span>
-    <h1 class="titulo">Quanto sobra de cada trança? <span class="grifo">Agora você vai saber.</span></h1>
-    <p class="sub">Você põe o que cobra e o que gasta. Ele faz a conta, mostra o seu mês e monta a sua tabela. Tudo no celular.</p>
-    <div class="preco" id="topo-compra">
-      <div class="lin"><span class="valor">R$ 27</span><span class="vez">uma vez só, sem mensalidade</span></div>
-      <a class="btn verde" href="https://pay.cakto.com.br/4dkmz5v?split=1">Quero o meu Na Ponta do Lápis</a>
-      <ul class="selos"><li>Pix ou cartão</li><li>Garantia de 7 dias</li><li>Abre no celular</li></ul>
+<!-- 1) abertura -->
+<section class="heroi">
+  <svg class="faixa" viewBox="0 0 1456 110" preserveAspectRatio="xMinYMid slice" aria-hidden="true">
+    <defs><path id="t1" pathLength="1" d="M-104.0 55.0C-95.5 41.7 -87.4 29.0 -78.0 29.0C-68.6 29.0 -60.5 41.7 -52.0 55.0C-43.5 68.3 -35.4 81.0 -26.0 81.0C-16.6 81.0 -8.5 68.3 0.0 55.0C8.5 41.7 16.6 29.0 26.0 29.0C35.4 29.0 43.5 41.7 52.0 55.0C60.5 68.3 68.6 81.0 78.0 81.0C87.4 81.0 95.5 68.3 104.0 55.0C112.5 41.7 120.6 29.0 130.0 29.0C139.4 29.0 147.5 41.7 156.0 55.0C164.5 68.3 172.6 81.0 182.0 81.0C191.4 81.0 199.5 68.3 208.0 55.0C216.5 41.7 224.6 29.0 234.0 29.0C243.4 29.0 251.5 41.7 260.0 55.0C268.5 68.3 276.6 81.0 286.0 81.0C295.4 81.0 303.5 68.3 312.0 55.0C320.5 41.7 328.6 29.0 338.0 29.0C347.4 29.0 355.5 41.7 364.0 55.0C372.5 68.3 380.6 81.0 390.0 81.0C399.4 81.0 407.5 68.3 416.0 55.0C424.5 41.7 432.6 29.0 442.0 29.0C451.4 29.0 459.5 41.7 468.0 55.0C476.5 68.3 484.6 81.0 494.0 81.0C503.4 81.0 511.5 68.3 520.0 55.0C528.5 41.7 536.6 29.0 546.0 29.0C555.4 29.0 563.5 41.7 572.0 55.0C580.5 68.3 588.6 81.0 598.0 81.0C607.4 81.0 615.5 68.3 624.0 55.0C632.5 41.7 640.6 29.0 650.0 29.0C659.4 29.0 667.5 41.7 676.0 55.0C684.5 68.3 692.6 81.0 702.0 81.0C711.4 81.0 719.5 68.3 728.0 55.0C736.5 41.7 744.6 29.0 754.0 29.0C763.4 29.0 771.5 41.7 780.0 55.0C788.5 68.3 796.6 81.0 806.0 81.0C815.4 81.0 823.5 68.3 832.0 55.0C840.5 41.7 848.6 29.0 858.0 29.0C867.4 29.0 875.5 41.7 884.0 55.0C892.5 68.3 900.6 81.0 910.0 81.0C919.4 81.0 927.5 68.3 936.0 55.0C944.5 41.7 952.6 29.0 962.0 29.0C971.4 29.0 979.5 41.7 988.0 55.0C996.5 68.3 1004.6 81.0 1014.0 81.0C1023.4 81.0 1031.5 68.3 1040.0 55.0C1048.5 41.7 1056.6 29.0 1066.0 29.0C1075.4 29.0 1083.5 41.7 1092.0 55.0C1100.5 68.3 1108.6 81.0 1118.0 81.0C1127.4 81.0 1135.5 68.3 1144.0 55.0C1152.5 41.7 1160.6 29.0 1170.0 29.0C1179.4 29.0 1187.5 41.7 1196.0 55.0C1204.5 68.3 1212.6 81.0 1222.0 81.0C1231.4 81.0 1239.5 68.3 1248.0 55.0C1256.5 41.7 1264.6 29.0 1274.0 29.0C1283.4 29.0 1291.5 41.7 1300.0 55.0C1308.5 68.3 1316.6 81.0 1326.0 81.0C1335.4 81.0 1343.5 68.3 1352.0 55.0C1360.5 41.7 1368.6 29.0 1378.0 29.0C1387.4 29.0 1395.5 41.7 1404.0 55.0C1412.5 68.3 1420.6 81.0 1430.0 81.0C1439.4 81.0 1447.5 68.3 1456.0 55.0C1464.5 41.7 1472.6 29.0 1482.0 29.0C1491.4 29.0 1499.5 41.7 1508.0 55.0"/><path id="t2" pathLength="1" d="M-138.7 55.0C-130.2 41.7 -122.1 29.0 -112.7 29.0C-103.3 29.0 -95.1 41.7 -86.7 55.0C-78.2 68.3 -70.1 81.0 -60.7 81.0C-51.3 81.0 -43.1 68.3 -34.7 55.0C-26.2 41.7 -18.1 29.0 -8.7 29.0C0.7 29.0 8.9 41.7 17.3 55.0C25.8 68.3 33.9 81.0 43.3 81.0C52.7 81.0 60.9 68.3 69.3 55.0C77.8 41.7 85.9 29.0 95.3 29.0C104.7 29.0 112.9 41.7 121.3 55.0C129.8 68.3 137.9 81.0 147.3 81.0C156.7 81.0 164.9 68.3 173.3 55.0C181.8 41.7 189.9 29.0 199.3 29.0C208.7 29.0 216.9 41.7 225.3 55.0C233.8 68.3 241.9 81.0 251.3 81.0C260.7 81.0 268.9 68.3 277.3 55.0C285.8 41.7 293.9 29.0 303.3 29.0C312.7 29.0 320.9 41.7 329.3 55.0C337.8 68.3 345.9 81.0 355.3 81.0C364.7 81.0 372.9 68.3 381.3 55.0C389.8 41.7 397.9 29.0 407.3 29.0C416.7 29.0 424.9 41.7 433.3 55.0C441.8 68.3 449.9 81.0 459.3 81.0C468.7 81.0 476.9 68.3 485.3 55.0C493.8 41.7 501.9 29.0 511.3 29.0C520.7 29.0 528.9 41.7 537.3 55.0C545.8 68.3 553.9 81.0 563.3 81.0C572.7 81.0 580.9 68.3 589.3 55.0C597.8 41.7 605.9 29.0 615.3 29.0C624.7 29.0 632.9 41.7 641.3 55.0C649.8 68.3 657.9 81.0 667.3 81.0C676.7 81.0 684.9 68.3 693.3 55.0C701.8 41.7 709.9 29.0 719.3 29.0C728.7 29.0 736.9 41.7 745.3 55.0C753.8 68.3 761.9 81.0 771.3 81.0C780.7 81.0 788.9 68.3 797.3 55.0C805.8 41.7 813.9 29.0 823.3 29.0C832.7 29.0 840.9 41.7 849.3 55.0C857.8 68.3 865.9 81.0 875.3 81.0C884.7 81.0 892.9 68.3 901.3 55.0C909.8 41.7 917.9 29.0 927.3 29.0C936.7 29.0 944.9 41.7 953.3 55.0C961.8 68.3 969.9 81.0 979.3 81.0C988.7 81.0 996.9 68.3 1005.3 55.0C1013.8 41.7 1021.9 29.0 1031.3 29.0C1040.7 29.0 1048.9 41.7 1057.3 55.0C1065.8 68.3 1073.9 81.0 1083.3 81.0C1092.7 81.0 1100.9 68.3 1109.3 55.0C1117.8 41.7 1125.9 29.0 1135.3 29.0C1144.7 29.0 1152.9 41.7 1161.3 55.0C1169.8 68.3 1177.9 81.0 1187.3 81.0C1196.7 81.0 1204.9 68.3 1213.3 55.0C1221.8 41.7 1229.9 29.0 1239.3 29.0C1248.7 29.0 1256.9 41.7 1265.3 55.0C1273.8 68.3 1281.9 81.0 1291.3 81.0C1300.7 81.0 1308.9 68.3 1317.3 55.0C1325.8 41.7 1333.9 29.0 1343.3 29.0C1352.7 29.0 1360.9 41.7 1369.3 55.0C1377.8 68.3 1385.9 81.0 1395.3 81.0C1404.7 81.0 1412.9 68.3 1421.3 55.0C1429.8 41.7 1437.9 29.0 1447.3 29.0C1456.7 29.0 1464.9 41.7 1473.3 55.0C1481.8 68.3 1489.9 81.0 1499.3 81.0"/><path id="t3" pathLength="1" d="M-173.3 55.0C-164.9 41.7 -156.7 29.0 -147.3 29.0C-137.9 29.0 -129.8 41.7 -121.3 55.0C-112.9 68.3 -104.7 81.0 -95.3 81.0C-85.9 81.0 -77.8 68.3 -69.3 55.0C-60.9 41.7 -52.7 29.0 -43.3 29.0C-33.9 29.0 -25.8 41.7 -17.3 55.0C-8.9 68.3 -0.7 81.0 8.7 81.0C18.1 81.0 26.2 68.3 34.7 55.0C43.1 41.7 51.3 29.0 60.7 29.0C70.1 29.0 78.2 41.7 86.7 55.0C95.1 68.3 103.3 81.0 112.7 81.0C122.1 81.0 130.2 68.3 138.7 55.0C147.1 41.7 155.3 29.0 164.7 29.0C174.1 29.0 182.2 41.7 190.7 55.0C199.1 68.3 207.3 81.0 216.7 81.0C226.1 81.0 234.2 68.3 242.7 55.0C251.1 41.7 259.3 29.0 268.7 29.0C278.1 29.0 286.2 41.7 294.7 55.0C303.1 68.3 311.3 81.0 320.7 81.0C330.1 81.0 338.2 68.3 346.7 55.0C355.1 41.7 363.3 29.0 372.7 29.0C382.1 29.0 390.2 41.7 398.7 55.0C407.1 68.3 415.3 81.0 424.7 81.0C434.1 81.0 442.2 68.3 450.7 55.0C459.1 41.7 467.3 29.0 476.7 29.0C486.1 29.0 494.2 41.7 502.7 55.0C511.1 68.3 519.3 81.0 528.7 81.0C538.1 81.0 546.2 68.3 554.7 55.0C563.1 41.7 571.3 29.0 580.7 29.0C590.1 29.0 598.2 41.7 606.7 55.0C615.1 68.3 623.3 81.0 632.7 81.0C642.1 81.0 650.2 68.3 658.7 55.0C667.1 41.7 675.3 29.0 684.7 29.0C694.1 29.0 702.2 41.7 710.7 55.0C719.1 68.3 727.3 81.0 736.7 81.0C746.1 81.0 754.2 68.3 762.7 55.0C771.1 41.7 779.3 29.0 788.7 29.0C798.1 29.0 806.2 41.7 814.7 55.0C823.1 68.3 831.3 81.0 840.7 81.0C850.1 81.0 858.2 68.3 866.7 55.0C875.1 41.7 883.3 29.0 892.7 29.0C902.1 29.0 910.2 41.7 918.7 55.0C927.1 68.3 935.3 81.0 944.7 81.0C954.1 81.0 962.2 68.3 970.7 55.0C979.1 41.7 987.3 29.0 996.7 29.0C1006.1 29.0 1014.2 41.7 1022.7 55.0C1031.1 68.3 1039.3 81.0 1048.7 81.0C1058.1 81.0 1066.2 68.3 1074.7 55.0C1083.1 41.7 1091.3 29.0 1100.7 29.0C1110.1 29.0 1118.2 41.7 1126.7 55.0C1135.1 68.3 1143.3 81.0 1152.7 81.0C1162.1 81.0 1170.2 68.3 1178.7 55.0C1187.1 41.7 1195.3 29.0 1204.7 29.0C1214.1 29.0 1222.2 41.7 1230.7 55.0C1239.1 68.3 1247.3 81.0 1256.7 81.0C1266.1 81.0 1274.2 68.3 1282.7 55.0C1291.1 41.7 1299.3 29.0 1308.7 29.0C1318.1 29.0 1326.2 41.7 1334.7 55.0C1343.1 68.3 1351.3 81.0 1360.7 81.0C1370.1 81.0 1378.2 68.3 1386.7 55.0C1395.1 41.7 1403.3 29.0 1412.7 29.0C1422.1 29.0 1430.2 41.7 1438.7 55.0C1447.1 68.3 1455.3 81.0 1464.7 81.0C1474.1 81.0 1482.2 68.3 1490.7 55.0"/></defs>
+    <use href="#t1" class="fio" stroke="#2a1c14" stroke-width="16"/><use href="#t1" class="fio" stroke="#c98a4b" stroke-width="9"/>
+    <use href="#t2" class="fio f2" stroke="#2a1c14" stroke-width="16"/><use href="#t2" class="fio f2" stroke="#e6b980" stroke-width="9"/>
+    <use href="#t3" class="fio f3" stroke="#2a1c14" stroke-width="16"/><use href="#t3" class="fio f3" stroke="#8a5a34" stroke-width="9"/>
+  </svg>
+  <div class="wrap">
+    <span class="rot kicker">Para trancistas · a conta que ninguém te ensinou</span>
+    <h1>Quanto sobra de cada trança? <em>Agora você vai saber.</em></h1>
+    <div class="lado-b">
+      <p class="frase">Você põe o que cobra e o que gasta. Ele faz a conta, mostra o seu mês e monta a sua tabela. Tudo no celular.</p>
+      <div class="acoes" id="topo-compra">
+        <a class="btn ouro" href="https://pay.cakto.com.br/4dkmz5v?split=1">Quero o meu · R$ 27</a>
+        <p class="pix">uma vez só, sem mensalidade · Pix ou cartão · 7 dias de garantia</p>
+        <a class="btn contorno" href="https://wa.me/5521977190618?text=Oi!%20Quero%20testar%20gr%C3%A1tis%20por%201%20dia%20o%20Na%20Ponta%20do%20L%C3%A1pis%20para%20tran%C3%A7a" target="_blank" rel="noopener" data-teste>Receber meu teste grátis no WhatsApp</a>
+      </div>
     </div>
   </div>
-  <div class="mesa" aria-label="Exemplos feitos no sistema">
-    <img class="m1" src="/img/na-ponta-do-lapis/telas/tabela-colagem.jpg" alt="Tabela no modelo Colagem" loading="lazy">
-    <img class="m2" src="/img/na-ponta-do-lapis/telas/tabela-noite.jpg" alt="Tabela no modelo Noite" loading="lazy">
-    <span class="fita"></span>
-    <span class="nota bilhete" style="color:var(--verde)">os nomes e preços são os seus</span>
-  </div>
-</div>
-
-<section class="wrap bloco video">
-  <span class="bilhete">aperta o play</span>
-  <h2 class="titulo2">Veja funcionando em 1 minuto</h2>
-  <video controls playsinline preload="none" poster="/img/na-ponta-do-lapis/telas/tour-capa.jpg" src="/video/na-ponta-do-lapis-trancista.mp4"></video>
-  <p class="miudo">Da compra até a tabela pronta, com as telas de verdade.</p>
 </section>
 
+<!-- 2) a tela viva (20/11: no lugar do vídeo narrado de 1 minuto, que repetia o da jornada): time-lapse sem som, gravado na demonstração em 20/11/2026 (fulani R$ 280, 2 pacotes de jumbo, pomada, 5 h; contas do mês R$ 443; 8 toques) -->
+<section class="wrap bloco viva">
+  <div class="rv">
+    <span class="rot">A tela, de verdade</span>
+    <h2>A conta se fazendo no app</h2>
+    <p class="frase">A fulani entra, o “sobra” aparece, o mês soma e a tabela sai com a logo.</p>
+    <p class="leg">Sem som · 19 segundos · números da demonstração</p>
+  </div>
+  <div class="celular rv" role="img" aria-label="Vídeo sem som do app: cadastro da fulani, a sobra de R$ 210, o mês com sobra de R$ 1.237 e a tabela de preços com logo">
+    <div class="tela-cel">
+      <video muted loop playsinline preload="none" width="720" height="1280" poster="/img/na-ponta-do-lapis/telas/tela-viva-capa.webp" data-src="/video/tela-viva-trancista.mp4" aria-hidden="true"></video>
+    </div>
+  </div>
+</section>
+
+<!-- 3) o que você faz nele -->
 <section class="wrap bloco">
-  <h2 class="titulo2">O que você faz nele</h2>
-  <div class="telas">
-<div class="tela rv"><div class="txt"><span class="etiqueta">Minhas tranças</span><b>Quanto sobra em cada trança e quanto vale a sua hora.</b></div><div class="recorte fone"><span class="fita"></span><img src="/img/na-ponta-do-lapis/telas/minhas-trancas.jpg" alt="Tela com nagô, fulani e boho e quanto sobra em cada uma" loading="lazy"></div></div>
-<div class="tela rv"><div class="txt"><span class="etiqueta">Meu mês</span><b>Fez uma trança, tocou nela. No fim do mês, você vê o que sobrou.</b></div><div class="recorte fone"><span class="fita dir"></span><img src="/img/na-ponta-do-lapis/telas/meu-mes.jpg" alt="Tela Como ficou o seu mês" loading="lazy"></div></div>
-<div class="tela rv"><div class="txt"><span class="etiqueta">Tabela</span><b>Sua logo, suas cores, quatro modelos.</b><span>Pronta para o WhatsApp, o feed e o story.</span></div><div class="carrossel"><img src="/img/na-ponta-do-lapis/telas/tabela-colagem.jpg" alt="Modelo Colagem" loading="lazy"><img src="/img/na-ponta-do-lapis/telas/tabela-noite.jpg" alt="Modelo Noite" loading="lazy"><img src="/img/na-ponta-do-lapis/telas/tabela-delicado.jpg" alt="Modelo Delicado, de promoção" loading="lazy"><img src="/img/na-ponta-do-lapis/telas/tabela-limpo.jpg" alt="Modelo Clean" loading="lazy"></div></div>
-<div class="tela rv"><div class="txt"><span class="etiqueta">Mensagens prontas</span><b>Preço novo, promoção, horário e sinal: é só copiar e mandar.</b></div><div class="recorte fone"><span class="fita dir"></span><img src="/img/na-ponta-do-lapis/telas/mensagens.jpg" alt="Tela de mensagens prontas" loading="lazy"></div></div>
+  <span class="rot rv">Quatro telas, tudo no seu celular</span>
+  <h2 class="rv">O que você faz nele</h2>
+  <div class="itens">
+    <div class="item rv"><span class="num">01</span><div><span class="rot">Minhas tranças</span><b>Quanto sobra em cada trança e quanto vale a sua hora.</b></div><div class="fone"><img src="/img/na-ponta-do-lapis/telas/minhas-trancas.jpg" alt="Tela com nagô, fulani e boho e quanto sobra em cada uma" width="720" height="864" loading="lazy"></div></div>
+    <div class="item rv"><span class="num">02</span><div><span class="rot">Meu mês</span><b>Fez uma trança, tocou nela. No fim do mês, você vê o que sobrou.</b></div><div class="fone"><img src="/img/na-ponta-do-lapis/telas/meu-mes.jpg" alt="Tela Como ficou o seu mês" width="720" height="709" loading="lazy"></div></div>
+    <div class="item rv"><span class="num">03</span><div><span class="rot">Tabela</span><b>Sua logo, suas cores, quatro modelos.</b><span class="apoio">Pronta para o WhatsApp, o feed e o story.</span></div><div class="carrossel" data-livre><img src="/img/na-ponta-do-lapis/telas/tabela-colagem.jpg" alt="Modelo Colagem" width="540" height="894" loading="lazy"><img src="/img/na-ponta-do-lapis/telas/tabela-noite.jpg" alt="Modelo Noite" width="540" height="900" loading="lazy"><img src="/img/na-ponta-do-lapis/telas/tabela-delicado.jpg" alt="Modelo Delicado, de promoção" width="540" height="878" loading="lazy"><img src="/img/na-ponta-do-lapis/telas/tabela-limpo.jpg" alt="Modelo Clean" width="540" height="878" loading="lazy"></div></div>
+    <div class="item rv"><span class="num">04</span><div><span class="rot">Mensagens prontas</span><b>Preço novo, promoção, horário e sinal: é só copiar e mandar.</b></div><div class="fone"><img src="/img/na-ponta-do-lapis/telas/mensagens.jpg" alt="Tela de mensagens prontas" width="720" height="908" loading="lazy"></div></div>
   </div>
 </section>
 
-<section class="wrap bloco">
-  <span class="bilhete">sem complicação</span>
-  <h2 class="titulo2">Como você recebe</h2>
-  <figure class="cena-confia rv"><img src="/img/na-ponta-do-lapis/cenas/trancista-celular.webp" alt="A trancista mostra o celular, sorrindo" width="480" height="360" loading="lazy"></figure>
-  <div class="passos">
-    <div class="recorte passo rv"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="#16130f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="5.5" width="19" height="13" rx="2"/><path d="M2.5 10h19M6 15h4"/></svg><b>Paga no Pix ou no cartão</b><span>Pela Cakto, plataforma de pagamento.</span></div>
-    <div class="recorte passo rv"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="#16130f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3.5 6.5l8.5 6.5 8.5-6.5"/></svg><b>O link chega no seu e-mail</b><span>Na hora, no e-mail da compra.</span></div>
-    <div class="recorte passo rv"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="#16130f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="6.5" y="2.5" width="11" height="19" rx="2.5"/><path d="M11 18.5h2"/></svg><b>Abre no celular e começa</b><span>Entra com o mesmo e-mail e cadastra a primeira trança.</span></div>
+<!-- 4) teste grátis: pelo WhatsApp (a demonstração fica como link pequeno) -->
+<section class="wrap bloco teste" id="teste">
+  <div class="rv">
+    <span class="rot">Grátis</span>
+    <h2>Ainda não quer comprar?</h2>
+    <p class="frase">Testa por 1 dia com as suas tranças, sem cartão. O link chega no seu WhatsApp.</p>
+    <div class="acoes">
+      <a class="btn ouro" href="https://wa.me/5521977190618?text=Oi!%20Quero%20testar%20gr%C3%A1tis%20por%201%20dia%20o%20Na%20Ponta%20do%20L%C3%A1pis%20para%20tran%C3%A7a" target="_blank" rel="noopener" data-teste><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20l1.3-4A8 8 0 1 1 8.5 19z"/><path d="M9 9.5c.3 2.6 2.4 4.8 5 5"/></svg>Receber meu teste grátis no WhatsApp</a>
+      <a class="link-demo" href="/na-ponta-do-lapis/trancista/demo/">ou testar agora uma trança de exemplo, sem cadastro</a>
+    </div>
   </div>
 </section>
 
-<section class="wrap bloco video">
-  <span class="bilhete">tá com medo de comprar?</span>
-  <h2 class="titulo2">Do Pix até a primeira trança</h2>
-  <video controls playsinline preload="none" poster="/img/na-ponta-do-lapis/telas/jornada-capa.jpg" src="/video/jornada-compra-trancista.mp4"></video>
-  <p class="miudo">40 segundos, com as telas de verdade.</p>
+<!-- 5) como você recebe + vídeo da jornada (do Pix até a primeira trança) -->
+<section class="wrap bloco" id="recebe">
+  <span class="rot rv">Tá com medo de comprar?</span>
+  <h2 class="rv">Como você recebe</h2>
+  <p class="frase rv">Do Pix até a primeira trança, em 40 segundos, com as telas de verdade.</p>
+  <div class="confia-grid">
+    <div class="video rv"><video controls playsinline preload="none" width="380" height="676" poster="/img/na-ponta-do-lapis/telas/jornada-capa.jpg" src="/video/jornada-compra-trancista.mp4"></video></div>
+    <ul class="confia">
+      <li class="rv"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="5.5" width="19" height="13" rx="2"/><path d="M2.5 10h19M6 15h4"/></svg><div><b>Paga no Pix ou no cartão</b><span>Pela Cakto, plataforma de pagamento.</span></div></li>
+      <li class="rv"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3.5 6.5l8.5 6.5 8.5-6.5"/></svg><div><b>O link chega no seu e-mail</b><span>Na hora, no e-mail da compra.</span></div></li>
+      <li class="rv"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6.5" y="2.5" width="11" height="19" rx="2.5"/><path d="M11 18.5h2"/></svg><div><b>Abre no celular e começa</b><span>Entra com o mesmo e-mail e cadastra a primeira trança.</span></div></li>
+    </ul>
+  </div>
+  <!-- DEPOIMENTOS: os depoimentos reais das compradoras entram aqui, com permissão delas. Não inventar. -->
 </section>
 
-<section class="wrap bloco" id="comprar">
-  <div class="recorte compra rv"><span class="fita"></span>
-    <span class="etiqueta">Na Ponta do Lápis · trancistas</span>
-    <div class="valor">R$ 27</div>
+<!-- 6) preço com garantia -->
+<section class="compra" id="comprar">
+  <div class="wrap rv">
+    <span class="rot">Na Ponta do Lápis · trancistas</span>
+    <p class="valor"><small>R$</small>27</p>
     <p>Uma vez só, sem mensalidade. Pix ou cartão.</p>
-    <a class="btn verde" href="https://pay.cakto.com.br/4dkmz5v?split=1">Quero o meu Na Ponta do Lápis</a>
+    <a class="btn ouro" href="https://pay.cakto.com.br/4dkmz5v?split=1">Quero o meu · R$ 27</a>
     <p><b>Garantia de 7 dias:</b> não gostou, o dinheiro volta inteiro.</p>
   </div>
 </section>
 
+<!-- 7) dúvidas -->
 <section class="wrap bloco">
-  <h2 class="titulo2">Dúvidas frequentes</h2>
+  <h2 class="rv">Dúvidas frequentes</h2>
   <div class="faq"><details><summary>É mensalidade?</summary><p>Não. Você paga R$ 27 uma vez só e usa pelo tempo que quiser.</p></details><details><summary>É seguro comprar?</summary><p>É sim. O pagamento é feito pela Cakto, uma plataforma de pagamento, no Pix ou no cartão. E você tem 7 dias de garantia: se não for para você, o dinheiro volta inteiro.</p></details><details><summary>Preciso baixar aplicativo?</summary><p>Não. Ele abre no navegador do celular ou do computador. Se quiser, dá para deixar um atalho na tela inicial, como se fosse um aplicativo.</p></details><details><summary>Como eu recebo?</summary><p>Assim que o pagamento cai, chega no seu e-mail o link para entrar. Você abre no celular, coloca o mesmo e-mail da compra e já cadastra a primeira trança.</p></details><details><summary>Não tenho cartão. Dá para pagar?</summary><p>Dá. O pagamento pode ser no Pix, e o acesso chega assim que o Pix cai.</p></details><details><summary>A tabela é um PDF?</summary><p>É uma imagem, feita por você dentro do sistema, pronta para mandar no WhatsApp ou postar no feed e no story.</p></details><details><summary>Mas e o aluguel, a água e a luz?</summary><p>Entram na conta. Você anota as contas fixas do mês e o balanço já desconta tudo.</p></details><details><summary>Não sei quanto de pomada vai em cada trança. E agora?</summary><p>Não precisa saber. Você põe o preço do pote e para quantas tranças ele costuma dar, e o sistema calcula a parte de cada uma.</p></details><details><summary>Onde ficam os meus dados?</summary><p>Só no seu celular. A gente não vê nem guarda o que você anota. Se trocar de aparelho, tem um botão de cópia de segurança para levar tudo.</p></details><details><summary>Tem suporte?</summary><p>Tem. Qualquer dúvida, é só chamar a gente no WhatsApp, de segunda a sexta.</p></details><details><summary>Ele faz a minha contabilidade?</summary><p>Não. É uma ferramenta de apoio para você fazer as suas contas e decidir o seu preço. Não substitui contador e não calcula imposto.</p></details><details><summary>Não faço trança. Serve para mim?</summary><p>Esta versão foi feita para trancistas. Para outros serviços, comece pela <a href="/calculadora/">calculadora grátis</a>.</p></details></div>
-  <div class="recorte zap rv"><span class="fita dir"></span>
-    <h3 class="titulo2" style="font-size:28px">Ficou com outra dúvida?</h3>
-    <p class="sub">Manda no WhatsApp. A mensagem já vai pronta.</p>
-    <a class="btn verde" href="https://wa.me/5521977190618?text=Oi!%20Vi%20o%20Na%20Ponta%20do%20L%C3%A1pis%20de%20R%24%2027%20para%20tran%C3%A7a%20no%20site%20e%20fiquei%20com%20uma%20d%C3%BAvida">Chamar no WhatsApp</a>
+
+  <!-- 8) WhatsApp -->
+  <div class="zap rv">
+    <h3>Ficou com outra dúvida?</h3>
+    <p class="frase">Manda no WhatsApp. A mensagem já vai pronta.</p>
+    <a class="btn contorno" href="https://wa.me/5521977190618?text=Oi!%20Vi%20o%20Na%20Ponta%20do%20L%C3%A1pis%20de%20R%24%2027%20para%20tran%C3%A7a%20no%20site%20e%20fiquei%20com%20uma%20d%C3%BAvida"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20l1.3-4A8 8 0 1 1 8.5 19z"/><path d="M9 9.5c.3 2.6 2.4 4.8 5 5"/></svg>Chamar no WhatsApp</a>
   </div>
   <p class="miudo-final">Na Ponta do Lápis é uma ferramenta de apoio. Os resultados dependem dos números que você coloca e a decisão de preço é sempre sua. Não prometemos faturamento nem lucro.</p>
 </section>
-
-<div class="faixa"><div class="wrap faixa-calc">
-  <div style="display:grid;gap:10px"><span class="etiqueta verm">Grátis</span><h2 class="titulo2">Ainda não quer comprar?</h2><p>Testa no celular com uma trança de exemplo, sem cadastro e sem pagar.</p></div>
-  <div style="display:grid;gap:12px"><a class="btn" href="/na-ponta-do-lapis/trancista/demo/">Testar no celular</a></div>
-</div></div>
-
 </main>
-<div class="fixo" id="fixo" aria-hidden="true"><div><b>R$ 27</b><small>uma vez só · garantia de 7 dias</small></div><a class="btn mini" href="https://pay.cakto.com.br/4dkmz5v?split=1" tabindex="-1">Quero o meu</a></div>
+
+<div class="fixo" id="fixo" aria-hidden="true"><div><b>R$ 27</b><small>uma vez só · garantia de 7 dias</small></div><a class="btn ouro" href="https://pay.cakto.com.br/4dkmz5v?split=1" tabindex="-1">Quero o meu</a></div>
 <script>(function(){var f=document.getElementById('fixo'),a=document.getElementById('topo-compra'),b=document.getElementById('comprar');if(!('IntersectionObserver' in window))return;var vA=true,vB=false;function up(){var on=!vA&&!vB;f.classList.toggle('on',on);f.setAttribute('aria-hidden',on?'false':'true');f.querySelector('a').tabIndex=on?0:-1}new IntersectionObserver(function(e){vA=e[0].isIntersecting;up()}).observe(a);new IntersectionObserver(function(e){vB=e[0].isIntersecting;up()}).observe(b)})();</script>
-<script>/* 20/11: entrada ao rolar e laço de vídeo pausado fora da tela */
-(function(){if(!('IntersectionObserver' in window))return;var mexe=document.documentElement.classList.contains('mexe');
+<script>/* 20/11: entrada ao rolar (uma vez) */
+(function(){if(!('IntersectionObserver' in window))return;
 var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target)}})},{rootMargin:'0px 0px -8% 0px'});
-document.querySelectorAll('.rv').forEach(function(el){io.observe(el)});
-document.querySelectorAll('.cena video').forEach(function(v){if(!mexe){v.removeAttribute('autoplay');try{v.pause()}catch(e){}return}
-new IntersectionObserver(function(es){var p;if(es[0].isIntersecting){p=v.play();if(p&&p.catch)p.catch(function(){})}else v.pause()}).observe(v)});})();</script>
+document.querySelectorAll('.rv').forEach(function(el){io.observe(el)});})();</script>
 <footer class="rodape"><div class="wrap">
   <p><b>Empresa JV</b> · sistemas simples para quem toca o negócio sozinha.</p>
   <p><a href="/na-ponta-do-lapis/trancista/">Na Ponta do Lápis · trancista</a> · <a href="/na-ponta-do-lapis/confeitaria/">Na Ponta do Lápis · confeitaria</a> · <a href="/calculadora/">Calculadora grátis</a></p>
@@ -263,5 +357,12 @@ b.addEventListener('click',abre);x.addEventListener('click',fecha);f.addEventLis
 var ck=function(n){var m=document.cookie.match(new RegExp('(?:^|; )'+n+'=([^;]*)'));return m?decodeURIComponent(m[1]):''};
 var fbp=ck('_fbp'),fbc=ck('_fbc');if(!fbc&&q.get('fbclid'))fbc='fb.1.'+Date.now()+'.'+q.get('fbclid');if(fbp)u.push(['fbp',fbp]);if(fbc)u.push(['fbc',fbc]);if(!u.length)return;
 document.querySelectorAll('a[href*="pay.cakto.com.br"]').forEach(function(a){try{var x=new URL(a.href);u.forEach(function(p){x.searchParams.set(p[0],p[1])});a.href=x.toString()}catch(e){}})}catch(e){}})();</script>
+<script>/* 20/11: a tela viva só baixa perto da tela (não pesa na primeira tela), toca sem som em loop quando aparece e pausa quando sai. Com menos movimento: fica parada, com controles. */
+(function(){var v=document.querySelector('.tela-cel video');if(!v)return;var calma=false;try{calma=matchMedia('(prefers-reduced-motion: reduce)').matches}catch(e){}
+function carrega(){if(!v.getAttribute('src')){v.src=v.dataset.src}}
+if(calma){v.controls=true;v.removeAttribute('aria-hidden');v.src=v.dataset.src;return}
+v.autoplay=true;v.muted=true;
+if(!('IntersectionObserver' in window)){carrega();v.play().catch(function(){});return}
+new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){carrega();var p=v.play();if(p&&p.catch)p.catch(function(){})}else if(v.getAttribute('src'))v.pause()})},{rootMargin:'200px 0px'}).observe(v);})();</script>
 </body>
 </html>
