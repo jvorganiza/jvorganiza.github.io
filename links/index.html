@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Links · Empresa JV</title>
-<meta name="description" content="Os links da Empresa JV: teste grátis por 1 dia, produtos e WhatsApp.">
+<meta name="description" content="Empresa JV: ferramentas simples, no celular, para quem trabalha sozinha saber quanto cobrar, quanto sobra e organizar o mês. Para trancistas e confeiteiras.">
 <link rel="canonical" href="https://jvorganiza.com.br/links/">
 <meta property="og:title" content="Links · Empresa JV">
 <meta property="og:image" content="https://jvorganiza.com.br/img/og.jpg">
@@ -18,18 +18,58 @@
 <script>if(!/jvorganiza/.test(location.hostname)){window.fbq=function(){console.log('[teste] fbq',[].slice.call(arguments))}}
 !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
 var ORIGEM=(new URLSearchParams(location.search).get('utm_source')||'direto');
-fbq('consent',(function(){try{return localStorage.getItem('jv-cookies')==='sim'}catch(e){return false}})()?'grant':'revoke');fbq('init','1129384439673429');fbq('track','PageView');fbq('trackCustom','AbriuPagina',{pagina:'links-ig',origem:ORIGEM});var PAGINA='links-ig';document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a');if(!a)return;var h=a.getAttribute('href')||'';var d=/text=Oi!%20Quero%20testar/.test(h)?'teste_1dia':/wa\.me|\/ir\/zap|whatsapp/i.test(h)?'whatsapp':/pay\./i.test(h)?'checkout':/\/kits/.test(h)?'kits':/calculadora/.test(h)?'calculadora':/lapis/.test(h)?'lapis':'outro';try{fbq('trackCustom','CliqueLink',{pagina:PAGINA,destino:d,texto:(a.innerText||'').trim().slice(0,40)});if(d==='teste_1dia')fbq('track','Contact',{content_name:'Teste 1 dia trancista'})}catch(_){}},true);</script>
+fbq('consent',(function(){try{return localStorage.getItem('jv-cookies')==='sim'}catch(e){return false}})()?'grant':'revoke');fbq('init','1129384439673429');fbq('track','PageView');fbq('trackCustom','AbriuPagina',{pagina:'links-ig',origem:ORIGEM});var PAGINA='links-ig';document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a');if(!a)return;var h=a.getAttribute('href')||'';var d=/text=Oi!%20Quero%20testar/.test(h)?'teste_1dia':/\/ir\/(mercadopago|leona|tcs)/.test(h)?'parceiro':/\/ferramentas/.test(h)?'ferramentas':/#completo/.test(h)?'completo':/wa\.me|\/ir\/zap|whatsapp/i.test(h)?'whatsapp':/pay\./i.test(h)?'checkout':/\/kits/.test(h)?'kits':/calculadora/.test(h)?'calculadora':/\/teste\//.test(h)?'teste_pagina':/\/dicas\//.test(h)?'dicas':/lapis/.test(h)?'lapis':'outro';try{fbq('trackCustom','CliqueLink',{pagina:PAGINA,destino:d,texto:(a.innerText||'').trim().slice(0,40)});if(d==='teste_1dia')fbq('track','Contact',{content_name:'Teste 1 dia trancista'})}catch(_){}},true);</script>
 <script src="/cookies.js" defer></script>
-<style data-links="1">.linkbio .logo-bio{width:96px;height:96px;margin:6px auto 0;display:block}.lb.grupo{display:grid;gap:10px;text-align:center}.chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}.chips a{border:2px solid var(--tinta);border-radius:999px;padding:7px 14px;background:var(--amarelo);color:var(--tinta);font-weight:700;font-size:15px;text-decoration:none}
-.lb.grande{font:400 26px/1.15 Anton,Impact,sans-serif;text-transform:uppercase;padding:18px 18px 16px}
-.lb.grande small{font-family:Inter,sans-serif;font-weight:700;font-size:12.5px;letter-spacing:.06em;margin-bottom:6px}
-.lb.zap-bio{background:var(--verde);color:#fff}
-.linkbio .outros{justify-self:center;align-self:center;margin-top:14px}
-.menores{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;align-items:stretch}
-.menores .lb{display:flex;flex-direction:column;justify-content:center}
-.lb.mini{padding:10px 8px;font-size:14px;line-height:1.25;border-width:2px;box-shadow:3px 3px 0 var(--tinta)}
-.lb.mini small{font-size:12px;margin-bottom:4px}
-@media (max-width:360px){.menores{grid-template-columns:1fr}}</style>
+<style data-links="1">/* Bio 20/11 (v2): visual da Empresa JV (caderno + colagem), tudo na mesma margem esquerda.
+   Texto que fica direto na folha usa linha de 28 px (a pauta) e o script no fim assenta a 1a linha em cima da pauta. */
+.bio{padding-top:28px;padding-bottom:28px}
+.bio>*{max-width:560px}
+.bio .logo-bio{width:64px;height:64px;display:block;margin:0}
+.bio h1{font:400 44px/56px Anton,Impact,sans-serif;text-transform:uppercase;letter-spacing:.01em;margin:14px 0 0}
+.bio .quem{font-size:18px;line-height:28px;color:var(--tinta)}
+.bio .confia-linha{font-size:14px;line-height:28px;color:var(--tinta2)}
+.bio .tit{display:block;font:700 30px/28px Caveat,cursive;color:var(--verm);margin-top:42px}
+.bio .tit.menor{font-size:26px}
+.ofertas{display:grid;gap:16px;margin-top:14px}
+.oferta{display:grid;gap:2px;padding:14px 48px 16px 16px;background:var(--branco);border:2.5px solid var(--tinta);border-radius:14px;box-shadow:4px 4px 0 var(--tinta);text-decoration:none;color:var(--tinta);position:relative;transition:transform .12s,box-shadow .12s}
+.oferta:hover{transform:translate(-1px,-1px);box-shadow:5px 5px 0 var(--tinta)}
+.oferta::after{content:"\2192";position:absolute;right:16px;top:14px;font:800 22px/28px Inter,sans-serif}
+.oferta .para{font:700 12.5px/20px Inter,sans-serif;letter-spacing:.08em;text-transform:uppercase;color:var(--verde2)}
+.oferta b{font:400 26px/30px Anton,Impact,sans-serif;text-transform:uppercase;font-weight:400}
+.oferta .faz{font-size:15.5px;line-height:22px;color:var(--tinta2)}
+.oferta .preco{font-weight:700;font-size:15px;line-height:22px;margin-top:4px;color:var(--tinta)}
+.oferta.destaque{background:var(--amarelo)}
+.oferta.destaque .faz{color:var(--tinta)}
+.oferta.teste{background:var(--menta)}
+.parceiros{margin-top:14px;padding:4px 16px;background:var(--branco);border:2.5px solid var(--tinta);border-radius:14px;box-shadow:4px 4px 0 var(--tinta)}
+.parceiros a{display:grid;padding:12px 30px 12px 0;min-height:56px;text-decoration:none;color:var(--tinta);position:relative;border-bottom:1.5px dashed rgba(22,19,15,.28)}
+.parceiros a:last-child{border-bottom:0}
+.parceiros a::after{content:"\2197";position:absolute;right:0;top:12px;font:800 18px/24px Inter,sans-serif;color:var(--verde2)}
+.parceiros a:hover b{text-decoration:underline}
+.parceiros b{font-weight:800;font-size:16.5px;line-height:24px}
+.parceiros span{font-size:15px;line-height:22px;color:var(--tinta2)}
+.bio .transp{font-size:14px;line-height:28px;color:var(--tinta2);margin-top:14px}
+.bio .ver-todas{display:inline-flex;align-items:center;min-height:44px;font-weight:700;font-size:16px;color:var(--verde);text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:4px;justify-self:start;align-self:flex-start}
+.dicas-bio{display:block}
+.dicas-bio a{display:block;padding:14px 0;font-size:16px;line-height:28px;font-weight:600;color:var(--tinta);text-decoration:underline;text-decoration-color:var(--verde2);text-decoration-thickness:1.5px;text-underline-offset:5px}
+.dicas-bio a:hover{color:var(--verde)}
+.bio .fala{margin-top:42px;font-size:16px;line-height:28px;color:var(--tinta2)}
+.bio .fala-btn{display:inline-flex;align-items:center;min-height:48px;padding:0 20px;margin-top:6px;border:2px solid var(--tinta);border-radius:999px;background:var(--branco);color:var(--verde);font-weight:700;font-size:16px;text-decoration:none;white-space:nowrap}
+.bio .fala-btn:hover{background:var(--menta)}
+.bio{display:flex;flex-direction:column;align-items:flex-start}
+.bio>*{width:100%}
+.bio>.logo-bio,.bio>.ver-todas,.bio>.fala-btn{width:auto}
+/* 20/11: no computador usa a largura toda (pedido do João) */
+@media (min-width:760px){
+.bio>*{max-width:none}
+.bio .quem{max-width:680px;font-size:20px}
+.ofertas{grid-template-columns:repeat(2,minmax(0,1fr))}
+.parceiros{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:36px}
+.parceiros a:nth-last-child(2){border-bottom:0}
+.dicas-bio{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));column-gap:28px;align-items:start}
+}
+@media (min-width:1080px){.ofertas{grid-template-columns:repeat(4,minmax(0,1fr))}.bio h1{font-size:56px;line-height:56px}}
+@media (prefers-reduced-motion:reduce){.oferta{transition:none}}</style>
 <style data-colagem="1">.topo{position:sticky}
 .topo .marca{color:var(--papel2)}
 main{padding-top:18px}
@@ -116,19 +156,41 @@ section.bloco{padding-block:40px 10px;display:grid;gap:12px}
   <a class="btn verde zap-menu" href="https://wa.me/5521977190618?text=Oi!%20Vim%20pelo%20site%20e%20fiquei%20com%20uma%20d%C3%BAvida">Falar no WhatsApp</a>
 </nav>
 <!--/colagem-topo-->
-<main class="wrap linkbio">
-  <img class="logo-bio" src="/img/logo-jv-160.png" alt="Logo Empresa JV" width="96" height="96">
-  <h1>Empresa JV</h1>
-  <p>Sistemas simples no celular pra quem trança, confeita e toca o negócio sozinha.</p>
-  <!-- 20/11/2026: bio enxuta. Em cima, grandes, só 3 caminhos; embaixo, menores, o resto. Tarde: a demonstração deu lugar ao teste grátis de 1 dia, que chega pelo WhatsApp; a calculadora saiu da bio. -->
-  <a class="lb destaque grande" href="/na-ponta-do-lapis/trancista/?utm_source=ig&utm_medium=bio"><small>NA PONTA DO LÁPIS · R$ 27</small>Sou trancista</a>
-  <a class="lb grande" href="https://wa.me/5521977190618?text=Oi!%20Quero%20testar%20gr%C3%A1tis%20por%201%20dia%20o%20Na%20Ponta%20do%20L%C3%A1pis%20para%20tran%C3%A7a" target="_blank" rel="noopener"><small>SEM CARTÃO · 1 DIA INTEIRO</small>Teste grátis por 1 dia</a>
-  <a class="lb grande zap-bio" href="/ir/zap-instagram/" target="_blank" rel="noopener"><small>A MENSAGEM JÁ VAI PRONTA</small>Falar no WhatsApp</a>
-  <p class="bilhete outros">mais coisas da JV</p>
-  <div class="menores">
-    <a class="lb mini" href="/na-ponta-do-lapis/confeitaria/?utm_source=ig&utm_medium=bio"><small>CONFEITARIA</small>Na Ponta do Lápis</a>
-    <a class="lb mini" href="/dicas/preco-sem-chutar/?utm_source=ig&utm_medium=bio"><small>DICAS</small>Preço sem chutar</a>
+<main class="wrap bio">
+  <!-- 20/11/2026 (v2, refeita a pedido do João): quem somos → o que a gente oferece → o que a gente usa e indica (parceiros) → dicas, pequenas → contato discreto.
+       Tudo na mesma margem esquerda; o texto na folha assenta na pauta de 28 px. Nada de "app": é no celular, no navegador. -->
+  <img class="logo-bio" src="/img/logo-jv-160.png" alt="Logo Empresa JV" width="64" height="64">
+  <h1 class="na-linha">Empresa JV</h1>
+  <p class="quem na-linha">Ferramentas simples, no celular, para quem trabalha sozinha saber quanto cobrar, quanto sobra e organizar o mês.</p>
+  <p class="confia-linha na-linha">CNPJ 59.461.672/0001-47<br>Suporte de verdade no WhatsApp</p>
+
+  <span class="tit na-linha">O que a gente oferece</span>
+  <div class="ofertas">
+    <a class="oferta destaque" href="/na-ponta-do-lapis/trancista/?utm_source=ig&utm_medium=bio"><span class="para">Para trancistas</span><b>Na Ponta do Lápis</b><span class="faz">A conta de cada trança, o seu mês e a tabela de preços com a sua logo.</span><span class="preco">R$ 27 · paga uma vez só</span></a>
+    <a class="oferta" href="/na-ponta-do-lapis/confeitaria/?utm_source=ig&utm_medium=bio"><span class="para">Para confeiteiras</span><b>Na Ponta do Lápis</b><span class="faz">O gasto de cada receita e o preço certo do quilo, da fatia e do cento.</span><span class="preco">R$ 27 · paga uma vez só</span></a>
+    <a class="oferta" href="/na-ponta-do-lapis/trancista/?utm_source=ig&utm_medium=bio#completo"><span class="para">Para trancistas</span><b>Completo</b><span class="faz">Tudo do Na Ponta do Lápis + clientes, agenda e mensagens prontas.</span><span class="preco">R$ 67 · paga uma vez só</span></a>
+    <a class="oferta teste" href="/na-ponta-do-lapis/trancista/teste/?utm_source=ig&utm_medium=bio"><span class="para">Grátis · para trancistas</span><b>Teste por 1 dia</b><span class="faz">A página explica cada passo antes.</span></a>
   </div>
+
+  <span class="tit na-linha">O que a gente usa e indica</span>
+  <nav class="parceiros" aria-label="Parceiros da Empresa JV">
+    <a href="/ir/mercadopago-tap/" target="_blank" rel="sponsored noopener"><b>Mercado Pago Point Tap</b><span>O seu celular vira maquininha: a cliente encosta o cartão e paga.</span></a>
+    <a href="/ir/mercadopago-point/" target="_blank" rel="sponsored noopener"><b>Mercado Pago Point</b><span>A maquininha para débito, crédito e Pix, quando o movimento crescer.</span></a>
+    <a href="/ir/leona/" target="_blank" rel="sponsored noopener"><b>Leona</b><span>Responde as suas clientes no WhatsApp a qualquer hora. É a que a gente usa.</span></a>
+    <a href="/ir/tcs/" target="_blank" rel="sponsored noopener"><b>TCS Spy</b><span>Inteligência artificial para criar legenda, imagem e vídeo para postar.</span></a>
+  </nav>
+  <p class="transp na-linha">Links de indicação: se você contratar por eles, a gente ganha uma comissão e você não paga nada a mais.</p>
+  <a class="ver-todas" href="/ferramentas/?utm_source=ig&utm_medium=bio">Ver todas as ferramentas</a>
+
+  <span class="tit menor na-linha">Dicas grátis</span>
+  <nav class="dicas-bio" aria-label="Dicas grátis">
+    <a class="na-linha" href="/dicas/preco-sem-chutar/?utm_source=ig&utm_medium=bio">Como calcular o preço sem chutar</a>
+    <a href="/dicas/sinal-50-por-cento/?utm_source=ig&utm_medium=bio">Como pedir sinal de 50% sem perder a cliente</a>
+    <a href="/dicas/comprovante-pix-falso/?utm_source=ig&utm_medium=bio">Como saber se o comprovante de Pix é falso</a>
+  </nav>
+
+  <p class="fala na-linha">Ficou com dúvida?</p>
+  <a class="fala-btn" href="https://wa.me/5521977190618?text=Oi!%20Vim%20pelo%20site%20e%20fiquei%20com%20uma%20d%C3%BAvida" target="_blank" rel="noopener">Fala com a gente</a>
 </main>
 <!--colagem-rodape-->
 <footer class="rodape"><div class="wrap">
@@ -137,6 +199,12 @@ section.bloco{padding-block:40px 10px;display:grid;gap:12px}
   <p>© 2026 Empresa JV · CNPJ 59.461.672/0001-47 · Sistema montado pela Empresa JV</p>
 </div></footer>
 <!--/colagem-rodape-->
+<script>/* Assenta a 1a linha de cada texto da folha em cima da pauta (linhas de 28 px, a linha azul fica no px 27). */
+(function(){var els=[].slice.call(document.querySelectorAll('.bio .na-linha'));if(!els.length)return;
+function ajusta(){els.forEach(function(el){el.style.marginTop=''});
+els.forEach(function(el){var base=parseFloat(getComputedStyle(el).marginTop)||0;var s=document.createElement('span');s.style.cssText='display:inline-block;width:0;height:0;vertical-align:baseline';el.insertBefore(s,el.firstChild);var y=s.getBoundingClientRect().bottom+window.scrollY;el.removeChild(s);var d=((Math.round(27-y))%28+28)%28;if(d)el.style.marginTop=(base+d)+'px'})}
+var t;function deNovo(){clearTimeout(t);t=setTimeout(ajusta,80)}
+ajusta();if(document.fonts&&document.fonts.ready)document.fonts.ready.then(ajusta);window.addEventListener('load',ajusta);window.addEventListener('resize',deNovo)})();</script>
 <!--colagem-js-->
 <script>(function(){var g=document.getElementById('menu'),f=document.getElementById('fundo-menu'),b=document.getElementById('abre-menu'),x=document.getElementById('fecha-menu');
 function abre(){g.classList.add('aberta');g.setAttribute('aria-hidden','false');f.hidden=false;b.setAttribute('aria-expanded','true');document.body.style.overflow='hidden';x.focus();try{fbq('trackCustom','AbriuMenu',{pagina:document.body.dataset.pagina})}catch(_){}}
