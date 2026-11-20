@@ -22,6 +22,7 @@ var ORIGEM=(new URLSearchParams(location.search).get('utm_source')||'direto');
 fbq('consent',(function(){try{return localStorage.getItem('jv-cookies')==='sim'}catch(e){return false}})()?'grant':'revoke');fbq('init','1129384439673429');fbq('track','PageView');fbq('trackCustom','AbriuPagina',{pagina:'quanto-sobra-trancista',origem:ORIGEM});var PROD={content_name:'Na Ponta do Lapis trancista',content_ids:['quanto-sobra-trancista'],content_type:'product',value:27,currency:'BRL'};fbq('track','ViewContent',PROD);
 document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a');if(!a)return;var h=a.getAttribute('href')||'';var d=/wa\.me/i.test(h)?'whatsapp':/pay\./i.test(h)?'checkout':/calculadora/.test(h)?'calculadora':/ir\/leona/.test(h)?'parceiro':/na-ponta/.test(h)?'produto':'outro';try{fbq('trackCustom','CliqueLink',{pagina:'quanto-sobra-trancista',destino:d,texto:(a.innerText||'').trim().slice(0,40)});if(d==='checkout')fbq('track','InitiateCheckout',PROD)}catch(_){}},true);</script>
 <script src="/cookies.js" defer></script>
+<script>try{if('IntersectionObserver' in window&&!matchMedia('(prefers-reduced-motion: reduce)').matches)document.documentElement.classList.add('mexe')}catch(e){}</script>
 <style>.acoes{display:flex;gap:8px;align-items:center}
 .tracos{display:grid;gap:3px;width:16px}
 .tracos i{display:block;height:2.5px;background:var(--tinta);border-radius:2px}
@@ -49,10 +50,14 @@ section.bloco{padding-block:40px 10px;display:grid;gap:12px}
 @media (min-width:760px){.faixa-calc{grid-template-columns:1.4fr 1fr}}
 .passos{display:grid;gap:18px;counter-reset:p;margin-top:6px}
 @media (min-width:760px){.passos{grid-template-columns:repeat(3,1fr)}}
-.passo{padding:20px 18px;display:grid;gap:6px;align-content:start}
-.passo::before{counter-increment:p;content:counter(p);width:42px;height:42px;display:grid;place-items:center;background:var(--amarelo);border:2.5px solid var(--tinta);border-radius:50%;font:400 22px/1 Anton,sans-serif;margin-bottom:4px}
+.passos{gap:12px}
+.passo{padding:12px 16px;display:grid;grid-template-columns:44px minmax(0,1fr);gap:2px 12px;align-items:center}
+.passo svg{grid-row:span 2;width:44px;height:44px;background:var(--amarelo);border:2.5px solid var(--tinta);border-radius:50%;padding:8px}
 .passo b{font-size:18px}
-.passo span{color:var(--tinta2);font-size:16px}
+.passo span{color:var(--tinta2);font-size:15px}
+.cena-confia{margin:0}
+.cena-confia img{display:block;width:100%;height:auto;aspect-ratio:4/3;object-fit:cover;border:2.5px solid var(--tinta);border-radius:14px;box-shadow:6px 6px 0 var(--tinta);background:#1d2230}
+@media (min-width:760px){.cena-confia img{max-width:520px}}
 .confia{display:grid;gap:12px;margin-top:6px}
 @media (min-width:760px){.confia{grid-template-columns:repeat(4,1fr)}}
 .confia div{background:var(--papel2);border:2px dashed var(--tinta2);border-radius:12px;padding:14px 16px;font-size:15.5px}
@@ -66,16 +71,19 @@ section.bloco{padding-block:40px 10px;display:grid;gap:12px}
 .faq p{margin-top:8px;color:var(--tinta2);max-width:64ch}
 .zap{margin-top:30px;padding:24px 18px;display:grid;gap:12px;justify-items:start}
 .zap .btn{width:100%;justify-self:stretch}
-.heroi{padding-block:40px 20px;display:grid;gap:24px;align-items:center}
-.heroi .txt{display:grid;gap:14px;min-width:0}
-@media (min-width:880px){.heroi{grid-template-columns:1.1fr .9fr;padding-block:60px 30px}}
+.heroi{padding-block:22px 20px;display:grid;gap:20px;align-items:center;grid-template-areas:"cena" "txt"}
+.heroi .txt{display:grid;gap:14px;min-width:0;grid-area:txt}
+.cena{margin:0;grid-area:cena;min-width:0}
+.cena video{display:block;width:100%;height:auto;aspect-ratio:16/10;object-fit:cover;border:2.5px solid var(--tinta);border-radius:14px;box-shadow:6px 6px 0 var(--tinta);background:#3a2c20}
+@media (min-width:880px){.heroi{grid-template-columns:1.1fr .9fr;grid-template-areas:"txt cena" "txt mesa";padding-block:48px 30px}}
 .preco{background:var(--amarelo);border:2.5px solid var(--tinta);border-radius:14px;box-shadow:6px 6px 0 var(--tinta);padding:18px;display:grid;gap:12px;position:relative}
 .preco .lin{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
 .preco .valor{font:400 54px/1 Anton,Impact,sans-serif}
 .preco .vez{font-weight:700}
 .selos{display:flex;flex-wrap:wrap;gap:6px 14px;margin:0;padding:0;list-style:none;font-size:14px;font-weight:700}
 .selos li::before{content:"✓ ";color:var(--verde2)}
-.mesa{position:relative;height:380px;max-width:420px;width:100%;justify-self:start}
+.mesa{position:relative;height:380px;max-width:420px;width:100%;justify-self:start;grid-area:mesa}
+@media (max-width:879px){.mesa{display:none}}
 .mesa img{position:absolute;width:54%;border:2.5px solid var(--tinta);border-radius:12px;box-shadow:6px 6px 0 var(--tinta);background:#fff}
 .mesa .m1{left:2%;top:24px;transform:rotate(-6deg)}
 .mesa .m2{right:2%;top:0;transform:rotate(5deg)}
@@ -102,6 +110,10 @@ section.bloco{padding-block:40px 10px;display:grid;gap:12px}
 .dep blockquote{margin:0;padding:18px;font-size:16.5px}
 .dep cite{display:block;margin-top:8px;font:700 20px/1 Caveat,cursive;font-style:normal;color:var(--verm)}
 .miudo-final{font-size:13.5px;color:var(--tinta2);max-width:70ch}
+@media (prefers-reduced-motion:no-preference){
+.mexe .rv{opacity:0;translate:0 12px;transition:opacity .5s ease,translate .5s ease}
+.mexe .rv.on{opacity:1;translate:none}
+}
 .fixo{position:fixed;left:0;right:0;bottom:0;z-index:30;background:var(--verde);color:#fff;padding:10px max(16px,env(safe-area-inset-right,0px)) calc(10px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px));display:flex;align-items:center;justify-content:space-between;gap:12px;transform:translateY(110%);transition:transform .2s}
 .fixo.on{transform:none}
 .fixo b{font:400 26px/1 Anton,sans-serif}
@@ -147,11 +159,12 @@ section.bloco{padding-block:40px 10px;display:grid;gap:12px}
 
 <main>
 <div class="wrap heroi">
+  <figure class="cena"><video autoplay muted loop playsinline preload="metadata" width="480" height="360" poster="/img/na-ponta-do-lapis/cenas/trancista-trabalhando.webp" src="/img/na-ponta-do-lapis/cenas/trancista-trabalhando.mp4" aria-label="Trancista fazendo uma trança na cliente"></video></figure>
   <div class="txt">
     <span class="etiqueta">Para trancistas</span>
     <span class="bilhete">a conta que ninguém te ensinou</span>
     <h1 class="titulo">Quanto sobra de cada trança? <span class="grifo">Agora você vai saber.</span></h1>
-    <p class="sub">Você põe o que cobra, o jumbo, a pomada e as horas. O Na Ponta do Lápis faz a conta, mostra o seu mês e monta a sua tabela de preços com a sua logo. Tudo no celular.</p>
+    <p class="sub">Você põe o que cobra e o que gasta. Ele faz a conta, mostra o seu mês e monta a sua tabela. Tudo no celular.</p>
     <div class="preco" id="topo-compra">
       <div class="lin"><span class="valor">R$ 27</span><span class="vez">uma vez só, sem mensalidade</span></div>
       <a class="btn verde" href="https://pay.cakto.com.br/4dkmz5v?split=1">Quero o meu Na Ponta do Lápis</a>
@@ -159,8 +172,8 @@ section.bloco{padding-block:40px 10px;display:grid;gap:12px}
     </div>
   </div>
   <div class="mesa" aria-label="Exemplos feitos no sistema">
-    <img class="m1" src="/img/na-ponta-do-lapis/telas/tabela-colagem.jpg" alt="Tabela no modelo Colagem">
-    <img class="m2" src="/img/na-ponta-do-lapis/telas/tabela-noite.jpg" alt="Tabela no modelo Noite">
+    <img class="m1" src="/img/na-ponta-do-lapis/telas/tabela-colagem.jpg" alt="Tabela no modelo Colagem" loading="lazy">
+    <img class="m2" src="/img/na-ponta-do-lapis/telas/tabela-noite.jpg" alt="Tabela no modelo Noite" loading="lazy">
     <span class="fita"></span>
     <span class="nota bilhete" style="color:var(--verde)">os nomes e preços são os seus</span>
   </div>
@@ -176,20 +189,21 @@ section.bloco{padding-block:40px 10px;display:grid;gap:12px}
 <section class="wrap bloco">
   <h2 class="titulo2">O que você faz nele</h2>
   <div class="telas">
-<div class="tela"><div class="txt"><span class="etiqueta">Minhas tranças</span><b>Quanto sobra em cada trança e quanto vale a sua hora.</b><span>Você põe o preço, o jumbo, a pomada e o tempo. O preço certo aparece do lado.</span></div><div class="recorte fone"><span class="fita"></span><img src="/img/na-ponta-do-lapis/telas/minhas-trancas.jpg" alt="Tela com nagô, fulani e boho e quanto sobra em cada uma" loading="lazy"></div></div>
-<div class="tela"><div class="txt"><span class="etiqueta">Meu mês</span><b>Fez uma trança, tocou nela. No fim do mês, você vê o que sobrou.</b><span>Entrou, gastou, contas fixas e o que ficou para você.</span></div><div class="recorte fone"><span class="fita dir"></span><img src="/img/na-ponta-do-lapis/telas/meu-mes.jpg" alt="Tela Como ficou o seu mês" loading="lazy"></div></div>
-<div class="tela"><div class="txt"><span class="etiqueta">Tabela</span><b>Sua logo, suas cores, quatro modelos.</b><span>Sai em imagem pronta para o WhatsApp, o feed e o story. Tem também a tabela de promoção.</span></div><div class="carrossel"><img src="/img/na-ponta-do-lapis/telas/tabela-colagem.jpg" alt="Modelo Colagem" loading="lazy"><img src="/img/na-ponta-do-lapis/telas/tabela-noite.jpg" alt="Modelo Noite" loading="lazy"><img src="/img/na-ponta-do-lapis/telas/tabela-delicado.jpg" alt="Modelo Delicado, de promoção" loading="lazy"><img src="/img/na-ponta-do-lapis/telas/tabela-limpo.jpg" alt="Modelo Clean" loading="lazy"></div></div>
-<div class="tela"><div class="txt"><span class="etiqueta">Mensagens prontas</span><b>Preço novo, promoção, confirmar horário e pedir o sinal.</b><span>É só copiar e mandar para a cliente.</span></div><div class="recorte fone"><span class="fita dir"></span><img src="/img/na-ponta-do-lapis/telas/mensagens.jpg" alt="Tela de mensagens prontas" loading="lazy"></div></div>
+<div class="tela rv"><div class="txt"><span class="etiqueta">Minhas tranças</span><b>Quanto sobra em cada trança e quanto vale a sua hora.</b></div><div class="recorte fone"><span class="fita"></span><img src="/img/na-ponta-do-lapis/telas/minhas-trancas.jpg" alt="Tela com nagô, fulani e boho e quanto sobra em cada uma" loading="lazy"></div></div>
+<div class="tela rv"><div class="txt"><span class="etiqueta">Meu mês</span><b>Fez uma trança, tocou nela. No fim do mês, você vê o que sobrou.</b></div><div class="recorte fone"><span class="fita dir"></span><img src="/img/na-ponta-do-lapis/telas/meu-mes.jpg" alt="Tela Como ficou o seu mês" loading="lazy"></div></div>
+<div class="tela rv"><div class="txt"><span class="etiqueta">Tabela</span><b>Sua logo, suas cores, quatro modelos.</b><span>Pronta para o WhatsApp, o feed e o story.</span></div><div class="carrossel"><img src="/img/na-ponta-do-lapis/telas/tabela-colagem.jpg" alt="Modelo Colagem" loading="lazy"><img src="/img/na-ponta-do-lapis/telas/tabela-noite.jpg" alt="Modelo Noite" loading="lazy"><img src="/img/na-ponta-do-lapis/telas/tabela-delicado.jpg" alt="Modelo Delicado, de promoção" loading="lazy"><img src="/img/na-ponta-do-lapis/telas/tabela-limpo.jpg" alt="Modelo Clean" loading="lazy"></div></div>
+<div class="tela rv"><div class="txt"><span class="etiqueta">Mensagens prontas</span><b>Preço novo, promoção, horário e sinal: é só copiar e mandar.</b></div><div class="recorte fone"><span class="fita dir"></span><img src="/img/na-ponta-do-lapis/telas/mensagens.jpg" alt="Tela de mensagens prontas" loading="lazy"></div></div>
   </div>
 </section>
 
 <section class="wrap bloco">
   <span class="bilhete">sem complicação</span>
   <h2 class="titulo2">Como você recebe</h2>
+  <figure class="cena-confia rv"><img src="/img/na-ponta-do-lapis/cenas/trancista-celular.webp" alt="A trancista mostra o celular, sorrindo" width="480" height="360" loading="lazy"></figure>
   <div class="passos">
-    <div class="recorte passo"><b>Paga no Pix ou no cartão</b><span>O pagamento é pela Cakto, uma plataforma de pagamento.</span></div>
-    <div class="recorte passo"><b>O link chega no seu e-mail</b><span>Na hora, no mesmo e-mail que você usou na compra.</span></div>
-    <div class="recorte passo"><b>Abre no celular e começa</b><span>Coloca o mesmo e-mail da compra e cadastra a primeira trança.</span></div>
+    <div class="recorte passo rv"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="#16130f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="5.5" width="19" height="13" rx="2"/><path d="M2.5 10h19M6 15h4"/></svg><b>Paga no Pix ou no cartão</b><span>Pela Cakto, plataforma de pagamento.</span></div>
+    <div class="recorte passo rv"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="#16130f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3.5 6.5l8.5 6.5 8.5-6.5"/></svg><b>O link chega no seu e-mail</b><span>Na hora, no e-mail da compra.</span></div>
+    <div class="recorte passo rv"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="#16130f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="6.5" y="2.5" width="11" height="19" rx="2.5"/><path d="M11 18.5h2"/></svg><b>Abre no celular e começa</b><span>Entra com o mesmo e-mail e cadastra a primeira trança.</span></div>
   </div>
 </section>
 
@@ -197,23 +211,23 @@ section.bloco{padding-block:40px 10px;display:grid;gap:12px}
   <span class="bilhete">tá com medo de comprar?</span>
   <h2 class="titulo2">Do Pix até a primeira trança</h2>
   <video controls playsinline preload="none" poster="/img/na-ponta-do-lapis/telas/jornada-capa.jpg" src="/video/jornada-compra-trancista.mp4"></video>
-  <p class="miudo">O caminho inteiro em 40 segundos, com as telas de verdade: o pagamento, o acesso no e-mail e a primeira trança.</p>
+  <p class="miudo">40 segundos, com as telas de verdade.</p>
 </section>
 
 <section class="wrap bloco" id="comprar">
-  <div class="recorte compra"><span class="fita"></span>
+  <div class="recorte compra rv"><span class="fita"></span>
     <span class="etiqueta">Na Ponta do Lápis · trancistas</span>
     <div class="valor">R$ 27</div>
     <p>Uma vez só, sem mensalidade. Pix ou cartão.</p>
     <a class="btn verde" href="https://pay.cakto.com.br/4dkmz5v?split=1">Quero o meu Na Ponta do Lápis</a>
-    <p><b>Garantia de 7 dias:</b> se não for para você, peça o reembolso e o valor volta inteiro.</p>
+    <p><b>Garantia de 7 dias:</b> não gostou, o dinheiro volta inteiro.</p>
   </div>
 </section>
 
 <section class="wrap bloco">
   <h2 class="titulo2">Dúvidas frequentes</h2>
   <div class="faq"><details><summary>É mensalidade?</summary><p>Não. Você paga R$ 27 uma vez só e usa pelo tempo que quiser.</p></details><details><summary>É seguro comprar?</summary><p>É sim. O pagamento é feito pela Cakto, uma plataforma de pagamento, no Pix ou no cartão. E você tem 7 dias de garantia: se não for para você, o dinheiro volta inteiro.</p></details><details><summary>Preciso baixar aplicativo?</summary><p>Não. Ele abre no navegador do celular ou do computador. Se quiser, dá para deixar um atalho na tela inicial, como se fosse um aplicativo.</p></details><details><summary>Como eu recebo?</summary><p>Assim que o pagamento cai, chega no seu e-mail o link para entrar. Você abre no celular, coloca o mesmo e-mail da compra e já cadastra a primeira trança.</p></details><details><summary>Não tenho cartão. Dá para pagar?</summary><p>Dá. O pagamento pode ser no Pix, e o acesso chega assim que o Pix cai.</p></details><details><summary>A tabela é um PDF?</summary><p>É uma imagem, feita por você dentro do sistema, pronta para mandar no WhatsApp ou postar no feed e no story.</p></details><details><summary>Mas e o aluguel, a água e a luz?</summary><p>Entram na conta. Você anota as contas fixas do mês e o balanço já desconta tudo.</p></details><details><summary>Não sei quanto de pomada vai em cada trança. E agora?</summary><p>Não precisa saber. Você põe o preço do pote e para quantas tranças ele costuma dar, e o sistema calcula a parte de cada uma.</p></details><details><summary>Onde ficam os meus dados?</summary><p>Só no seu celular. A gente não vê nem guarda o que você anota. Se trocar de aparelho, tem um botão de cópia de segurança para levar tudo.</p></details><details><summary>Tem suporte?</summary><p>Tem. Qualquer dúvida, é só chamar a gente no WhatsApp, de segunda a sexta.</p></details><details><summary>Ele faz a minha contabilidade?</summary><p>Não. É uma ferramenta de apoio para você fazer as suas contas e decidir o seu preço. Não substitui contador e não calcula imposto.</p></details><details><summary>Não faço trança. Serve para mim?</summary><p>Esta versão foi feita para trancistas. Para outros serviços, comece pela <a href="/calculadora/">calculadora grátis</a>.</p></details></div>
-  <div class="recorte zap"><span class="fita dir"></span>
+  <div class="recorte zap rv"><span class="fita dir"></span>
     <h3 class="titulo2" style="font-size:28px">Ficou com outra dúvida?</h3>
     <p class="sub">Manda no WhatsApp. A mensagem já vai pronta.</p>
     <a class="btn verde" href="https://wa.me/5521977190618?text=Oi!%20Vi%20o%20Na%20Ponta%20do%20L%C3%A1pis%20de%20R%24%2027%20para%20tran%C3%A7a%20no%20site%20e%20fiquei%20com%20uma%20d%C3%BAvida">Chamar no WhatsApp</a>
@@ -222,13 +236,19 @@ section.bloco{padding-block:40px 10px;display:grid;gap:12px}
 </section>
 
 <div class="faixa"><div class="wrap faixa-calc">
-  <div style="display:grid;gap:10px"><span class="etiqueta verm">Grátis</span><h2 class="titulo2">Ainda não quer comprar?</h2><p>Testa o Na Ponta do Lápis no seu celular com uma trança de exemplo. Sem cadastro e sem pagar.</p></div>
+  <div style="display:grid;gap:10px"><span class="etiqueta verm">Grátis</span><h2 class="titulo2">Ainda não quer comprar?</h2><p>Testa no celular com uma trança de exemplo, sem cadastro e sem pagar.</p></div>
   <div style="display:grid;gap:12px"><a class="btn" href="/na-ponta-do-lapis/trancista/demo/">Testar no celular</a></div>
 </div></div>
 
 </main>
 <div class="fixo" id="fixo" aria-hidden="true"><div><b>R$ 27</b><small>uma vez só · garantia de 7 dias</small></div><a class="btn mini" href="https://pay.cakto.com.br/4dkmz5v?split=1" tabindex="-1">Quero o meu</a></div>
 <script>(function(){var f=document.getElementById('fixo'),a=document.getElementById('topo-compra'),b=document.getElementById('comprar');if(!('IntersectionObserver' in window))return;var vA=true,vB=false;function up(){var on=!vA&&!vB;f.classList.toggle('on',on);f.setAttribute('aria-hidden',on?'false':'true');f.querySelector('a').tabIndex=on?0:-1}new IntersectionObserver(function(e){vA=e[0].isIntersecting;up()}).observe(a);new IntersectionObserver(function(e){vB=e[0].isIntersecting;up()}).observe(b)})();</script>
+<script>/* 20/11: entrada ao rolar e laço de vídeo pausado fora da tela */
+(function(){if(!('IntersectionObserver' in window))return;var mexe=document.documentElement.classList.contains('mexe');
+var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target)}})},{rootMargin:'0px 0px -8% 0px'});
+document.querySelectorAll('.rv').forEach(function(el){io.observe(el)});
+document.querySelectorAll('.cena video').forEach(function(v){if(!mexe){v.removeAttribute('autoplay');try{v.pause()}catch(e){}return}
+new IntersectionObserver(function(es){var p;if(es[0].isIntersecting){p=v.play();if(p&&p.catch)p.catch(function(){})}else v.pause()}).observe(v)});})();</script>
 <footer class="rodape"><div class="wrap">
   <p><b>Empresa JV</b> · sistemas simples para quem toca o negócio sozinha.</p>
   <p><a href="/na-ponta-do-lapis/trancista/">Na Ponta do Lápis · trancista</a> · <a href="/na-ponta-do-lapis/confeitaria/">Na Ponta do Lápis · confeitaria</a> · <a href="/calculadora/">Calculadora grátis</a></p>
