@@ -19,12 +19,14 @@
      20/11/2026 (tarde): refeita no estilo C, editorial da trancista (manual em .claude/skills/designer-site-jv/SKILL.md).
      Sem cenas geradas por IA: só desenho em código (tranças em linha, ícones de traço, números) e prints reais do app.
      Números: os do próprio anúncio (fulani R$ 280 em 5 h, material R$ 70; passagem R$ 88, almoço R$ 255 e internet R$ 100 no mês; 8 fulanis).
-     Conferidos na demonstração em 20/11/2026: R$ 2.240 − R$ 560 − R$ 443 = R$ 1.237 em 40 h = R$ 30,93 por hora (prints em /img/na-ponta-do-lapis/telas/fulani-*.jpg). -->
+     Conferidos na demonstração em 20/11/2026: R$ 2.240 − R$ 560 − R$ 443 = R$ 1.237 em 40 h = R$ 30,93 por hora (prints em /img/na-ponta-do-lapis/telas/fulani-*.jpg).
+     20/11/2026 (ajustes aprovados): linha do público acima do título; "tela viva" (time-lapse sem som gravado na demonstração, /video/tela-viva-trancista.mp4) no lugar do vídeo narrado de 1 minuto;
+     um caminho só de teste ("Receber meu teste grátis no WhatsApp", fbq Contact), demonstração como link pequeno; vídeo da jornada dentro de "Por que pode confiar". -->
 <script>if(!/jvorganiza/.test(location.hostname)){window.fbq=function(){console.log('[teste] fbq',[].slice.call(arguments))}}
 !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
 var ORIGEM=(new URLSearchParams(location.search).get('utm_source')||'direto');
 fbq('consent',(function(){try{return localStorage.getItem('jv-cookies')==='sim'}catch(e){return false}})()?'grant':'revoke');fbq('init','1129384439673429');fbq('track','PageView');fbq('trackCustom','AbriuPagina',{pagina:'a-conta-trancista',origem:ORIGEM});var PROD={content_name:'Na Ponta do Lapis trancista',content_ids:['quanto-sobra-trancista'],content_type:'product',value:27,currency:'BRL'};fbq('track','ViewContent',PROD);
-document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a');if(!a)return;var h=a.getAttribute('href')||'';var d=/wa\.me/i.test(h)?'whatsapp':/pay\./i.test(h)?'checkout':/\/demo\//.test(h)?'demonstracao':/na-ponta/.test(h)?'produto':'outro';try{fbq('trackCustom','CliqueLink',{pagina:'a-conta-trancista',destino:d,texto:(a.innerText||'').trim().slice(0,40)});if(d==='checkout')fbq('track','InitiateCheckout',PROD)}catch(_){}},true);</script>
+document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a');if(!a)return;var h=a.getAttribute('href')||'';var d=/wa\.me/i.test(h)?'whatsapp':/pay\./i.test(h)?'checkout':/\/demo\//.test(h)?'demonstracao':/na-ponta/.test(h)?'produto':'outro';try{fbq('trackCustom','CliqueLink',{pagina:'a-conta-trancista',destino:d,texto:(a.innerText||'').trim().slice(0,40)});if(d==='checkout')fbq('track','InitiateCheckout',PROD);if(a.hasAttribute('data-teste'))fbq('track','Contact')}catch(_){}},true);</script>
 <script src="/cookies.js" defer></script>
 <script>try{if('IntersectionObserver' in window&&!matchMedia('(prefers-reduced-motion: reduce)').matches)document.documentElement.classList.add('mexe')}catch(e){}</script>
 <style>
@@ -73,9 +75,10 @@ h3{font:400 26px/1.15 var(--serif)}
 .faixa{width:100%;height:110px}
 .faixa use{fill:none;stroke-linecap:round}
 .heroi .wrap{display:grid;gap:14px;padding-top:18px}
+.kicker{font-size:11.5px;letter-spacing:.08em;line-height:1.45;max-width:40ch;margin-bottom:-2px}
 .heroi .acoes{display:grid;gap:10px;margin-top:8px}
 .heroi .pix{color:var(--areia);font-size:13.5px}
-@media (min-width:880px){.heroi .wrap{grid-template-columns:1.25fr 1fr;column-gap:64px;align-items:end;padding-top:28px}.heroi .lado-b{display:grid;gap:14px}.heroi .acoes{justify-items:start}}
+@media (min-width:880px){.heroi .kicker{grid-column:1/-1;align-self:start}.heroi .wrap{grid-template-columns:1.25fr 1fr;column-gap:64px;align-items:end;padding-top:28px}.heroi .lado-b{display:grid;gap:14px}.heroi .acoes{justify-items:start}}
 
 section.bloco{padding-top:72px}
 @media (min-width:880px){section.bloco{padding-top:112px}}
@@ -103,16 +106,21 @@ section.bloco{padding-top:72px}
 .luz svg{width:26px;height:26px;flex:none;color:var(--ouro)}
 @media (min-width:880px){.a-conta-grid{display:grid;grid-template-columns:1fr 1.1fr;column-gap:64px;align-items:start}.contas{margin-top:22px}}
 
-/* prints reais do app */
-.prints{display:grid;gap:28px;margin-top:26px}
-.prints img{width:100%;border:1px solid var(--linha);border-radius:4px;background:#fff}
-@media (min-width:760px){.prints{grid-template-columns:1fr 1fr;align-items:start;column-gap:32px}}
+/* tela viva: time-lapse sem som numa moldura de celular desenhada em CSS */
+.viva{display:grid;gap:30px}
+.celular{position:relative;width:min(100%,300px);padding:26px 10px 14px;background:#140d09;border:1.5px solid var(--borda);border-radius:30px;box-shadow:0 0 0 1px #000 inset,0 18px 40px rgba(0,0,0,.35)}
+.tela-cel{position:relative;border-radius:21px;overflow:hidden;background:var(--bg2);aspect-ratio:9/16}
+.celular::before{content:"";position:absolute;top:10px;left:50%;width:56px;height:6px;margin-left:-28px;border-radius:3px;background:#3a281c}
+.tela-cel video{width:100%;height:100%;object-fit:cover}
+@media (min-width:880px){.viva{grid-template-columns:1fr 1fr;column-gap:64px;align-items:center}.celular{width:320px}}
 
-/* testar */
-.testar{display:grid;gap:40px}
-.testar .acoes{margin-top:20px}
-.video video{width:100%;max-width:380px;aspect-ratio:9/16;border:1px solid var(--linha);border-radius:4px;background:var(--bg2);margin-top:14px}
-@media (min-width:880px){.testar{grid-template-columns:1fr 1fr;column-gap:64px;align-items:start}}
+/* teste grátis */
+.teste .acoes{display:grid;gap:4px;margin-top:20px;justify-items:stretch}
+.teste .btn{font-size:15px;padding:0 12px;gap:8px}
+@media (min-width:760px){.teste .acoes{justify-items:start}.teste .btn{font-size:16px;padding:0 22px;gap:10px}}
+.link-demo{display:inline-flex;align-items:center;min-height:44px;color:var(--creme2);font-size:14.5px;text-decoration:underline;text-decoration-color:var(--borda);text-underline-offset:4px}
+.link-demo:hover{color:var(--ouro)}
+.video video{width:100%;max-width:380px;aspect-ratio:9/16;border:1px solid var(--linha);border-radius:4px;background:var(--bg2)}
 
 /* o que faz */
 .itens{display:grid;margin-top:26px;border-top:1px solid var(--linha)}
@@ -125,22 +133,14 @@ section.bloco{padding-top:72px}
 .carrossel img{border:1px solid var(--linha);border-radius:4px;scroll-snap-align:start;background:#fff}
 @media (min-width:880px){.item{grid-template-columns:120px minmax(0,1fr) minmax(0,1.2fr);column-gap:40px;align-items:start}.carrossel{grid-auto-columns:46%}}
 
-/* jornada */
-.jornada{display:grid;gap:0}
-@media (min-width:880px){.jornada{grid-template-columns:1fr 1fr;column-gap:64px;align-items:end}}
-
 /* confiança */
-.confia-grid{display:grid;gap:28px;margin-top:26px}
-.retrato{position:relative;height:150px;border-top:1px solid var(--linha);overflow:hidden;max-width:560px}
-.retrato .rot{position:absolute;left:0;top:16px;color:var(--areia)}
-.retrato svg{position:absolute;left:0;bottom:14px;width:100%;height:84px}
-.retrato use{fill:none;stroke-linecap:round}
+.confia-grid{display:grid;gap:28px;margin-top:22px}
 .confia{list-style:none;padding:0;border-top:1px solid var(--linha)}
 .confia li{display:grid;grid-template-columns:24px minmax(0,1fr);column-gap:14px;padding:14px 0;border-bottom:1px solid var(--linha);align-items:start}
 .confia svg{width:24px;height:24px;color:var(--ouro);margin-top:2px}
 .confia b{display:block;font-weight:700}
 .confia span{color:var(--areia);font-size:14.5px}
-@media (min-width:880px){.confia-grid{grid-template-columns:1fr 1.2fr;column-gap:64px;align-items:start}.retrato{height:100%;min-height:300px}}
+@media (min-width:880px){.confia-grid{grid-template-columns:380px minmax(0,1fr);column-gap:64px;align-items:start}}
 
 /* preço */
 .compra{margin-top:72px;background:var(--bg2);padding-block:44px 48px}
@@ -185,8 +185,7 @@ section.bloco{padding-top:72px}
 @media (prefers-reduced-motion:no-preference){
 .mexe .rv{opacity:0;transform:translateY(12px);transition:opacity .5s ease,transform .5s ease}
 .mexe .rv.on{opacity:1;transform:none}
-.mexe .faixa .fio,.mexe .retrato.on .fio{stroke-dasharray:1;stroke-dashoffset:1;animation:desenha 1.7s cubic-bezier(.45,0,.2,1) forwards}
-.mexe .retrato .fio{stroke-dasharray:1;stroke-dashoffset:1}
+.mexe .faixa .fio{stroke-dasharray:1;stroke-dashoffset:1;animation:desenha 1.7s cubic-bezier(.45,0,.2,1) forwards}
 .mexe .fio.f2{animation-delay:.18s}.mexe .fio.f3{animation-delay:.36s}
 .mexe .on .antes::after{animation:risca .45s .35s ease-out both}
 }
@@ -215,13 +214,14 @@ section.bloco{padding-top:72px}
     <use href="#t3" class="fio f3" stroke="#2a1c14" stroke-width="16"/><use href="#t3" class="fio f3" stroke="#8a5a34" stroke-width="9"/>
   </svg>
   <div class="wrap">
+    <span class="rot kicker">Ferramenta para trancistas calcularem o preço do próprio trabalho</span>
     <h1>A passagem, o almoço e a luz também saem da sua <em>trança.</em></h1>
     <div class="lado-b">
       <p class="frase">Na fulani de R$ 280, a sua hora parece valer R$ 42, mas com as contas do mês cai para R$ 31.</p>
       <div class="acoes" id="topo-compra">
         <a class="btn ouro" href="https://pay.cakto.com.br/4dkmz5v?split=1">Quero o meu · R$ 27</a>
         <p class="pix">no Pix sai R$ 24,40 · uma vez só · 7 dias de garantia</p>
-        <a class="btn contorno" href="https://wa.me/5521977190618?text=Oi!%20Quero%20testar%20gr%C3%A1tis%20por%201%20dia%20o%20Na%20Ponta%20do%20L%C3%A1pis%20para%20tran%C3%A7a" target="_blank" rel="noopener">Testar grátis por 1 dia</a>
+        <a class="btn contorno" href="https://wa.me/5521977190618?text=Oi!%20Quero%20testar%20gr%C3%A1tis%20por%201%20dia%20o%20Na%20Ponta%20do%20L%C3%A1pis%20para%20tran%C3%A7a" target="_blank" rel="noopener" data-teste>Receber meu teste grátis no WhatsApp</a>
       </div>
     </div>
   </div>
@@ -263,32 +263,22 @@ section.bloco{padding-top:72px}
   <p class="luz rv"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2.8a6.6 6.6 0 0 0-3.8 12V17h7.6v-2.2A6.6 6.6 0 0 0 12 2.8z"/><path d="M9.5 20h5M10.5 22.4h3"/></svg><span>A luz e o aluguel entram do mesmo jeito, nas contas fixas.</span></p>
 </section>
 
-<!-- 3) a mesma conta, no app (prints reais) -->
-<section class="wrap bloco">
-  <span class="rot rv">Prints reais</span>
-  <h2 class="rv">A mesma conta, no app</h2>
-  <p class="frase rv">Estas telas são da demonstração, com os números da fulani.</p>
-  <div class="prints">
-    <figure class="rv"><img src="/img/na-ponta-do-lapis/telas/fulani-tranca.jpg" alt="Tela do Na Ponta do Lápis: fulani de R$ 280, sobra R$ 210, a hora de 5 h vale R$ 42" width="740" height="396" loading="lazy"><figcaption class="leg">Só a trança: R$ 42 a hora</figcaption></figure>
-    <figure class="rv"><img src="/img/na-ponta-do-lapis/telas/fulani-mes.jpg" alt="Tela Como ficou o seu mês: entrou R$ 2.240, gasto R$ 560, contas fixas R$ 443, sobrou R$ 1.237, cada hora rendeu R$ 30,93" width="740" height="594" loading="lazy"><figcaption class="leg">O mês inteiro: R$ 30,93 a hora</figcaption></figure>
-  </div>
-</section>
-
-<!-- 4) testar antes de comprar + vídeo de 1 minuto -->
-<section class="wrap bloco testar">
+<!-- 3) a tela viva: time-lapse sem som, gravado na demonstração em 20/11/2026 (fulani R$ 280, 2 pacotes de jumbo, pomada, 5 h; contas do mês R$ 443; 8 toques) -->
+<section class="wrap bloco viva">
   <div class="rv">
-    <span class="rot">Antes de pagar qualquer coisa</span>
-    <h2>Testa no seu celular antes de comprar</h2>
-    <p class="frase">Põe a sua trança e o que gasta: a conta aparece na hora, sem cadastro.</p>
-    <div class="acoes"><a class="btn contorno" href="/na-ponta-do-lapis/trancista/demo/">Testar grátis no celular</a></div>
+    <span class="rot">A tela, de verdade</span>
+    <h2>A conta se fazendo no app</h2>
+    <p class="frase">A fulani entra, o “sobra” aparece, o mês soma e a tabela sai com a logo.</p>
+    <p class="leg">Sem som · 19 segundos · números da demonstração</p>
   </div>
-  <div class="video rv">
-    <h3>Veja funcionando em 1 minuto</h3>
-    <video controls playsinline preload="none" width="380" height="676" poster="/img/na-ponta-do-lapis/telas/tour-capa.jpg" src="/video/na-ponta-do-lapis-trancista.mp4"></video>
+  <div class="celular rv" role="img" aria-label="Vídeo sem som do app: cadastro da fulani, a sobra de R$ 210, o mês com sobra de R$ 1.237 e a tabela de preços com logo">
+    <div class="tela-cel">
+      <video muted loop playsinline preload="none" width="720" height="1280" poster="/img/na-ponta-do-lapis/telas/tela-viva-capa.webp" data-src="/video/tela-viva-trancista.mp4" aria-hidden="true"></video>
+    </div>
   </div>
 </section>
 
-<!-- 5) o que você faz nele -->
+<!-- 4) o que você faz nele -->
 <section class="wrap bloco">
   <span class="rot rv">O que você faz nele</span>
   <h2 class="rv">Quatro telas, tudo no seu celular</h2>
@@ -300,28 +290,27 @@ section.bloco{padding-top:72px}
   </div>
 </section>
 
-<!-- 6) do Pix até a primeira trança -->
-<section class="wrap bloco jornada">
+<!-- 5) teste grátis: um caminho só, pelo WhatsApp (a demonstração fica como link pequeno) -->
+<section class="wrap bloco teste" id="teste">
   <div class="rv">
-    <span class="rot">Tá com medo de comprar?</span>
-    <h2>Do Pix até a primeira trança</h2>
-    <p class="frase">40 segundos, com as telas de verdade.</p>
+    <span class="rot">Antes de pagar qualquer coisa</span>
+    <h2>Testa com as suas tranças por 1 dia</h2>
+    <p class="frase">Toca no botão: o link do teste chega no seu WhatsApp na hora.</p>
+    <div class="acoes">
+      <a class="btn ouro" href="https://wa.me/5521977190618?text=Oi!%20Quero%20testar%20gr%C3%A1tis%20por%201%20dia%20o%20Na%20Ponta%20do%20L%C3%A1pis%20para%20tran%C3%A7a" target="_blank" rel="noopener" data-teste><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20l1.3-4A8 8 0 1 1 8.5 19z"/><path d="M9 9.5c.3 2.6 2.4 4.8 5 5"/></svg>Receber meu teste grátis no WhatsApp</a>
+      <a class="link-demo" href="/na-ponta-do-lapis/trancista/demo/">ou ver um exemplo agora, sem cadastro</a>
+    </div>
   </div>
-  <div class="video rv"><video controls playsinline preload="none" width="380" height="676" poster="/img/na-ponta-do-lapis/telas/jornada-capa.jpg" src="/video/jornada-compra-trancista.mp4"></video></div>
 </section>
 
-<!-- 7) por que pode confiar -->
+<!-- 6) por que pode confiar: o vídeo da jornada (com voz), CNPJ, garantia e os depoimentos -->
 <section class="wrap bloco" id="confia">
-  <span class="rot rv">Pode perguntar tudo</span>
+  <span class="rot rv">Tá com medo de comprar?</span>
   <h2 class="rv">Por que pode confiar</h2>
+  <p class="frase rv">Do Pix até a primeira trança, em 40 segundos, com as telas de verdade.</p>
   <div class="confia-grid">
-    <!-- Lugar da FOTO REAL de uma cliente trancista (com autorização). Até lá, só o desenho das tranças. -->
-    <div class="retrato rv" aria-hidden="true"><span class="rot">Feito para trancistas</span>
-      <svg viewBox="0 0 380 80" preserveAspectRatio="xMinYMid slice"><defs><path id="v1" pathLength="1" d="M-80.0 40.0C-73.5 29.8 -67.2 20.0 -60.0 20.0C-52.8 20.0 -46.5 29.8 -40.0 40.0C-33.5 50.2 -27.2 60.0 -20.0 60.0C-12.8 60.0 -6.5 50.2 0.0 40.0C6.5 29.8 12.8 20.0 20.0 20.0C27.2 20.0 33.5 29.8 40.0 40.0C46.5 50.2 52.8 60.0 60.0 60.0C67.2 60.0 73.5 50.2 80.0 40.0C86.5 29.8 92.8 20.0 100.0 20.0C107.2 20.0 113.5 29.8 120.0 40.0C126.5 50.2 132.8 60.0 140.0 60.0C147.2 60.0 153.5 50.2 160.0 40.0C166.5 29.8 172.8 20.0 180.0 20.0C187.2 20.0 193.5 29.8 200.0 40.0C206.5 50.2 212.8 60.0 220.0 60.0C227.2 60.0 233.5 50.2 240.0 40.0C246.5 29.8 252.8 20.0 260.0 20.0C267.2 20.0 273.5 29.8 280.0 40.0C286.5 50.2 292.8 60.0 300.0 60.0C307.2 60.0 313.5 50.2 320.0 40.0C326.5 29.8 332.8 20.0 340.0 20.0C347.2 20.0 353.5 29.8 360.0 40.0C366.5 50.2 372.8 60.0 380.0 60.0C387.2 60.0 393.5 50.2 400.0 40.0"/><path id="v2" pathLength="1" d="M-106.7 40.0C-100.1 29.8 -93.9 20.0 -86.7 20.0C-79.4 20.0 -73.2 29.8 -66.7 40.0C-60.1 50.2 -53.9 60.0 -46.7 60.0C-39.4 60.0 -33.2 50.2 -26.7 40.0C-20.1 29.8 -13.9 20.0 -6.7 20.0C0.6 20.0 6.8 29.8 13.3 40.0C19.9 50.2 26.1 60.0 33.3 60.0C40.6 60.0 46.8 50.2 53.3 40.0C59.9 29.8 66.1 20.0 73.3 20.0C80.6 20.0 86.8 29.8 93.3 40.0C99.9 50.2 106.1 60.0 113.3 60.0C120.6 60.0 126.8 50.2 133.3 40.0C139.9 29.8 146.1 20.0 153.3 20.0C160.6 20.0 166.8 29.8 173.3 40.0C179.9 50.2 186.1 60.0 193.3 60.0C200.6 60.0 206.8 50.2 213.3 40.0C219.9 29.8 226.1 20.0 233.3 20.0C240.6 20.0 246.8 29.8 253.3 40.0C259.9 50.2 266.1 60.0 273.3 60.0C280.6 60.0 286.8 50.2 293.3 40.0C299.9 29.8 306.1 20.0 313.3 20.0C320.6 20.0 326.8 29.8 333.3 40.0C339.9 50.2 346.1 60.0 353.3 60.0C360.6 60.0 366.8 50.2 373.3 40.0C379.9 29.8 386.1 20.0 393.3 20.0C400.6 20.0 406.8 29.8 413.3 40.0"/><path id="v3" pathLength="1" d="M-133.3 40.0C-126.8 29.8 -120.6 20.0 -113.3 20.0C-106.1 20.0 -99.9 29.8 -93.3 40.0C-86.8 50.2 -80.6 60.0 -73.3 60.0C-66.1 60.0 -59.9 50.2 -53.3 40.0C-46.8 29.8 -40.6 20.0 -33.3 20.0C-26.1 20.0 -19.9 29.8 -13.3 40.0C-6.8 50.2 -0.6 60.0 6.7 60.0C13.9 60.0 20.1 50.2 26.7 40.0C33.2 29.8 39.4 20.0 46.7 20.0C53.9 20.0 60.1 29.8 66.7 40.0C73.2 50.2 79.4 60.0 86.7 60.0C93.9 60.0 100.1 50.2 106.7 40.0C113.2 29.8 119.4 20.0 126.7 20.0C133.9 20.0 140.1 29.8 146.7 40.0C153.2 50.2 159.4 60.0 166.7 60.0C173.9 60.0 180.1 50.2 186.7 40.0C193.2 29.8 199.4 20.0 206.7 20.0C213.9 20.0 220.1 29.8 226.7 40.0C233.2 50.2 239.4 60.0 246.7 60.0C253.9 60.0 260.1 50.2 266.7 40.0C273.2 29.8 279.4 20.0 286.7 20.0C293.9 20.0 300.1 29.8 306.7 40.0C313.2 50.2 319.4 60.0 326.7 60.0C333.9 60.0 340.1 50.2 346.7 40.0C353.2 29.8 359.4 20.0 366.7 20.0C373.9 20.0 380.1 29.8 386.7 40.0C393.2 50.2 399.4 60.0 406.7 60.0"/></defs>
-        <use href="#v1" class="fio" stroke="#2a1c14" stroke-width="13"/><use href="#v1" class="fio" stroke="#c98a4b" stroke-width="7"/>
-        <use href="#v2" class="fio f2" stroke="#2a1c14" stroke-width="13"/><use href="#v2" class="fio f2" stroke="#e6b980" stroke-width="7"/>
-        <use href="#v3" class="fio f3" stroke="#2a1c14" stroke-width="13"/><use href="#v3" class="fio f3" stroke="#8a5a34" stroke-width="7"/></svg>
-    </div>
+    <!-- Lugar da FOTO REAL de uma cliente trancista (com autorização), ao lado do vídeo da jornada. -->
+    <div class="video rv"><video controls playsinline preload="none" width="380" height="676" poster="/img/na-ponta-do-lapis/telas/jornada-capa.jpg" src="/video/jornada-compra-trancista.mp4"></video></div>
     <ul class="confia">
       <li class="rv"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/></svg><div><b>Empresa com CNPJ</b><span class="nw">59.461.672/0001-47</span></div></li>
       <li class="rv"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="5.5" width="19" height="13" rx="2"/><path d="M2.5 10h19M6 15h4"/></svg><div><b>Pagamento pela Cakto</b><span>Pix ou cartão; o acesso chega no e-mail.</span></div></li>
@@ -334,7 +323,7 @@ section.bloco{padding-top:72px}
   <!-- DEPOIMENTOS: os depoimentos reais das compradoras entram aqui, com permissão delas. Não inventar. -->
 </section>
 
-<!-- 8) preço com garantia -->
+<!-- 7) preço com garantia -->
 <section class="compra" id="comprar">
   <div class="wrap rv">
     <span class="rot">Na Ponta do Lápis · trancistas</span>
@@ -349,12 +338,12 @@ section.bloco{padding-top:72px}
   </div>
 </section>
 
-<!-- 9) dúvidas -->
+<!-- 8) dúvidas -->
 <section class="wrap bloco">
   <h2 class="rv">Dúvidas frequentes</h2>
   <div class="faq"><details><summary>É mensalidade?</summary><p>Não. Você paga R$ 27 uma vez só e usa pelo tempo que quiser.</p></details><details><summary>É seguro comprar?</summary><p>É sim. O pagamento é feito pela Cakto, uma plataforma de pagamento, no Pix ou no cartão. E você tem 7 dias de garantia: se não for para você, o dinheiro volta inteiro.</p></details><details><summary>Preciso baixar aplicativo?</summary><p>Não. Ele abre no navegador do celular ou do computador. Se quiser, dá para deixar um atalho na tela inicial, como se fosse um aplicativo.</p></details><details><summary>Como eu recebo?</summary><p>Assim que o pagamento cai, chega no seu e-mail o link para entrar. Você abre no celular, coloca o mesmo e-mail da compra e já cadastra a primeira trança.</p></details><details><summary>Não tenho cartão. Dá para pagar?</summary><p>Dá. O pagamento pode ser no Pix, e o acesso chega assim que o Pix cai.</p></details><details><summary>A tabela é um PDF?</summary><p>É uma imagem, feita por você dentro do sistema, pronta para mandar no WhatsApp ou postar no feed e no story.</p></details><details><summary>Mas e o aluguel, a água e a luz?</summary><p>Entram na conta. Você anota as contas fixas do mês e o balanço já desconta tudo.</p></details><details><summary>Não sei quanto de pomada vai em cada trança. E agora?</summary><p>Não precisa saber. Você põe o preço do pote e para quantas tranças ele costuma dar, e o sistema calcula a parte de cada uma.</p></details><details><summary>Onde ficam os meus dados?</summary><p>Só no seu celular. A gente não vê nem guarda o que você anota. Se trocar de aparelho, tem um botão de cópia de segurança para levar tudo.</p></details><details><summary>Tem suporte?</summary><p>Tem. Qualquer dúvida, é só chamar a gente no WhatsApp, de segunda a sexta.</p></details><details><summary>Ele faz a minha contabilidade?</summary><p>Não. É uma ferramenta de apoio para você fazer as suas contas e decidir o seu preço. Não substitui contador e não calcula imposto.</p></details><details><summary>Não faço trança. Serve para mim?</summary><p>Esta versão foi feita para trancistas. Se você faz outro serviço, chama a gente no WhatsApp que a gente te conta o que serve para você.</p></details></div>
 
-  <!-- 10) WhatsApp -->
+  <!-- 9) WhatsApp -->
   <div class="zap rv">
     <h3>Ficou com outra dúvida?</h3>
     <p class="frase">Manda no WhatsApp: a mensagem já vai pronta.</p>
@@ -374,6 +363,13 @@ function passo(ts){if(!t0)t0=ts;var k=Math.min(1,Math.max(0,(ts-t0-esp)/dur)),e=
 var io=new IntersectionObserver(function(es){es.forEach(function(e){if(!e.isIntersecting)return;var el=e.target;el.classList.add('on');io.unobserve(el);
 if(mexe)el.querySelectorAll('[data-conta]').forEach(conta)})},{rootMargin:'0px 0px -8% 0px'});
 document.querySelectorAll('.rv').forEach(function(el){io.observe(el)});})();</script>
+<script>/* 20/11: a tela viva só baixa perto da tela (não pesa na primeira tela), toca sem som em loop quando aparece e pausa quando sai. Com menos movimento: fica parada, com controles. */
+(function(){var v=document.querySelector('.tela-cel video');if(!v)return;var calma=false;try{calma=matchMedia('(prefers-reduced-motion: reduce)').matches}catch(e){}
+function carrega(){if(!v.getAttribute('src')){v.src=v.dataset.src}}
+if(calma){v.controls=true;v.removeAttribute('aria-hidden');v.src=v.dataset.src;return}
+v.autoplay=true;v.muted=true;
+if(!('IntersectionObserver' in window)){carrega();v.play().catch(function(){});return}
+new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){carrega();var p=v.play();if(p&&p.catch)p.catch(function(){})}else if(v.getAttribute('src'))v.pause()})},{rootMargin:'200px 0px'}).observe(v);})();</script>
 <footer class="rodape"><div class="wrap">
   <p><b>Empresa JV</b> · sistemas simples para quem toca o negócio sozinha.</p>
   <p>© 2026 Empresa JV · CNPJ 59.461.672/0001-47 · Sistema montado pela Empresa JV</p>
