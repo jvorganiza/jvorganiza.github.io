@@ -45,18 +45,20 @@ export async function onRequestPost({ request, env }) {
   if (!TESTE_NICHOS.includes(nicho)) return json({ ok: false, motivo: 'produto' }, 400);
   const chat = String(c.chat == null ? '' : c.chat).trim();
   if (!/^\d{1,30}$/.test(chat)) return json({ ok: false, motivo: 'chat' }, 400);
+  // 20/11: o Leona manda o telefone da conversa; guardamos só um resumo dele (nunca o número)
+  const chatId = chat.length >= 10 ? 'h' + (await sha256('jv-teste-chat:' + chat)).slice(0, 24) : chat;
   // só o primeiro nome, sem sinais que possam virar código
   const nome = String(c.nome || '').replace(/[<>"'`\\\u0000-\u001f]/g, '').trim().split(/\s+/)[0].slice(0, 40);
   if (await freio(request, env, 't', LIMITE)) return json({ ok: false, motivo: 'muitas_tentativas' }, 429);
 
-  const kc = 'tc:' + nicho + ':' + chat;
+  const kc = 'tc:' + nicho + ':' + chatId;
   const ja = await env.ACESSOS.get(kc);
   if (ja && /^[a-z0-9]{16}$/.test(ja)) {
     const t = (await env.ACESSOS.get('t:' + nicho + ':' + ja, 'json')) || {};
     return json({ ok: true, link: linkTeste(nicho, ja), ate: t.ate || null, novo: false, vencido: !!(t.ate && Date.now() >= Date.parse(t.ate)) });
   }
   const token = novoToken(), agora = Date.now();
-  const reg = { ate: new Date(agora + DURACAO).toISOString(), chat, nome, em: new Date(agora).toISOString() };
+  const reg = { ate: new Date(agora + DURACAO).toISOString(), chat: chatId, nome, em: new Date(agora).toISOString() };
   await env.ACESSOS.put('t:' + nicho + ':' + token, JSON.stringify(reg));
   await env.ACESSOS.put(kc, token);
   return json({ ok: true, link: linkTeste(nicho, token), ate: reg.ate, novo: true });
