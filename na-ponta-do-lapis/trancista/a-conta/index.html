@@ -111,7 +111,8 @@ section.bloco{padding-top:72px}
 .celular{position:relative;width:min(100%,300px);padding:26px 10px 14px;background:#140d09;border:1.5px solid var(--borda);border-radius:30px;box-shadow:0 0 0 1px #000 inset,0 18px 40px rgba(0,0,0,.35)}
 .tela-cel{position:relative;border-radius:21px;overflow:hidden;background:var(--bg2);aspect-ratio:9/16}
 .celular::before{content:"";position:absolute;top:10px;left:50%;width:56px;height:6px;margin-left:-28px;border-radius:3px;background:#3a281c}
-.tela-cel video{width:100%;height:100%;object-fit:cover}
+.tela-cel{transform:translateZ(0);will-change:transform}
+.tela-cel video{width:100%;height:100%;object-fit:cover;transform:translateZ(0)}
 @media (min-width:880px){.viva{grid-template-columns:1fr 1fr;column-gap:64px;align-items:center}.celular{width:320px}}
 
 /* teste grátis */
@@ -276,7 +277,7 @@ section.bloco{padding-top:72px}
   </div>
   <div class="celular rv" role="img" aria-label="Vídeo sem som do Na Ponta do Lápis: cadastro da fulani, a sobra de R$ 210, o mês com sobra de R$ 1.237 e a tabela de preços com logo">
     <div class="tela-cel">
-      <video muted loop playsinline preload="none" width="720" height="1280" poster="/img/na-ponta-do-lapis/telas/tela-viva-capa.webp" data-src="/video/tela-viva-trancista.mp4" aria-hidden="true"></video>
+      <video muted loop playsinline preload="none" width="540" height="960" poster="/img/na-ponta-do-lapis/telas/tela-viva-capa.webp" data-src="/video/tela-viva-trancista.mp4" aria-hidden="true"></video>
     </div>
   </div>
 </section>
@@ -371,7 +372,7 @@ function carrega(){if(!v.getAttribute('src')){v.src=v.dataset.src}}
 if(calma){v.controls=true;v.removeAttribute('aria-hidden');v.src=v.dataset.src;return}
 v.autoplay=true;v.muted=true;
 if(!('IntersectionObserver' in window)){carrega();v.play().catch(function(){});return}
-new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){carrega();var p=v.play();if(p&&p.catch)p.catch(function(){})}else if(v.getAttribute('src'))v.pause()})},{rootMargin:'200px 0px'}).observe(v);})();</script>
+function cedo(){v.preload='auto';carrega()}if(document.readyState==='complete')setTimeout(cedo,1200);else addEventListener('load',function(){setTimeout(cedo,1200)});new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){carrega();var p=v.play();if(p&&p.catch)p.catch(function(){})}else if(v.getAttribute('src'))v.pause()})},{threshold:0.2}).observe(v);})();</script>
 <footer class="rodape"><div class="wrap">
   <p><b>Empresa JV</b> · sistemas simples para quem toca o negócio sozinha.</p>
   <p>© 2026 Empresa JV · CNPJ 59.461.672/0001-47 · Sistema montado pela Empresa JV</p>
