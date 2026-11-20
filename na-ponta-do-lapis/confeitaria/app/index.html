@@ -1370,9 +1370,9 @@ try{var u=new URLSearchParams(location.search).get('c');if(u){document.getElemen
 })();
 </script>
 <script>
-/* 17/11/2026: conta as ações da compradora (só o nome da ação e a hora; nada do que ela digita) para o suporte saber quem não entrou ou travou. */
-(function(){var K='jv-qs-acesso-confeitaria';function h(){try{var v=localStorage.getItem(K)||'';return v.indexOf('e:')===0?v.slice(2):''}catch(e){return ''}}
-function uso(ev){var x=h();if(!x)return;try{var b=JSON.stringify({produto:'confeitaria',h:x,ev:ev});if(!(navigator.sendBeacon&&navigator.sendBeacon('/api/uso',new Blob([b],{type:'application/json'}))))fetch('/api/uso',{method:'POST',headers:{'content-type':'application/json'},body:b,keepalive:true}).catch(function(){})}catch(e){}}
+/* 17/11/2026 (20/11: também quem entra pelo link com código, por um número sorteado do aparelho): conta as ações da compradora (só o nome da ação e a hora; nada do que ela digita) para o suporte saber quem não entrou ou travou. */
+(function(){var K='jv-qs-acesso-confeitaria';function h(){try{var v=localStorage.getItem(K)||'';if(v.indexOf('e:')===0)return {h:v.slice(2)};if(/^[0-9a-f]{64}$/.test(v)){var d=localStorage.getItem(K+'-d')||'';if(!/^[0-9a-f]{64}$/.test(d)){var a=new Uint8Array(32);crypto.getRandomValues(a);d=Array.prototype.map.call(a,function(b){return ('0'+b.toString(16)).slice(-2)}).join('');localStorage.setItem(K+'-d',d)}return {d:d}}return null}catch(e){return null}}
+function uso(ev){var x=h();if(!x)return;try{var b=JSON.stringify(Object.assign({produto:'confeitaria',ev:ev},x));if(!(navigator.sendBeacon&&navigator.sendBeacon('/api/uso',new Blob([b],{type:'application/json'}))))fetch('/api/uso',{method:'POST',headers:{'content-type':'application/json'},body:b,keepalive:true}).catch(function(){})}catch(e){}}
 try{var d=new Date().toISOString().slice(0,10);if(localStorage.getItem(K+'-u')!==d&&h()){localStorage.setItem(K+'-u',d);uso('abriu')}}catch(e){}
 function liga(id,tipo,ev){var el=document.getElementById(id);if(el)el.addEventListener(tipo,function(e){if(id==='toques'&&!(e.target&&e.target.closest&&e.target.closest('button')))return;uso(ev)})}
 liga('form-serv','submit','servico');liga('toques','click','venda');liga('f-add','click','conta_fixa');liga('meta-valor','change','meta');liga('tb-logo','change','logo');

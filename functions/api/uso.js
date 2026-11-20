@@ -1,6 +1,8 @@
 // /api/uso — o que a compradora faz no Na Ponta do Lápis (17/11/2026, pedido do João: "monitorar todas as ações possíveis delas").
 // POST { produto, h, ev }  → conta a ação (só de quem tem compra; o "h" é o resumo do e-mail que o app já guarda).
+// POST { produto, d, ev }  → 20/11: quem entrou pelo link com código não tem e-mail; o app manda um número sorteado do aparelho ("d").
 // GET  ?produto=&h=        → { comprou, situacao, primeiro, ultimo, acoes } para o vigia saber quem não entrou ou travou.
+// GET  ?produto=&resumo=codigo → quantos aparelhos entraram pelo código, quantos abriram hoje e o total de cada ação.
 // Nada do que ela digita é enviado: só o nome da ação e a hora.
 import { NICHOS, json, sha256 } from './_comum.js';
 
@@ -21,7 +23,7 @@ export async function registra(env, nicho, h, ev) {
   const u = (await env.ACESSOS.get(k, 'json')) || { primeiro: agora, acoes: {} };
   u.ultimo = agora;
   u.acoes[ev] = (u.acoes[ev] || 0) + 1;
-  if (ev === 'entrou' && !u.entrou) u.entrou = agora;
+  if ((ev === 'entrou' || h.startsWith('d:')) && !u.entrou) u.entrou = agora;
   await env.ACESSOS.put(k, JSON.stringify(u));
   return u;
 }
@@ -31,9 +33,11 @@ export async function onRequestPost({ request, env }) {
   const cru = await request.text();
   if (cru.length > 500) return json({ ok: false }, 413);
   let c; try { c = JSON.parse(cru); } catch (e) { return json({ ok: false }, 400); }
-  const nicho = String(c.produto || ''), h = String(c.h || ''), ev = String(c.ev || '');
-  if (!NICHOS.includes(nicho) || !/^[0-9a-f]{64}$/.test(h) || !ACOES.includes(ev)) return json({ ok: false }, 400);
+  const nicho = String(c.produto || ''), h = String(c.h || ''), d = String(c.d || ''), ev = String(c.ev || '');
+  if (!NICHOS.includes(nicho) || !ACOES.includes(ev)) return json({ ok: false }, 400);
+  if (!/^[0-9a-f]{64}$/.test(h) && !/^[0-9a-f]{64}$/.test(d)) return json({ ok: false }, 400);
   if (await freio(request, env, 'u')) return json({ ok: false }, 429);
+  if (!/^[0-9a-f]{64}$/.test(h)) { await registra(env, nicho, 'd:' + d, ev); return json({ ok: true, codigo: true }); }
   const reg = await env.ACESSOS.get('a:' + nicho + ':' + h, 'json');
   if (!reg) return json({ ok: true, ignorado: true });
   await registra(env, nicho, h, ev);
@@ -43,6 +47,22 @@ export async function onRequestPost({ request, env }) {
 export async function onRequestGet({ request, env }) {
   if (!env.ACESSOS) return json({ ok: false }, 503);
   const q = new URL(request.url).searchParams, nicho = q.get('produto') || '', h = q.get('h') || '';
+  if (NICHOS.includes(nicho) && q.get('resumo') === 'codigo') {
+    if (await freio(request, env, 'g')) return json({ ok: false }, 429);
+    const hoje = new Date(Date.now() - 3 * 3600 * 1000).toISOString().slice(0, 10), acoes = {};
+    let aparelhos = 0, hojeN = 0, cursor;
+    do {
+      const lst = await env.ACESSOS.list({ prefix: 'u:' + nicho + ':d:', cursor });
+      for (const k of lst.keys) {
+        const u = await env.ACESSOS.get(k.name, 'json'); if (!u) continue;
+        aparelhos++;
+        if (u.ultimo && new Date(Date.parse(u.ultimo) - 3 * 3600 * 1000).toISOString().slice(0, 10) === hoje) hojeN++;
+        for (const [a, n] of Object.entries(u.acoes || {})) acoes[a] = (acoes[a] || 0) + n;
+      }
+      cursor = lst.list_complete ? null : lst.cursor;
+    } while (cursor);
+    return json({ ok: true, codigo: { aparelhos, abriram_hoje: hojeN, acoes } });
+  }
   if (!NICHOS.includes(nicho) || !/^[0-9a-f]{64}$/.test(h)) return json({ ok: false }, 400);
   if (await freio(request, env, 'g')) return json({ ok: false }, 429);
   const reg = await env.ACESSOS.get('a:' + nicho + ':' + h, 'json');
