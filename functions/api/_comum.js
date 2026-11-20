@@ -8,6 +8,10 @@ export const NICHOS = ['trancista', 'confeitaria'];
 // produtos do Na Ponta do Lápis Completo (e do upgrade para ele): liberam o sistema E as telas do Completo
 export const COMPLETOS = { 'b4c0b291-577d-42e4-b7e7-389493ef2d61': 'trancista', '504b20b8-a154-481e-9e2c-7d3054e19d4d': 'trancista', '33692ce0-4785-4596-ab65-dfedb2a7b767': 'confeitaria', '3135ce3e-43e5-463b-a8c9-ff074b0c0d8e': 'confeitaria' }; // Completo R$ 67 e Upgrade R$ 40
 
+// cortesias (20/11, pedido do João): presente para cliente antiga em troca de depoimento.
+// Chave = resumo SHA-256 do e-mail (resumoEmail), nunca o e-mail. Valor = lista de nichos com o Completo liberado.
+export const CORTESIAS = {};
+
 export const json = (obj, status = 200) => new Response(JSON.stringify(obj), { status, headers: { 'content-type': 'application/json; charset=utf-8', 'cache-control': 'no-store' } });
 
 const hex = buf => [...new Uint8Array(buf)].map(b => b.toString(16).padStart(2, '0')).join('');

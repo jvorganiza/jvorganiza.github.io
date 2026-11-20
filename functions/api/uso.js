@@ -4,7 +4,7 @@
 // GET  ?produto=&h=        → { comprou, situacao, primeiro, ultimo, acoes } para o vigia saber quem não entrou ou travou.
 // GET  ?produto=&resumo=codigo → quantos aparelhos entraram pelo código, quantos abriram hoje e o total de cada ação.
 // Nada do que ela digita é enviado: só o nome da ação e a hora.
-import { NICHOS, json, sha256 } from './_comum.js';
+import { NICHOS, CORTESIAS, json, sha256 } from './_comum.js';
 
 export const ACOES = ['entrou', 'abriu', 'servico', 'venda', 'conta_fixa', 'meta', 'logo', 'tabela', 'promocao', 'mensagem', 'resumo'];
 const LIMITE = 120; // pedidos por hora, por endereço de rede
@@ -38,7 +38,7 @@ export async function onRequestPost({ request, env }) {
   if (!/^[0-9a-f]{64}$/.test(h) && !/^[0-9a-f]{64}$/.test(d)) return json({ ok: false }, 400);
   if (await freio(request, env, 'u')) return json({ ok: false }, 429);
   if (!/^[0-9a-f]{64}$/.test(h)) { await registra(env, nicho, 'd:' + d, ev); return json({ ok: true, codigo: true }); }
-  const reg = await env.ACESSOS.get('a:' + nicho + ':' + h, 'json');
+  const reg = (CORTESIAS[h] || []).includes(nicho) ? { s: 'ok' } : await env.ACESSOS.get('a:' + nicho + ':' + h, 'json');
   if (!reg) return json({ ok: true, ignorado: true });
   await registra(env, nicho, h, ev);
   return json({ ok: true });
