@@ -20,6 +20,18 @@ export async function onRequestPost({ request, env }) {
   if (n >= LIMITE) return json({ ok: false, motivo: 'muitas_tentativas' }, 429);
   await env.ACESSOS.put(kr, String(n + 1), { expirationTtl: 3700 });
 
+  // 20/11: teste grátis de 1 dia (link mandado pelo WhatsApp, ver teste.js). Corpo: { produto, teste: "<token>" }.
+  // Não tem e-mail: quem comprar entra pelo portão normal com o e-mail da compra, e a compra passa a valer.
+  if (c.teste !== undefined) {
+    const tk = String(c.teste);
+    if (!/^[a-z0-9]{16}$/.test(tk)) return json({ ok: false, motivo: 'teste_nao_achou' });
+    const t = await env.ACESSOS.get('t:' + nicho + ':' + tk, 'json');
+    if (!t || !t.ate) return json({ ok: false, motivo: 'teste_nao_achou' });
+    if (Date.now() >= Date.parse(t.ate)) return json({ ok: false, motivo: 'teste_acabou', ate: t.ate });
+    try { await registra(env, nicho, 't:' + tk, 'entrou'); } catch (e) {}
+    return json({ ok: true, teste: true, completo: false, ate: t.ate });
+  }
+
   let h = '';
   if (typeof c.h === 'string' && /^[0-9a-f]{64}$/.test(c.h)) h = c.h;
   else if (typeof c.email === 'string' && /^[^\s@]{1,64}@[^\s@]{1,190}\.[^\s@]{2,}$/.test(c.email.trim())) h = await resumoEmail(c.email);

@@ -23,7 +23,7 @@ export async function registra(env, nicho, h, ev) {
   const u = (await env.ACESSOS.get(k, 'json')) || { primeiro: agora, acoes: {} };
   u.ultimo = agora;
   u.acoes[ev] = (u.acoes[ev] || 0) + 1;
-  if ((ev === 'entrou' || h.startsWith('d:')) && !u.entrou) u.entrou = agora;
+  if ((ev === 'entrou' || h.startsWith('d:') || h.startsWith('t:')) && !u.entrou) u.entrou = agora;
   await env.ACESSOS.put(k, JSON.stringify(u));
   return u;
 }
@@ -35,6 +35,16 @@ export async function onRequestPost({ request, env }) {
   let c; try { c = JSON.parse(cru); } catch (e) { return json({ ok: false }, 400); }
   const nicho = String(c.produto || ''), h = String(c.h || ''), d = String(c.d || ''), ev = String(c.ev || '');
   if (!NICHOS.includes(nicho) || !ACOES.includes(ev)) return json({ ok: false }, 400);
+  // 20/11: quem está no teste grátis de 1 dia manda o token do teste ("t"); conta só enquanto o teste vale
+  if (c.t !== undefined) {
+    const tk = String(c.t);
+    if (!/^[a-z0-9]{16}$/.test(tk)) return json({ ok: false }, 400);
+    if (await freio(request, env, 'u')) return json({ ok: false }, 429);
+    const t = await env.ACESSOS.get('t:' + nicho + ':' + tk, 'json');
+    if (!t || !t.ate || Date.now() >= Date.parse(t.ate)) return json({ ok: true, ignorado: true });
+    await registra(env, nicho, 't:' + tk, ev);
+    return json({ ok: true, teste: true });
+  }
   if (!/^[0-9a-f]{64}$/.test(h) && !/^[0-9a-f]{64}$/.test(d)) return json({ ok: false }, 400);
   if (await freio(request, env, 'u')) return json({ ok: false }, 429);
   if (!/^[0-9a-f]{64}$/.test(h)) { await registra(env, nicho, 'd:' + d, ev); return json({ ok: true, codigo: true }); }

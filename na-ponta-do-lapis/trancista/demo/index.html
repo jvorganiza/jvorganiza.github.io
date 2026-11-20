@@ -11,6 +11,13 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='32' fill='%230E3B2A'/%3E%3Cg transform='rotate(-6 22 33)'%3E%3Crect x='12' y='17' width='20' height='32' fill='%23d64034'/%3E%3Ctext x='22' y='43' font-family='Impact,Arial' font-size='26' text-anchor='middle' fill='%23fff'%3EJ%3C/text%3E%3C/g%3E%3Cg transform='rotate(5 42 33)'%3E%3Crect x='32' y='18' width='21' height='32' fill='%23f6f1e5'/%3E%3Ctext x='42.5' y='44' font-family='Impact,Arial' font-size='26' text-anchor='middle' fill='%2316130f'%3EV%3C/text%3E%3C/g%3E%3Crect x='20' y='12' width='22' height='7' fill='%23FFC82E' transform='rotate(-8 31 15)'/%3E%3C/svg%3E">
 <title>Demonstração · Na Ponta do Lápis</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Caveat:wght@700&family=Inter:wght@400;500;600;700&display=swap">
+<script>/* 20/11/2026: pixel com consentimento (o mesmo da página da trancista): ViewContent ao abrir, TestouDemo na primeira edição, CliqueComprar no botão de compra */
+if(!/jvorganiza/.test(location.hostname)){window.fbq=function(){console.log('[teste] fbq',[].slice.call(arguments))}}
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+var ORIGEM=(new URLSearchParams(location.search).get('utm_source')||'direto');
+fbq('consent',(function(){try{return localStorage.getItem('jv-cookies')==='sim'}catch(e){return false}})()?'grant':'revoke');fbq('init','1129384439673429');fbq('track','PageView');fbq('trackCustom','AbriuPagina',{pagina:'demo-trancista',origem:ORIGEM});var PROD={content_name:'Na Ponta do Lapis trancista',content_ids:['quanto-sobra-trancista'],content_type:'product',value:27,currency:'BRL'};fbq('track','ViewContent',PROD);
+document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a');if(!a)return;var h=a.getAttribute('href')||'';try{if(/ir\/pag\/|pay\./i.test(h))fbq('trackCustom','CliqueComprar',{pagina:'demo-trancista',texto:(a.innerText||'').trim().slice(0,40)});else if(/wa\.me/i.test(h))fbq('track','Contact',{content_name:'Teste 1 dia trancista'})}catch(_){}},true);</script>
+<script src="/cookies.js" defer></script>
 <style>
 /* Layout: app de uma coluna para celular; barra de abas fixa embaixo; cartões de papel com borda de tinta (identidade colagem da JV). Visual único, claro, por escolha da marca. */
 :root{
@@ -169,6 +176,8 @@ input[type=time]{-webkit-appearance:none;appearance:none;display:block;max-width
 #demo-aviso{position:fixed;inset:0;z-index:40;background:rgba(22,19,15,.55);display:flex;align-items:flex-end;justify-content:center;padding:16px}
 #demo-aviso .cartao{max-width:460px;width:100%;margin-bottom:calc(8px + env(safe-area-inset-bottom,0px))}
 #demo-aviso .botao{white-space:nowrap}
+.demo-acoes{flex-direction:column;align-items:stretch}.demo-acoes .botao{align-self:stretch;text-align:center}
+.demo-acoes .botao.gratis{background:var(--amarelo);color:var(--tinta);border-color:var(--tinta)}
 #tabela-img{-webkit-touch-callout:none;-webkit-user-select:none;user-select:none;pointer-events:none}
 .demo-nota{background:var(--verde-claro);border:2px dashed var(--verde);border-radius:12px;padding:10px 12px;font-size:14px}
 </style>
@@ -178,7 +187,7 @@ input[type=time]{-webkit-appearance:none;appearance:none;display:block;max-width
 <div id="demo-aviso" hidden role="dialog" aria-modal="true" aria-labelledby="demo-aviso-tit"><div class="cartao">
 <h2 id="demo-aviso-tit">Gostou do teste?</h2>
 <p>Na demonstração dá pra testar até 2 tranças. Com o seu Na Ponta do Lápis você cadastra todas, e fica salvo no seu celular.</p>
-<div class="acoes"><a class="botao" href="https://jvorganiza.com.br/ir/pag/trancista?f=demo" target="_blank" rel="noopener">Quero o meu · R$ 27</a><button type="button" id="demo-aviso-fechar">Continuar testando</button></div>
+<div class="acoes demo-acoes"><a class="botao" href="https://jvorganiza.com.br/ir/pag/trancista?f=demo" target="_blank" rel="noopener">Quero o meu · R$ 27</a><a class="botao gratis" href="https://wa.me/5521977190618?text=Oi!%20Quero%20testar%20gr%C3%A1tis%20por%201%20dia%20o%20Na%20Ponta%20do%20L%C3%A1pis%20para%20tran%C3%A7a" target="_blank" rel="noopener">Usar grátis por 1 dia</a><button type="button" id="demo-aviso-fechar">Continuar testando</button></div>
 </div></div>
 
 
@@ -414,7 +423,7 @@ try{for(var kj=sessionStorage.length-1;kj>=0;kj--){var kq=sessionStorage.key(kj)
 /* Exemplo: box braids médias R$ 200 em 6 h; 2 pacotes de jumbo a R$ 22,50 (400 g de R$ 22 a R$ 40, Mercado Livre, 12/11);
    pomada R$ 30 o pote para 6 tranças (R$ 5) + elástico R$ 5. Conversas reais: box braids R$ 220 com R$ 50 de material em 7 h. */
 function ler(){var p=PADRAO();p.serv.push({id:'exemplo1',nome:'Box braids médias',preco:200,gasto:55,min:360,manut:30,ex:true,g:{jp:2,jv:22.5,pp:30,pr:6,el:5,out:0,pv:0,pas:false}});return p}
-function gravar(){}
+function gravar(){if(gravar.feito)return;gravar.feito=1;try{fbq('trackCustom','TestouDemo',{pagina:'demo-trancista'})}catch(e){}}
 function avisoDemo(){$('demo-aviso').hidden=false;var b=$('demo-aviso').querySelector('.botao');if(b)b.focus()}
 $('demo-aviso-fechar').onclick=function(){$('demo-aviso').hidden=true};
 $('demo-aviso').addEventListener('click',function(e){if(e.target===this)this.hidden=true});
