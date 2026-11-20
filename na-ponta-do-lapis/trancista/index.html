@@ -64,7 +64,8 @@ section.bloco{padding-block:40px 10px;display:grid;gap:12px}
 .faq summary::after{content:"+";font-weight:800}
 .faq details[open] summary::after{content:"–"}
 .faq p{margin-top:8px;color:var(--tinta2);max-width:64ch}
-.zap{margin-top:30px;padding:24px 22px;display:grid;gap:12px;justify-items:start}
+.zap{margin-top:30px;padding:24px 18px;display:grid;gap:12px;justify-items:start}
+.zap .btn{width:100%;justify-self:stretch}
 .heroi{padding-block:40px 20px;display:grid;gap:24px;align-items:center}
 .heroi .txt{display:grid;gap:14px;min-width:0}
 @media (min-width:880px){.heroi{grid-template-columns:1.1fr .9fr;padding-block:60px 30px}}
@@ -74,14 +75,15 @@ section.bloco{padding-block:40px 10px;display:grid;gap:12px}
 .preco .vez{font-weight:700}
 .selos{display:flex;flex-wrap:wrap;gap:6px 14px;margin:0;padding:0;list-style:none;font-size:14px;font-weight:700}
 .selos li::before{content:"✓ ";color:var(--verde2)}
-.mesa{position:relative;height:380px;max-width:420px;width:100%;justify-self:center}
+.mesa{position:relative;height:380px;max-width:420px;width:100%;justify-self:start}
 .mesa img{position:absolute;width:54%;border:2.5px solid var(--tinta);border-radius:12px;box-shadow:6px 6px 0 var(--tinta);background:#fff}
 .mesa .m1{left:2%;top:24px;transform:rotate(-6deg)}
 .mesa .m2{right:2%;top:0;transform:rotate(5deg)}
 .mesa .fita{top:6px;left:44%}
 .mesa .nota{position:absolute;left:2%;bottom:0;background:var(--branco);border:2px solid var(--tinta);padding:6px 12px;transform:rotate(-3deg);box-shadow:3px 3px 0 var(--tinta)}
-.video{display:grid;gap:12px;justify-items:center;text-align:center}
-.video video{width:100%;max-width:330px;aspect-ratio:9/16;border:3px solid var(--tinta);border-radius:18px;box-shadow:6px 6px 0 var(--tinta);background:#efe9dc}
+.video{display:grid;gap:12px}
+.video video{width:100%;aspect-ratio:9/16;border:3px solid var(--tinta);border-radius:18px;box-shadow:6px 6px 0 var(--tinta);background:#efe9dc}
+@media (min-width:760px){.video video{max-width:380px}}
 .telas{display:grid;gap:34px;margin-top:6px}
 .tela{display:grid;gap:14px;align-items:center}
 @media (min-width:860px){.tela{grid-template-columns:1fr 1fr}.tela:nth-child(even) .txt{order:2}}
@@ -93,7 +95,7 @@ section.bloco{padding-block:40px 10px;display:grid;gap:12px}
 .carrossel{display:grid;grid-auto-flow:column;grid-auto-columns:46%;gap:12px;overflow-x:auto;padding:4px 4px 10px;scroll-snap-type:x mandatory}
 .carrossel img{border:2px solid var(--tinta);border-radius:10px;scroll-snap-align:start;background:#fff}
 @media (min-width:860px){.carrossel{grid-auto-columns:23%}}
-.compra{padding:24px 22px;display:grid;gap:12px;background:var(--amarelo)}
+.compra{padding:24px 18px;display:grid;gap:12px;background:var(--amarelo)}
 .compra .valor{font:400 58px/1 Anton,Impact,sans-serif}
 .dep{display:grid;gap:16px}
 @media (min-width:760px){.dep{grid-template-columns:repeat(3,1fr)}}
@@ -165,7 +167,7 @@ section.bloco{padding-block:40px 10px;display:grid;gap:12px}
 </div>
 
 <section class="wrap bloco video">
-  <span class="bilhete" style="justify-self:center">aperta o play</span>
+  <span class="bilhete">aperta o play</span>
   <h2 class="titulo2">Veja funcionando em 1 minuto</h2>
   <video controls playsinline preload="none" poster="/img/na-ponta-do-lapis/telas/tour-capa.jpg" src="/video/na-ponta-do-lapis-trancista.mp4"></video>
   <p class="miudo">Da compra até a tabela pronta, com as telas de verdade.</p>
@@ -192,7 +194,7 @@ section.bloco{padding-block:40px 10px;display:grid;gap:12px}
 </section>
 
 <section class="wrap bloco video">
-  <span class="bilhete" style="justify-self:center">tá com medo de comprar?</span>
+  <span class="bilhete">tá com medo de comprar?</span>
   <h2 class="titulo2">Do Pix até a primeira trança</h2>
   <video controls playsinline preload="none" poster="/img/na-ponta-do-lapis/telas/jornada-capa.jpg" src="/video/jornada-compra-trancista.mp4"></video>
   <p class="miudo">O caminho inteiro em 40 segundos, com as telas de verdade: o pagamento, o acesso no e-mail e a primeira trança.</p>

@@ -37,14 +37,14 @@ section.bloco{padding-block:44px 10px;display:grid;gap:14px}
 .heroi .txt{display:grid;gap:14px;min-width:0}
 .heroi h1{font:400 clamp(33px,8.6vw,54px)/1.16 Anton,Impact,sans-serif;text-transform:uppercase}
 @media (min-width:880px){.heroi{grid-template-columns:1.1fr .9fr;padding-block:56px 30px}}
-.preco{background:var(--amarelo);border:2.5px solid var(--tinta);border-radius:14px;box-shadow:6px 6px 0 var(--tinta);padding:16px;display:grid;gap:10px;position:relative}
+.preco{background:var(--amarelo);border:2.5px solid var(--tinta);border-radius:14px;box-shadow:6px 6px 0 var(--tinta);padding:16px 18px;display:grid;gap:10px;position:relative}
 .preco .btn{width:100%;font-size:18px}
-.pix{font-weight:700;font-size:15px;text-align:center}
-.selos{display:flex;flex-wrap:wrap;justify-content:center;gap:4px 14px;margin:0;padding:0;list-style:none;font-size:14px;font-weight:700}
+.pix{font-weight:700;font-size:15px}
+.selos{display:flex;flex-wrap:wrap;gap:4px 14px;margin:0;padding:0;list-style:none;font-size:14px;font-weight:700}
 .selos li::before{content:"✓ ";color:var(--verde2)}
 
 /* bilhete da hora, ao lado da abertura */
-.recibo{justify-self:center;width:min(100%,360px);background:var(--branco);border:2.5px solid var(--tinta);border-radius:6px;box-shadow:6px 6px 0 var(--tinta);padding:22px 20px 18px;transform:rotate(-1.5deg);position:relative;display:grid;gap:4px}
+.recibo{width:100%;background:var(--branco);border:2.5px solid var(--tinta);border-radius:6px;box-shadow:6px 6px 0 var(--tinta);padding:22px 20px 18px;transform:rotate(-1.5deg);position:relative;display:grid;gap:4px}
 .recibo .r-lin{display:flex;justify-content:space-between;gap:10px;font-size:16px;border-bottom:1.5px dashed rgba(22,19,15,.25);padding-block:4px}
 .recibo .r-hora{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:8px}
 .recibo .r-hora span{font-weight:700;font-size:15px}
@@ -67,7 +67,7 @@ section.bloco{padding-block:44px 10px;display:grid;gap:14px}
 .caderno .nota{font:700 23px/30px Caveat,cursive;color:var(--verm)}
 .caderno .fita{left:auto;right:16px;transform:rotate(4deg)}
 .conta{display:grid;gap:10px}
-.seta{display:block;width:120px;height:58px;justify-self:center;margin-block:-4px}
+.seta{display:block;width:120px;height:58px;margin-block:-4px}
 @media (min-width:860px){.conta{grid-template-columns:1fr 70px 1fr;align-items:center}.seta{transform:rotate(-70deg)}}
 .prints{display:grid;gap:22px;margin-top:14px}
 .prints figure{margin:0;position:relative}
@@ -79,10 +79,12 @@ section.bloco{padding-block:44px 10px;display:grid;gap:14px}
 .aviso-luz{background:var(--menta);border:2px dashed var(--verde);border-radius:12px;padding:12px 14px;font-size:15.5px}
 
 /* testar */
-.testa{padding:24px 18px 22px;display:grid;gap:14px;justify-items:center;text-align:center}
-.testa .btn{width:100%;max-width:340px}
-.video{display:grid;gap:12px;justify-items:center;text-align:center}
-.video video{width:100%;max-width:300px;aspect-ratio:9/16;border:3px solid var(--tinta);border-radius:18px;box-shadow:6px 6px 0 var(--tinta);background:#efe9dc}
+.testa{padding:24px 18px 22px;display:grid;gap:14px}
+.testa .btn{width:100%}
+.video{display:grid;gap:12px}
+.video video{width:100%;aspect-ratio:9/16;border:3px solid var(--tinta);border-radius:18px;box-shadow:6px 6px 0 var(--tinta);background:#efe9dc}
+
+@media (min-width:760px){.video video{max-width:380px}}
 
 /* o que faz */
 .telas{display:grid;gap:34px;margin-top:6px}
@@ -105,7 +107,7 @@ section.bloco{padding-block:44px 10px;display:grid;gap:14px}
 .confia i{position:absolute;left:14px;top:14px;width:30px;height:30px;display:grid;place-items:center;background:var(--amarelo);border:2px solid var(--tinta);border-radius:50%;font:800 15px/1 Inter,sans-serif;font-style:normal}
 
 /* preço */
-.compra{padding:26px 20px 22px;display:grid;gap:12px;background:var(--amarelo)}
+.compra{padding:26px 18px 22px;display:grid;gap:12px;background:var(--amarelo)}
 .compra .valor{font:400 60px/1 Anton,Impact,sans-serif}
 .compra .btn{width:100%;font-size:18px}
 .lin-valor{display:flex;align-items:center;flex-wrap:wrap;gap:8px 18px}
@@ -119,8 +121,8 @@ section.bloco{padding-block:44px 10px;display:grid;gap:14px}
 .faq summary::after{content:"+";font-weight:800}
 .faq details[open] summary::after{content:"–"}
 .faq p{margin-top:8px;color:var(--tinta2);max-width:64ch}
-.zap{margin-top:30px;padding:24px 20px;display:grid;gap:12px;justify-items:start}
-.zap .btn{width:100%;max-width:340px}
+.zap{margin-top:30px;padding:24px 18px;display:grid;gap:12px;justify-items:start}
+.zap .btn{width:100%;justify-self:stretch}
 .miudo-final{font-size:13.5px;color:var(--tinta2);max-width:70ch}
 
 /* barra fixa de compra (só no celular) */
@@ -199,13 +201,13 @@ section.bloco{padding-block:44px 10px;display:grid;gap:14px}
 <!-- c) testar antes de comprar -->
 <section class="wrap bloco">
   <div class="recorte testa"><span class="fita"></span>
-    <span class="bilhete" style="justify-self:center">antes de pagar qualquer coisa</span>
+    <span class="bilhete">antes de pagar qualquer coisa</span>
     <h2 class="titulo2">Testa no seu celular antes de comprar</h2>
     <p class="sub">Põe a sua trança, o que você cobra e o que gasta. A conta aparece na hora, sem cadastro.</p>
     <a class="btn papel" href="/na-ponta-do-lapis/trancista/demo/">Testar grátis no celular</a>
   </div>
   <div class="video" style="margin-top:22px">
-    <span class="bilhete" style="justify-self:center">ou aperta o play</span>
+    <span class="bilhete">ou aperta o play</span>
     <h3 class="titulo2" style="font-size:28px;line-height:34px">Veja funcionando em 1 minuto</h3>
     <video controls playsinline preload="none" poster="/img/na-ponta-do-lapis/telas/tour-capa.jpg" src="/video/na-ponta-do-lapis-trancista.mp4"></video>
   </div>
@@ -224,7 +226,7 @@ section.bloco{padding-block:44px 10px;display:grid;gap:14px}
 
 <!-- e) do Pix até a primeira trança -->
 <section class="wrap bloco video">
-  <span class="bilhete" style="justify-self:center">tá com medo de comprar?</span>
+  <span class="bilhete">tá com medo de comprar?</span>
   <h2 class="titulo2">Do Pix até a primeira trança</h2>
   <video controls playsinline preload="none" poster="/img/na-ponta-do-lapis/telas/jornada-capa.jpg" src="/video/jornada-compra-trancista.mp4"></video>
   <p class="miudo">O caminho inteiro em 40 segundos, com as telas de verdade: o pagamento, o acesso no e-mail e a primeira trança.</p>
