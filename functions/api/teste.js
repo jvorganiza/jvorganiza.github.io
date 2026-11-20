@@ -43,7 +43,7 @@ export async function onRequestPost({ request, env }) {
   let c; try { c = JSON.parse(cru); } catch (e) { return json({ ok: false, motivo: 'json' }, 400); }
   const nicho = String(c.produto || '');
   if (!TESTE_NICHOS.includes(nicho)) return json({ ok: false, motivo: 'produto' }, 400);
-  const chat = String(c.chat == null ? '' : c.chat).trim();
+  const chat = String(c.chat == null ? '' : c.chat).replace(/\D/g, ''); // o Leona manda o telefone com + e espaços
   if (!/^\d{1,30}$/.test(chat)) return json({ ok: false, motivo: 'chat' }, 400);
   // 20/11: o Leona manda o telefone da conversa; guardamos só um resumo dele (nunca o número)
   const chatId = chat.length >= 10 ? 'h' + (await sha256('jv-teste-chat:' + chat)).slice(0, 24) : chat;
