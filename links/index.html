@@ -20,7 +20,15 @@
 var ORIGEM=(new URLSearchParams(location.search).get('utm_source')||'direto');
 fbq('consent',(function(){try{return localStorage.getItem('jv-cookies')==='sim'}catch(e){return false}})()?'grant':'revoke');fbq('init','1129384439673429');fbq('track','PageView');fbq('trackCustom','AbriuPagina',{pagina:'links-ig',origem:ORIGEM});var PAGINA='links-ig';document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a');if(!a)return;var h=a.getAttribute('href')||'';var d=/wa\.me|\/ir\/zap|whatsapp/i.test(h)?'whatsapp':/pay\./i.test(h)?'checkout':/\/kits/.test(h)?'kits':/calculadora/.test(h)?'calculadora':/lapis/.test(h)?'lapis':'outro';try{fbq('trackCustom','CliqueLink',{pagina:PAGINA,destino:d,texto:(a.innerText||'').trim().slice(0,40)})}catch(_){}},true);</script>
 <script src="/cookies.js" defer></script>
-<style data-links="1">.linkbio .logo-bio{width:96px;height:96px;margin:6px auto 0;display:block}.lb.grupo{display:grid;gap:10px;text-align:center}.chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}.chips a{border:2px solid var(--tinta);border-radius:999px;padding:7px 14px;background:var(--amarelo);color:var(--tinta);font-weight:700;font-size:15px;text-decoration:none}</style>
+<style data-links="1">.linkbio .logo-bio{width:96px;height:96px;margin:6px auto 0;display:block}.lb.grupo{display:grid;gap:10px;text-align:center}.chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}.chips a{border:2px solid var(--tinta);border-radius:999px;padding:7px 14px;background:var(--amarelo);color:var(--tinta);font-weight:700;font-size:15px;text-decoration:none}
+.lb.grande{font:400 26px/1.15 Anton,Impact,sans-serif;text-transform:uppercase;padding:18px 18px 16px}
+.lb.grande small{font-family:Inter,sans-serif;font-weight:700;font-size:12.5px;letter-spacing:.06em;margin-bottom:6px}
+.lb.zap-bio{background:var(--verde);color:#fff}
+.linkbio .outros{justify-self:center;align-self:center;margin-top:14px}
+.menores{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.lb.mini{padding:10px 8px;font-size:14px;line-height:1.25;border-width:2px;box-shadow:3px 3px 0 var(--tinta)}
+.lb.mini small{font-size:12px;margin-bottom:4px}
+@media (max-width:360px){.menores{grid-template-columns:1fr}}</style>
 <style data-colagem="1">.topo{position:sticky}
 .topo .marca{color:var(--papel2)}
 main{padding-top:18px}
@@ -111,14 +119,16 @@ section.bloco{padding-block:40px 10px;display:grid;gap:12px}
   <img class="logo-bio" src="/img/logo-jv-160.png" alt="Logo Empresa JV" width="96" height="96">
   <h1>Empresa JV</h1>
   <p>Sistemas simples no celular pra quem trança, confeita e toca o negócio sozinha.</p>
-  <a class="lb destaque" href="/na-ponta-do-lapis/trancista/?utm_source=ig&utm_medium=bio"><small>PARA TRANCISTAS</small>Na Ponta do Lápis · R$ 27</a>
-  <a class="lb destaque" href="/na-ponta-do-lapis/confeitaria/?utm_source=ig&utm_medium=bio"><small>PARA CONFEITEIRAS</small>Na Ponta do Lápis · R$ 27</a>
-  <div class="lb grupo"><small>MENSAGENS PRONTAS · R$ 27</small>Recortes de conversa
-    <span class="chips"><a href="https://pay.cakto.com.br/3b59uga_1309945?split=1">Trancista</a><a href="https://pay.cakto.com.br/ahxpg6o_1309946?split=1">Confeitaria</a><a href="https://pay.cakto.com.br/ucev7ps_1309949?split=1">Gráfica</a><a href="https://pay.cakto.com.br/j4wazy7_1309951?split=1">Outros ramos</a></span></div>
-  <a class="lb" href="/ir/zap-instagram/" target="_blank" rel="noopener">Falar no WhatsApp</a>
-  <div class="lb grupo"><small>GRÁTIS · SEM CADASTRO</small>Calculadora de preço
-    <span class="chips"><a href="/calculadora/trancista/?utm_source=ig&utm_medium=bio">Trança</a><a href="/calculadora/confeitaria/?utm_source=ig&utm_medium=bio">Confeitaria</a><a href="/calculadora/?utm_source=ig&utm_medium=bio">Outros serviços</a></span></div>
-  <a class="lb" href="/ferramentas/"><small>FERRAMENTAS EXTRAS</small>Cartão, WhatsApp e conteúdo com IA</a>
+  <!-- 20/11/2026: bio enxuta. Em cima, grandes, só 3 caminhos; embaixo, menores, o resto. -->
+  <a class="lb destaque grande" href="/na-ponta-do-lapis/trancista/?utm_source=ig&utm_medium=bio"><small>NA PONTA DO LÁPIS · R$ 27</small>Sou trancista</a>
+  <a class="lb grande" href="/na-ponta-do-lapis/trancista/demo/?utm_source=ig&utm_medium=bio"><small>SEM CADASTRO · SEM PAGAR</small>Testar grátis no celular</a>
+  <a class="lb grande zap-bio" href="/ir/zap-instagram/" target="_blank" rel="noopener"><small>A MENSAGEM JÁ VAI PRONTA</small>Falar no WhatsApp</a>
+  <p class="bilhete outros">mais coisas da JV</p>
+  <div class="menores">
+    <a class="lb mini" href="/na-ponta-do-lapis/confeitaria/?utm_source=ig&utm_medium=bio"><small>CONFEITARIA</small>Na Ponta do Lápis</a>
+    <a class="lb mini" href="/calculadora/?utm_source=ig&utm_medium=bio"><small>GRÁTIS</small>Calculadoras de preço</a>
+    <a class="lb mini" href="/dicas/preco-sem-chutar/?utm_source=ig&utm_medium=bio"><small>DICAS</small>Preço sem chutar</a>
+  </div>
 </main>
 <!--colagem-rodape-->
 <footer class="rodape"><div class="wrap">
