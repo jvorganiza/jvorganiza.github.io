@@ -1133,7 +1133,7 @@ var q='';try{q=new URLSearchParams(location.search).get('teste')||''}catch(e){}
 if(q){limpaUrl();var atual=ls(K);
   if(atual&&!/^t:/.test(atual)){/* já tem compra neste aparelho: segue normal */}
   else if(/^[a-z0-9]{16}$/.test(q)){api({teste:q}).then(function(j){
-      if(j&&(j.ok&&j.teste||j.motivo==='teste_acabou')&&j.ate){ls(K,'t:'+q);ls(KT,j.ate);location.replace(location.pathname+location.hash);return}
+      if(j&&(j.ok&&j.teste||j.motivo==='teste_acabou')&&j.ate){var antes=ls(KT);ls(K,'t:'+q);ls(KT,antes&&antes<j.ate?antes:j.ate);/* 20/11: o mesmo aparelho não renova o teste tocando de novo no link */location.replace(location.pathname+location.hash);return}
       var er=document.getElementById('portao-erro');if(er&&!ls(K))er.textContent='Esse link de teste não vale. Peça um novo no WhatsApp: (21) 97719-0618.'}).catch(function(){
       var er=document.getElementById('portao-erro');if(er&&!ls(K))er.textContent='Sem internet agora. Conecte e abra o link do teste de novo.'})}}
 var tk=token();if(!tk)return;

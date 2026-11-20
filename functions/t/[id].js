@@ -13,7 +13,14 @@ function novoToken() {
 }
 
 export async function onRequestGet({ params, env }) {
-  const id = String(params.id || '').replace(/\D/g, '').slice(0, 20);
+  const bruto = String(params.id || '');
+  if (env.ACESSOS && bruto === 'w') {
+    // link único do WhatsApp: cada aparelho que abre ganha um teste novo; o app não deixa o mesmo aparelho renovar
+    const token = novoToken(), agora = Date.now();
+    await env.ACESSOS.put('t:' + NICHO + ':' + token, JSON.stringify({ ate: new Date(agora + DURACAO).toISOString(), chat: 'w', nome: '', em: new Date(agora).toISOString(), origem: 'whatsapp' }));
+    return Response.redirect(linkTeste(NICHO, token), 302);
+  }
+  const id = bruto.replace(/\D/g, '').slice(0, 20);
   if (!env.ACESSOS || !id) return Response.redirect('https://jvorganiza.com.br/na-ponta-do-lapis/trancista/teste/', 302);
   const chatId = 'l' + (await sha256('jv-teste-leona:' + id)).slice(0, 24);
   const kc = 'tc:' + NICHO + ':' + chatId;
