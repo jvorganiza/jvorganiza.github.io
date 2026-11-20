@@ -39,8 +39,6 @@ export async function onRequestPost({ request, env }) {
   if (!env.ACESSOS) return json({ ok: false, motivo: 'nao_configurado' }, 503);
   if (env.TESTE_LEONA_CHAVE && !igual(request.headers.get('x-jv-chave') || '', env.TESTE_LEONA_CHAVE)) return json({ ok: false, motivo: 'origem' }, 401);
   const cru = await request.text();
-  // DEPURAÇÃO TEMPORÁRIA (20/11): guarda o formato do último pedido, com todos os dígitos trocados por 0
-  try { await env.ACESSOS.put('dbg:teste', JSON.stringify({ ct: request.headers.get('content-type'), corpo: cru.slice(0, 400).replace(/\d/g, '0'), em: new Date().toISOString() }), { expirationTtl: 3600 }); } catch (e) {}
   if (cru.length > 2000) return json({ ok: false }, 413);
   let c; try { c = JSON.parse(cru); } catch (e) { return json({ ok: false, motivo: 'json' }, 400); }
   const nicho = String(c.produto || '');
@@ -80,7 +78,6 @@ async function todos(env, nicho) {
 }
 
 export async function onRequestGet({ request, env }) {
-  if (new URL(request.url).searchParams.get('dbg') === '1') return json(JSON.parse((await env.ACESSOS.get('dbg:teste')) || '{}'));
   if (!env.ACESSOS) return json({ ok: false }, 503);
   const q = new URL(request.url).searchParams, nicho = TESTE_NICHOS.includes(q.get('produto')) ? q.get('produto') : 'trancista';
   if (q.get('lista') === '1') {
