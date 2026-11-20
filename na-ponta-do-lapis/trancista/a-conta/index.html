@@ -277,5 +277,8 @@ section.bloco{padding-block:44px 10px;display:grid;gap:14px}
   <p><b>Empresa JV</b> · sistemas simples para quem toca o negócio sozinha.</p>
   <p>© 2026 Empresa JV · CNPJ 59.461.672/0001-47 · Sistema montado pela Empresa JV</p>
 </div></footer>
+<script>/* 20/11: repassa os utm_* da página para o checkout da Cakto, para saber de qual anúncio veio a venda */
+(function(){try{var q=new URLSearchParams(location.search),u=[];q.forEach(function(v,k){if(/^utm_/.test(k))u.push([k,v])});if(!u.length)return;
+document.querySelectorAll('a[href*="pay.cakto.com.br"]').forEach(function(a){try{var x=new URL(a.href);u.forEach(function(p){x.searchParams.set(p[0],p[1])});a.href=x.toString()}catch(e){}})}catch(e){}})();</script>
 </body>
 </html>
