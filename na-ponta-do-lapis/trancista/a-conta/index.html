@@ -191,6 +191,8 @@ section.bloco{padding-top:72px}
 }
 @keyframes desenha{to{stroke-dashoffset:0}}
 @keyframes risca{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+.aviso-zap{color:var(--areia);font-size:13.5px;line-height:1.45;max-width:40ch}
+.teste .aviso-zap{margin:6px 0 2px}
 </style>
 <style>/* 20/11: aviso de cookies no visual da página (estilo C) */
 #jv-cookies{background:#3a281c!important;color:#f3e7d3!important;border:1px solid #6b4a33!important;box-shadow:0 10px 30px rgba(0,0,0,.45)!important}
@@ -221,7 +223,8 @@ section.bloco{padding-top:72px}
       <div class="acoes" id="topo-compra">
         <a class="btn ouro" href="https://pay.cakto.com.br/4dkmz5v?split=1">Quero o meu · R$ 27</a>
         <p class="pix">no Pix sai R$ 24,40 · uma vez só · 7 dias de garantia</p>
-        <a class="btn contorno" href="https://wa.me/5521977190618?text=Oi!%20Quero%20testar%20gr%C3%A1tis%20por%201%20dia%20o%20Na%20Ponta%20do%20L%C3%A1pis%20para%20tran%C3%A7a" target="_blank" rel="noopener" data-teste>Receber meu teste grátis no WhatsApp</a>
+        <a class="btn contorno" href="https://wa.me/5521977190618?text=Oi!%20Quero%20testar%20gr%C3%A1tis%20por%201%20dia%20o%20Na%20Ponta%20do%20L%C3%A1pis%20para%20tran%C3%A7a" target="_blank" rel="noopener" data-teste>Quero testar 1 dia grátis</a>
+        <p class="aviso-zap">Abre o WhatsApp com a mensagem pronta. É só tocar em enviar que o link chega na hora.</p>
       </div>
     </div>
   </div>
@@ -267,11 +270,11 @@ section.bloco{padding-top:72px}
 <section class="wrap bloco viva">
   <div class="rv">
     <span class="rot">A tela, de verdade</span>
-    <h2>A conta se fazendo no app</h2>
+    <h2>A conta se fazendo no celular</h2>
     <p class="frase">A fulani entra, o “sobra” aparece, o mês soma e a tabela sai com a logo.</p>
     <p class="leg">Sem som · 19 segundos · números da demonstração</p>
   </div>
-  <div class="celular rv" role="img" aria-label="Vídeo sem som do app: cadastro da fulani, a sobra de R$ 210, o mês com sobra de R$ 1.237 e a tabela de preços com logo">
+  <div class="celular rv" role="img" aria-label="Vídeo sem som do Na Ponta do Lápis: cadastro da fulani, a sobra de R$ 210, o mês com sobra de R$ 1.237 e a tabela de preços com logo">
     <div class="tela-cel">
       <video muted loop playsinline preload="none" width="720" height="1280" poster="/img/na-ponta-do-lapis/telas/tela-viva-capa.webp" data-src="/video/tela-viva-trancista.mp4" aria-hidden="true"></video>
     </div>
@@ -297,7 +300,8 @@ section.bloco{padding-top:72px}
     <h2>Testa com as suas tranças por 1 dia</h2>
     <p class="frase">Toca no botão: o link do teste chega no seu WhatsApp na hora.</p>
     <div class="acoes">
-      <a class="btn ouro" href="https://wa.me/5521977190618?text=Oi!%20Quero%20testar%20gr%C3%A1tis%20por%201%20dia%20o%20Na%20Ponta%20do%20L%C3%A1pis%20para%20tran%C3%A7a" target="_blank" rel="noopener" data-teste><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20l1.3-4A8 8 0 1 1 8.5 19z"/><path d="M9 9.5c.3 2.6 2.4 4.8 5 5"/></svg>Receber meu teste grátis no WhatsApp</a>
+      <a class="btn ouro" href="https://wa.me/5521977190618?text=Oi!%20Quero%20testar%20gr%C3%A1tis%20por%201%20dia%20o%20Na%20Ponta%20do%20L%C3%A1pis%20para%20tran%C3%A7a" target="_blank" rel="noopener" data-teste><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20l1.3-4A8 8 0 1 1 8.5 19z"/><path d="M9 9.5c.3 2.6 2.4 4.8 5 5"/></svg>Quero testar 1 dia grátis</a>
+      <p class="aviso-zap">Abre o WhatsApp com a mensagem pronta. É só tocar em enviar que o link chega na hora.</p>
       <a class="link-demo" href="/na-ponta-do-lapis/trancista/demo/">ou ver um exemplo agora, sem cadastro</a>
     </div>
   </div>
@@ -305,9 +309,7 @@ section.bloco{padding-top:72px}
 
 <!-- 6) por que pode confiar: o vídeo da jornada (com voz), CNPJ, garantia e os depoimentos -->
 <section class="wrap bloco" id="confia">
-  <span class="rot rv">Tá com medo de comprar?</span>
   <h2 class="rv">Por que pode confiar</h2>
-  <p class="frase rv">Do Pix até a primeira trança, em 40 segundos, com as telas de verdade.</p>
   <div class="confia-grid">
     <!-- Lugar da FOTO REAL de uma cliente trancista (com autorização), ao lado do vídeo da jornada. -->
     <div class="video rv"><video controls playsinline preload="none" width="380" height="676" poster="/img/na-ponta-do-lapis/telas/jornada-capa.jpg" src="/video/jornada-compra-trancista.mp4"></video></div>
