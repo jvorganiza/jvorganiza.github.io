@@ -1150,7 +1150,7 @@ var css=document.createElement('style');css.textContent=
 +'#teste-fim small{color:var(--tinta2);font-size:13px}';
 document.head.appendChild(css);
 var F=document.createElement('div');F.id='teste-faixa';F.setAttribute('role','region');F.setAttribute('aria-label','Teste grátis');F.hidden=true;
-F.innerHTML='<div><p><b>Teste grátis</b> · <span id="teste-falta"></span></p><a href="'+COMPRA+'" target="_blank" rel="noopener">Quero o meu · R$ 27</a></div>';
+F.innerHTML='<div><p><b>Teste grátis</b> · <span id="teste-falta"></span></p><a href="'+COMPRA+'" target="_blank" rel="noopener">Ver como continuar</a></div>';
 var T=document.createElement('div');T.id='teste-fim';T.hidden=true;T.setAttribute('role','dialog');T.setAttribute('aria-modal','true');T.setAttribute('aria-labelledby','teste-fim-tit');
 T.innerHTML='<div class="cartao"><h2 id="teste-fim-tit">Seu dia de teste acabou 💛</h2><p>As suas tranças continuam salvas aqui. Para continuar usando:</p>'
  +'<a class="botao" href="'+COMPRA+'" target="_blank" rel="noopener">Quero o meu · R$ 27</a>'
@@ -1159,9 +1159,13 @@ T.innerHTML='<div class="cartao"><h2 id="teste-fim-tit">Seu dia de teste acabou 
 document.body.appendChild(F);document.body.appendChild(T);
 document.getElementById('teste-comprei').onclick=function(){ls(KT,null);ls(K,null);ls(K+'-v',null);location.replace(location.pathname)};
 var relogio;
+/* 20/11 noite: hora fixa do fim do teste, sem contagem regressiva ("vale até amanhã às 15h") */
+function quando(ms){var d=new Date(ms),h=new Date(),am=new Date(h.getFullYear(),h.getMonth(),h.getDate()+1),hr='às '+d.getHours()+'h'+(d.getMinutes()?('0'+d.getMinutes()).slice(-2):'');
+  if(d.toDateString()===h.toDateString())return 'hoje '+hr;if(d.toDateString()===am.toDateString())return 'amanhã '+hr;
+  return ('0'+d.getDate()).slice(-2)+'/'+('0'+(d.getMonth()+1)).slice(-2)+' '+hr}
 function pinta(){var a=Date.parse(ls(KT))||0,falta=a-Date.now();
-  if(falta>0){F.hidden=false;T.hidden=true;document.body.classList.add('em-teste');var hs=Math.ceil(falta/36e5);
-    document.getElementById('teste-falta').textContent=falta<36e5?'acaba em menos de 1 h':'acaba em '+hs+' h'}
+  if(falta>0){F.hidden=false;T.hidden=true;document.body.classList.add('em-teste');
+    document.getElementById('teste-falta').textContent='vale até '+quando(a)}
   else{F.hidden=true;document.body.classList.remove('em-teste');T.hidden=false;clearInterval(relogio)}}
 pinta();relogio=setInterval(pinta,60000);
 /* 3. com internet, confere o fim do teste no servidor (sem internet, vale a data guardada) */
